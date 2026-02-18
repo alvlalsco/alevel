@@ -67,7 +67,7 @@ const siteContent = {
         // LEVEL 1: EXECUTIVE (Order matters for the layout!)
         highCouncil: [
             // Row 1: President
-            { role: "President", name: "TAY HUI ER", image: "images/committee/high_council/president.png", quote: "Leadership is not about being in charge. It is about taking care of those in your charge." },
+            { role: "President", name: "TAY HUI ER", image: "images/committee/high_council/president.png", quote: "" },
 
             // Row 2: VPs
             { role: "Vice President of External Affairs", name: "NICHOLAS WONG JUN YEW", image: "images/committee/high_council/vpe.png", quote: "" },
@@ -76,7 +76,7 @@ const siteContent = {
             // Row 3: Secs & Treasurer
             { role: "Secretary", name: "CHUE RYEE EN", image: "images/committee/high_council/sec1.png", quote: "" },
             { role: "Secretary", name: "AUSTIN LAU HONG SHEN", image: "images/committee/high_council/sec2.png", quote: "" },
-            { role: "Treasurer", name: "EVAN YEOH JIN QUAN", image: "images/committee/high_council/treasurer.png", quote: "" },
+            { role: "Treasurer", name: "EVAN YEOH JIN QUAN", image: "images/committee/high_council/treasurer.png", quote: "Hmmmmmm, having fun!!!" },
         ],
 
         // LEVEL 2: DEPARTMENTS
@@ -90,7 +90,7 @@ const siteContent = {
                 // Just list names for general members to save space, or use objects if you have photos
                 members: [
                     { role: "General Member", name: "ONG XI WEN", image: "images/committee/leadership_dev/member1.png", quote: "" },
-                    { role: "General Member", name: "EVAN YEOH JIN QUAN", image: "images/committee/leadership_dev/member2.png", quote: "" },
+                    { role: "General Member", name: "EVAN YEOH JIN QUAN", image: "images/committee/leadership_dev/member2.png", quote: "Stay Humble, Stay Hungry" },
                     { role: "General Member", name: "TAY HUI ER", image: "images/committee/leadership_dev/member3.png", quote: "" },
                     { role: "General Member", name: "VINCENT KHOO WEI WEN", image: "images/committee/leadership_dev/member4.png", quote: "" },
                 ],
@@ -125,7 +125,7 @@ const siteContent = {
                     { role: "Deputy Director", name: "SEW SUN LOONG", image: "images/committee/student_wel/SWdeputyDirector.png", quote: "" }
                 ],
                 members: [
-                    { role: "General Member", name: "LAW JIA HERNG", image: "images/committee/student_wel/member1.png", quote: "None" },
+                    { role: "General Member", name: "LAW JIA HERNG", image: "images/committee/student_wel/member1.png", quote: "" },
                     { role: "General Member", name: "JOSHUA LEE CHENG AN", image: "images/committee/student_wel/member2.png", quote: "" },
                     { role: "General Member", name: "GOH JAY NING", image: "images/committee/student_wel/member3.png", quote: "" },
                     { role: "General Member", name: "DANIEL WONG WENG SENG", image: "images/committee/student_wel/member4.png", quote: "" },
@@ -175,6 +175,22 @@ const siteContent = {
                 registration_link: "https://forms.google.com/orientation",
                 button_text: "Closed"
             },
+            {
+                title: "Teacher Appreciation Week",
+                date: "Monday, 23rd February 2026 to Thursday, 26th February 2026",
+                image: "images/events/upcoming/law.png",
+                description: "Waiting for Description",
+                registration_link: "None",
+                button_text: "Happening Now"
+            },
+            {
+                title: "Teacher Appreciation Week",
+                date: "Monday, 23rd February 2026 to Thursday, 26th February 2026",
+                image: "images/events/upcoming/law.png",
+                description: "Waiting for Description",
+                registration_link: "None",
+                button_text: "Happening Now"
+            },
             // Registration up coming, put button_text: "Coming Soon". Registratoin opened: "Register Now" this will activate button and links to google form. Registration closed, put "Closed"
             // To add more evnets, just copy the format above and paste and change the details accordingly.
         ],
@@ -186,14 +202,14 @@ const siteContent = {
                 date: "Saturday, 17th January 2026",
                 department: "ALSCO",
                 description: "Raised RM1000+ through ALSTAR First Event for an Old Folks Home",
-                gallery_link: "https://drive.google.com/drive/folders/1I6pPY6tEC4EdMWYO424xfXIkBB3iY9yI" // Link to Google Folder/IG
+                driveFolderID: "", //FolderID
             },
             {
                 title: "July 2025 Installation Night",
                 date: "Thrusday, 8th Janaury 2026",
                 department: "SST (2 Secretaries & Treasurer)",
                 description: "A Formal Night of Installation of the new July 2025 A-Level Student Committee members",
-                gallery_link: "https://instagram.com/p/..."
+                driveFolderID: "", //FolderID
             }
         ]
     },
