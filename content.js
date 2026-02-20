@@ -191,7 +191,7 @@ const siteContent = {
                 registration_link: "None",
                 button_text: "Happening Now"
             },
-            // Registration up coming, put button_text: "Coming Soon". Registratoin opened: "Register Now" this will activate button and links to google form. Registration closed, put "Closed"
+            // Registration up coming, put button_text: "Coming Soon". Registration opened: "Register Now" this will activate button and links to google form. Registration closed, put "Closed"
             // To add more evnets, just copy the format above and paste and change the details accordingly.
         ],
 
@@ -202,7 +202,7 @@ const siteContent = {
                 date: "Saturday, 17th January 2026",
                 department: "ALSCO",
                 description: "Raised RM1000+ through ALSTAR First Event for an Old Folks Home",
-                driveFolderID: "", //FolderID
+                driveFolderID: "1I6pPY6tEC4EdMWYO424xfXIkBB3iY9yI", //FolderID
             },
             {
                 title: "July 2025 Installation Night",
@@ -263,15 +263,14 @@ const siteContent = {
             { count: 5, label: "Talk / Workshop Points", desc: "Join sessions" }
         ],
 
-        // Update here for the points form
+        // Need to upate the forms
         forms: {
             participation: "https://forms.google.com/participation-link",
             volunteer: "https://forms.google.com/volunteer-link",
             talk: "https://forms.google.com/talk-link"
         },
 
-        // Replace this with your specific Google Calendar Embed URL
-        // To get this: Go to G-Cal Settings > Integrate Calendar > Copy "Public URL to this calendar" or Embed code src
+        // Links to ALSCO's Alstar calender and Malaysia's Holiday
         calendar: "https://calendar.google.com/calendar/embed?src=e3412a49be9e0175532071aac5b55a0c9e75c009c156104af759df5e184a3b40%40group.calendar.google.com&src=en.malaysia%23holiday%40group.v.calendar.google.com&ctz=Asia%2FKuala_Lumpur"
     },
 };

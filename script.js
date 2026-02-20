@@ -320,12 +320,12 @@ function updateSiteContent() {
     const upcomingContainer = document.getElementById("events-upcoming-container");
     const pastContainer = document.getElementById("events-past-container");
 
-    //  A. Render UPCOMING Events
-    // A. Render UPCOMING Events
+    // Check for existence of events.html and events in content.js
     if (upcomingContainer && siteContent.eventsPage && siteContent.eventsPage.upcoming) {
         upcomingContainer.innerHTML = "";
         const events = siteContent.eventsPage.upcoming;
 
+        // A. Render UPCOMING Events
         if (events.length > 0) {
             events.forEach((evt, index) => {
                 // Index 0 is the "Featured" (Big) card. All others are "Standard".
@@ -338,7 +338,7 @@ function updateSiteContent() {
 
     // --- Helper Function: The "Card Factory" ---
     function createEventCard(evt, isFeatured) {
-        const isDisabled = evt.button_text.toLowerCase().includes("soon") || evt.button_text.toLowerCase().includes("closed");
+        const isEnabled = evt.button_text.toLowerCase().includes("Register");
 
         // 1. SETUP LAYOUT RATIOS
         // Featured: Image 2/5 (40%), Text 3/5 (60%)
@@ -357,7 +357,7 @@ function updateSiteContent() {
         return `
         <div class="${containerSpan} border-custom rounded-3xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow flex flex-col lg:flex-row h-full">
             
-            <div class="relative w-full ${imgWidthClass} shrink-0 aspect-[5/4] overflow-hidden group">
+            <div class="relative w-full ${imgWidthClass} shrink-0 aspect-[4/5] overflow-hidden group">
                 <img src="${evt.image}" alt="${evt.title}" 
                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             </div>
@@ -376,12 +376,32 @@ function updateSiteContent() {
                     ${evt.description}
                 </p>
                 
-                <a href="${isDisabled ? '#' : evt.registration_link}" target="${isDisabled ? '' : '_blank'}" 
-                class="btn-modern btn-maroon text-sm py-2.5 px-6 w-full sm:w-auto text-center ${isDisabled ? 'opacity-50 cursor-not-allowed bg-gray-400 hover:bg-gray-400' : ''}">
+                <a href="${isEnabled ? evt.registration_link : ''}" target="${isEnabled ? '_blank' : ''}" 
+                class="btn-modern btn-maroon text-sm py-2.5 px-6 w-full sm:w-auto text-center ${isEnabled ? 'opacity-50 cursor-not-allowed bg-gray-400 hover:bg-gray-400' : ''}">
                     ${evt.button_text}
                 </a>
             </div>
         </div>`;
+    }
+
+    //  B. Render PAST Events
+    if (pastContainer && siteContent.eventsPage && siteContent.eventsPage.past) {
+        pastContainer.innerHTML = "";
+        siteContent.eventsPage.past.forEach(evt => {
+            const html = `
+                <div class="border-custom rounded-2xl bg-white p-8 flex flex-col h-full hover:border-[#88113b] transition-colors group">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">${evt.date}</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-[10px] font-bold text-gray-600 uppercase">${evt.department}</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-[#88113b] transition-colors">${evt.title}</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-6 flex-grow">${evt.description}</p>
+                    <button onclick="loadDriveGallery('${evt.driveFolderID}')" class="btn-modern btn-ghost w-full text-sm py-2">
+                        View Photos
+                    </button>
+                </div>`;
+            pastContainer.insertAdjacentHTML('beforeend', html);
+        });
     }
 
     // ==========================================
@@ -514,7 +534,7 @@ async function submitNewsletter() {
 
     // d. Loading State
     const originalText = btn.textContent;
-    btn.textContent = "Sending...";
+    btn.textContent = "Subsrcibing...";
     btn.disabled = true;
     btn.classList.add("opacity-75", "cursor-not-allowed");
 
@@ -561,7 +581,7 @@ async function submitNewsletter() {
 // a. Global variables to track state
 let currentGalleryImages = [];
 let currentImageIndex = 0;
-const GALLERY_API_URL = "YOUR_APPS_SCRIPT_URL_HERE"; // <--- PASTE HERE
+const GALLERY_API_URL = "https://script.google.com/macros/s/AKfycbynT_f15st6P_R9qFUfCoYWtQp2xZ0eytgB6JbRazJ2JbkH3fVa_2-kZ3qpPa8p6PbOUA/exec";
 
 // b. Load google drive folder
 async function loadDriveGallery(folderId) {
