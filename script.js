@@ -71,22 +71,31 @@ function updateSiteContent() {
         if (el) el.href = url;
     };
 
+    // New helper function for background images
+    function setBackgroundImage(elementId, imageUrl) {
+        const el = document.getElementById(elementId);
+        if (el && imageUrl) {
+            el.style.backgroundImage = `url('${imageUrl}')`;
+        }
+    }
+
     // ==========================================
     // 1. HERO PAGE
     // ==========================================
 
     //  A. HERO SECTION
-    setImage("hero-img", siteContent.home.hero.image);
-    setText("hero-desc", siteContent.home.hero.description);
-    setLink("hero-handbook-btn", siteContent.home.hero.handbook_pdf);
+    setBackgroundImage("hero-header", siteContent.index.hero.image);
+    setImage("hero-bar-logo", siteContent.index.hero.logo);
+    setText("hero-desc", siteContent.index.hero.description);
+    setLink("hero-handbook-btn", siteContent.index.hero.handbook_pdf);
 
     //  B. AFFILIATES 
     const affiliateContainer = document.getElementById("affiliates-grid");
-    if (affiliateContainer && siteContent.home.affiliates) {
+    if (affiliateContainer && siteContent.index.affiliates) {
         // Clear any existing content first
         affiliateContainer.innerHTML = "";
 
-        siteContent.home.affiliates.forEach(partner => {
+        siteContent.index.affiliates.forEach(partner => {
             // Create the container for one affiliate
             const wrapper = document.createElement("div");
             wrapper.className = "flex flex-col items-center gap-3 group min-w-[120px]";
@@ -111,29 +120,29 @@ function updateSiteContent() {
     }
 
     //  C. FEATURED EVENT
-    setImage("event-img", siteContent.home.featuredEvent.image);
-    setText("event-title", siteContent.home.featuredEvent.title);
-    setText("event-desc", siteContent.home.featuredEvent.description);
-    setText("event-reg-btn-text", siteContent.home.featuredEvent.button_text); // Set button text
+    setImage("event-img", siteContent.index.featuredEvent.image);
+    setText("event-title", siteContent.index.featuredEvent.title);
+    setText("event-desc", siteContent.index.featuredEvent.description);
+    setText("event-reg-btn-text", siteContent.index.featuredEvent.button_text); // Set button text
 
     //  C1. If button = "Registration is Open", will link to form. Otherwise, will be disable or link to events page.
     const eventBtn = document.getElementById("event-reg-btn");
     if (eventBtn) {
-        if (siteContent.home.featuredEvent.button_text.toLowerCase().includes("open")) {
-            eventBtn.href = siteContent.home.featuredEvent.registration_link;
+        if (siteContent.index.featuredEvent.button_text.toLowerCase().includes("open")) {
+            eventBtn.href = siteContent.index.featuredEvent.registration_link;
         } else {
             eventBtn.href = "/events.html"; // Default fallback
         }
     }
 
     //  D. NEWSLETTER
-    setImage("news-img", siteContent.home.newsletter.image);
-    setText("news-title", siteContent.home.newsletter.title);
-    setText("news-desc", siteContent.home.newsletter.description);
-    setLink("news-read-btn", siteContent.home.newsletter.pdf_link);
+    setImage("news-img", siteContent.index.newsletter.image);
+    setText("news-title", siteContent.index.newsletter.title);
+    setText("news-desc", siteContent.index.newsletter.description);
+    setLink("news-read-btn", siteContent.index.newsletter.pdf_link);
 
     //  E. FAQ SECTION
-    siteContent.home.faq.forEach((item, index) => {
+    siteContent.index.faq.forEach((item, index) => {
         const num = index + 1; // 1, 2, 3
         setText(`faq-q${num}`, item.question);
         setText(`faq-a${num}`, item.answer);
@@ -176,7 +185,7 @@ function updateSiteContent() {
                 <div class="relative mb-4">
                     
                     <div class="${imgSize} rounded-full overflow-hidden border-4 border-gray-100 group-hover:border-[#88113b] group-hover:shadow-[0_0_20px_rgba(136,17,59,0.3)] transition-all duration-300 p-1 bg-white relative z-30">
-                        <img src="${member.image}" class="w-full h-full object-cover object-top rounded-full">
+                        <img src="${member.image}" class="w-full h-full object-cover object-top rounded-full" loading="lazy">
                     </div>
 
                     <div class="absolute top-1/2 left-[90%] -translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-[#88113b]/10 z-40 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out transform translate-x-[-10px] scale-95 group-hover:translate-x-0 group-hover:scale-100 pointer-events-none hidden md:block">
@@ -245,7 +254,7 @@ function updateSiteContent() {
                     <div class="flex flex-col items-center text-center group w-48 md:w-64">
                         <div class="relative mb-4">
                             <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gray-200 group-hover:border-[#88113b] group-hover:shadow-[0_0_15px_rgba(136,17,59,0.4)] transition-all duration-300 p-1 bg-white relative z-10">
-                                <img src="${leader.image}" class="w-full h-full object-cover object-top rounded-full">
+                                <img src="${leader.image}" class="w-full h-full object-cover object-top rounded-full" loading="lazy">
                             </div>
                             <div class="absolute top-1/2 left-[90%] -translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-[#88113b]/10 z-40 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out transform translate-x-[-10px] scale-95 group-hover:translate-x-0 group-hover:scale-100 pointer-events-none hidden md:block">
                         
@@ -276,7 +285,7 @@ function updateSiteContent() {
                     <div class="flex flex-col items-center text-center group w-48 md:w-64">
                         <div class="relative mb-4">
                             <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gray-200 group-hover:border-[#88113b] group-hover:shadow-[0_0_15px_rgba(136,17,59,0.4)] transition-all duration-300 p-1 bg-white relative z-10">
-                                <img src="${member.image}" class="w-full h-full object-cover object-top rounded-full">
+                                <img src="${member.image}" class="w-full h-full object-cover object-top rounded-full" loading="lazy">
                             </div>
                             <div class="absolute top-1/2 left-[90%] -translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-[#88113b]/10 z-40 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out transform translate-x-[-10px] scale-95 group-hover:translate-x-0 group-hover:scale-100 pointer-events-none hidden md:block">
                         
@@ -575,102 +584,7 @@ async function submitNewsletter() {
 }
 
 // ==========================================
-// 5. GOOGLE DRIVE GALLERY LOGIC
-// ==========================================
-
-// a. Global variables to track state
-let currentGalleryImages = [];
-let currentImageIndex = 0;
-const GALLERY_API_URL = "https://script.google.com/macros/s/AKfycbynT_f15st6P_R9qFUfCoYWtQp2xZ0eytgB6JbRazJ2JbkH3fVa_2-kZ3qpPa8p6PbOUA/exec";
-
-// b. Load google drive folder
-async function loadDriveGallery(folderId) {
-    if (!folderId) return alert("No folder linked for this event.");
-
-    // 1. Show Modal & Loader
-    const modal = document.getElementById('gallery-modal');
-    const loader = document.getElementById('gallery-loader');
-    const imgEl = document.getElementById('gallery-main-image');
-
-    modal.classList.remove('hidden');
-    // Tiny delay to allow CSS transition
-    setTimeout(() => modal.classList.remove('opacity-0'), 10);
-
-    loader.textContent = "Fetching images from Drive...";
-    loader.classList.remove('hidden');
-    imgEl.classList.add('hidden');
-
-    try {
-        // 2. Call your Apps Script
-        const response = await fetch(`${GALLERY_API_URL}?folderId=${folderId}`);
-        const data = await response.json();
-
-        if (data.error) throw new Error(data.error);
-        if (data.length === 0) throw new Error("No images found in this folder.");
-
-        // 3. Setup Gallery
-        currentGalleryImages = data; // Array of objects {id, url}
-        currentImageIndex = 0;
-
-        loader.classList.add('hidden'); // Hide loader
-        imgEl.classList.remove('hidden'); // Show image tag
-
-        showImage(); // Display first image
-
-    } catch (error) {
-        console.error(error);
-        loader.textContent = "Error: " + error.message;
-    }
-}
-
-// c. Gallery functions
-function showImage() {
-    const imgEl = document.getElementById('gallery-main-image');
-    const counterEl = document.getElementById('gallery-counter');
-
-    // Set source
-    // Note: Drive images might load slowly. 
-    imgEl.src = currentGalleryImages[currentImageIndex].url;
-
-    // Update counter
-    counterEl.textContent = `${currentImageIndex + 1} / ${currentGalleryImages.length}`;
-}
-
-function nextImage() {
-    if (currentGalleryImages.length === 0) return;
-    currentImageIndex = (currentImageIndex + 1) % currentGalleryImages.length;
-    showImage();
-}
-
-function prevImage() {
-    if (currentGalleryImages.length === 0) return;
-    currentImageIndex = (currentImageIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
-    showImage();
-}
-
-function closeGallery() {
-    const modal = document.getElementById('gallery-modal');
-    modal.classList.add('opacity-0');
-
-    // Wait for fade out animation before hiding
-    setTimeout(() => {
-        modal.classList.add('hidden');
-        document.getElementById('gallery-main-image').src = ""; // Clear image
-    }, 300);
-}
-
-// Keyboard Navigation Support
-document.addEventListener('keydown', function (event) {
-    const modal = document.getElementById('gallery-modal');
-    if (modal && !modal.classList.contains('hidden')) {
-        if (event.key === "Escape") closeGallery();
-        if (event.key === "ArrowRight") nextImage();
-        if (event.key === "ArrowLeft") prevImage();
-    }
-});
-
-// ==========================================
-// 6. Initialise Everything
+// 5. Initialise Everything
 // ==========================================
 document.addEventListener("DOMContentLoaded", () => {
     loadComponent("navbar-placeholder", "nav.html");
@@ -682,4 +596,5 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         console.error("content.js not loaded!");
     }
+
 });

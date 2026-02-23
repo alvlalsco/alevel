@@ -1,16 +1,23 @@
 // content.js
-// Instructions: Edit the values inside the quotes (" ") to update the website.
+// Instructions: Edit the values inside the quotes (" ") to update the website. All images is in the 'images' folder
 
 const siteContent = {
 
-    // 1. HOME PAGE
-    home: {
+    // 1. INDEX PAGE
+    index: {
         // --- HERO SECTION ---
         hero: {
-            image: "images/home/alsco_group.JPG", // Ensure this image is in your main folder
+            image: "images/index/IMG_4369.JPG",
+            logo: "images/nav/alsco_logo_nobg.png",
             description: "We are the official student committee representing all A-Level students at Sunway College. We bridge the gap between students and administration while organizing events that make your college life memorable.",
             handbook_pdf: "https://1f728d2d-1495-4449-b1c1-3c3cb399d337.filesusr.com/ugd/df559c_8cf96a8d79ea4d09aaacbff7e0d199c5.pdf"
         },
+
+        affiliates: [
+            { name: "Malaysian Bioscience Scholars", image: "images/index/mbios.png" }, // Replace with real logo path
+            // To add more, just copy the line above:
+            // { name: "New Partner", image: "images/partner_logo.png" }, 
+        ],
 
         // --- FEATURED EVENT ---
         featuredEvent: {
@@ -44,16 +51,12 @@ const siteContent = {
                 question: "How do I submit a complaint or suggestion?",
                 answer: "You can use the 'Get In Touch' form on our Contact page, or DM us directly on Instagram. We review all student feedback weekly."
             }
-        ],
-
-        affiliates: [
-            { name: "Malaysian Bioscience Scholars", image: "images/home/mbios.png" }, // Replace with real logo path
-            // To add more, just copy the line above:
-            // { name: "New Partner", image: "images/partner_logo.png" }, 
+            // If want to include more FAQ, just copy and paste and change the text inside ""
         ],
     },
 
     // 2. ABOUT PAGE
+    // Change the text if required
     about: {
         missionp1: "To enhance the student experience by providing essential services, fostering engagement, and ensuring a supportive environment. We serve as an active bridge between students and the college administration. ",
         missionp2: " Through strategic collaboration with various councils and societies, we create inclusive experiences that foster a strong sense of belonging and meaningful community engagement throughout the academic year.",
@@ -63,6 +66,7 @@ const siteContent = {
     },
 
     // 3. COMMITTEE PAGE
+    // Just change the NAME, IMAGE AND QUOTE, NOT the role
     committee: {
         // LEVEL 1: EXECUTIVE (Order matters for the layout!)
         highCouncil: [
@@ -80,6 +84,7 @@ const siteContent = {
         ],
 
         // LEVEL 2: DEPARTMENTS
+        // Copy & paste / delete acocrding to number of members
         departments: [
             {
                 name: "Leadership Development",
@@ -87,7 +92,6 @@ const siteContent = {
                     { role: "Director", name: "LAI ZHENG YI", image: "images/committee/leadership_dev/LDdirector.png", quote: "" },
                     { role: "Deputy Director", name: "CHLOE LIM JING YAN", image: "images/committee/leadership_dev/LDduputyDirector.png", quote: "" }
                 ],
-                // Just list names for general members to save space, or use objects if you have photos
                 members: [
                     { role: "General Member", name: "ONG XI WEN", image: "images/committee/leadership_dev/member1.png", quote: "" },
                     { role: "General Member", name: "EVAN YEOH JIN QUAN", image: "images/committee/leadership_dev/member2.png", quote: "Stay Humble, Stay Hungry" },
@@ -135,6 +139,7 @@ const siteContent = {
             },
         ],
 
+        //Images for departments. Just change the IMAGE or DESCRIPTION. NOT the ID
         coreStructure: [
             {
                 id: "dept-ld",
@@ -165,13 +170,16 @@ const siteContent = {
 
     // 4. EVENTS PAGE
     eventsPage: {
-        // SECTION 1: UPCOMING
+        // SECTION 1: UPCOMING EVENTS
         upcoming: [
-            {
+            {   // Change the title, date, image, description
                 title: "A-Level Leadership Camp",
                 date: "Saturday, 7th February 2026 to Sunday, 8th February 2026",
                 image: "images/events/upcoming/ALC-AE.png",
                 description: "A Leadership Camp organised by Leadership Development department that aims to providing A-Level Students an opportunity to explore leadership not as a title, but as a lived experience shaped by communication, empathy and courage.",
+                // For button, include 'open' if registration is open, or else use other text. 
+                // Eg. 'Registration Upcoming!!' = Clicking button does nothing
+                // Eg. 'Registration Opened!!' = Clicking button opens the registration form (paste the registration link inside the "")
                 registration_link: "https://forms.google.com/orientation",
                 button_text: "Closed"
             },
@@ -191,11 +199,10 @@ const siteContent = {
                 registration_link: "None",
                 button_text: "Happening Now"
             },
-            // Registration up coming, put button_text: "Coming Soon". Registration opened: "Register Now" this will activate button and links to google form. Registration closed, put "Closed"
             // To add more evnets, just copy the format above and paste and change the details accordingly.
         ],
 
-        // SECTION 2: PAST EVENTS (Archive)
+        // SECTION 2: PAST EVENTS
         past: [
             {
                 title: "A Charity Extravaganze 2026",
