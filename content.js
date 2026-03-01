@@ -8,7 +8,7 @@ const siteContent = {
         // --- HERO SECTION ---
         hero: {
             image: "images/index/IMG_4369.JPG",
-            logo: "images/nav/alsco_logo_nobg.png",
+            logo: "images/nav/alsco_logo.png",
             description: "We are the official student committee representing all A-Level students at Sunway College. We bridge the gap between students and administration while organizing events that make your college life memorable.",
             handbook_pdf: "https://1f728d2d-1495-4449-b1c1-3c3cb399d337.filesusr.com/ugd/df559c_8cf96a8d79ea4d09aaacbff7e0d199c5.pdf"
         },

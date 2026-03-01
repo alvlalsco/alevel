@@ -115,7 +115,13 @@
 
 <body class="antialiased">
 
-    <div id="navbar-placeholder"></div>
+    <div id="navbar-placeholder"
+        class="fixed top-0 left-0 w-full z-50 transition-all duration-300 -translate-y-full opacity-0"></div>
+
+    <div id="hero-top-bar"
+        class="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-black/60 to-transparent flex justify-left pt-8 px-8 transition-opacity duration-300 z-40">
+        <img id="hero-bar-logo" alt="ALSCO Logo" class="h-24 w-auto object-contain">
+    </div>
 
     <main>
         <section class="py-6 lg:py-4 border-b-custom">
