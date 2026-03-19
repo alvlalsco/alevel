@@ -1,47 +1,61 @@
-<nav class="bg-white/80 backdrop-blur-md border-b-custom w-full">
+<style>
+    .bar {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background-color: #88113b;
+        margin: 4px 0;
+        transition: all 0.3s ease;
+    }
+
+    /* ANIMATION TO X */
+    #menu-btn.open .top {
+        transform: translateY(6px) rotate(45deg);
+    }
+
+    #menu-btn.open .middle {
+        opacity: 0;
+    }
+
+    #menu-btn.open .bottom {
+        transform: translateY(-6px) rotate(-45deg);
+    }
+</style>
+
+<nav id="navbar"
+    class="bg-white/80 backdrop-blur-md border-b-custom w-full fixed transition-all duration-300 translate-y-0 opacity-100 top-0 left-0 z-50 ">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
-            <div class="flex items-center gap-3">
-                <a href="/" class="flex items-center hover:opacity-80 transition-opacity">
-                    <img src="images/nav/alsco_logo_nobg.png" alt="ALSCO Logo"
-                        class="h-10 md:h-20 w-auto object-contain">
-                </a>
-            </div>
 
-            <div class="hidden lg:flex items-center space-x-8 text-main" id="desktop-menu">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/about.html" class="nav-link">About Us</a>
-                <a href="/committee.html" class="nav-link">Committee</a>
-                <a href="/events.html" class="nav-link">Events</a>
-                <a href="/newsletters.html" class="nav-link">Newsletters</a>
-                <a href="/contact.html" class="nav-link">Get In Touch</a>
-                <a href="/alstar.html" class="nav-link">ALSTAR</a>
-                <a href="https://1f728d2d-1495-4449-b1c1-3c3cb399d337.filesusr.com/ugd/df559c_8cf96a8d79ea4d09aaacbff7e0d199c5.pdf"
-                    target="_blank" class="nav-link">Handbook</a>
-            </div>
+            <!-- LOGO -->
+            <a href="/" class="flex items-center">
+                <img src="images/nav/alsco_logo_nobg.png" class="h-10 md:h-16 object-contain">
+            </a>
 
-            <div class="lg:hidden flex items-center">
-                <input type="checkbox" id="menu-toggle" class="hidden">
-                <label for="menu-toggle" class="cursor-pointer">
-                    <svg class="w-8 h-8 primary-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </label>
+            <!-- HAMBURGER -->
+            <button id="menu-btn" aria-label="Toggle navigation menu"
+                class="relative w-10 h-10 flex flex-col justify-center items-center group">
+                <span class="bar top"></span>
+                <span class="bar middle"></span>
+                <span class="bar bottom"></span>
+            </button>
 
-                <div id="mobile-menu"
-                    class="hidden absolute top-20 left-0 w-full bg-white border-b-custom flex-col p-6 space-y-4 shadow-lg z-50">
-                    <a href="/" class="nav-link w-fit">Home</a>
-                    <a href="/about.html" class="nav-link w-fit">About Us</a>
-                    <a href="/committee.html" class="nav-link w-fit">Committee</a>
-                    <a href="/events.html" class="nav-link w-fit">Events</a>
-                    <a href="/newsletters.html" class="nav-link w-fit">Newsletters</a>
-                    <a href="/contact.html" class="nav-link w-fit">Get In Touch</a>
-                    <a href="/alstar.html" class="nav-link w-fit">ALSTAR</a>
-                    <a href="https://1f728d2d-1495-4449-b1c1-3c3cb399d337.filesusr.com/ugd/df559c_8cf96a8d79ea4d09aaacbff7e0d199c5.pdf"
-                        target="_blank" class="nav-link w-fit">Handbook</a>
-                </div>
-            </div>
         </div>
     </div>
 </nav>
+
+<!-- OVERLAY -->
+<div id="menu-overlay" class="fixed inset-0 bg-black/40 backdrop-blur-sm 
+    opacity-0 pointer-events-none transition-all duration-300 z-30">
+</div>
+
+<!-- MENU PANEL -->
+<div id="menu-panel" class="fixed top-20 left-0 w-full max-h-[75vh] 
+    bg-[#88113b] rounded-b-2xl shadow-xl transform 
+    -translate-y-full opacity-0 pointer-events-none transition-all duration-300 z-40 overflow-y-auto">
+
+    <div id="menu-content"
+        class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 text-white">
+        <!-- JS will inject here -->
+    </div>
+</div>

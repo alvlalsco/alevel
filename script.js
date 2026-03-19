@@ -583,16 +583,117 @@ async function submitNewsletter() {
     }
 }
 
+function navbarManagement() {
+    const btn = document.getElementById("menu-btn");
+    const panel = document.getElementById("menu-panel");
+    const overlay = document.getElementById("menu-overlay");
+    const content = document.getElementById("menu-content");
+    const navbar = document.getElementById("navbar");
+
+    let isOpen = false;
+
+    // 🔥 TOGGLE MENU
+    function toggleMenu() {
+        isOpen = !isOpen;
+
+        btn.classList.toggle("open");
+
+        if (isOpen) {
+            panel.classList.remove("-translate-y-full", "opacity-0", "pointer-events-none");
+            panel.classList.add("translate-y-0", "opacity-100");
+
+            overlay.classList.remove("opacity-0", "pointer-events-none");
+            document.body.classList.add("overflow-hidden");
+        } else {
+            panel.classList.add("-translate-y-full", "opacity-0", "pointer-events-none");
+            panel.classList.remove("translate-y-0", "opacity-100");
+
+            overlay.classList.add("opacity-0", "pointer-events-none");
+            document.body.classList.remove("overflow-hidden");
+        }
+    }
+
+    btn.addEventListener("click", toggleMenu);
+    overlay.addEventListener("click", toggleMenu);
+
+    // 🔥 GENERATE MENU
+    function renderMenu() {
+        content.innerHTML = "";
+
+        siteContent.navStructure.forEach(page => {
+            const wrapper = document.createElement("div");
+            wrapper.className = "flex flex-col gap-3 items-center text-center";
+
+            let html = `
+                    <a href="${page.link}" 
+                    class="text-2xl font-bold w-fit transition-all duration-300 hover:scale-105 hover:[text-shadow:0_0_10px_rgba(255,255,255,0.3)]">
+                        ${page.name}
+                    </a>
+            `;
+
+            if (page.sections.length > 0) {
+                html += `<div class="flex flex-col gap-2 mt-1">`;
+
+                page.sections.forEach(sec => {
+                    html += `
+                        <a href="${page.link}#${sec.id}" 
+                        class="text-base opacity-80 w-fit items-center hover:opacity-100 transition-all duration-200 hover:[text-shadow:0_0_8px_rgba(255,255,255,0.6)]">
+                            ${sec.name}
+                        </a>
+                    `;
+                });
+
+                html += `</div>`;
+            }
+            wrapper.innerHTML = html;
+            content.appendChild(wrapper);
+        });
+
+        // 🔥 CLOSE MENU WHEN CLICK LINK
+        content.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                toggleMenu();
+            });
+        });
+    }
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && isOpen) {
+            toggleMenu();
+        }
+    });
+    renderMenu();
+
+    function handleScroll() {
+        if (window.scrollY > 200) {
+            // Scrolled down: Hide navbar
+            navbar.classList.remove('translate-y-0', 'opacity-100');
+            navbar.classList.add('-translate-y-full', 'opacity-0');
+        } else {
+            // At the top: Show navbar
+            navbar.classList.remove('-translate-y-full', 'opacity-0');
+            navbar.classList.add('translate-y-0', 'opacity-100');
+
+        }
+    }
+
+    // 1. Listen for standard scrolling
+    window.addEventListener('scroll', handleScroll);
+
+    // 2. Run it immediately once on page load to set the correct initial state
+    handleScroll();
+}
+
 // ==========================================
 // 5. Initialise Everything
 // ==========================================
-document.addEventListener("DOMContentLoaded", () => {
-    loadComponent("navbar-placeholder", "nav.html");
-    loadComponent("footer-placeholder", "footer.html");
+document.addEventListener("DOMContentLoaded", async () => {
+    await loadComponent("navbar-placeholder", "nav.html");
+    await loadComponent("footer-placeholder", "footer.html");
 
     // Run content update ONLY if siteContent is loaded
     if (typeof siteContent !== 'undefined') {
         updateSiteContent();
+        navbarManagement();
     } else {
         console.error("content.js not loaded!");
     }

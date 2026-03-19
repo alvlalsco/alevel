@@ -2,6 +2,56 @@
 // Instructions: Edit the values inside the quotes (" ") to update the website. All images is in the 'images' folder
 
 const siteContent = {
+    // 0. Navigation bar 
+    navStructure: [
+        {
+            name: "Home",
+            link: "/",
+            sections: [
+                { name: "Affiliates", id: "affiliates-grid" },
+                { name: "Events", id: "event-title" },
+                { name: "Newsletter", id: "news-title" },
+                { name: "FAQ", id: "faq-q1" }
+            ]
+        },
+        {
+            name: "About",
+            link: "/about.html",
+            sections: [
+                { name: "Mission", id: "about-mission-p1" },
+                { name: "Representation", id: "about-representation" },
+                { name: "Development", id: "about-development" },
+            ]
+        },
+        {
+            name: "Committee",
+            link: "/committee.html",
+            sections: [
+                { name: "High Council", id: "high-council-tree" },
+                { name: "Departments", id: "dept-roster" }
+            ]
+        },
+        {
+            name: "Events",
+            link: "/events.html",
+            sections: [
+                { name: "Upcoming", id: "events-upcoming-container" },
+                { name: "Past", id: "events-past-container" }
+            ]
+        },
+        {
+            name: "Newsletters",
+            link: "/newsletters.html",
+            sections: [
+                { name: "All Issues", id: "newsletter-list-container" }
+            ]
+        },
+        {
+            name: "Contact",
+            link: "/contact.html",
+            sections: []
+        }
+    ],
 
     // 1. INDEX PAGE
     index: {
