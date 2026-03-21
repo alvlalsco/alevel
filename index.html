@@ -205,54 +205,28 @@
         </section>
 
         <section class="py-16 lg:py-24 bg-white border-t-custom">
-            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto px-6 lg:px-8">
+
                 <div class="text-center mb-16">
                     <span class="primary-maroon font-bold tracking-[0.2em] uppercase text-xs">Information Hub</span>
-                    <h2 class="text-3xl lg:text-4xl font-black text-main uppercase mt-2">Frequently Asked Questions
-                    </h2>
+                    <h2 class="text-3xl lg:text-4xl font-black text-main uppercase mt-2">Frequently Asked Questions</h2>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
-                    <div class="p-8 lg:p-10 border-custom rounded-3xl bg-white">
-                        <h4 class="text-xl font-bold mb-4 flex items-start gap-4">
-                            <span>01</span>
-                            <span id="faq-q1">Loading...</span>
-                        </h4>
-                        <p id="faq-a1" class="leading-relaxed text-main text-justify pl-10">
-                            Loading...
-                        </p>
-                    </div>
-
-                    <div class="p-8 lg:p-10 border-custom rounded-3xl bg-white">
-                        <h4 class="text-xl font-bold mb-4 flex items-start gap-4">
-                            <span>02</span>
-                            <span id="faq-q2">Loading...</span>
-                        </h4>
-                        <p id="faq-a2" class="leading-relaxed text-main text-justify pl-10">
-                            Loading...
-                        </p>
-                    </div>
-
-                    <div class="p-8 lg:p-10 border-custom rounded-3xl bg-white">
-                        <h4 class="text-xl font-bold mb-4 flex items-start gap-4">
-                            <span>03</span>
-                            <span id="faq-q3">Loading...</span>
-                        </h4>
-                        <p id="faq-a3" class="leading-relaxed text-main text-justify pl-10">
-                            Loading...
-                        </p>
-                    </div>
-
-                    <div
-                        class="p-8 lg:p-10 border-custom rounded-3xl bg-white flex flex-col items-center justify-center text-center">
-                        <h4 class="text-xl font-black text-main mb-6">
-                            Questions or Suggestions?
-                        </h4>
-                        <a href="/contact.html" class="btn-modern btn-maroon w-full sm:w-auto">
-                            Get In Touch
-                        </a>
-                    </div>
+                <div id="faq-accordion-container" class="border-t-2 border-[#d1d5db] mb-12">
+                    <p class="text-center text-gray-400 py-8">Loading FAQs...</p>
                 </div>
+
+                <div
+                    class="p-8 lg:p-10 border-custom rounded-3xl bg-gray-50 flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-6">
+                    <div>
+                        <h4 class="text-xl font-black text-main mb-2">Still have questions?</h4>
+                        <p class="text-sm text-gray-600">Can't find the answer you're looking for? Reach out to us!</p>
+                    </div>
+                    <a href="/contact.html" class="btn-modern btn-maroon shrink-0 w-full md:w-auto">
+                        Get In Touch
+                    </a>
+                </div>
+
             </div>
         </section>
     </main>

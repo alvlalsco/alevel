@@ -98,44 +98,52 @@ const siteContent = {
                 answer: "Your ALSTAR experience kicks off with your ALSTAR 1st Event. You’ll be grouped with other ALSTARs to plan and execute an event based on a theme—it could be anything from a bake sale to a campaign or even a themed party. Think of it as a hands-on preview of what it’s like to be part of ALSCO. You’ll learn by doing, collaborate with others, and bring ideas to life."
             },
             {
-                question: "How do I submit a complaint or suggestion?",
-                answer: "You can use the 'Get In Touch' form on our Contact page, or DM us directly on Instagram. We review all student feedback weekly."
+                question: "How do I join ALSCO after being an ALSTAR ?",
+                answer: "After completing your ALSTAR 1st Event, you can decide if ALSCO is for you.If you’re interested, you’ll fill in an application form and go through an interview process.From there, selected candidates will be invited to join the next ALSCO committee."
+            },
+            {
+                question: "Is being an ALSTAR worth it ? How much time does it take ?",
+                answer: "Definitely worth it.You’ll build real skills—communication, teamwork, leadership, and time management—while meeting new people and gaining meaningful experiences. As for time commitment, it’s flexible.You choose which events to join, so how involved you get is entirely up to you."
             },
             {
                 question: "Where can I find the ALSTAR points tracker?",
                 answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
             },
             {
-                question: "Where can I find the ALSTAR points tracker?",
-                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+                question: "Can I join other clubs while being an ALSTAR or ALSCO ?",
+                answer: "Yes! Being an ALSTAR(or even an ALSCO) doesn’t stop you from joining other clubs.The only restriction is that ALSCO members can’t join other college councils like SCC, and vice versa.Just make sure you manage your time well—your studies should always come first."
             },
             {
-                question: "Where can I find the ALSTAR points tracker?",
-                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+                question: "How do I balance A - Levels with ALSCO commitments ?",
+                answer: "It’s definitely a challenge—but a manageable one.Staying organised, prioritising tasks, and asking for help when needed can go a long way.Balancing both isn’t just doable—it’s a valuable experience that builds resilience and prepares you for future challenges."
             },
             {
-                question: "Where can I find the ALSTAR points tracker?",
-                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+                question: "What happens during ALSTAR General Meetings ?",
+                answer: "There are three main meetings: 1st GM(Physical): Introduction to ALSTAR, how everything works, and getting started with your event planning. 2nd GM(Online): You’ll pitch your event ideas and plans. 3rd GM(Online): A post - mortem session where you reflect on your event—what worked, what didn’t, and what you learned."
             },
             {
-                question: "Where can I find the ALSTAR points tracker?",
-                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+                question: "What’s the difference between ALSCO and COMSERVE ?",
+                answer: "COMSERVE is a branch of ALSCO that focuses specifically on community service.It operates with some independence(like its own projects and platforms), but it’s still part of the larger ALSCO structure."
             },
             {
-                question: "Where can I find the ALSTAR points tracker?",
-                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+                question: "Will I receive certificates for participating ?",
+                answer: "For ALSTAR, certificates aren’t given per event.Instead, you’ll need to collect points: 5 Participation Points 6 Volunteer Points 5 Talk / Workshop Points.Once you meet these, you’ll earn your ALSTAR certificate.For COMSERVE, certificates depend on the event or follow their Credit Hour System."
             },
             {
-                question: "Where can I find the ALSTAR points tracker?",
-                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+                question: "Are there any fees for COMSERVE activities ?",
+                answer: "It depends on the event.Some are free, while others—especially those held outside of Sunway—may require a registration fee."
             },
             {
-                question: "Where can I find the ALSTAR points tracker?",
-                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+                question: "How can I join the ALSCO committee ?",
+                answer: "ALSCO recruitment happens at the start of each semester.Keep an eye on the official Instagram page for updates on applications and interview dates."
             },
             {
-                question: "Where can I find the ALSTAR points tracker?",
-                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+                question: "How do I give feedback or raise a concern ?",
+                answer: "You can submit feedback through the “Get In Touch” form on the Contact page or drop a DM on Instagram.All feedback is reviewed regularly."
+            },
+            {
+                question: "Where can I check my ALSTAR points ?",
+                answer: "You can track your points directly on the ALSTAR page—just enter your Student ID to see your current progress."
             },
             // If want to include more FAQ, just copy and paste and change the text inside ""
         ],

@@ -162,11 +162,43 @@ function updateSiteContent() {
     setLink("news-read-btn", siteContent.index.newsletter.pdf_link);
 
     //  E. FAQ SECTION
-    siteContent.index.faq.forEach((item, index) => {
-        const num = index + 1; // 1, 2, 3
-        setText(`faq-q${num}`, item.question);
-        setText(`faq-a${num}`, item.answer);
-    });
+    const faqContainer = document.getElementById("faq-accordion-container");
+
+    // Make sure the container and the data actually exist
+    if (faqContainer && siteContent.index && siteContent.index.faq) {
+        faqContainer.innerHTML = ""; // Clear the loading text
+
+        siteContent.index.faq.forEach((item, index) => {
+            // Build the HTML for each row
+            const faqHTML = `
+            <div class="border-b-2 border-[#d1d5db]">
+                <button 
+                    onclick="toggleFaq(${index})" 
+                    class="w-full py-6 flex justify-between items-center text-left focus:outline-none group">
+                    
+                    <span class="text-lg font-bold group-hover:text-[#88113b] transition-colors pr-6">
+                        ${item.question}
+                    </span>
+                    
+                    <div class="shrink-0 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center group-hover:bg-red-100 transition-colors">
+                        <svg id="faq-icon-${index}" class="w-5 h-5 text-gray-600 group-hover:text-[#88113b] transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                </button>
+                
+                <div id="faq-answer-${index}" class="grid grid-rows-[0fr] opacity-0 transition-all duration-500 ease-in-out">
+                    <div class="overflow-hidden">
+                        <p class="pb-8 text-gray-600 leading-relaxed pr-4 md:pr-12">
+                            ${item.answer}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        `;
+            faqContainer.insertAdjacentHTML('beforeend', faqHTML);
+        });
+    }
 
     // ==========================================
     // 2. ABOUT PAGE
@@ -650,10 +682,38 @@ function updateSiteContent() {
     }
 }
 
+// The function that animates opening and closing (Smooth Grid Version)
+function toggleFaq(clickedIndex) {
+    const targetAnswer = document.getElementById(`faq-answer-${clickedIndex}`);
+    const targetIcon = document.getElementById(`faq-icon-${clickedIndex}`);
+
+    // Check if the clicked answer is currently closed (grid-rows-[0fr])
+    const isClosed = targetAnswer.classList.contains('grid-rows-[0fr]');
+
+    // FORCE CLOSE ALL FAQs FIRST
+    const allAnswers = document.querySelectorAll('[id^="faq-answer-"]');
+    const allIcons = document.querySelectorAll('[id^="faq-icon-"]');
+
+    allAnswers.forEach(answer => {
+        answer.classList.add('grid-rows-[0fr]', 'opacity-0');
+        answer.classList.remove('grid-rows-[1fr]', 'opacity-100');
+    });
+
+    allIcons.forEach(icon => {
+        icon.classList.remove('rotate-180');
+    });
+
+    // OPEN THE CLICKED ONE (If it was originally closed)
+    if (isClosed) {
+        targetAnswer.classList.remove('grid-rows-[0fr]', 'opacity-0');
+        targetAnswer.classList.add('grid-rows-[1fr]', 'opacity-100'); // Smoothly expands to exact height
+        targetIcon.classList.add('rotate-180');
+    }
+}
+
 // ==========================================
 // 4. NEWSLETTER SUBSCRIBING LOGIC
 // ==========================================
-
 async function submitNewsletter() {
     // a. Get Elements
     const emailInput = document.getElementById("newsletter-email-input");
