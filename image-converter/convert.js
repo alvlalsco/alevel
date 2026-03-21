@@ -19,15 +19,7 @@ fs.readdirSync(inputDir).forEach(file => {
         const inputPath = path.join(inputDir, file);
         const fileName = path.parse(file).name;
 
-        // 1. Convert to WebP (Shrinks width, converts format, compresses)
-        sharp(inputPath)
-            .resize({ width: MAX_WIDTH, withoutEnlargement: true })
-            .webp({ quality: 80 })
-            .toFile(path.join(outputDir, `${fileName}.webp`))
-            .then(() => console.log(`✅ Success: ${fileName}.webp`))
-            .catch(err => console.error(`❌ Error on ${file}:`, err));
-
-        // 2. Convert to AVIF (Shrinks width, converts format, compresses)
+        // 1. Convert to AVIF (Shrinks width, converts format, compresses)
         sharp(inputPath)
             .resize({ width: MAX_WIDTH, withoutEnlargement: true })
             .avif({ quality: 80 })

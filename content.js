@@ -70,11 +70,12 @@ const siteContent = {
 
         // --- FEATURED EVENT ---
         featuredEvent: {
-            image: "images/events/upcoming/ALC-AE.avif",
-            title: "A-Level Leadership Camp 2026",
-            description: "A Leadership Camp organised by Leadership Development department that aims to providing A-Level Students an opportunity to explore leadership not as a title, but as a lived experience shaped by communication, empathy and courage.",
-            registration_link: "https://forms.google.com/your-event-form",
-            button_text: "Registration Closed" // Change to "Registration Upcoming" or "Closed" when needed
+            //Similar to Events content below, put just 1 event. If no event, don't put anything. Will default to upcoming image and description
+            //image: "images/events/upcoming/ALC-AE.avif",
+            //title: "A-Level Leadership Camp 2026",
+            //description: "A Leadership Camp organised by Leadership Development department that aims to providing A-Level Students an opportunity to explore leadership not as a title, but as a lived experience shaped by communication, empathy and courage.",
+            //registration_link: "https://forms.google.com/your-event-form",
+            //button_text: "Registration Closed" // Change to "Registration Upcoming" or "Registration Opened" when needed
         },
 
         // --- LATEST NEWSLETTER ---
@@ -90,11 +91,11 @@ const siteContent = {
         faq: [
             {
                 question: "How do I join the ALSCO committee?",
-                answer: "Recruitment drives are held at the beginning of every semester. Keep an eye on our Instagram page for announcement dates and interview schedules."
+                answer: "Nope, no interviews needed! Becoming an ALSTAR is super straightforward—just fill in the registration form on the ALSTAR page. Once you're in, you’ll receive a confirmation email with everything you need, including the link to join the MS Teams group"
             },
             {
-                question: "Where can I find the ALSTAR points tracker?",
-                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+                question: "What exactly is the ALSTAR journey like?",
+                answer: "Your ALSTAR experience kicks off with your ALSTAR 1st Event. You’ll be grouped with other ALSTARs to plan and execute an event based on a theme—it could be anything from a bake sale to a campaign or even a themed party. Think of it as a hands-on preview of what it’s like to be part of ALSCO. You’ll learn by doing, collaborate with others, and bring ideas to life."
             },
             {
                 question: "How do I submit a complaint or suggestion?",
@@ -163,9 +164,9 @@ const siteContent = {
             { role: "Vice President of Internal Affairs", name: "DANIEL @ HTOO HTET ZAW", image: "images/committee/high_council/vpi.avif", quote: "" },
 
             // Row 3: Secs & Treasurer
-            { role: "Secretary", name: "CHUE RYEE EN", image: "images/committee/high_council/sec1.avif", quote: "" },
+            { role: "Secretary", name: "CHUE RYEE EN", image: "images/committee/high_council/sec1.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
             { role: "Secretary", name: "AUSTIN LAU HONG SHEN", image: "images/committee/high_council/sec2.avif", quote: "" },
-            { role: "Treasurer", name: "EVAN YEOH JIN QUAN", image: "images/committee/high_council/treasurer.avif", quote: "Hmmmmmm, having fun!!!" },
+            { role: "Treasurer", name: "EVAN YEOH JIN QUAN", image: "images/committee/high_council/treasurer.avif", quote: "Don't settle with a boring college life, be a part of something!" },
         ],
 
         // LEVEL 2: DEPARTMENTS
@@ -178,10 +179,10 @@ const siteContent = {
                     { role: "Deputy Director", name: "CHLOE LIM JING YAN", image: "images/committee/leadership_dev/LDduputyDirector.avif", quote: "Strategically overthinking so you don’t have to :)" }
                 ],
                 members: [
-                    { role: "General Member", name: "ONG XI WEN", image: "images/committee/leadership_dev/member1.avif", quote: "" },
-                    { role: "General Member", name: "EVAN YEOH JIN QUAN", image: "images/committee/leadership_dev/member2.avif", quote: "Stay Humble, Stay Hungry" },
-                    { role: "General Member", name: "TAY HUI ER", image: "images/committee/leadership_dev/member3.avif", quote: "" },
-                    { role: "General Member", name: "VINCENT KHOO WEI WEN", image: "images/committee/leadership_dev/member4.avif", quote: "Failure is merely the ink of a life that dared to write" },
+                    { role: "General Member", name: "ONG XI WEN", image: "images/committee/leadership_dev/ldmember1.avif", quote: "" },
+                    { role: "General Member", name: "EVAN YEOH JIN QUAN", image: "images/committee/leadership_dev/ldmember2.avif", quote: "Don't settle with a boring college life, be a part of something!" },
+                    { role: "General Member", name: "TAY HUI ER", image: "images/committee/leadership_dev/ldmember3.avif", quote: "Be the best version of yourself. :)" },
+                    { role: "General Member", name: "VINCENT KHOO WEI WEN", image: "images/committee/leadership_dev/ldmember4.avif", quote: "Failure is merely the ink of a life that dared to write" },
                 ],
             },
             {
@@ -191,10 +192,10 @@ const siteContent = {
                     { role: "Deputy Director", name: "NYEIN YU SAN", image: "images/committee/comserve/CSdeputyDirector.avif", quote: "Growing while giving back through service" }
                 ],
                 members: [
-                    { role: "General Member", name: "DAKSSHI NATH PILLAY", image: "images/committee/comserve/member1.avif", quote: "Why are we here, just to suffer?" },
-                    { role: "General Member", name: "NICHOLAS WONG JUN YEW", image: "images/committee/comserve/member2.avif", quote: "" },
-                    { role: "General Member", name: "TEH SIN HUI", image: "images/committee/comserve/member3.avif", quote: "" },
-                    { role: "General Member", name: "YAP QIN HUEY", image: "images/committee/comserve/member4.avif", quote: "2% battery, 100% commitment" },
+                    { role: "General Member", name: "DAKSSHI NATH PILLAY", image: "images/committee/comserve/csmember1.avif", quote: "Why are we here, just to suffer?" },
+                    { role: "General Member", name: "NICHOLAS WONG JUN YEW", image: "images/committee/comserve/csmember2.avif", quote: "The only person you need to beat is the person you were yesterday. " },
+                    { role: "General Member", name: "TEH SIN HUI", image: "images/committee/comserve/csmember3.avif", quote: "" },
+                    { role: "General Member", name: "YAP QIN HUEY", image: "images/committee/comserve/csmember4.avif", quote: "2% battery, 100% commitment" },
                 ],
             },
             {
@@ -204,7 +205,10 @@ const siteContent = {
                     { role: "Deputy Director", name: "CHONG HUI XIN", image: "images/committee/public_rel/PRdeputyDirector.avif", quote: "Balancing everything almost took me out, but hey…I survived." }
                 ],
                 members: [
-                    { role: "General Member", name: "AUSTIN LAU HONG SHEN", image: "images/committee/public_rel/member1.avif", quote: "" }
+                    { role: "General Member", name: "AUSTIN LAU HONG SHEN", image: "images/committee/public_rel/prmember1.avif", quote: "" },
+                    { role: "General Member", name: "EE CHAO JIAN", image: "images/committee/public_rel/prmember2.avif", quote: "" },
+                    { role: "General Member", name: "KAY THARI MON ", image: "images/committee/public_rel/prmember3.avif", quote: "" },
+                    { role: "General Member", name: "SAN DAR WIN", image: "images/committee/public_rel/prmember4.avif", quote: "" }
                 ],
             },
             {
@@ -214,12 +218,12 @@ const siteContent = {
                     { role: "Deputy Director", name: "SEW SUN LOONG", image: "images/committee/student_wel/SWdeputyDirector.avif", quote: "Tacos" }
                 ],
                 members: [
-                    { role: "General Member", name: "LAW JIA HERNG", image: "images/committee/student_wel/member1.avif", quote: "" },
-                    { role: "General Member", name: "JOSHUA LEE CHENG AN", image: "images/committee/student_wel/member2.avif", quote: "" },
-                    { role: "General Member", name: "GOH JAY NING", image: "images/committee/student_wel/member3.avif", quote: "Eat well, sleep well, study well. - Mr D. " },
-                    { role: "General Member", name: "DANIEL WONG WENG SENG", image: "images/committee/student_wel/member4.avif", quote: "" },
-                    { role: "General Member", name: "DANIEL @ HTOO HTET ZAW", image: "images/committee/student_wel/member5.avif", quote: "" },
-                    { role: "General Member", name: "CHUE RYEE EN", image: "images/committee/student_wel/member6.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
+                    { role: "General Member", name: "LAW JIA HERNG", image: "images/committee/student_wel/swmember1.avif", quote: "" },
+                    { role: "General Member", name: "JOSHUA LEE CHENG AN", image: "images/committee/student_wel/swmember2.avif", quote: "" },
+                    { role: "General Member", name: "GOH JAY NING", image: "images/committee/student_wel/swmember3.avif", quote: "Eat well, sleep well, study well. - Mr D. " },
+                    { role: "General Member", name: "DANIEL WONG WENG SENG", image: "images/committee/student_wel/swmember4.avif", quote: "" },
+                    { role: "General Member", name: "DANIEL @ HTOO HTET ZAW", image: "images/committee/student_wel/swmember5.avif", quote: "" },
+                    { role: "General Member", name: "CHUE RYEE EN", image: "images/committee/student_wel/swmember6.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
                 ],
             },
         ],
@@ -229,13 +233,13 @@ const siteContent = {
             {
                 id: "dept-ld",
                 title: "Leadership Development",
-                image: "images/committee/departmental/LD - FORMAL.JPG",
+                image: "images/committee/departmental/LD - FORMAL.avif",
                 description: "Leadership Development promotes soft skills and sports to foster interpersonal growth and ensure all A-Level students develop personally and professionally."
             },
             {
                 id: "dept-cs",
                 title: "Community Service",
-                image: "images/committee/departmental/CS - FORMAL.JPG",
+                image: "images/committee/departmental/CS - FORMAL.avif",
                 description: "Community Service, or COMSERVE for short, organises events for our members that focus on charitable, environmental, or community-orientated work."
             },
             {
@@ -257,23 +261,36 @@ const siteContent = {
     eventsPage: {
         default: {
             default_image: "images/events/stay-tuned.avif",
-            default_description: "Stay tuned for more from ALSCO!"
+            default_title: "Stay tuned for more from ALSCO!",
+            default_description: "",
+            default_button: "",
         },
         // SECTION 1: UPCOMING EVENTS
         upcoming: [
             {   // Change the title, date, image, description
-                title: "A-Level Leadership Camp",
-                date: "Saturday, 7th February 2026 to Sunday, 8th February 2026",
-                image: "images/events/upcoming/ALC-AE.avif",
-                description: "A Leadership Camp organised by Leadership Development department that aims to providing A-Level Students an opportunity to explore leadership not as a title, but as a lived experience shaped by communication, empathy and courage.",
+                //EXAMPLE
+                //  title: "A-Level Leadership Camp",
+                //  department: "Leadership Department"
+                //  date: "Saturday, 7th February 2026 to Sunday, 8th February 2026",
+                //  image: "images/events/upcoming/ALC-AE.avif",
+                //  instagram_link:"https://www.instagram.com/p/DWBK7lfEUfH/?img_index=1"
+                //  description: "A Leadership Camp organised by Leadership Development department that aims to providing A-Level Students an opportunity to explore leadership not as a title, but as a lived experience shaped by communication, empathy and courage.",
+                //  registration_link: "https://forms.google.com/orientation",
+                //  button_text: "Closed"
                 // For button, include 'open' if registration is open, or else use other text. 
                 // Eg. 'Registration Upcoming!!' = Clicking button does nothing
                 // Eg. 'Registration Opened!!' = Clicking button opens the registration form (paste the registration link inside the "")
+                title: "A-Level Leadership Camp",
+                department: "Leadership Department",
+                date: "Saturday, 7th February 2026 to Sunday, 8th February 2026",
+                image: "images/events/upcoming/ALC-AE.avif",
+                instagram_link: "https://www.instagram.com/p/DWBK7lfEUfH/?img_index=1",
+                description: "A Leadership Camp organised by Leadership Development department that aims to providing A-Level Students an opportunity to explore leadership not as a title, but as a lived experience shaped by communication, empathy and courage.",
                 registration_link: "https://forms.google.com/orientation",
                 button_text: "Closed"
             },
 
-            // To add more evnets, just copy the format above and paste and change the details accordingly.
+            // To add more events, just copy the format above and paste and change the details accordingly.
         ],
 
         // SECTION 2: PAST EVENTS
@@ -282,15 +299,19 @@ const siteContent = {
                 title: "A Charity Extravaganze 2026",
                 date: "Saturday, 17th January 2026",
                 department: "ALSCO",
+                instagram_link: "https://www.instagram.com/p/DTpftXIkQLi/?img_index=1",
                 description: "Raised RM1000+ through ALSTAR First Event for an Old Folks Home",
-                driveFolderID: "1I6pPY6tEC4EdMWYO424xfXIkBB3iY9yI", //FolderID
+                image_folder: "",
+                video_path: ""
             },
             {
                 title: "July 2025 Installation Night",
                 date: "Thrusday, 8th Janaury 2026",
                 department: "SST (2 Secretaries & Treasurer)",
+                instagram_link: "https://www.instagram.com/p/DTXjonXEc8U/?img_index=1",
                 description: "A Formal Night of Installation of the new July 2025 A-Level Student Committee members",
-                driveFolderID: "", //FolderID
+                image_folder: "images/events/past/installation_night/pictures",
+                video_path: "images/events/past/installation_night/install_night_vid.mp4"
             }
         ]
     },

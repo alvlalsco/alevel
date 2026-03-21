@@ -118,21 +118,42 @@ function updateSiteContent() {
         });
     }
 
-    //  C. FEATURED EVENT
-    setImage("event-img", siteContent.index.featuredEvent.image);
-    setText("event-title", siteContent.index.featuredEvent.title);
-    setText("event-desc", siteContent.index.featuredEvent.description);
-    setText("event-reg-btn-text", siteContent.index.featuredEvent.button_text); // Set button text
+    // C. FEATURED EVENT
+    // Check if the featured event has an actual title defined
+    if (siteContent.index.featuredEvent && siteContent.index.featuredEvent.title) {
 
-    //  C1. If button = "Registration is Open", will link to form. Otherwise, will be disable or link to events page.
-    const eventBtn = document.getElementById("event-reg-btn");
-    if (eventBtn) {
-        if (siteContent.index.featuredEvent.button_text.toLowerCase().includes("open")) {
-            eventBtn.href = siteContent.index.featuredEvent.registration_link;
-        } else {
-            eventBtn.href = "/events.html"; // Default fallback
+        setImage("event-img", siteContent.index.featuredEvent.image);
+        setText("event-title", siteContent.index.featuredEvent.title);
+        setText("event-desc", siteContent.index.featuredEvent.description);
+        setText("event-reg-btn-text", siteContent.index.featuredEvent.button_text);
+
+        // C1. Button Logic
+        const eventBtn = document.getElementById("event-reg-btn");
+        if (eventBtn) {
+            if (siteContent.index.featuredEvent.button_text.toLowerCase().includes("open")) {
+                eventBtn.href = siteContent.index.featuredEvent.registration_link;
+            } else {
+                eventBtn.href = "/events.html";
+            }
+        }
+
+    } else {
+        // Fallback to default "Stay Tuned"
+        setImage("event-img", siteContent.eventsPage.default.default_image);
+
+        // FIXED: Changed setImage to setText
+        setText("event-title", siteContent.eventsPage.default.default_title);
+
+        setText("event-desc", siteContent.eventsPage.default.default_description);
+        setText("event-reg-btn-text", siteContent.eventsPage.default.default_button);
+
+        // Optional: Hide or disable the button if there is no event
+        const eventBtn = document.getElementById("event-reg-btn");
+        if (eventBtn) {
+            eventBtn.style.display = "none"; // Or you can make it disabled
         }
     }
+
 
     //  D. NEWSLETTER
     setImage("news-img", siteContent.index.newsletter.image);
@@ -328,40 +349,33 @@ function updateSiteContent() {
     const upcomingContainer = document.getElementById("events-upcoming-container");
     const pastContainer = document.getElementById("events-past-container");
 
-    // Check for existence of events.html and events in content.js
-    if (upcomingContainer && siteContent.eventsPage && siteContent.eventsPage.upcoming) {
-        upcomingContainer.innerHTML = "";
-        const events = siteContent.eventsPage.upcoming;
-
-        // A. Render UPCOMING Events
-        if (events.length > 0) {
-            events.forEach((evt, index) => {
-                // Index 0 is the "Featured" (Big) card. All others are "Standard".
-                const isFeatured = index === 0;
-                const cardHTML = createEventCard(evt, isFeatured);
-                upcomingContainer.insertAdjacentHTML('beforeend', cardHTML);
-            });
-        }
-    }
-
     // --- Helper Function: The "Card Factory" ---
     function createEventCard(evt, isFeatured) {
-        const isEnabled = evt.button_text.toLowerCase().includes("Register");
+        const isEnabled = evt.button_text ? evt.button_text.toLowerCase().includes("open") : false;
 
-        // 1. SETUP LAYOUT RATIOS
+        // 1. SETUP LAYOUT RATIOS, GRID SPAN, TEXT SIZING
         // Featured: Image 2/5 (40%), Text 3/5 (60%)
         // Standard: Image 1/2 (50%), Text 1/2 (50%)
         const imgWidthClass = isFeatured ? "lg:w-2/5" : "lg:w-1/2";
         const txtWidthClass = isFeatured ? "lg:w-3/5" : "lg:w-1/2";
-
-        // 2. SETUP GRID SPAN
         // Featured spans 2 columns (full row). Standard spans 1 column.
         const containerSpan = isFeatured ? "lg:col-span-2" : "";
-
-        // 3. SETUP TEXT SIZING (Optional: Make big card text slightly larger)
+        //Make big card text slightly larger
         const titleSize = isFeatured ? "text-2xl md:text-4xl" : "text-xl font-bold";
         const padding = isFeatured ? "p-6 md:p-10" : "p-5";
 
+        // 2. DEPARTMENT COLOR DICTIONARY
+        let deptColorClass = "bg-red-100 text-red-700";
+        if (evt.department) {
+            const dept = evt.department.toLowerCase();
+            if (dept.includes("leadership")) deptColorClass = "bg-red-100 text-red-700";
+            else if (dept.includes("welfare")) deptColorClass = "bg-blue-100 text-blue-700";
+            else if (dept.includes("relations")) deptColorClass = "bg-pink-100 text-pink-700";
+            else if (dept.includes("comserve")) deptColorClass = "bg-green-100 text-green-700";
+            else if (dept.includes("sst") || dept.includes("secretaries & treasurer")) deptColorClass = "bg-amber-100 text-amber-700";
+        }
+
+        // 3. BUILT THE HTML
         return `
         <div class="${containerSpan} border-custom rounded-3xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow flex flex-col lg:flex-row h-full">
             
@@ -371,43 +385,163 @@ function updateSiteContent() {
             </div>
 
             <div class="${padding} flex flex-col flex-grow justify-center ${txtWidthClass}">
-                <div class="flex items-center gap-3 mb-4">
+
+                <div class="flex items-center gap-2 mb-4">
+
                     ${isFeatured ? '<span class="tag-latest">Featured</span>' : ''}
-                    <span class="date-chip text-sm">${evt.date}</span>
+                    ${evt.department ? `<span class="px-3 py-1 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest ${deptColorClass}">${evt.department}</span>` : ''}                    
+                    ${evt.instagram_link ? `
+                        <a href="${evt.instagram_link}" target="_blank" 
+                    class="flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] md:text-xs font-bold text-white uppercase tracking-widest bg-gradient-to-tr from-[#f09433] via-[#e6683c] to-[#bc1888] hover:scale-105 transition-transform shadow-sm">
+                        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                        IG
+                    </a>` : ''}
                 </div>
                 
                 <h3 class="${titleSize} font-bold mb-4 tracking-tight leading-tight">
                     ${evt.title}
                 </h3>
+
+                ${evt.date ? `
+                <div class="mb-4">
+                    <span class="date-chip inline-block ${deptColorClass} px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
+                        ${evt.date}
+                    </span>
+                </div>` : ''}
                 
                 <p class="leading-relaxed text-main text-justify mb-8 flex-grow ${isFeatured ? 'text-base' : 'text-sm line-clamp-3 lg:line-clamp-none'}">
                     ${evt.description}
                 </p>
                 
                 <a href="${isEnabled ? evt.registration_link : ''}" target="${isEnabled ? '_blank' : ''}" 
-                class="btn-modern btn-maroon text-sm py-2.5 px-6 w-full sm:w-auto text-center ${isEnabled ? 'opacity-50 cursor-not-allowed bg-gray-400 hover:bg-gray-400' : ''}">
-                    ${evt.button_text}
+                class="btn-modern btn-maroon text-sm py-2.5 px-6 w-full sm:w-auto text-center ${isEnabled ? '' : 'opacity-50 cursor-not-allowed bg-gray-400 hover:bg-gray-400'} ${evt.button_text ? '' : 'hidden'}">
+                    ${evt.button_text || ""}
                 </a>
             </div>
         </div>`;
     }
 
+    // Check for existence of events.html and events in content.js
+    if (upcomingContainer && siteContent.eventsPage && siteContent.eventsPage.upcoming) {
+        upcomingContainer.innerHTML = "";
+        const events = siteContent.eventsPage.upcoming;
+
+        // A. Render UPCOMING Events
+        // Checks for events and whether got event title
+        if (events.length > 0 && events[0].title) {
+            events.forEach((evt, index) => {
+                // Index 0 is the "Featured" (Big) card. All others are "Standard".
+                const isFeatured = index === 0;
+                const cardHTML = createEventCard(evt, isFeatured);
+                upcomingContainer.insertAdjacentHTML('beforeend', cardHTML);
+            });
+        } else {
+            // Render Default State
+            const default_event = {
+                image: siteContent.eventsPage.default.default_image,
+                title: siteContent.eventsPage.default.default_title,
+                description: siteContent.eventsPage.default.default_description,
+                button_text: siteContent.eventsPage.default.default_button,
+                date: "",
+                registration_link: "#",
+            }
+
+            const isFeatured = true;
+            const cardHTML = createEventCard(default_event, isFeatured);
+            upcomingContainer.insertAdjacentHTML('beforeend', cardHTML)
+        }
+    }
+
+
+
     //  B. Render PAST Events
     if (pastContainer && siteContent.eventsPage && siteContent.eventsPage.past) {
         pastContainer.innerHTML = "";
-        siteContent.eventsPage.past.forEach(evt => {
+        siteContent.eventsPage.past.forEach((evt, index) => {
+
+            // 1. DEPARTMENT COLOR DICTIONARY
+            //Default Colors
+            let deptColorClass = "bg-red-100 text-red-700";
+            let deptHoverBorderClass = "hover:border-[#88113b]";
+            let deptHoverTextClass = "group-hover:text-[#88113b]";
+            let deptSolidBtnClass = "bg-red-800 text-white hover:bg-red-900";
+
+            // Departmental Colours
+            if (evt.department) {
+                const dept = evt.department.toLowerCase();
+                if (dept.includes("leadership")) {
+                    deptColorClass = "bg-red-100 text-red-700";
+                    deptHoverBorderClass = "hover:border-red-500";
+                    deptHoverTextClass = "group-hover:text-red-700";
+                    deptSolidBtnClass = "bg-red-600 text-white hover:bg-red-700";
+                }
+                else if (dept.includes("welfare")) {
+                    deptColorClass = "bg-blue-100 text-blue-700";
+                    deptHoverBorderClass = "hover:border-blue-500";
+                    deptHoverTextClass = "group-hover:text-blue-700";
+                    deptSolidBtnClass = "bg-blue-600 text-white hover:bg-blue-700";
+                }
+                else if (dept.includes("relations")) {
+                    deptColorClass = "bg-pink-100 text-pink-700";
+                    deptHoverBorderClass = "hover:border-pink-500";
+                    deptHoverTextClass = "group-hover:text-pink-700";
+                    deptSolidBtnClass = "bg-pink-600 text-white hover:bg-pink-700";
+                }
+                else if (dept.includes("comserve") || dept.includes("community")) {
+                    deptColorClass = "bg-green-100 text-green-700";
+                    deptHoverBorderClass = "hover:border-green-500";
+                    deptHoverTextClass = "group-hover:text-green-700";
+                    deptSolidBtnClass = "bg-green-600 text-white hover:bg-green-700";
+                }
+                else if (dept.includes("sst") || dept.includes("secretaries & treasurer")) {
+                    deptColorClass = "bg-amber-100 text-amber-700";
+                    deptHoverBorderClass = "hover:border-amber-500";
+                    deptHoverTextClass = "group-hover:text-amber-700"
+                    deptSolidBtnClass = "bg-amber-600 text-white hover:bg-amber-700";
+                }
+            }
+
+            //2. BUILD THE HTML
             const html = `
-                <div class="border-custom rounded-2xl bg-white p-8 flex flex-col h-full hover:border-[#88113b] transition-colors group">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">${evt.date}</span>
-                        <span class="px-3 py-1 bg-gray-100 rounded-full text-[10px] font-bold text-gray-600 uppercase">${evt.department}</span>
+                <div class="border-custom rounded-2xl bg-white p-8 flex flex-col h-full ${deptHoverBorderClass} transition-colors group">
+                    
+                    <div class="flex flex-wrap items-center gap-2 mb-4">
+                        ${evt.department ? `<span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${deptColorClass}">${evt.department}</span>` : ''}
+                        
+                        ${evt.instagram_link ? `
+                        <a href="${evt.instagram_link}" target="_blank" class="flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-widest bg-gradient-to-tr from-[#f09433] via-[#e6683c] to-[#bc1888] hover:scale-105 transition-transform shadow-sm">
+                            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                            IG
+                        </a>` : ''}
                     </div>
-                    <h3 class="text-xl font-bold mb-3 group-hover:text-[#88113b] transition-colors">${evt.title}</h3>
+                    
+                    <h3 class="text-xl font-bold mb-2 ${deptHoverTextClass} transition-colors">${evt.title}</h3>
+                    
+                    ${evt.date ? `
+                    <div class="mb-4">
+                        <span class="inline-block ${deptColorClass} px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest">
+                            ${evt.date}
+                        </span>
+                    </div>` : ''}
+
                     <p class="text-sm text-gray-600 leading-relaxed mb-6 flex-grow">${evt.description}</p>
-                    <button onclick="loadDriveGallery('${evt.driveFolderID}')" class="btn-modern btn-ghost w-full text-sm py-2">
-                        View Photos
-                    </button>
+                    
+                    ${evt.image_folder ? `
+                        <button onclick="openGallery(${index})" class="rounded-xl font-bold w-full text-sm py-3 transition-colors ${deptSolidBtnClass}">
+                            View Photos
+                        </button>
+                    ` : `
+                        <button disabled class="rounded-xl font-bold w-full text-sm py-3 bg-gray-100 text-gray-400 cursor-not-allowed">
+                            Photos Coming Soon!
+                        </button>
+                    `}
+                    
                 </div>`;
+
             pastContainer.insertAdjacentHTML('beforeend', html);
         });
     }
@@ -589,7 +723,7 @@ async function submitNewsletter() {
 function openGallery(eventIndex) {
     // 1. Get the data for the specific event clicked
     const evt = siteContent.eventsPage.past[eventIndex];
-    if (!evt || !evt.galleryFolder) return;
+    if (!evt || !evt.image_folder) return;
 
     // 2. Grab the modal elements
     const modal = document.getElementById('gallery-modal');
@@ -604,10 +738,8 @@ function openGallery(eventIndex) {
     gridEl.innerHTML = ""; // Clear out any old images
 
     for (let i = 1; i <= 20; i++) {
-        const imagePath = `${evt.galleryFolder}/${i}.webp`;
+        const imagePath = `${evt.image_folder}/${i}.avif`;
 
-        // Notice the 'onerror' attribute below! 
-        // It says: "If this image fails to load, hide my parent div entirely."
         const imgHTML = `
             <div class="mb-3 md:mb-4 break-inside-avoid rounded-2xl overflow-hidden group bg-gray-100 relative">
                 <img src="${imagePath}" 
@@ -621,11 +753,11 @@ function openGallery(eventIndex) {
     }
 
     // 5. Build the Video Section
-    if (evt.video) {
+    if (evt.video_path) {
         videoContainer.style.display = "block";
         videoContainer.innerHTML = `
             <video controls class="w-full max-h-[70vh] object-cover">
-                <source src="${evt.video}" type="video/mp4">
+                <source src="${evt.video_path}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         `;
