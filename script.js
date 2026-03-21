@@ -412,7 +412,7 @@ function updateSiteContent() {
         <div class="${containerSpan} border-custom rounded-3xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow flex flex-col lg:flex-row h-full">
             
             <div class="relative w-full ${imgWidthClass} shrink-0 aspect-[4/5] overflow-hidden group">
-                <img src="${evt.image}" alt="${evt.title}" 
+                <img src="${evt.image}" alt="${evt.title}" loading="lazy"
                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             </div>
 

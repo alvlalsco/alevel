@@ -47,6 +47,15 @@ const siteContent = {
             ]
         },
         {
+            name: "ALSTAR",
+            link: "/alstar.html",
+            sections: [
+                { name: "About ALSTAR", id: "alstar-logo" },
+                { name: "Points Tracker", id: "tracker" },
+                { name: "Calender", id: "alstar-calendar-section" }
+            ]
+        },
+        {
             name: "Contact",
             link: "/contact.html",
             sections: []
