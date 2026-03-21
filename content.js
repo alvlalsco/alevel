@@ -57,21 +57,20 @@ const siteContent = {
     index: {
         // --- HERO SECTION ---
         hero: {
-            image: "images/index/IMG_4369.JPG",
-            logo: "images/nav/alsco_logo.png",
+            image: "images/index/alsco_group.avif",
             description: "We are the official student committee representing all A-Level students at Sunway College. We bridge the gap between students and administration while organizing events that make your college life memorable.",
             handbook_pdf: "https://1f728d2d-1495-4449-b1c1-3c3cb399d337.filesusr.com/ugd/df559c_8cf96a8d79ea4d09aaacbff7e0d199c5.pdf"
         },
 
         affiliates: [
-            { name: "Malaysian Bioscience Scholars", image: "images/index/mbios.png" }, // Replace with real logo path
+            { name: "Malaysian Bioscience Scholars", image: "images/index/mbios.avif" }, // Replace with real logo path
             // To add more, just copy the line above:
-            // { name: "New Partner", image: "images/partner_logo.png" }, 
+            // { name: "New Partner", image: "images/partner_logo.avif" }, 
         ],
 
         // --- FEATURED EVENT ---
         featuredEvent: {
-            image: "images/events/upcoming/ALC-AE.png",
+            image: "images/events/upcoming/ALC-AE.avif",
             title: "A-Level Leadership Camp 2026",
             description: "A Leadership Camp organised by Leadership Development department that aims to providing A-Level Students an opportunity to explore leadership not as a title, but as a lived experience shaped by communication, empathy and courage.",
             registration_link: "https://forms.google.com/your-event-form",
@@ -100,7 +99,43 @@ const siteContent = {
             {
                 question: "How do I submit a complaint or suggestion?",
                 answer: "You can use the 'Get In Touch' form on our Contact page, or DM us directly on Instagram. We review all student feedback weekly."
-            }
+            },
+            {
+                question: "Where can I find the ALSTAR points tracker?",
+                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+            },
+            {
+                question: "Where can I find the ALSTAR points tracker?",
+                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+            },
+            {
+                question: "Where can I find the ALSTAR points tracker?",
+                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+            },
+            {
+                question: "Where can I find the ALSTAR points tracker?",
+                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+            },
+            {
+                question: "Where can I find the ALSTAR points tracker?",
+                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+            },
+            {
+                question: "Where can I find the ALSTAR points tracker?",
+                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+            },
+            {
+                question: "Where can I find the ALSTAR points tracker?",
+                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+            },
+            {
+                question: "Where can I find the ALSTAR points tracker?",
+                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+            },
+            {
+                question: "Where can I find the ALSTAR points tracker?",
+                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+            },
             // If want to include more FAQ, just copy and paste and change the text inside ""
         ],
     },
@@ -121,16 +156,16 @@ const siteContent = {
         // LEVEL 1: EXECUTIVE (Order matters for the layout!)
         highCouncil: [
             // Row 1: President
-            { role: "President", name: "TAY HUI ER", image: "images/committee/high_council/president.png", quote: "" },
+            { role: "President", name: "TAY HUI ER", image: "images/committee/high_council/president.avif", quote: "Be the best version of yourself. :)" },
 
             // Row 2: VPs
-            { role: "Vice President of External Affairs", name: "NICHOLAS WONG JUN YEW", image: "images/committee/high_council/vpe.png", quote: "" },
-            { role: "Vice President of Internal Affairs", name: "DANIEL @ HTOO HTET ZAW", image: "images/committee/high_council/vpi.png", quote: "" },
+            { role: "Vice President of External Affairs", name: "NICHOLAS WONG JUN YEW", image: "images/committee/high_council/vpe.avif", quote: "The only person you need to beat is the person you were yesterday. " },
+            { role: "Vice President of Internal Affairs", name: "DANIEL @ HTOO HTET ZAW", image: "images/committee/high_council/vpi.avif", quote: "" },
 
             // Row 3: Secs & Treasurer
-            { role: "Secretary", name: "CHUE RYEE EN", image: "images/committee/high_council/sec1.png", quote: "" },
-            { role: "Secretary", name: "AUSTIN LAU HONG SHEN", image: "images/committee/high_council/sec2.png", quote: "" },
-            { role: "Treasurer", name: "EVAN YEOH JIN QUAN", image: "images/committee/high_council/treasurer.png", quote: "Hmmmmmm, having fun!!!" },
+            { role: "Secretary", name: "CHUE RYEE EN", image: "images/committee/high_council/sec1.avif", quote: "" },
+            { role: "Secretary", name: "AUSTIN LAU HONG SHEN", image: "images/committee/high_council/sec2.avif", quote: "" },
+            { role: "Treasurer", name: "EVAN YEOH JIN QUAN", image: "images/committee/high_council/treasurer.avif", quote: "Hmmmmmm, having fun!!!" },
         ],
 
         // LEVEL 2: DEPARTMENTS
@@ -139,52 +174,52 @@ const siteContent = {
             {
                 name: "Leadership Development",
                 leaders: [
-                    { role: "Director", name: "LAI ZHENG YI", image: "images/committee/leadership_dev/LDdirector.png", quote: "" },
-                    { role: "Deputy Director", name: "CHLOE LIM JING YAN", image: "images/committee/leadership_dev/LDduputyDirector.png", quote: "" }
+                    { role: "Director", name: "LAI ZHENG YI", image: "images/committee/leadership_dev/LDdirector.avif", quote: "Believe in Yourself, but when in doubt, Freestyle" },
+                    { role: "Deputy Director", name: "CHLOE LIM JING YAN", image: "images/committee/leadership_dev/LDduputyDirector.avif", quote: "Strategically overthinking so you don’t have to :)" }
                 ],
                 members: [
-                    { role: "General Member", name: "ONG XI WEN", image: "images/committee/leadership_dev/member1.png", quote: "" },
-                    { role: "General Member", name: "EVAN YEOH JIN QUAN", image: "images/committee/leadership_dev/member2.png", quote: "Stay Humble, Stay Hungry" },
-                    { role: "General Member", name: "TAY HUI ER", image: "images/committee/leadership_dev/member3.png", quote: "" },
-                    { role: "General Member", name: "VINCENT KHOO WEI WEN", image: "images/committee/leadership_dev/member4.png", quote: "" },
+                    { role: "General Member", name: "ONG XI WEN", image: "images/committee/leadership_dev/member1.avif", quote: "" },
+                    { role: "General Member", name: "EVAN YEOH JIN QUAN", image: "images/committee/leadership_dev/member2.avif", quote: "Stay Humble, Stay Hungry" },
+                    { role: "General Member", name: "TAY HUI ER", image: "images/committee/leadership_dev/member3.avif", quote: "" },
+                    { role: "General Member", name: "VINCENT KHOO WEI WEN", image: "images/committee/leadership_dev/member4.avif", quote: "Failure is merely the ink of a life that dared to write" },
                 ],
             },
             {
                 name: "Community Service",
                 leaders: [
-                    { role: "Director", name: "EE JING XUAN", image: "images/committee/comserve/CSdirector.png", quote: "" },
-                    { role: "Deputy Director", name: "NYEIN YU SAN", image: "images/committee/comserve/CSdeputyDirector.png", quote: "" }
+                    { role: "Director", name: "EE JING XUAN", image: "images/committee/comserve/CSdirector.avif", quote: "" },
+                    { role: "Deputy Director", name: "NYEIN YU SAN", image: "images/committee/comserve/CSdeputyDirector.avif", quote: "Growing while giving back through service" }
                 ],
                 members: [
-                    { role: "General Member", name: "DAKSSHI NATH PILLAY", image: "images/committee/comserve/member1.png", quote: "" },
-                    { role: "General Member", name: "NICHOLAS WONG JUN YEW", image: "images/committee/comserve/member2.png", quote: "" },
-                    { role: "General Member", name: "TEH SIN HUI", image: "images/committee/comserve/member3.png", quote: "" },
-                    { role: "General Member", name: "YAP QIN HUEY", image: "images/committee/comserve/member4.png", quote: "" },
+                    { role: "General Member", name: "DAKSSHI NATH PILLAY", image: "images/committee/comserve/member1.avif", quote: "Why are we here, just to suffer?" },
+                    { role: "General Member", name: "NICHOLAS WONG JUN YEW", image: "images/committee/comserve/member2.avif", quote: "" },
+                    { role: "General Member", name: "TEH SIN HUI", image: "images/committee/comserve/member3.avif", quote: "" },
+                    { role: "General Member", name: "YAP QIN HUEY", image: "images/committee/comserve/member4.avif", quote: "2% battery, 100% commitment" },
                 ],
             },
             {
                 name: "Public Relations",
                 leaders: [
-                    { role: "Director", name: "AYSHALYNN SALAHUDDIN", image: "images/committee/public_rel/PRdirector.png", quote: "" },
-                    { role: "Deputy Director", name: "CHONG HUI XIN", image: "images/committee/public_rel/PRdeputyDirector.png", quote: "" }
+                    { role: "Director", name: "AYSHALYNN SALAHUDDIN", image: "images/committee/public_rel/PRdirector.avif", quote: "The silent lamb but innocent tamed and humble soul." },
+                    { role: "Deputy Director", name: "CHONG HUI XIN", image: "images/committee/public_rel/PRdeputyDirector.avif", quote: "Balancing everything almost took me out, but hey…I survived." }
                 ],
                 members: [
-                    { role: "General Member", name: "AUSTIN LAU HONG SHEN", image: "images/committee/public_rel/member1.png", quote: "" }
+                    { role: "General Member", name: "AUSTIN LAU HONG SHEN", image: "images/committee/public_rel/member1.avif", quote: "" }
                 ],
             },
             {
                 name: "Student Welfare",
                 leaders: [
-                    { role: "Director", name: "YAP CHERN XI", image: "images/committee/student_wel/SWdirector.png", quote: "" },
-                    { role: "Deputy Director", name: "SEW SUN LOONG", image: "images/committee/student_wel/SWdeputyDirector.png", quote: "" }
+                    { role: "Director", name: "YAP CHERN XI", image: "images/committee/student_wel/SWdirector.avif", quote: "I love eating" },
+                    { role: "Deputy Director", name: "SEW SUN LOONG", image: "images/committee/student_wel/SWdeputyDirector.avif", quote: "Tacos" }
                 ],
                 members: [
-                    { role: "General Member", name: "LAW JIA HERNG", image: "images/committee/student_wel/member1.png", quote: "" },
-                    { role: "General Member", name: "JOSHUA LEE CHENG AN", image: "images/committee/student_wel/member2.png", quote: "" },
-                    { role: "General Member", name: "GOH JAY NING", image: "images/committee/student_wel/member3.png", quote: "" },
-                    { role: "General Member", name: "DANIEL WONG WENG SENG", image: "images/committee/student_wel/member4.png", quote: "" },
-                    { role: "General Member", name: "DANIEL @ HTOO HTET ZAW", image: "images/committee/student_wel/member5.png", quote: "" },
-                    { role: "General Member", name: "CHUE RYEE EN", image: "images/committee/student_wel/member6.png", quote: "" },
+                    { role: "General Member", name: "LAW JIA HERNG", image: "images/committee/student_wel/member1.avif", quote: "" },
+                    { role: "General Member", name: "JOSHUA LEE CHENG AN", image: "images/committee/student_wel/member2.avif", quote: "" },
+                    { role: "General Member", name: "GOH JAY NING", image: "images/committee/student_wel/member3.avif", quote: "Eat well, sleep well, study well. - Mr D. " },
+                    { role: "General Member", name: "DANIEL WONG WENG SENG", image: "images/committee/student_wel/member4.avif", quote: "" },
+                    { role: "General Member", name: "DANIEL @ HTOO HTET ZAW", image: "images/committee/student_wel/member5.avif", quote: "" },
+                    { role: "General Member", name: "CHUE RYEE EN", image: "images/committee/student_wel/member6.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
                 ],
             },
         ],
@@ -206,13 +241,13 @@ const siteContent = {
             {
                 id: "dept-sw",
                 title: "Student Welfare",
-                image: "images/committee/departmental/SW - FORMAL.png",
+                image: "images/committee/departmental/SW - FORMAL.avif",
                 description: "Student Welfare strives to foster a supportive and holistic environment within the community by curating initiatives that enhance students’ mental, social, and academic well-being."
             },
             {
                 id: "dept-pr",
                 title: "Public Relations",
-                image: "images/committee/departmental/PR - FORMAL.png",
+                image: "images/committee/departmental/PR - FORMAL.avif",
                 description: "Public Relations focuses on creating creative and engaging content to communicate effectively and build a strong, connected A-Level community."
             }
         ]
@@ -220,12 +255,16 @@ const siteContent = {
 
     // 4. EVENTS PAGE
     eventsPage: {
+        default: {
+            default_image: "images/events/stay-tuned.avif",
+            default_description: "Stay tuned for more from ALSCO!"
+        },
         // SECTION 1: UPCOMING EVENTS
         upcoming: [
             {   // Change the title, date, image, description
                 title: "A-Level Leadership Camp",
                 date: "Saturday, 7th February 2026 to Sunday, 8th February 2026",
-                image: "images/events/upcoming/ALC-AE.png",
+                image: "images/events/upcoming/ALC-AE.avif",
                 description: "A Leadership Camp organised by Leadership Development department that aims to providing A-Level Students an opportunity to explore leadership not as a title, but as a lived experience shaped by communication, empathy and courage.",
                 // For button, include 'open' if registration is open, or else use other text. 
                 // Eg. 'Registration Upcoming!!' = Clicking button does nothing
@@ -233,22 +272,7 @@ const siteContent = {
                 registration_link: "https://forms.google.com/orientation",
                 button_text: "Closed"
             },
-            {
-                title: "Teacher Appreciation Week",
-                date: "Monday, 23rd February 2026 to Thursday, 26th February 2026",
-                image: "images/events/upcoming/law.png",
-                description: "Waiting for Description",
-                registration_link: "None",
-                button_text: "Happening Now"
-            },
-            {
-                title: "Teacher Appreciation Week",
-                date: "Monday, 23rd February 2026 to Thursday, 26th February 2026",
-                image: "images/events/upcoming/law.png",
-                description: "Waiting for Description",
-                registration_link: "None",
-                button_text: "Happening Now"
-            },
+
             // To add more evnets, just copy the format above and paste and change the details accordingly.
         ],
 

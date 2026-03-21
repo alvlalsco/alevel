@@ -85,7 +85,6 @@ function updateSiteContent() {
 
     //  A. HERO SECTION
     setBackgroundImage("hero-header", siteContent.index.hero.image);
-    setImage("hero-bar-logo", siteContent.index.hero.logo);
     setText("hero-desc", siteContent.index.hero.description);
     setLink("hero-handbook-btn", siteContent.index.hero.handbook_pdf);
 
