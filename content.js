@@ -223,9 +223,7 @@ const siteContent = {
                 ],
                 members: [
                     { role: "General Member", name: "AUSTIN LAU HONG SHEN", image: "images/committee/public_rel/prmember1.avif", quote: "" },
-                    { role: "General Member", name: "EE CHAO JIAN", image: "images/committee/public_rel/prmember2.avif", quote: "" },
-                    { role: "General Member", name: "KAY THARI MON ", image: "images/committee/public_rel/prmember3.avif", quote: "" },
-                    { role: "General Member", name: "SAN DAR WIN", image: "images/committee/public_rel/prmember4.avif", quote: "" }
+
                 ],
             },
             {
@@ -243,6 +241,14 @@ const siteContent = {
                     { role: "General Member", name: "CHUE RYEE EN", image: "images/committee/student_wel/swmember6.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
                 ],
             },
+            {
+                name: "General Member",
+                members: [
+                    { role: "General Member", name: "EE CHAO JIAN", image: "images/committee/public_rel/prmember2.avif", quote: "" },
+                    { role: "General Member", name: "KAY THARI MON ", image: "images/committee/public_rel/prmember3.avif", quote: "" },
+                    { role: "General Member", name: "SAN DAR WIN", image: "images/committee/public_rel/prmember4.avif", quote: "" }
+                ]
+            }
         ],
 
         //Images for departments. Just change the IMAGE or DESCRIPTION. NOT the ID

@@ -299,31 +299,32 @@ function updateSiteContent() {
                 <div class="flex flex-wrap justify-center gap-12 mb-12">`;
 
             // Add Directors
-            dept.leaders.forEach(leader => {
-                const userQuote = leader.quote || "Dedicated to serving the A-Level Student Committee";
+            if (dept.leaders && dept.leaders.length > 0) {
+                dept.leaders.forEach(leader => {
+                    const userQuote = leader.quote || "Dedicated to serving the A-Level Student Committee";
 
-                html += `
-                    <div class="flex flex-col items-center text-center group w-48 md:w-64">
-                        <div class="relative mb-4">
-                            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gray-200 group-hover:border-[#88113b] group-hover:shadow-[0_0_15px_rgba(136,17,59,0.4)] transition-all duration-300 p-1 bg-white relative z-10">
-                                <img src="${leader.image}" class="w-full h-full object-cover object-top rounded-full" loading="lazy">
+                    html += `
+                        <div class="flex flex-col items-center text-center group w-48 md:w-64">
+                            <div class="relative mb-4">
+                                <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gray-200 group-hover:border-[#88113b] group-hover:shadow-[0_0_15px_rgba(136,17,59,0.4)] transition-all duration-300 p-1 bg-white relative z-10">
+                                    <img src="${leader.image}" class="w-full h-full object-cover object-top rounded-full" loading="lazy">
+                                </div>
+                                <div class="absolute top-1/2 left-[90%] -translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-[#88113b]/10 z-40 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out transform translate-x-[-10px] scale-95 group-hover:translate-x-0 group-hover:scale-100 pointer-events-none hidden md:block">
+                            
+                                    <div class="absolute top-1/2 -left-2 -translate-y-1/2 w-4 h-4 bg-white/95 transform rotate-45 border-l border-b border-[#88113b]/10"></div>
+                                    
+                                    <span class="absolute top-2 left-3 text-[#88113b]/20 text-4xl font-serif leading-none -z-10"></span>
+                                    
+                                    <p class="text-[#88113b] text-sm font-medium italic leading-relaxed relative z-10 pl-2">
+                                        "${userQuote}"
+                                    </p>
+                                </div>
                             </div>
-                            <div class="absolute top-1/2 left-[90%] -translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-[#88113b]/10 z-40 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out transform translate-x-[-10px] scale-95 group-hover:translate-x-0 group-hover:scale-100 pointer-events-none hidden md:block">
-                        
-                                <div class="absolute top-1/2 -left-2 -translate-y-1/2 w-4 h-4 bg-white/95 transform rotate-45 border-l border-b border-[#88113b]/10"></div>
-                                
-                                <span class="absolute top-2 left-3 text-[#88113b]/20 text-4xl font-serif leading-none -z-10"></span>
-                                
-                                <p class="text-[#88113b] text-sm font-medium italic leading-relaxed relative z-10 pl-2">
-                                    "${userQuote}"
-                                </p>
-                            </div>
-                        </div>
-                        <h4 class="font-bold text-lg leading-tight text-main">${leader.name}</h4>
-                        <p class="text-xs font-bold text-[#88113b] uppercase tracking-widest mt-1">${leader.role}</p>
-                    </div>`;
-            });
-
+                            <h4 class="font-bold text-lg leading-tight text-main">${leader.name}</h4>
+                            <p class="text-xs font-bold text-[#88113b] uppercase tracking-widest mt-1">${leader.role}</p>
+                        </div>`;
+                });
+            };
             html += `</div>`;
 
             // Add General Members
