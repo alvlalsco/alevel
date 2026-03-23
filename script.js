@@ -1,5 +1,5 @@
 // ==========================================
-// 1. Function to load HTML components
+// 1. Function to load Nav and Footer
 // ==========================================
 async function loadComponent(elementId, filePath) {
     try {
@@ -21,37 +21,8 @@ async function loadComponent(elementId, filePath) {
 }
 
 // ==========================================
-// 2. Function to Highlight the Current Page
+// 2. Function to Update all Site Content
 // ==========================================
-
-function setActiveLink() {
-    const currentPath = window.location.pathname; // e.g., "/events.html" or "/"
-
-    // Get all nav links (Desktop & Mobile)
-    const links = document.querySelectorAll('.nav-link');
-
-    links.forEach(link => {
-        // Check if the link's href matches the current path
-        // We use 'getAttribute' to get the raw value from HTML (e.g., "/about.html")
-        const linkPath = link.getAttribute('href');
-
-        // Handle the root "/" case explicitly
-        if (currentPath === "/" || currentPath === "/index.html") {
-            if (linkPath === "/") {
-                link.classList.add('primary-maroon', 'font-bold');
-            }
-        }
-        // Handle other pages
-        else if (currentPath.includes(linkPath) && linkPath !== "/") {
-            link.classList.add('primary-maroon', 'font-bold');
-        }
-    });
-}
-
-// ==========================================
-// 3. Website Content Manager
-// ==========================================
-
 function updateSiteContent() {
     // Helper to set text content
     const setText = (id, text) => {
@@ -683,171 +654,10 @@ function updateSiteContent() {
     }
 }
 
-// The function that animates opening and closing (Smooth Grid Version)
-function toggleFaq(clickedIndex) {
-    const targetAnswer = document.getElementById(`faq-answer-${clickedIndex}`);
-    const targetIcon = document.getElementById(`faq-icon-${clickedIndex}`);
-
-    // Check if the clicked answer is currently closed (grid-rows-[0fr])
-    const isClosed = targetAnswer.classList.contains('grid-rows-[0fr]');
-
-    // FORCE CLOSE ALL FAQs FIRST
-    const allAnswers = document.querySelectorAll('[id^="faq-answer-"]');
-    const allIcons = document.querySelectorAll('[id^="faq-icon-"]');
-
-    allAnswers.forEach(answer => {
-        answer.classList.add('grid-rows-[0fr]', 'opacity-0');
-        answer.classList.remove('grid-rows-[1fr]', 'opacity-100');
-    });
-
-    allIcons.forEach(icon => {
-        icon.classList.remove('rotate-180');
-    });
-
-    // OPEN THE CLICKED ONE (If it was originally closed)
-    if (isClosed) {
-        targetAnswer.classList.remove('grid-rows-[0fr]', 'opacity-0');
-        targetAnswer.classList.add('grid-rows-[1fr]', 'opacity-100'); // Smoothly expands to exact height
-        targetIcon.classList.add('rotate-180');
-    }
-}
 
 // ==========================================
-// 4. NEWSLETTER SUBSCRIBING LOGIC
+// 3. Function to Manage Navigation
 // ==========================================
-async function submitNewsletter() {
-    // a. Get Elements
-    const emailInput = document.getElementById("newsletter-email-input");
-    const btn = document.getElementById("newsletter-sub-btn");
-    const successMsg = document.getElementById("newsletter-success-msg");
-    const errorMsg = document.getElementById("newsletter-error-msg");
-
-    // b. Reset States
-    successMsg.classList.add("hidden");
-    errorMsg.classList.add("hidden");
-
-    const email = emailInput.value.trim();
-
-    // c. Simple Validation
-    if (!email || !email.includes("@")) {
-        errorMsg.textContent = "Please enter a valid email address.";
-        errorMsg.classList.remove("hidden");
-        return;
-    }
-
-    // d. Loading State
-    const originalText = btn.textContent;
-    btn.textContent = "Subsrcibing...";
-    btn.disabled = true;
-    btn.classList.add("opacity-75", "cursor-not-allowed");
-
-    // e. Send Data to Google Sheets using google app script
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyyWT4XJQ7CjhLyNEwdy-UZGjSr5PMcAkARv2knu6HkSC9HiKmhvRtmv2Re59YrKwE0/exec";
-
-    try {
-        const formData = new FormData();
-        formData.append("email", email);
-
-        const response = await fetch(SCRIPT_URL, {
-            method: "POST",
-            body: formData
-        });
-
-        if (response.ok) {
-            // Success!
-            emailInput.value = ""; // Clear input
-            successMsg.classList.remove("hidden");
-        } else {
-            throw new Error("Network response was not ok.");
-        }
-    } catch (error) {
-        console.error("Error!", error.message);
-        errorMsg.textContent = "Something went wrong. Please try again.";
-        errorMsg.classList.remove("hidden");
-    } finally {
-        // 6. Reset Button
-        btn.textContent = originalText;
-        btn.disabled = false;
-        btn.classList.remove("opacity-75", "cursor-not-allowed");
-
-        // Hide success message after 5 seconds
-        setTimeout(() => {
-            successMsg.classList.add("hidden");
-        }, 5000);
-    }
-}
-
-// ==========================================
-// GALLERY MODAL LOGIC
-// ==========================================
-
-function openGallery(eventIndex) {
-    // 1. Get the data for the specific event clicked
-    const evt = siteContent.eventsPage.past[eventIndex];
-    if (!evt || !evt.image_folder) return;
-
-    // 2. Grab the modal elements
-    const modal = document.getElementById('gallery-modal');
-    const titleEl = document.getElementById('modal-title');
-    const gridEl = document.getElementById('modal-grid');
-    const videoContainer = document.getElementById('modal-video-container');
-
-    // 3. Set the Title
-    titleEl.textContent = evt.title;
-
-    // 4. Build the Pinterest Masonry Layout using our 1-10 loop!
-    gridEl.innerHTML = ""; // Clear out any old images
-
-    for (let i = 1; i <= 20; i++) {
-        const imagePath = `${evt.image_folder}/${i}.avif`;
-
-        const imgHTML = `
-            <div class="mb-3 md:mb-4 break-inside-avoid rounded-2xl overflow-hidden group bg-gray-100 relative">
-                <img src="${imagePath}" 
-                     alt="${evt.title} photo ${i}" 
-                     loading="lazy" 
-                     onerror="this.parentElement.style.display='none'"
-                     class="w-full h-auto block group-hover:scale-105 transition-transform duration-500">
-            </div>
-        `;
-        gridEl.insertAdjacentHTML('beforeend', imgHTML);
-    }
-
-    // 5. Build the Video Section
-    if (evt.video_path) {
-        videoContainer.style.display = "block";
-        videoContainer.innerHTML = `
-            <video controls class="w-full max-h-[70vh] object-cover">
-                <source src="${evt.video_path}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        `;
-    } else {
-        videoContainer.style.display = "none";
-        videoContainer.innerHTML = "";
-    }
-
-    // 6. Show Modal and Lock Background Scroll
-    modal.classList.remove('opacity-0', 'pointer-events-none');
-    document.body.classList.add('overflow-hidden');
-}
-
-function closeGallery() {
-    const modal = document.getElementById('gallery-modal');
-    const videoContainer = document.getElementById('modal-video-container');
-
-    // 1. Hide Modal and Unlock Scroll
-    modal.classList.add('opacity-0', 'pointer-events-none');
-    document.body.classList.remove('overflow-hidden');
-
-    // 2. Destroy the video so it stops playing in the background
-    setTimeout(() => {
-        videoContainer.innerHTML = "";
-    }, 300); // Wait for the fade-out animation to finish first
-}
-
-
-// NAVIGATION BAR DYAMIC LOADING FUNCTION
 function navbarManagement() {
     const btn = document.getElementById("menu-btn");
     const panel = document.getElementById("menu-panel");
@@ -928,6 +738,46 @@ function navbarManagement() {
     });
     renderMenu();
 
+    // 🔥 HIGHLIGHT ACTIVE PAGE
+    function setActiveLink() {
+        // 1. Get exact current path (e.g., "/events.html" or "/")
+        const currentPath = window.location.pathname;
+
+        // 2. Grab all the links we just generated inside the menu
+        const links = document.querySelectorAll('#menu-content a');
+
+        links.forEach(link => {
+            const linkHref = link.getAttribute('href');
+
+            // 3. Strip out the "#" hash so "/events.html#past" just becomes "/events.html"
+            const linkPath = linkHref.split('#')[0] || "/";
+
+            // 4. Logic to check if this link belongs to the current page
+            let isMatch = false;
+            if (currentPath === "/" || currentPath === "/index.html") {
+                isMatch = (linkPath === "/" || linkPath === "/index.html");
+            } else {
+                // For other pages, check if the paths match
+                isMatch = currentPath.includes(linkPath) && linkPath !== "/";
+            }
+
+            // 5. Apply the styling if it matches
+            if (isMatch) {
+                // If it is the Main Page Title (e.g., "Events")
+                if (link.classList.contains('text-2xl')) {
+                    link.classList.add('text-yellow-400', 'underline', 'underline-offset-8');
+                }
+                // If it is a Sub-section Link (e.g., "Past", "Upcoming")
+                else {
+                    link.classList.remove('opacity-80'); // Remove the default dimness
+                    link.classList.add('text-yellow-200', 'font-bold');
+                }
+            }
+        });
+    }
+
+    setActiveLink();
+
     function handleScroll() {
         if (window.scrollY > 200) {
             // Scrolled down: Hide navbar
@@ -948,12 +798,9 @@ function navbarManagement() {
     handleScroll();
 }
 
-// ==========================================
-// 5. Initialise Everything
-// ==========================================
 document.addEventListener("DOMContentLoaded", async () => {
-    await loadComponent("navbar-placeholder", "nav.html");
-    await loadComponent("footer-placeholder", "footer.html");
+    await loadComponent("navbar-placeholder", "html_pages/nav.html");
+    await loadComponent("footer-placeholder", "html_pages/footer.html");
 
     // Run content update ONLY if siteContent is loaded
     if (typeof siteContent !== 'undefined') {
