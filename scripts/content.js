@@ -2,7 +2,9 @@
 // Instructions: Edit the values inside the quotes (" ") to update the website. All images is in the 'images' folder
 
 const siteContent = {
-    // 0. Navigation bar 
+    //===========================
+    // 0. NAVIGATION BAR
+    //===========================
     navStructure: [
         {
             name: "Home",
@@ -66,7 +68,9 @@ const siteContent = {
         }
     ],
 
+    //===========================
     // 1. INDEX PAGE
+    //===========================
     index: {
         // --- HERO SECTION ---
         hero: {
@@ -162,7 +166,9 @@ const siteContent = {
         ],
     },
 
+    //===========================
     // 2. ABOUT PAGE
+    //===========================
     // Change the text if required
     about: {
         missionp1: "To enhance the student experience by providing essential services, fostering engagement, and ensuring a supportive environment. We serve as an active bridge between students and the college administration. ",
@@ -172,7 +178,9 @@ const siteContent = {
         welfare: "Serving as a vital link between the student body and college administration for all concerns, ensuring your voice is always heard clearly."
     },
 
+    //===========================
     // 3. COMMITTEE PAGE
+    //===========================
     // Just change the NAME, IMAGE AND QUOTE, NOT the role
     committee: {
         // LEVEL 1: EXECUTIVE (Order matters for the layout!)
@@ -255,7 +263,7 @@ const siteContent = {
             }
         ],
 
-        //Images for departments. Just change the IMAGE or DESCRIPTION. NOT the ID
+        // LEVEL 3: DEPARTMENT PHOTOS. Just change the IMAGE or DESCRIPTION. NOT the ID
         coreStructure: [
             {
                 id: "dept-ld",
@@ -284,7 +292,9 @@ const siteContent = {
         ]
     },
 
+    //===========================
     // 4. EVENTS PAGE
+    //===========================
     eventsPage: {
         default: {
             default_image: "/images/events/stay-tuned.avif",
@@ -343,7 +353,9 @@ const siteContent = {
         ]
     },
 
-    // 5. NEWSLETTERS PAGE 
+    //===========================
+    // 5. NEWSLETTER PAGE
+    //===========================
     newsletterPage: {
         // 1. HERO SECTION BACKGROUND
         heroImage: "/images/newsletters/newsletter-bg.avif", // Replace with your image
@@ -377,7 +389,9 @@ const siteContent = {
         ]
     },
 
+    //===========================
     // 6. ALSTAR PAGE
+    //===========================
     alstarPage: {
         alstar_logo: "/images/alstar/alstar_logo.svg",
 
