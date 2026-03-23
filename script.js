@@ -676,13 +676,11 @@ function navbarManagement() {
         if (isOpen) {
             panel.classList.remove("-translate-y-full", "opacity-0", "pointer-events-none");
             panel.classList.add("translate-y-0", "opacity-100");
-
             overlay.classList.remove("opacity-0", "pointer-events-none");
             document.body.classList.add("overflow-hidden");
         } else {
             panel.classList.add("-translate-y-full", "opacity-0", "pointer-events-none");
             panel.classList.remove("translate-y-0", "opacity-100");
-
             overlay.classList.add("opacity-0", "pointer-events-none");
             document.body.classList.remove("overflow-hidden");
         }
@@ -740,36 +738,27 @@ function navbarManagement() {
 
     // 🔥 HIGHLIGHT ACTIVE PAGE
     function setActiveLink() {
-        // 1. Get exact current path (e.g., "/events.html" or "/")
-        const currentPath = window.location.pathname;
+        // 1. Get the exact, full URL of the current window (ignoring any #hashes)
+        const currentUrl = window.location.href.split('#')[0];
 
-        // 2. Grab all the links we just generated inside the menu
+        // 2. Grab all the links inside the menu
         const links = document.querySelectorAll('#menu-content a');
 
         links.forEach(link => {
-            const linkHref = link.getAttribute('href');
+            // 3. 'link.href' asks the browser for the fully resolved, absolute URL.
+            // We split at '#' so it ignores subsection jumps.
+            const linkUrl = link.href.split('#')[0];
 
-            // 3. Strip out the "#" hash so "/events.html#past" just becomes "/events.html"
-            const linkPath = linkHref.split('#')[0] || "/";
+            // 4. Strict Exact Match! No more fuzzy traps.
+            if (currentUrl === linkUrl) {
 
-            // 4. Logic to check if this link belongs to the current page
-            let isMatch = false;
-            if (currentPath === "/" || currentPath === "/index.html") {
-                isMatch = (linkPath === "/" || linkPath === "/index.html");
-            } else {
-                // For other pages, check if the paths match
-                isMatch = currentPath.includes(linkPath) && linkPath !== "/";
-            }
-
-            // 5. Apply the styling if it matches
-            if (isMatch) {
                 // If it is the Main Page Title (e.g., "Events")
                 if (link.classList.contains('text-2xl')) {
                     link.classList.add('text-yellow-400', 'underline', 'underline-offset-8');
                 }
                 // If it is a Sub-section Link (e.g., "Past", "Upcoming")
                 else {
-                    link.classList.remove('opacity-80'); // Remove the default dimness
+                    link.classList.remove('opacity-80');
                     link.classList.add('text-yellow-200', 'font-bold');
                 }
             }
@@ -779,6 +768,9 @@ function navbarManagement() {
     setActiveLink();
 
     function handleScroll() {
+        // 🔥 THE FIX: If the menu is open, ignore scrolling entirely!
+        if (isOpen) return;
+
         if (window.scrollY > 200) {
             // Scrolled down: Hide navbar
             navbar.classList.remove('translate-y-0', 'opacity-100');
@@ -787,7 +779,6 @@ function navbarManagement() {
             // At the top: Show navbar
             navbar.classList.remove('-translate-y-full', 'opacity-0');
             navbar.classList.add('translate-y-0', 'opacity-100');
-
         }
     }
 
@@ -799,8 +790,8 @@ function navbarManagement() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-    await loadComponent("navbar-placeholder", "html_pages/nav.html");
-    await loadComponent("footer-placeholder", "html_pages/footer.html");
+    await loadComponent("navbar-placeholder", "/html_pages/nav.html");
+    await loadComponent("footer-placeholder", "/html_pages/footer.html");
 
     // Run content update ONLY if siteContent is loaded
     if (typeof siteContent !== 'undefined') {

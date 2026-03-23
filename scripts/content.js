@@ -6,7 +6,7 @@ const siteContent = {
     navStructure: [
         {
             name: "Home",
-            link: "/html_pages/",
+            link: "/",
             sections: [
                 { name: "Affiliates", id: "affiliates-grid" },
                 { name: "Events", id: "event-title" },
@@ -72,7 +72,7 @@ const siteContent = {
         hero: {
             image: "/images/index/alsco_group.avif",
             description: "We are the official student committee representing all A-Level students at Sunway College. We bridge the gap between students and administration while organizing events that make your college life memorable.",
-            handbook_pdf: "https://1f728d2d-1495-4449-b1c1-3c3cb399d337.filesusr.com/ugd/df559c_8cf96a8d79ea4d09aaacbff7e0d199c5.pdf"
+            handbook_pdf: "https://drive.google.com/file/d/1cGKNRWNi1seFKY3j8foU6nxRZ_lQBkga/view?usp=sharing"
         },
 
         affiliates: [
@@ -93,7 +93,7 @@ const siteContent = {
 
         // --- LATEST NEWSLETTER ---
         newsletter: {
-            image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80",
+            image: "/images/newsletters/newsletter.avif",
             title: "January Recap: Fresh Beginnings",
             date: "January 2026", // Displayed implicitly or added to description
             description: "Read about our recent events, student achievements, and important upcoming dates for the semester.",
@@ -346,33 +346,33 @@ const siteContent = {
     // 5. NEWSLETTERS PAGE 
     newsletterPage: {
         // 1. HERO SECTION BACKGROUND
-        heroImage: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop", // Replace with your image
+        heroImage: "/images/newsletters/newsletter-bg.avif", // Replace with your image
 
         // 2. NEWSLETTER CARDS (Top one is "Latest", others are grid)
         newsletters: [
             {
-                title: "December Recap: Year End",
-                date: "Dec 2025",
+                title: "ALE-IANS ALERT #9",
+                date: "July 2025",
                 description: "A look back at all our achievements this year, including the charity run results and ALSTAR point summaries.",
-                image: "/images/newsletters/dec2025_cover.jpg", // Preview image
-                pdf_link: "https://drive.google.com/file/d/...", // PDF download link
+                image: "/images/newsletters/issue-9.avif", // Preview image
+                pdf_link: "https://drive.google.com/file/d/11jMQJpoTxtz_Pj5NLlsBVdmF8M_SMqj6/view?usp=sharing", // PDF download link
                 button_text: "Read Now"
             },
             {
-                title: "November Highlights",
-                date: "Nov 2025",
+                title: "ALE-IANS ALERT #8",
+                date: "June 2025",
                 description: "Deep dive into the Study Skills Workshop and interview with the new Student Council president.",
-                image: "/images/newsletters/nov2025_cover.jpg",
-                pdf_link: "https://drive.google.com/file/d/...",
+                image: "/images/newsletters/issue-8.avif",
+                pdf_link: "https://drive.google.com/file/d/15CzlrJuMN0M_AkndeWXLdhZPzFi0C7-T/view?usp=sharing",
                 button_text: "Read Now"
             },
             {
-                title: "October Spooktacular",
-                date: "Oct 2025",
+                title: "ALE-IANS ALERT #7",
+                date: "May 2025",
                 description: "Photos from the Halloween event and upcoming exam schedules.",
-                image: "/images/newsletters/oct2025_cover.jpg",
-                pdf_link: "#",
-                button_text: "Coming Soon" // This triggers the disabled state
+                image: "/images/newsletters/issue-7.avif",
+                pdf_link: "https://drive.google.com/file/d/1wL_zAtEiykwhzWxTYdR08xn-KqPnhQgS/view?usp=sharing",
+                button_text: "Read Now" // Put # to triggers the disabled state
             }
         ]
     },
