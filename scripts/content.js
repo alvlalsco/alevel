@@ -363,9 +363,27 @@ const siteContent = {
         // 2. NEWSLETTER CARDS (Top one is "Latest", others are grid)
         newsletters: [
             {
-                image: "/images/newsletters/issue9.avif", // Preview image
-                category: "newsletter",
-                pdf_link: "https://drive.google.com/file/d/11jMQJpoTxtz_Pj5NLlsBVdmF8M_SMqj6/view?usp=sharing", // PDF download link
+                image: "/images/newsletters/post3.avif", // Preview image
+                category: "post",
+                pdf_link: "https://drive.google.com/file/d/1PbBJVyJJ6wd7IIcJHpzVOTRgmlE23bwq/view?usp=sharing", // PDF download link
+                button_text: "Read Now"
+            },
+            {
+                image: "/images/newsletters/post2.avif", // Preview image
+                category: "post",
+                pdf_link: "https://drive.google.com/file/d/1YlhQ1AehvwxcRDg12tCG0Y4HxiVRbqqi/view?usp=sharing", // PDF download link
+                button_text: "Read Now"
+            },
+            {
+                image: "/images/newsletters/post11.avif", // Preview image
+                category: "post",
+                pdf_link: "https://drive.google.com/file/d/11ebHERFPt17D0kmnuv0yaoN6s7JsEHcr/view?usp=sharing", // PDF download link
+                button_text: "Read Now"
+            },
+            {
+                image: "/images/newsletters/post10.avif", // Preview image
+                category: "post",
+                pdf_link: "https://drive.google.com/file/d/1N8ZgCI1DBE07AKba1CZOU5p_GQTKMKpu/view?usp=sharing", // PDF download link
                 button_text: "Read Now"
             },
             {
