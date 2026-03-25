@@ -350,7 +350,7 @@ function updateSiteContent() {
                 const cardHTML = `
                     <div class="border-custom bg-white overflow-hidden rounded-2xl flex flex-col group shadow-sm hover:shadow-md transition-shadow">
                         
-                        <div class="relative w-full h-56 md:h-72 bg-gray-100 overflow-hidden">
+                        <div class="relative w-full aspect-[5/4] bg-gray-100 overflow-hidden">
                             
                             <img src="${dept.image}" alt="${dept.title} Formal" loading="lazy"
                                 class="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-[600ms] group-hover:opacity-0">
