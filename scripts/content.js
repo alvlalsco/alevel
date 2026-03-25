@@ -97,7 +97,7 @@ const siteContent = {
 
         // --- LATEST NEWSLETTER ---
         newsletter: {
-            image: "/images/newsletters/newsletter.avif",
+            image: "/images/newsletters/issue10.avif",
             title: "January Recap: Fresh Beginnings",
             date: "January 2026", // Displayed implicitly or added to description
             description: "Read about our recent events, student achievements, and important upcoming dates for the semester.",
@@ -363,28 +363,22 @@ const siteContent = {
         // 2. NEWSLETTER CARDS (Top one is "Latest", others are grid)
         newsletters: [
             {
-                title: "ALE-IANS ALERT #9",
-                date: "July 2025",
-                description: "A look back at all our achievements this year, including the charity run results and ALSTAR point summaries.",
-                image: "/images/newsletters/issue-9.avif", // Preview image
+                image: "/images/newsletters/issue9.avif", // Preview image
+                category: "newsletter",
                 pdf_link: "https://drive.google.com/file/d/11jMQJpoTxtz_Pj5NLlsBVdmF8M_SMqj6/view?usp=sharing", // PDF download link
                 button_text: "Read Now"
             },
             {
-                title: "ALE-IANS ALERT #8",
-                date: "June 2025",
-                description: "Deep dive into the Study Skills Workshop and interview with the new Student Council president.",
-                image: "/images/newsletters/issue-8.avif",
+                image: "/images/newsletters/issue8.avif",
+                category: "newsletter",
                 pdf_link: "https://drive.google.com/file/d/15CzlrJuMN0M_AkndeWXLdhZPzFi0C7-T/view?usp=sharing",
                 button_text: "Read Now"
             },
             {
-                title: "ALE-IANS ALERT #7",
-                date: "May 2025",
-                description: "Photos from the Halloween event and upcoming exam schedules.",
-                image: "/images/newsletters/issue-7.avif",
+                image: "/images/newsletters/issue7.avif",
+                category: "newsletter",
                 pdf_link: "https://drive.google.com/file/d/1wL_zAtEiykwhzWxTYdR08xn-KqPnhQgS/view?usp=sharing",
-                button_text: "Read Now" // Put # to triggers the disabled state
+                button_text: "Read Now"
             }
         ]
     },

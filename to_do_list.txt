@@ -1,3 +1,4 @@
 1. Update homepage's Featured event card to include instagram link just like events's page's past event.
-2. Update Newsletter's captions, plus the missing vertical line of the cards that seperates image and text
 3. Add comments to pages
+4. Add function that makes everything appear smoothly when user scrolls
+5. Add SW's monthly post into newsletter part. Doing

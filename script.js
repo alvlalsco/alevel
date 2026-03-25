@@ -555,78 +555,84 @@ function updateSiteContent() {
     // ==========================================
     const newsletterContainer = document.getElementById("newsletter-list-container");
     const newsletterHero = document.getElementById("newsletter-hero-bg");
+    const newsData = siteContent.newsletterPage.newsletters; // The raw data
 
-    if (newsletterContainer && siteContent.newsletterPage) {
+    if (newsletterContainer && newsData) {
 
         // 1. Set Background Image
         if (newsletterHero) {
             newsletterHero.style.backgroundImage = `url('${siteContent.newsletterPage.heroImage}')`;
         }
 
-        // 2. Render Newsletters
-        newsletterContainer.innerHTML = "";
-        const news = siteContent.newsletterPage.newsletters;
+        // 2. THE RENDERING FUNCTION
+        function renderGallery(filterCategory) {
+            newsletterContainer.innerHTML = ""; // Clear the board
 
-        if (news.length > 0) {
-            // A. LATEST NEWSLETTER (The Big Horizontal Card)
-            const latest = news[0];
-            const isLatDisabled = latest.button_text.toLowerCase().includes("soon");
+            // 1. Filter the array based on the button clicked
+            const filteredNews = filterCategory === 'all'
+                ? newsData
+                : newsData.filter(item => item.category === filterCategory);
 
-            const latestHTML = `
-                <div class="border-custom rounded-3xl bg-white overflow-hidden flex flex-col md:flex-row shadow-sm hover:shadow-md transition-shadow">
-                    <div class="md:w-3/5 relative h-64 md:h-auto overflow-hidden group">
-                        <img src="${latest.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="md:w-2/5 p-6 md:p-10 flex flex-col justify-center items-start">
-                        <div class="flex items-center gap-3 mb-6">
-                            <span class="tag-latest">Latest</span>
-                            <span class="date-chip tracking-tight">${latest.date}</span>
-                        </div>
-                        <h2 class="text-2xl md:text-3xl font-bold mb-4 tracking-tight">${latest.title}</h2>
-                        <p class="leading-relaxed text-base text-main text-justify mb-8">${latest.description}</p>
-                        <a href="${isLatDisabled ? '#' : latest.pdf_link}" target="${isLatDisabled ? '' : '_blank'}" 
-                           class="btn-modern btn-maroon text-base py-2.5 px-6 w-full sm:w-auto ${isLatDisabled ? 'opacity-50 cursor-not-allowed bg-gray-400 hover:bg-gray-400' : ''}">
-                            ${latest.button_text}
-                        </a>
-                    </div>
-                </div>`;
-
-            newsletterContainer.insertAdjacentHTML('beforeend', latestHTML);
-
-            // B. OLDER NEWSLETTERS (The Grid)
-            if (news.length > 1) {
+            if (filteredNews.length > 0) {
                 const gridDiv = document.createElement("div");
-                gridDiv.className = "grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10";
+                // Add a gentle fade-in animation to the grid rebuild
+                gridDiv.className = "grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 items-start animate-[fadeIn_0.5s_ease-out]";
 
-                for (let i = 1; i < news.length; i++) {
-                    const item = news[i];
+                filteredNews.forEach((item, index) => {
                     const isDisabled = item.button_text.toLowerCase().includes("soon");
+                    const link = isDisabled ? '#' : item.pdf_link;
+                    const target = isDisabled ? '' : '_blank';
+
+                    // CRITICAL: We stagger based on the new FILTERED index, so the layout never breaks!
+                    const staggerClass = (index % 2 !== 0) ? "md:mt-24" : "";
 
                     const cardHTML = `
-                        <div class="border-custom rounded-3xl bg-white overflow-hidden flex flex-col shadow-sm hover:shadow-md transition-shadow">
-                            <div class="h-48 overflow-hidden relative group">
-                                <img src="${item.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            </div>
-                            
-                            <div class="p-6 md:p-8 flex flex-col flex-grow">
-                                <div class="flex items-center gap-3 mb-4">
-                                    <span class="date-chip">${item.date}</span>
+                            <a href="${link}" target="${target}" 
+                            class="relative block rounded-2xl overflow-hidden shadow-lg border border-gray-200 group ${staggerClass} ${isDisabled ? 'cursor-not-allowed opacity-80' : ''}">
+                                <img src="${item.image}" alt="${item.title}" loading="lazy"
+                                    class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105">
+                                
+                                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-colors duration-500 flex items-center justify-center">
+                                    <span class="text-white font-bold tracking-[0.2em] uppercase opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 border-2 border-white px-6 py-2 rounded-full backdrop-blur-sm">
+                                        ${isDisabled ? 'Coming Soon' : 'Read Now'}
+                                    </span>
                                 </div>
-                                <h3 class="text-2xl font-bold mb-3">${item.title}</h3>
-                                <p class="leading-relaxed text-base text-main text-justify mb-8 flex-grow">${item.description}</p>
-                                <div class="flex justify-start">
-                                    <a href="${isDisabled ? '#' : item.pdf_link}" target="${isDisabled ? '' : '_blank'}"
-                                        class="btn-modern btn-maroon text-base py-2.5 px-6 w-full sm:w-auto ${isDisabled ? 'opacity-50 cursor-not-allowed bg-gray-400 hover:bg-gray-400' : ''}">
-                                        ${item.button_text}
-                                    </a>
-                                </div>
-                            </div>
-                        </div>`;
+                            </a>
+                        `;
                     gridDiv.insertAdjacentHTML('beforeend', cardHTML);
-                }
+                });
+
                 newsletterContainer.appendChild(gridDiv);
+            } else {
+                newsletterContainer.innerHTML = `<p class="text-center text-gray-400 py-12">No documents found in this category.</p>`;
             }
         }
+
+        // 3. FILTER BUTTON CLICK LOGIC
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const clickedBtn = e.target;
+
+                // 1. Reset all buttons to the "inactive" (transparent) style
+                filterButtons.forEach(b => {
+                    b.classList.remove('bg-[#88113b]', 'text-white');
+                    b.classList.add('bg-transparent', 'text-[#88113b]', 'hover:bg-gray-100');
+                });
+
+                // 2. Highlight the button they just clicked (solid maroon)
+                clickedBtn.classList.remove('bg-transparent', 'text-[#88113b]', 'hover:bg-gray-100');
+                clickedBtn.classList.add('bg-[#88113b]', 'text-white');
+
+                // 3. Grab the category name and rebuild the gallery!
+                const categoryToLoad = clickedBtn.getAttribute('data-filter');
+                renderGallery(categoryToLoad);
+            });
+        });
+
+        // 4. LOAD THE PAGE INITIALLY
+        renderGallery('all');
     }
 
     // ==========================================

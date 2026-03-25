@@ -66,7 +66,6 @@
                         class="btn-modern btn-ghost text-sm py-2.5 px-6">Open Calendar</a>
                 </div>
             </div>
-            </div>
         </section>
 
         <section id="about-alstar-details" class="py-12 lg:py-16 border-b-custom bg-gray-50">
@@ -152,7 +151,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
@@ -234,6 +232,93 @@
     <div id="footer-placeholder"></div>
     <script src="/scripts/content.js"></script>
     <script src="/script.js"></script>
+    <script>
+        async function lookupStudent() {
+            const input = document.getElementById('studentIdInput');
+            const btn = document.getElementById('lookupBtn');
+            const idToFind = input.value.trim();
+
+            // UI Elements
+            const resName = document.getElementById('resName');
+            const resStatusBadge = document.getElementById('resStatusBadge');
+            const resPart = document.getElementById('resParticipation');
+            const resVol = document.getElementById('resVolunteer');
+            const resTalk = document.getElementById('resTalk');
+
+            if (!idToFind) return;
+
+            // 1. Loading State
+            btn.innerText = "Loading...";
+            btn.disabled = true;
+
+            const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRld-_OiTgHzyDEhOxEfCREJ7iE8_aeYqd_Sy2bAJTsTkGbdJ7rf-tDq_wZ16_wtxmTcfoUyw2A3Umb/pub?gid=0&single=true&output=csv';
+
+            try {
+                const response = await fetch(CSV_URL);
+
+                // Check for HTTP errors (e.g., Google Sheets link is broken/private)
+                if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+
+                const csvData = await response.text();
+
+                // Robust CSV Parsing: Splits by comma, but ignores commas inside double quotes
+                const rows = csvData.split('\n').map(row => {
+                    return row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(item => item.replace(/^"|"$/g, '').trim());
+                });
+
+                // Column logic: 0=Name, 2=Student ID, 3=Part, 4=Vol, 5=Talk
+                const student = rows.find(row => row[2] && row[2] === idToFind);
+
+                // Base classes for the badge to keep things DRY
+                const baseBadgeClasses = "px-5 py-2 rounded-full text-xs font-bold uppercase text-white transition-colors duration-300";
+
+                if (student) {
+                    const name = student[0];
+                    const p = parseInt(student[3]) || 0;
+                    const v = parseInt(student[4]) || 0;
+                    const t = parseInt(student[5]) || 0;
+
+                    // 2. Update Points and Name
+                    resName.innerText = name;
+                    resPart.innerText = p;
+                    resVol.innerText = v;
+                    resTalk.innerText = t;
+
+                    // 3. Status Logic (Criteria: 5, 6, 5)
+                    if (p >= 5 && v >= 6 && t >= 5) {
+                        resStatusBadge.innerText = "Eligible for Certificate";
+                        resStatusBadge.className = `${baseBadgeClasses} bg-green-700`;
+                    } else {
+                        resStatusBadge.innerText = "Not Eligible for Certificate";
+                        // Using Tailwind arbitrary values to match your maroon theme
+                        resStatusBadge.className = `${baseBadgeClasses} bg-[#88113b]`;
+                    }
+                } else {
+                    // ID not found
+                    resName.innerText = "---";
+                    resPart.innerText = "0";
+                    resVol.innerText = "0";
+                    resTalk.innerText = "0";
+
+                    resStatusBadge.innerText = "ID Not Found";
+                    resStatusBadge.className = `${baseBadgeClasses} bg-gray-800`;
+                }
+            } catch (err) {
+                console.error(err);
+                resStatusBadge.innerText = "Error Loading Data";
+                resStatusBadge.className = "px-5 py-2 rounded-full text-xs font-bold uppercase text-white bg-red-600";
+            } finally {
+                // Reset Button
+                btn.innerText = "View Points";
+                btn.disabled = false;
+            }
+        }
+
+        // Allow "Enter" key to trigger search
+        document.getElementById('studentIdInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') lookupStudent();
+        });
+    </script>
 </body>
 
 </html>

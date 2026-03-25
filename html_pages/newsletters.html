@@ -51,6 +51,21 @@
         </section>
 
         <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <button data-filter="all"
+                    class="filter-btn bg-[#88113b] text-white px-6 py-2 rounded-full border border-[#88113b] font-bold transition-colors">
+                    All
+                </button>
+                <button data-filter="newsletter"
+                    class="filter-btn bg-transparent text-[#88113b] hover:bg-gray-100 px-6 py-2 rounded-full border border-[#88113b] font-bold transition-colors">
+                    Newsletters
+                </button>
+                <button data-filter="post"
+                    class="filter-btn bg-transparent text-[#88113b] hover:bg-gray-100 px-6 py-2 rounded-full border border-[#88113b] font-bold transition-colors">
+                    Monthly Posts
+                </button>
+            </div>
+
             <article id="newsletter-list-container" class="space-y-8 lg:space-y-12">
                 <p class="text-center text-gray-400">Loading newsletters...</p>
             </article>
