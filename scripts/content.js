@@ -269,24 +269,32 @@ const siteContent = {
                 id: "dept-ld",
                 title: "Leadership Development",
                 image: "/images/committee/departmental/LD - FORMAL.avif",
+                image_playful: "/images/committee/departmental/LD - INFORMAL.avif",
+                ig_link: "https://www.instagram.com/p/DTaF8g5EcvH/?img_index=4",
                 description: "Leadership Development promotes soft skills and sports to foster interpersonal growth and ensure all A-Level students develop personally and professionally."
             },
             {
                 id: "dept-cs",
                 title: "Community Service",
                 image: "/images/committee/departmental/CS - FORMAL.avif",
+                image_playful: "/images/committee/departmental/CS - INFORMAL.avif",
+                ig_link: "https://www.instagram.com/alevel.comserve/",
                 description: "Community Service, or COMSERVE for short, organises events for our members that focus on charitable, environmental, or community-orientated work."
             },
             {
                 id: "dept-sw",
                 title: "Student Welfare",
                 image: "/images/committee/departmental/SW - FORMAL.avif",
+                image_playful: "/images/committee/departmental/SW - INFORMAL.avif",
+                ig_link: "https://www.instagram.com/p/DTaF8g5EcvH/?img_index=4",
                 description: "Student Welfare strives to foster a supportive and holistic environment within the community by curating initiatives that enhance students’ mental, social, and academic well-being."
             },
             {
                 id: "dept-pr",
                 title: "Public Relations",
                 image: "/images/committee/departmental/PR - FORMAL.avif",
+                image_playful: "/images/committee/departmental/PR - INFORMAL.avif",
+                ig_link: "https://www.instagram.com/p/DTaF8g5EcvH/?img_index=4",
                 description: "Public Relations focuses on creating creative and engaging content to communicate effectively and build a strong, connected A-Level community."
             }
         ]
@@ -366,24 +374,34 @@ const siteContent = {
                 image: "/images/newsletters/post3.avif", // Preview image
                 category: "post",
                 pdf_link: "https://drive.google.com/file/d/1PbBJVyJJ6wd7IIcJHpzVOTRgmlE23bwq/view?usp=sharing", // PDF download link
+                ig_link: "https://www.instagram.com/p/DWS17hTEd64/?img_index=1",
                 button_text: "Read Now"
             },
             {
                 image: "/images/newsletters/post2.avif", // Preview image
                 category: "post",
-                pdf_link: "https://drive.google.com/file/d/1YlhQ1AehvwxcRDg12tCG0Y4HxiVRbqqi/view?usp=sharing", // PDF download link
+                pdf_link: "https://drive.google.com/file/d/19uqO8ACZn4Nu4ejvNohxLSyQr35QW0VY/view?usp=sharing", // PDF download link
+                ig_link: "https://www.instagram.com/p/DUxxv54EVGe/?img_index=1",
                 button_text: "Read Now"
             },
             {
                 image: "/images/newsletters/post11.avif", // Preview image
                 category: "post",
                 pdf_link: "https://drive.google.com/file/d/11ebHERFPt17D0kmnuv0yaoN6s7JsEHcr/view?usp=sharing", // PDF download link
+                ig_link: "https://www.instagram.com/p/DTc234xEWFO/?img_index=1",
                 button_text: "Read Now"
             },
             {
                 image: "/images/newsletters/post10.avif", // Preview image
                 category: "post",
                 pdf_link: "https://drive.google.com/file/d/1N8ZgCI1DBE07AKba1CZOU5p_GQTKMKpu/view?usp=sharing", // PDF download link
+                ig_link: "https://www.instagram.com/p/DQjYDcakYz-/?img_index=1",
+                button_text: "Read Now"
+            },
+            {
+                image: "/images/newsletters/issue9.avif",
+                category: "newsletter",
+                pdf_link: "https://drive.google.com/file/d/11jMQJpoTxtz_Pj5NLlsBVdmF8M_SMqj6/view?usp=sharing",
                 button_text: "Read Now"
             },
             {
