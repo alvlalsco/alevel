@@ -323,8 +323,8 @@ const siteContent = {
                 //  department: "Leadership Department"
                 //  date: "Saturday, 7th February 2026 to Sunday, 8th February 2026",
                 //  image: "/images/events/upcoming/ALC-AE.avif",
+                //  qr_image: "",
                 //  instagram_link:"https://www.instagram.com/p/DWBK7lfEUfH/?img_index=1"
-                //  description: "A Leadership Camp organised by Leadership Development department that aims to providing A-Level Students an opportunity to explore leadership not as a title, but as a lived experience shaped by communication, empathy and courage.",
                 //  registration_link: "https://forms.google.com/orientation",
                 //  button_text: "Closed"
                 // For button, include 'open' if registration is open, or else use other text. 
@@ -335,6 +335,7 @@ const siteContent = {
                 event_type: "Actual Event",
                 date: "7 to 8th February 2026",
                 image: "/images/events/upcoming/ALC-AE.avif",
+                qr_image: "",
                 instagram_link: "https://www.instagram.com/p/DWBK7lfEUfH/?img_index=1",
             },
 

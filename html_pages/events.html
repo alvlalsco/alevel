@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events | ALSCO</title>
     <link rel="icon" type="image/x-icon" href="/images/alsco_logo.avif">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/output.css">
 </head>
 
 <body class="antialiased">
@@ -27,9 +26,9 @@
                     </h1>
 
                     <div class="flex items-center gap-4 mt-8">
-                        <div class="w-12 h-[2px] bg-gray-300"></div>
+                        <div class="w-12 h-0.5 bg-gray-300"></div>
                         <div class="w-2 h-2 rounded-full bg-maroon"></div>
-                        <div class="w-12 h-[2px] bg-gray-300"></div>
+                        <div class="w-12 h-0.5 bg-gray-300"></div>
                     </div>
                 </div>
             </div>
@@ -56,10 +55,10 @@
     </main>
 
     <div id="gallery-modal"
-        class="fixed inset-0 bg-white/90 backdrop-blur-md z-[60] opacity-0 pointer-events-none transition-opacity duration-300 flex justify-center items-start overflow-y-auto">
+        class="fixed inset-0 bg-white/90 backdrop-blur-md z-60 opacity-0 pointer-events-none transition-opacity duration-300 flex justify-center items-start overflow-y-auto">
 
         <button onclick="closeGallery()"
-            class="fixed top-6 right-6 lg:top-10 lg:right-10 text-black bg-white/20 hover:bg-black/40 rounded-full p-3 backdrop-blur-sm transition-all z-[70]">
+            class="fixed top-6 right-6 lg:top-10 lg:right-10 text-black bg-white/20 hover:bg-black/40 rounded-full p-3 backdrop-blur-sm transition-all z-70">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>

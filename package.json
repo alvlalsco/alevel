@@ -1,0 +1,26 @@
+{
+  "name": "alevel",
+  "version": "1.0.0",
+  "description": "This is official code for new A-Level Website from July'25 ALSCO Evan Yeoh and Austin. \r Website has total of \r 6 Pages (index, About, Committee, Events, Newsletter, ALSTAR)\r 6 Scripts (script, content, index, events, newsletter, alstar)\r 1. The Content of the pages are Stored in 'content.js' and injected into the html pages via script in 'script.js'. To update the website is to update the content in 'content.js' unless more change is needed to be done.\r 2.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx @tailwindcss/cli -i input.css -o output.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvlalsco/alevel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/alvlalsco/alevel/issues"
+  },
+  "homepage": "https://github.com/alvlalsco/alevel#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "tailwindcss": "^4.2.2"
+  }
+}

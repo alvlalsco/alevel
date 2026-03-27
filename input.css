@@ -1,0 +1,88 @@
+/* 1. LOAD TAILWIND V4 */
+@import "tailwindcss";
+
+/* 2. TELL TAILWIND WHERE YOUR HTML/JS IS */
+@source "./*.html";
+@source "./html_pages";
+@source "./scripts";
+
+/* 3. DEFINE YOUR CUSTOM BRAND VARIABLES */
+@theme {
+    --font-outfit: 'Outfit', sans-serif;
+    --color-maroon: #88113b;
+    --color-maroon-dark: #6d0d2f;
+    --color-main: #1f2937;
+}
+
+/* 4. GLOBAL HTML RULES (The "Write Once" text sizes) */
+@layer base {
+    body {
+        @apply font-outfit text-main bg-white;
+        scroll-behavior: smooth;
+        scrollbar-gutter: stable;
+    }
+
+    h1 {
+        @apply text-4xl md:text-5xl lg:text-6xl font-black text-main;
+    }
+
+    h2 {
+        @apply text-3xl md:text-4xl lg:text-5xl font-bold text-main uppercase;
+    }
+
+    h3 {
+        @apply text-2xl md:text-3xl font-bold;
+    }
+
+    p {
+        @apply text-base md:text-lg leading-relaxed text-gray-700;
+    }
+}
+
+/* 5. CUSTOM COMPONENTS (Buttons, Nav, Borders) */
+@layer components {
+
+    /* Buttons */
+    .btn-modern {
+        @apply px-8 py-3 rounded-full font-medium inline-flex items-center justify-center transition-all duration-300;
+    }
+
+    .btn-maroon {
+        @apply bg-maroon text-white hover:bg-maroon-dark;
+    }
+
+    .btn-ghost {
+        @apply border-2 border-maroon bg-transparent text-maroon hover:bg-maroon hover:text-white;
+    }
+
+    /* Custom Borders */
+    .border-custom {
+        @apply border-2 border-gray-300;
+    }
+
+    .border-b-custom {
+        @apply border-b-2 border-gray-300;
+    }
+
+    .border-t-custom {
+        @apply border-t-2 border-gray-300;
+    }
+
+    .border-x-custom {
+        @apply border-x-2 border-gray-300;
+    }
+
+    /* Utilities */
+    .aspect-fill {
+        @apply object-cover w-full h-full;
+    }
+}
+
+/* Keep the mobile menu toggle logic intact */
+#menu-toggle:checked~#mobile-menu {
+    display: flex;
+}
+
+.feature-card {
+    background-color: #ffffff;
+}

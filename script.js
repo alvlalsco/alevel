@@ -182,12 +182,12 @@ function updateSiteContent() {
                     onclick="toggleFaq(${index})" 
                     class="w-full py-6 flex justify-between items-center text-left focus:outline-none group">
                     
-                    <span class="text-lg font-bold group-hover:text-[#88113b] transition-colors pr-6">
+                    <span class="text-lg font-bold group-hover:text-maroon transition-colors pr-6">
                         ${item.question}
                     </span>
                     
                     <div class="shrink-0 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center group-hover:bg-red-100 transition-colors">
-                        <svg id="faq-icon-${index}" class="w-5 h-5 text-gray-600 group-hover:text-[#88113b] transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg id="faq-icon-${index}" class="w-5 h-5 text-gray-600 group-hover:text-maroon transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </div>
@@ -242,17 +242,17 @@ function updateSiteContent() {
             card.innerHTML = `
                 <div class="relative mb-4">
                     
-                    <div class="${imgSize} rounded-full overflow-hidden border-4 border-gray-100 group-hover:border-[#88113b] group-hover:shadow-[0_0_20px_rgba(136,17,59,0.3)] transition-all duration-300 p-1 bg-white relative z-30">
+                    <div class="${imgSize} rounded-full overflow-hidden border-4 border-gray-100 group-hover:border-maroon group-hover:shadow-[0_0_20px_rgba(136,17,59,0.3)] transition-all duration-300 p-1 bg-white relative z-30">
                         <img src="${member.image}" class="w-full h-full object-cover object-top rounded-full" loading="lazy">
                     </div>
 
-                    <div class="absolute top-1/2 left-[90%] -translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-[#88113b]/10 z-40 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out transform translate-x-[-10px] scale-95 group-hover:translate-x-0 group-hover:scale-100 pointer-events-none hidden md:block">
+                    <div class="absolute top-1/2 left-[90%] -translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-maroon/10 z-40 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out transform translate-x-2.5 scale-95 group-hover:translate-x-0 group-hover:scale-100 pointer-events-none hidden md:block">
                         
-                        <div class="absolute top-1/2 -left-2 -translate-y-1/2 w-4 h-4 bg-white/95 transform rotate-45 border-l border-b border-[#88113b]/10"></div>
+                        <div class="absolute top-1/2 -left-2 -translate-y-1/2 w-4 h-4 bg-white/95 transform rotate-45 border-l border-b border-maroon/10"></div>
                         
-                        <span class="absolute top-2 left-3 text-[#88113b]/20 text-4xl font-serif leading-none -z-10"></span>
+                        <span class="absolute top-2 left-3 text-maroon/20 text-4xl font-serif leading-none -z-10"></span>
                         
-                        <p class="text-[#88113b] text-sm font-medium italic leading-relaxed relative z-10 pl-2">
+                        <p class="text-maroon text-sm font-medium italic leading-relaxed relative z-10 pl-2">
                             "${userQuote}"
                         </p>
                     </div>
@@ -260,7 +260,7 @@ function updateSiteContent() {
                 </div>
 
                 <h4 class="font-bold text-lg leading-tight text-main mt-2">${member.name}</h4>
-                <p class="text-xs font-bold text-[#88113b] uppercase tracking-widest mt-1">${member.role}</p>
+                <p class="text-xs font-bold text-maroon uppercase tracking-widest mt-1">${member.role}</p>
             `;
             return card;
         };
@@ -297,9 +297,9 @@ function updateSiteContent() {
             // Header
             let html = `
                 <div class="flex items-center gap-4 mb-10 justify-center">
-                    <div class="h-[2px] w-12 bg-gray-300"></div>
+                    <div class="h-0.5 w-12 bg-gray-300"></div>
                     <h3 class="text-2xl font-black uppercase tracking-tight text-main">${dept.name}</h3>
-                    <div class="h-[2px] w-12 bg-gray-300"></div>
+                    <div class="h-0.5 w-12 bg-gray-300"></div>
                 </div>
                 
                 <div class="flex flex-wrap justify-center gap-12 mb-12">`;
@@ -312,22 +312,22 @@ function updateSiteContent() {
                     html += `
                         <div class="flex flex-col items-center text-center group w-48 md:w-64">
                             <div class="relative mb-4">
-                                <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gray-200 group-hover:border-[#88113b] group-hover:shadow-[0_0_15px_rgba(136,17,59,0.4)] transition-all duration-300 p-1 bg-white relative z-10">
+                                <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gray-200 group-hover:border-maroon group-hover:shadow-[0_0_15px_rgba(136,17,59,0.4)] transition-all duration-300 p-1 bg-white relative z-10">
                                     <img src="${leader.image}" class="w-full h-full object-cover object-top rounded-full" loading="lazy">
                                 </div>
-                                <div class="absolute top-1/2 left-[90%] -translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-[#88113b]/10 z-40 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out transform translate-x-[-10px] scale-95 group-hover:translate-x-0 group-hover:scale-100 pointer-events-none hidden md:block">
+                                <div class="absolute top-1/2 left-[90%] -translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-maroon/10 z-40 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out transform translate-x-2.5 scale-95 group-hover:translate-x-0 group-hover:scale-100 pointer-events-none hidden md:block">
                             
-                                    <div class="absolute top-1/2 -left-2 -translate-y-1/2 w-4 h-4 bg-white/95 transform rotate-45 border-l border-b border-[#88113b]/10"></div>
+                                    <div class="absolute top-1/2 -left-2 -translate-y-1/2 w-4 h-4 bg-white/95 transform rotate-45 border-l border-b border-maroon/10"></div>
                                     
-                                    <span class="absolute top-2 left-3 text-[#88113b]/20 text-4xl font-serif leading-none -z-10"></span>
+                                    <span class="absolute top-2 left-3 text-maroon/20 text-4xl font-serif leading-none -z-10"></span>
                                     
-                                    <p class="text-[#88113b] text-sm font-medium italic leading-relaxed relative z-10 pl-2">
+                                    <p class="text-maroon text-sm font-medium italic leading-relaxed relative z-10 pl-2">
                                         "${userQuote}"
                                     </p>
                                 </div>
                             </div>
                             <h4 class="font-bold text-lg leading-tight text-main">${leader.name}</h4>
-                            <p class="text-xs font-bold text-[#88113b] uppercase tracking-widest mt-1">${leader.role}</p>
+                            <p class="text-xs font-bold text-maroon uppercase tracking-widest mt-1">${leader.role}</p>
                         </div>`;
                 });
             };
@@ -343,22 +343,22 @@ function updateSiteContent() {
                     html += `
                     <div class="flex flex-col items-center text-center group w-48 md:w-64">
                         <div class="relative mb-4">
-                            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gray-200 group-hover:border-[#88113b] group-hover:shadow-[0_0_15px_rgba(136,17,59,0.4)] transition-all duration-300 p-1 bg-white relative z-10">
+                            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gray-200 group-hover:border-maroon group-hover:shadow-[0_0_15px_rgba(136,17,59,0.4)] transition-all duration-300 p-1 bg-white relative z-10">
                                 <img src="${member.image}" class="w-full h-full object-cover object-top rounded-full" loading="lazy">
                             </div>
-                            <div class="absolute top-1/2 left-[90%] -translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-[#88113b]/10 z-40 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out transform translate-x-[-10px] scale-95 group-hover:translate-x-0 group-hover:scale-100 pointer-events-none hidden md:block">
+                            <div class="absolute top-1/2 left-[90%] -translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-maroon/10 z-40 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out transform translate-x-2.5 scale-95 group-hover:translate-x-0 group-hover:scale-100 pointer-events-none hidden md:block">
                         
-                                <div class="absolute top-1/2 -left-2 -translate-y-1/2 w-4 h-4 bg-white/95 transform rotate-45 border-l border-b border-[#88113b]/10"></div>
+                                <div class="absolute top-1/2 -left-2 -translate-y-1/2 w-4 h-4 bg-white/95 transform rotate-45 border-l border-b border-maroon/10"></div>
                                 
-                                <span class="absolute top-2 left-3 text-[#88113b]/20 text-4xl font-serif leading-none -z-10"></span>
+                                <span class="absolute top-2 left-3 text-maroon/20 text-4xl font-serif leading-none -z-10"></span>
                                 
-                                <p class="text-[#88113b] text-sm font-medium italic leading-relaxed relative z-10 pl-2">
+                                <p class="text-maroon text-sm font-medium italic leading-relaxed relative z-10 pl-2">
                                     "${userQuote}"
                                 </p>
                             </div>
                         </div>
                         <h4 class="font-bold text-lg leading-tight text-main">${member.name}</h4>
-                        <p class="text-xs font-bold text-[#88113b] uppercase tracking-widest mt-1">${member.role}</p>
+                        <p class="text-xs font-bold text-maroon uppercase tracking-widest mt-1">${member.role}</p>
                     </div>`;
                 });
 
@@ -378,7 +378,7 @@ function updateSiteContent() {
 
                 // 1. Build the Instagram Button (Only if a link exists in content.js)
                 const igHTML = dept.ig_link ? `
-                    <a href="${dept.ig_link}" target="_blank" class="mt-6 inline-flex w-fit items-center gap-2 text-[#88113b] hover:text-[#E1306C] font-bold transition-colors group/link">
+                    <a href="${dept.ig_link}" target="_blank" class="mt-6 inline-flex w-fit items-center gap-2 text-maroon hover:text-[#E1306C] font-bold transition-colors group/link">
                         <svg class="w-5 h-5 transform group-hover/link:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
                         </svg>
@@ -390,18 +390,18 @@ function updateSiteContent() {
                 const cardHTML = `
                     <div class="border-custom bg-white overflow-hidden rounded-2xl flex flex-col group shadow-sm hover:shadow-md transition-shadow">
                         
-                        <div class="relative w-full aspect-[5/4] bg-gray-100 overflow-hidden">
+                        <div class="relative w-full aspect-5/4 bg-gray-100 overflow-hidden">
                             
                             <img src="${dept.image}" alt="${dept.title} Formal" loading="lazy"
-                                class="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-[600ms] group-hover:opacity-0">
+                                class="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-600 group-hover:opacity-0">
                             
                             <img src="${dept.image_playful}" alt="${dept.title} Playful" loading="lazy"
-                                class="absolute inset-0 w-full h-full object-cover object-top opacity-0 transition-all duration-[600ms] group-hover:opacity-100 transform group-hover:scale-105">
+                                class="absolute inset-0 w-full h-full object-cover object-top opacity-0 transition-all duration-600 group-hover:opacity-100 transform group-hover:scale-105">
                         </div>
 
-                        <div class="p-6 md:p-8 flex flex-col flex-grow">
+                        <div class="p-6 md:p-8 flex flex-col grow">
                             <h3 class="text-2xl font-bold mb-4 tracking-tight">${dept.title}</h3>
-                            <p class="leading-relaxed text-base text-main text-justify flex-grow">
+                            <p class="leading-relaxed text-base text-main text-justify grow">
                                 ${dept.description}
                             </p>
                             ${igHTML}
@@ -618,7 +618,7 @@ function updateSiteContent() {
                             <a href="${link}" target="${target}" 
                                class="absolute inset-0 z-10 bg-black/0 lg:group-hover:bg-black/30 transition-colors duration-500 flex items-center justify-center ${isDisabled ? 'cursor-not-allowed' : ''}">
                                 
-                                <span class="text-white font-bold bg-black/20 lg:bg-transparent lg:hover:bg-white lg:hover:text-[#88113b] tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500 transform lg:translate-y-4 lg:group-hover:translate-y-0 border-2 border-white px-6 py-2 rounded-full backdrop-blur-sm">
+                                <span class="text-white font-bold bg-black/20 lg:bg-transparent lg:hover:bg-white lg:hover:text-maroon tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500 transform lg:translate-y-4 lg:group-hover:translate-y-0 border-2 border-white px-6 py-2 rounded-full backdrop-blur-sm">
                                     ${isDisabled ? 'Coming Soon' : item.button_text}
                                 </span>
                             </a>
@@ -642,13 +642,13 @@ function updateSiteContent() {
 
                 // 1. Reset all buttons to the "inactive" (transparent) style
                 filterButtons.forEach(b => {
-                    b.classList.remove('bg-[#88113b]', 'text-white');
-                    b.classList.add('bg-transparent', 'text-[#88113b]', 'hover:bg-gray-100');
+                    b.classList.remove('bg-maroon', 'text-white');
+                    b.classList.add('bg-transparent', 'text-maroon', 'hover:bg-gray-100');
                 });
 
                 // 2. Highlight the button they just clicked (solid maroon)
-                clickedBtn.classList.remove('bg-transparent', 'text-[#88113b]', 'hover:bg-gray-100');
-                clickedBtn.classList.add('bg-[#88113b]', 'text-white');
+                clickedBtn.classList.remove('bg-transparent', 'text-maroon', 'hover:bg-gray-100');
+                clickedBtn.classList.add('bg-maroon', 'text-white');
 
                 // 3. Grab the category name and rebuild the gallery!
                 const categoryToLoad = clickedBtn.getAttribute('data-filter');
@@ -726,7 +726,7 @@ function navbarManagement() {
 
         siteContent.navStructure.forEach(page => {
             const wrapper = document.createElement("div");
-            wrapper.className = "flex flex-col gap-3 items-center text-center";
+            wrapper.className = "flex flex-col gap-3 items-start text:left lg:items-center lg:text-center";
 
             let html = `
                     <a href="${page.link}" 

@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Newsletters | ALSCO</title>
     <link rel="icon" type="image/x-icon" href="/images/alsco_logo.avif">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/output.css">
 </head>
 
 <body class="antialiased">
@@ -30,10 +29,10 @@
                     <div
                         class="w-full max-w-md bg-white/10 backdrop-blur-sm p-2 rounded-full border border-white/20 flex flex-col sm:flex-row gap-2">
                         <input id="newsletter-email-input" type="email" placeholder="Enter your email address"
-                            class="flex-grow bg-transparent text-white placeholder-gray-300 px-6 py-3 rounded-full outline-none focus:bg-white/10 transition-colors">
+                            class="grow bg-transparent text-white placeholder-gray-300 px-6 py-3 rounded-full outline-none focus:bg-white/10 transition-colors">
 
                         <button id="newsletter-sub-btn" onclick="submitNewsletter()"
-                            class="btn-modern bg-white text-[#88113b] hover:bg-gray-100 font-bold whitespace-nowrap px-8 py-3 rounded-full">
+                            class="btn-modern bg-white text-maroon hover:bg-gray-100 font-bold whitespace-nowrap px-8 py-3 rounded-full">
                             Subscribe
                         </button>
                     </div>
@@ -53,15 +52,15 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
             <div class="flex flex-wrap justify-center gap-3 mb-12">
                 <button data-filter="all"
-                    class="filter-btn bg-[#88113b] text-white px-6 py-2 rounded-full border border-[#88113b] font-bold transition-colors">
+                    class="filter-btn bg-maroon text-white px-6 py-2 rounded-full border border-maroon font-bold transition-colors">
                     All
                 </button>
                 <button data-filter="newsletter"
-                    class="filter-btn bg-transparent text-[#88113b] hover:bg-gray-100 px-6 py-2 rounded-full border border-[#88113b] font-bold transition-colors">
+                    class="filter-btn bg-transparent text-maroon hover:bg-gray-100 px-6 py-2 rounded-full border border-maroon font-bold transition-colors">
                     Newsletters
                 </button>
                 <button data-filter="post"
-                    class="filter-btn bg-transparent text-[#88113b] hover:bg-gray-100 px-6 py-2 rounded-full border border-[#88113b] font-bold transition-colors">
+                    class="filter-btn bg-transparent text-maroon hover:bg-gray-100 px-6 py-2 rounded-full border border-maroon font-bold transition-colors">
                     Monthly Posts
                 </button>
             </div>
