@@ -88,12 +88,17 @@ const siteContent = {
         // --- FEATURED EVENT ---
         featuredEvent: {
             //Similar to Events content below, put just 1 event. If no event, don't put anything. Will default to upcoming image and description
-            //image: "/images/events/upcoming/ALC-AE.avif",
-            //title: "A-Level Leadership Camp 2026",
-            //description: "A Leadership Camp organised by Leadership Development department that aims to providing A-Level Students an opportunity to explore leadership not as a title, but as a lived experience shaped by communication, empathy and courage.",
-            //registration_link: "https://forms.google.com/your-event-form",
-            //button_text: "Registration Closed" // Change to "Registration Upcoming" or "Registration Opened" when needed
+            image: "/images/events/upcoming/ALC-AE.avif",
+            qr_image: "/images/events/upcoming/alc_qr.avif",
+            title: "A-Level Leadership Camp 2026",
+            date: "7,8th February 2026",
+            department: "Leadership Development",
+            description: "A Leadership Camp organised by Leadership Development department that aims to providing A-Level Students an opportunity to explore leadership not as a title, but as a lived experience shaped by communication, empathy and courage.",
+            registration_link: "https://forms.google.com/your-event-form",
+            ig_link: "https://www.instagram.com/p/DWBK7lfEUfH/?img_index=1",
+            button_text: "Registration Closed" // Change to "Registration Upcoming" or "Registration Opened" when needed
         },
+
 
         // --- LATEST NEWSLETTER ---
         newsletter: {
@@ -327,12 +332,10 @@ const siteContent = {
                 // Eg. 'Registration Opened!!' = Clicking button opens the registration form (paste the registration link inside the "")
                 title: "A-Level Leadership Camp",
                 department: "Leadership Department",
-                date: "Saturday, 7th February 2026 to Sunday, 8th February 2026",
+                event_type: "Actual Event",
+                date: "7 to 8th February 2026",
                 image: "/images/events/upcoming/ALC-AE.avif",
                 instagram_link: "https://www.instagram.com/p/DWBK7lfEUfH/?img_index=1",
-                description: "A Leadership Camp organised by Leadership Development department that aims to providing A-Level Students an opportunity to explore leadership not as a title, but as a lived experience shaped by communication, empathy and courage.",
-                registration_link: "https://forms.google.com/orientation",
-                button_text: "Closed"
             },
 
             // To add more events, just copy the format above and paste and change the details accordingly.
@@ -344,19 +347,15 @@ const siteContent = {
                 title: "A Charity Extravaganze 2026",
                 date: "Saturday, 17th January 2026",
                 department: "ALSCO",
+                image: "",
                 instagram_link: "https://www.instagram.com/p/DTpftXIkQLi/?img_index=1",
-                description: "Raised RM1000+ through ALSTAR First Event for an Old Folks Home",
-                image_folder: "",
-                video_path: ""
             },
             {
                 title: "July 2025 Installation Night",
                 date: "Thrusday, 8th Janaury 2026",
                 department: "SST (2 Secretaries & Treasurer)",
+                image: "",
                 instagram_link: "https://www.instagram.com/p/DTXjonXEc8U/?img_index=1",
-                description: "A Formal Night of Installation of the new July 2025 A-Level Student Committee members",
-                image_folder: "/images/events/past/installation_night/pictures",
-                video_path: "/images/events/past/installation_night/install_night_vid.mp4"
             }
         ]
     },

@@ -26,3 +26,18 @@ function toggleFaq(clickedIndex) {
     }
 }
 
+// MOBILE SHOW QR TOGGLE BUTTON
+document.addEventListener('DOMContentLoaded', () => {
+    const qrToggleBtn = document.getElementById('mobile-qr-toggle');
+    const qrContainer = document.getElementById('qr-img-container');
+
+    if (qrToggleBtn && qrContainer) {
+        qrToggleBtn.addEventListener('click', (e) => {
+            // Prevent the button from doing anything else (like scrolling)
+            e.preventDefault();
+
+            // Toggle the custom class that forces the QR code to show
+            qrContainer.classList.toggle('show-qr');
+        });
+    }
+});

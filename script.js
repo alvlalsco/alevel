@@ -84,39 +84,79 @@ function updateSiteContent() {
         });
     }
 
-    // C. FEATURED EVENT
-    // Check if the featured event has an actual title defined
-    if (siteContent.index.featuredEvent && siteContent.index.featuredEvent.title) {
+    // --- FEATURED EVENT DATA ---
 
-        setImage("event-img", siteContent.index.featuredEvent.image);
-        setText("event-title", siteContent.index.featuredEvent.title);
-        setText("event-desc", siteContent.index.featuredEvent.description);
-        setText("event-reg-btn-text", siteContent.index.featuredEvent.button_text);
+    // --- HELPER FUNCTION: Department Colors ---
+    // You can customize the keywords and Tailwind color classes here!
+    function getDepartmentColors(deptName) {
+        const name = deptName.toLowerCase();
 
-        // C1. Button Logic
+        if (name.includes('leadership')) return 'bg-red-100 text-red-800';
+        if (name.includes('comserve')) return 'bg-green-100 text-green-800';
+        if (name.includes('public relations')) return 'bg-rose-100 text-rose-800';
+        if (name.includes('student welfare')) return 'bg-blue-100 text-blue-800';
+
+        // Default fallback color if no keywords match
+        return 'bg-red-100 text-red-800';
+    }
+
+    // --- C. FEATURED EVENT INJECTION LOGIC ---
+    const eventData = siteContent.index.featuredEvent;
+
+    if (eventData && eventData.title) {
+        setImage("event-img", eventData.image);
+        setImage("event-qr-img", eventData.qr_image);
+        setText("event-title", eventData.title);
+        setText("event-desc", eventData.description);
+        setText("event-reg-btn-text", eventData.button_text);
+
+        // Inject New Fields: Date
+        const dateEl = document.getElementById("event-date");
+        if (dateEl && eventData.date) {
+            dateEl.textContent = eventData.date;
+            dateEl.classList.remove("hidden");
+        }
+
+        // Inject New Fields: Department Tag
+        const deptEl = document.getElementById("event-department");
+        if (deptEl && eventData.department) {
+            deptEl.textContent = eventData.department;
+            // Keep baseline classes, append dynamic colors
+            deptEl.className = `px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider inline-block ${getDepartmentColors(eventData.department)}`;
+        }
+
+        // Inject New Fields: Instagram Link
+        const igEl = document.getElementById("event-ig-link");
+        if (igEl && eventData.ig_link) {
+            igEl.href = eventData.ig_link;
+            igEl.classList.remove("hidden");
+        }
+
+        // Button Logic
         const eventBtn = document.getElementById("event-reg-btn");
         if (eventBtn) {
-            if (siteContent.index.featuredEvent.button_text.toLowerCase().includes("open")) {
-                eventBtn.href = siteContent.index.featuredEvent.registration_link;
+            if (eventData.button_text.toLowerCase().includes("open")) {
+                eventBtn.href = eventData.registration_link;
             } else {
-                eventBtn.href = "/events.html";
+                eventBtn.href = "#";
             }
         }
 
     } else {
-        // Fallback to default "Stay Tuned"
+        // Fallback logic
         setImage("event-img", siteContent.eventsPage.default.default_image);
-
-        // FIXED: Changed setImage to setText
         setText("event-title", siteContent.eventsPage.default.default_title);
-
         setText("event-desc", siteContent.eventsPage.default.default_description);
         setText("event-reg-btn-text", siteContent.eventsPage.default.default_button);
 
-        // Optional: Hide or disable the button if there is no event
+        // Hide the new elements if there is no featured event
+        document.getElementById("event-department")?.classList.add("hidden");
+        document.getElementById("event-ig-link")?.classList.add("hidden");
+        document.getElementById("event-date")?.classList.add("hidden");
+
         const eventBtn = document.getElementById("event-reg-btn");
         if (eventBtn) {
-            eventBtn.style.display = "none"; // Or you can make it disabled
+            eventBtn.style.display = "none";
         }
     }
 
@@ -380,197 +420,141 @@ function updateSiteContent() {
     const upcomingContainer = document.getElementById("events-upcoming-container");
     const pastContainer = document.getElementById("events-past-container");
 
-    // --- Helper Function: The "Card Factory" ---
-    function createEventCard(evt, isFeatured) {
-        const isEnabled = evt.button_text ? evt.button_text.toLowerCase().includes("open") : false;
-
-        // 1. SETUP LAYOUT RATIOS, GRID SPAN, TEXT SIZING
-        // Featured: Image 2/5 (40%), Text 3/5 (60%)
-        // Standard: Image 1/2 (50%), Text 1/2 (50%)
-        const imgWidthClass = isFeatured ? "lg:w-2/5" : "lg:w-1/2";
-        const txtWidthClass = isFeatured ? "lg:w-3/5" : "lg:w-1/2";
-        // Featured spans 2 columns (full row). Standard spans 1 column.
-        const containerSpan = isFeatured ? "lg:col-span-2" : "";
-        //Make big card text slightly larger
-        const titleSize = isFeatured ? "text-2xl md:text-4xl" : "text-xl font-bold";
-        const padding = isFeatured ? "p-6 md:p-10" : "p-5";
-
-        // 2. DEPARTMENT COLOR DICTIONARY
-        let deptColorClass = "bg-red-100 text-red-700";
-        if (evt.department) {
-            const dept = evt.department.toLowerCase();
-            if (dept.includes("leadership")) deptColorClass = "bg-red-100 text-red-700";
-            else if (dept.includes("welfare")) deptColorClass = "bg-blue-100 text-blue-700";
-            else if (dept.includes("relations")) deptColorClass = "bg-pink-100 text-pink-700";
-            else if (dept.includes("comserve")) deptColorClass = "bg-green-100 text-green-700";
-            else if (dept.includes("sst") || dept.includes("secretaries & treasurer")) deptColorClass = "bg-amber-100 text-amber-700";
-        }
-
-        // 3. BUILT THE HTML
-        return `
-        <div class="${containerSpan} border-custom rounded-3xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow flex flex-col lg:flex-row h-full">
-            
-            <div class="relative w-full ${imgWidthClass} shrink-0 aspect-[4/5] overflow-hidden group">
-                <img src="${evt.image}" alt="${evt.title}" loading="lazy"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-            </div>
-
-            <div class="${padding} flex flex-col flex-grow justify-center ${txtWidthClass}">
-
-                <div class="flex items-center gap-2 mb-4">
-
-                    ${isFeatured ? '<span class="tag-latest">Featured</span>' : ''}
-                    ${evt.department ? `<span class="px-3 py-1 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest ${deptColorClass}">${evt.department}</span>` : ''}                    
-                    ${evt.instagram_link ? `
-                        <a href="${evt.instagram_link}" target="_blank" 
-                    class="flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] md:text-xs font-bold text-white uppercase tracking-widest bg-gradient-to-tr from-[#f09433] via-[#e6683c] to-[#bc1888] hover:scale-105 transition-transform shadow-sm">
-                        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                        IG
-                    </a>` : ''}
-                </div>
-                
-                <h3 class="${titleSize} font-bold mb-4 tracking-tight leading-tight">
-                    ${evt.title}
-                </h3>
-
-                ${evt.date ? `
-                <div class="mb-4">
-                    <span class="date-chip inline-block ${deptColorClass} px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
-                        ${evt.date}
-                    </span>
-                </div>` : ''}
-                
-                <p class="leading-relaxed text-main text-justify mb-8 flex-grow ${isFeatured ? 'text-base' : 'text-sm line-clamp-3 lg:line-clamp-none'}">
-                    ${evt.description}
-                </p>
-                
-                <a href="${isEnabled ? evt.registration_link : ''}" target="${isEnabled ? '_blank' : ''}" 
-                class="btn-modern btn-maroon text-sm py-2.5 px-6 w-full sm:w-auto text-center ${isEnabled ? '' : 'opacity-50 cursor-not-allowed bg-gray-400 hover:bg-gray-400'} ${evt.button_text ? '' : 'hidden'}">
-                    ${evt.button_text || ""}
-                </a>
-            </div>
-        </div>`;
-    }
-
-    // Check for existence of events.html and events in content.js
+    // A. Render UPCOMING Events (Zig-Zag Editorial Gallery)
     if (upcomingContainer && siteContent.eventsPage && siteContent.eventsPage.upcoming) {
         upcomingContainer.innerHTML = "";
         const events = siteContent.eventsPage.upcoming;
 
-        // A. Render UPCOMING Events
-        // Checks for events and whether got event title
         if (events.length > 0 && events[0].title) {
+
+            // Override default classes to force the zig-zag layout
+            upcomingContainer.className = "grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 items-start";
+
             events.forEach((evt, index) => {
-                // Index 0 is the "Featured" (Big) card. All others are "Standard".
-                const isFeatured = index === 0;
-                const cardHTML = createEventCard(evt, isFeatured);
-                upcomingContainer.insertAdjacentHTML('beforeend', cardHTML);
+
+                // 1. Department Color Dictionary
+                let deptColorClass = "bg-red-100 text-red-700";
+                if (evt.department) {
+                    const dept = evt.department.toLowerCase();
+                    if (dept.includes("leadership")) deptColorClass = "bg-red-100 text-red-700";
+                    else if (dept.includes("welfare")) deptColorClass = "bg-blue-100 text-blue-700";
+                    else if (dept.includes("relations")) deptColorClass = "bg-pink-100 text-pink-700";
+                    else if (dept.includes("comserve") || dept.includes("community")) deptColorClass = "bg-green-100 text-green-700";
+                    else if (dept.includes("sst") || dept.includes("secretaries")) deptColorClass = "bg-amber-100 text-amber-700";
+                }
+
+                // 2. Zig-Zag Stagger & Links
+                const staggerClass = (index % 2 !== 0) ? "md:mt-24" : "";
+                const link = evt.instagram_link || evt.registration_link || "#";
+                const target = link !== "#" ? "_blank" : "";
+
+                // 3. New Event Type Tag (ETR / AE)
+                const typeTagHTML = evt.event_type ? `<span class="px-3 py-1.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest shadow-sm bg-purple-100 text-purple-700 backdrop-blur-md bg-opacity-90">${evt.event_type}</span>` : '';
+
+                // 4. Build the HTML Card
+                const html = `
+                    <div class="relative block rounded-3xl overflow-hidden shadow-lg border border-gray-200 group ${staggerClass}">
+
+                        <img src="${evt.image}" alt="${evt.title}" loading="lazy"
+                             class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105">
+
+                        <div class="absolute top-4 left-4 right-4 flex justify-between items-start z-20 pointer-events-none">
+                            <div class="flex flex-col gap-2 items-start">
+                                ${typeTagHTML}
+                                ${evt.department ? `<span class="px-3 py-1.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest shadow-sm backdrop-blur-md ${deptColorClass} bg-opacity-90">${evt.department}</span>` : ''}
+                                ${evt.date ? `<span class="px-3 py-1.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest shadow-sm bg-black/80 text-white backdrop-blur-md">${evt.date}</span>` : ''}
+                            </div>
+
+                            ${evt.instagram_link ? `
+                            <div class="bg-white/95 backdrop-blur-sm p-2 rounded-full shadow-md text-[#E1306C]">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </div>
+                            ` : ''}
+                        </div>
+
+                        <a href="${link}" target="${target}"
+                           class="absolute inset-0 z-10 bg-black/0 group-hover:bg-black/75 transition-colors duration-500 flex flex-col items-center justify-center p-6 text-center ${link === '#' ? 'cursor-not-allowed' : ''}">
+
+                            <h3 class="text-white text-2xl md:text-3xl font-bold mb-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-6 group-hover:translate-y-0">
+                                ${evt.title}
+                            </h3>
+
+                            <span class="text-white font-bold tracking-[0.2em] uppercase opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-6 group-hover:translate-y-0 border-2 border-white px-8 py-3 rounded-full backdrop-blur-sm hover:bg-white hover:text-black">
+                                ${link !== '#' ? 'Register' : 'Coming Soon'}
+                            </span>
+                        </a>
+                    </div>`;
+
+                upcomingContainer.insertAdjacentHTML('beforeend', html);
             });
         } else {
-            // Render Default State
-            const default_event = {
-                image: siteContent.eventsPage.default.default_image,
-                title: siteContent.eventsPage.default.default_title,
-                description: siteContent.eventsPage.default.default_description,
-                button_text: siteContent.eventsPage.default.default_button,
-                date: "",
-                registration_link: "#",
-            }
-
-            const isFeatured = true;
-            const cardHTML = createEventCard(default_event, isFeatured);
-            upcomingContainer.insertAdjacentHTML('beforeend', cardHTML)
+            // Default Empty State
+            upcomingContainer.className = "";
+            upcomingContainer.innerHTML = `<p class="text-center text-gray-400 py-12 col-span-full">Stay tuned for upcoming events!</p>`;
         }
     }
 
 
-
-    //  B. Render PAST Events
+    // B. Render PAST Events (Zig-Zag Editorial Gallery)
     if (pastContainer && siteContent.eventsPage && siteContent.eventsPage.past) {
         pastContainer.innerHTML = "";
+
+        // Override default classes to force the zig-zag layout
+        pastContainer.className = "grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 items-start mt-8";
+
         siteContent.eventsPage.past.forEach((evt, index) => {
 
-            // 1. DEPARTMENT COLOR DICTIONARY
-            //Default Colors
+            // 1. Department Color Dictionary
             let deptColorClass = "bg-red-100 text-red-700";
-            let deptHoverBorderClass = "hover:border-[#88113b]";
-            let deptHoverTextClass = "group-hover:text-[#88113b]";
-            let deptSolidBtnClass = "bg-red-800 text-white hover:bg-red-900";
-
-            // Departmental Colours
             if (evt.department) {
                 const dept = evt.department.toLowerCase();
-                if (dept.includes("leadership")) {
-                    deptColorClass = "bg-red-100 text-red-700";
-                    deptHoverBorderClass = "hover:border-red-500";
-                    deptHoverTextClass = "group-hover:text-red-700";
-                    deptSolidBtnClass = "bg-red-600 text-white hover:bg-red-700";
-                }
-                else if (dept.includes("welfare")) {
-                    deptColorClass = "bg-blue-100 text-blue-700";
-                    deptHoverBorderClass = "hover:border-blue-500";
-                    deptHoverTextClass = "group-hover:text-blue-700";
-                    deptSolidBtnClass = "bg-blue-600 text-white hover:bg-blue-700";
-                }
-                else if (dept.includes("relations")) {
-                    deptColorClass = "bg-pink-100 text-pink-700";
-                    deptHoverBorderClass = "hover:border-pink-500";
-                    deptHoverTextClass = "group-hover:text-pink-700";
-                    deptSolidBtnClass = "bg-pink-600 text-white hover:bg-pink-700";
-                }
-                else if (dept.includes("comserve") || dept.includes("community")) {
-                    deptColorClass = "bg-green-100 text-green-700";
-                    deptHoverBorderClass = "hover:border-green-500";
-                    deptHoverTextClass = "group-hover:text-green-700";
-                    deptSolidBtnClass = "bg-green-600 text-white hover:bg-green-700";
-                }
-                else if (dept.includes("sst") || dept.includes("secretaries & treasurer")) {
-                    deptColorClass = "bg-amber-100 text-amber-700";
-                    deptHoverBorderClass = "hover:border-amber-500";
-                    deptHoverTextClass = "group-hover:text-amber-700"
-                    deptSolidBtnClass = "bg-amber-600 text-white hover:bg-amber-700";
-                }
+                if (dept.includes("leadership")) deptColorClass = "bg-red-100 text-red-700";
+                else if (dept.includes("welfare")) deptColorClass = "bg-blue-100 text-blue-700";
+                else if (dept.includes("relations")) deptColorClass = "bg-rose-100 text-rose-700";
+                else if (dept.includes("comserve") || dept.includes("community")) deptColorClass = "bg-green-100 text-green-700";
+                else if (dept.includes("sst") || dept.includes("secretaries")) deptColorClass = "bg-amber-100 text-amber-700";
             }
 
-            //2. BUILD THE HTML
+            // 2. Zig-Zag Stagger & Links
+            const staggerClass = (index % 2 !== 0) ? "md:mt-24" : "";
+            const link = evt.instagram_link || "#";
+            const target = evt.instagram_link ? "_blank" : "";
+
+            // 3. Build the HTML Card
             const html = `
-                <div class="border-custom rounded-2xl bg-white p-8 flex flex-col h-full ${deptHoverBorderClass} transition-colors group">
-                    
-                    <div class="flex flex-wrap items-center gap-2 mb-4">
-                        ${evt.department ? `<span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${deptColorClass}">${evt.department}</span>` : ''}
-                        
+                <div class="relative block rounded-3xl overflow-hidden shadow-lg border border-gray-200 group ${staggerClass}">
+
+                    <img src="${evt.image}" alt="${evt.title}" loading="lazy"
+                         class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105">
+
+                    <div class="absolute top-4 left-4 right-4 flex justify-between items-start z-20 pointer-events-none">
+                        <div class="flex flex-col gap-2 items-start">
+                            ${evt.department ? `<span class="px-3 py-1.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest shadow-sm backdrop-blur-md ${deptColorClass} bg-opacity-90">${evt.department}</span>` : ''}
+                            ${evt.date ? `<span class="px-3 py-1.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest shadow-sm bg-black/80 text-white backdrop-blur-md">${evt.date}</span>` : ''}
+                        </div>
+
                         ${evt.instagram_link ? `
-                        <a href="${evt.instagram_link}" target="_blank" class="flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-widest bg-gradient-to-tr from-[#f09433] via-[#e6683c] to-[#bc1888] hover:scale-105 transition-transform shadow-sm">
-                            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                        <div class="bg-white/95 backdrop-blur-sm p-2 rounded-full shadow-md text-[#E1306C]">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
                                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                             </svg>
-                            IG
-                        </a>` : ''}
+                        </div>
+                        ` : ''}
                     </div>
-                    
-                    <h3 class="text-xl font-bold mb-2 ${deptHoverTextClass} transition-colors">${evt.title}</h3>
-                    
-                    ${evt.date ? `
-                    <div class="mb-4">
-                        <span class="inline-block ${deptColorClass} px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest">
-                            ${evt.date}
-                        </span>
-                    </div>` : ''}
 
-                    <p class="text-sm text-gray-600 leading-relaxed mb-6 flex-grow">${evt.description}</p>
-                    
-                    ${evt.image_folder ? `
-                        <button onclick="openGallery(${index})" class="rounded-xl font-bold w-full text-sm py-3 transition-colors ${deptSolidBtnClass}">
-                            View Photos
-                        </button>
-                    ` : `
-                        <button disabled class="rounded-xl font-bold w-full text-sm py-3 bg-gray-100 text-gray-400 cursor-not-allowed">
-                            Photos Coming Soon!
-                        </button>
-                    `}
-                    
+                    <a href="${link}" target="${target}"
+                       class="absolute inset-0 z-10 bg-black/0 group-hover:bg-black/75 transition-colors duration-500 flex flex-col items-center justify-center p-6 text-center ${!evt.instagram_link ? 'cursor-not-allowed' : ''}">
+
+                        <h3 class="text-white text-2xl md:text-3xl font-bold mb-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-6 group-hover:translate-y-0">
+                            ${evt.title}
+                        </h3>
+
+                        <span class="text-white font-bold tracking-[0.2em] uppercase opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-6 group-hover:translate-y-0 border-2 border-white px-8 py-3 rounded-full backdrop-blur-sm hover:bg-white hover:text-black">
+                            ${evt.instagram_link ? 'View on IG' : 'No Link Available'}
+                        </span>
+                    </a>
                 </div>`;
 
             pastContainer.insertAdjacentHTML('beforeend', html);
@@ -616,7 +600,7 @@ function updateSiteContent() {
                     // Check if this specific item has an Instagram link in the data
                     const igButtonHTML = item.ig_link ? `
                         <a href="${item.ig_link}" target="_blank" aria-label="Watch on Instagram"
-                           class="absolute top-4 left-4 z-20 bg-black/40 hover:bg-[#E1306C] backdrop-blur-md border border-white/20 text-white p-2.5 rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg group/ig">
+                           class="absolute top-4 left-4 z-30 lg:bg-black/40 bg-[#E1306C] backdrop-blur-md border border-white/20 text-white p-2.5 rounded-full transition-all duration-300 lg:hover:bg-[#E1306C] lg:hover:scale-110 lg:hover:shadow-lg group/ig">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                 <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
                             </svg>
@@ -627,14 +611,14 @@ function updateSiteContent() {
                         <div class="relative block rounded-2xl overflow-hidden shadow-lg border border-gray-200 group ${staggerClass} ${isDisabled ? 'opacity-80' : ''}">
                             
                             <img src="${item.image}" alt="${item.title}" loading="lazy"
-                                 class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105">
+                                 class="w-full h-auto object-cover transform transition-transform duration-700">
                             
                             ${igButtonHTML}
                             
                             <a href="${link}" target="${target}" 
-                               class="absolute inset-0 z-10 bg-black/0 group-hover:bg-black/60 transition-colors duration-500 flex items-center justify-center ${isDisabled ? 'cursor-not-allowed' : ''}">
+                               class="absolute inset-0 z-10 bg-black/0 lg:group-hover:bg-black/30 transition-colors duration-500 flex items-center justify-center ${isDisabled ? 'cursor-not-allowed' : ''}">
                                 
-                                <span class="text-white font-bold tracking-[0.2em] uppercase opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 border-2 border-white px-6 py-2 rounded-full backdrop-blur-sm">
+                                <span class="text-white font-bold bg-black/20 lg:bg-transparent lg:hover:bg-white lg:hover:text-[#88113b] tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500 transform lg:translate-y-4 lg:group-hover:translate-y-0 border-2 border-white px-6 py-2 rounded-full backdrop-blur-sm">
                                     ${isDisabled ? 'Coming Soon' : item.button_text}
                                 </span>
                             </a>
