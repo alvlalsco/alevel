@@ -8,7 +8,7 @@
 
 /* 3. DEFINE YOUR CUSTOM BRAND VARIABLES */
 @theme {
-    --font-outfit: 'Outfit', sans-serif;
+    --font-sans: 'Outfit', sans-serif;
     --color-maroon: #88113b;
     --color-maroon-dark: #6d0d2f;
     --color-main: #1f2937;
@@ -17,7 +17,7 @@
 /* 4. GLOBAL HTML RULES (The "Write Once" text sizes) */
 @layer base {
     body {
-        @apply font-outfit text-main bg-white;
+        @apply font-sans text-main bg-white;
         scroll-behavior: smooth;
         scrollbar-gutter: stable;
     }

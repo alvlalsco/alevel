@@ -62,3 +62,24 @@ function closeGallery() {
         videoContainer.innerHTML = "";
     }, 300); // Wait for the fade-out animation to finish first
 }
+
+// MOBILE SHOW QR TOGGLE BUTTON (Event Delegation Method)
+document.addEventListener('click', (e) => {
+    // 1. Check if what the user clicked is (or is inside) our toggle button
+    const toggleBtn = e.target.closest('.mobile-detail-toggle-btn');
+
+    // 2. If it IS the toggle button, run our logic!
+    if (toggleBtn) {
+        // Prevent the button from doing anything else (like scrolling)
+        e.preventDefault();
+
+        // 3. Find the specific event card that holds THIS button. 
+        // Since your main card container uses the "group" class, we can easily target it!
+        const cardContainer = toggleBtn.closest('.group');
+
+        // 4. Toggle the custom class that forces the QR code to show
+        if (cardContainer) {
+            cardContainer.classList.toggle('show-details');
+        }
+    }
+});

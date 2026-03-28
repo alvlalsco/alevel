@@ -3,8 +3,7 @@
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
-    --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-sans: 'Outfit', sans-serif;
     --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
@@ -26,7 +25,6 @@
     --color-blue-700: oklch(48.8% 0.243 264.376);
     --color-blue-800: oklch(42.4% 0.199 265.638);
     --color-purple-100: oklch(94.6% 0.033 307.174);
-    --color-purple-700: oklch(49.6% 0.265 301.924);
     --color-pink-100: oklch(94.8% 0.028 342.258);
     --color-pink-700: oklch(52.5% 0.223 3.958);
     --color-rose-100: oklch(94.1% 0.03 12.58);
@@ -93,7 +91,6 @@
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
-    --font-outfit: 'Outfit', sans-serif;
     --color-maroon: #88113b;
     --color-maroon-dark: #6d0d2f;
     --color-main: #1f2937;
@@ -248,6 +245,9 @@
   }
 }
 @layer utilities {
+  .pointer-events-auto {
+    pointer-events: auto;
+  }
   .pointer-events-none {
     pointer-events: none;
   }
@@ -386,9 +386,6 @@
   .mt-8 {
     margin-top: calc(var(--spacing) * 8);
   }
-  .mt-10 {
-    margin-top: calc(var(--spacing) * 10);
-  }
   .-mr-2 {
     margin-right: calc(var(--spacing) * -2);
   }
@@ -445,6 +442,9 @@
   }
   .aspect-5\/4 {
     aspect-ratio: 5/4;
+  }
+  .aspect-\[4\/5\] {
+    aspect-ratio: 4/5;
   }
   .h-0\.5 {
     height: calc(var(--spacing) * 0.5);
@@ -849,9 +849,6 @@
   .bg-amber-100 {
     background-color: var(--color-amber-100);
   }
-  .bg-black {
-    background-color: var(--color-black);
-  }
   .bg-black\/0 {
     background-color: color-mix(in srgb, #000 0%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -923,9 +920,6 @@
   }
   .bg-pink-100 {
     background-color: var(--color-pink-100);
-  }
-  .bg-purple-100 {
-    background-color: var(--color-purple-100);
   }
   .bg-red-100 {
     background-color: var(--color-red-100);
@@ -1247,9 +1241,6 @@
   .text-pink-700 {
     color: var(--color-pink-700);
   }
-  .text-purple-700 {
-    color: var(--color-purple-700);
-  }
   .text-red-400 {
     color: var(--color-red-400);
   }
@@ -1315,10 +1306,6 @@
   }
   .opacity-100 {
     opacity: 100%;
-  }
-  .shadow-2xl {
-    --tw-shadow: 0 25px 50px -12px var(--tw-shadow-color, rgb(0 0 0 / 0.25));
-    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .shadow-\[0_8px_30px_rgba\(136\,17\,59\,0\.15\)\] {
     --tw-shadow: 0 8px 30px var(--tw-shadow-color, rgba(136,17,59,0.15));
@@ -1548,6 +1535,11 @@
       }
     }
   }
+  .group-\[\.show-qr\]\:pointer-events-none {
+    &:is(:where(.group):is(.show-qr) *) {
+      pointer-events: none;
+    }
+  }
   .group-\[\.show-qr\]\:opacity-0 {
     &:is(:where(.group):is(.show-qr) *) {
       opacity: 0%;
@@ -1619,6 +1611,13 @@
       }
     }
   }
+  .hover\:bg-transparent {
+    &:hover {
+      @media (hover: hover) {
+        background-color: transparent;
+      }
+    }
+  }
   .hover\:bg-white {
     &:hover {
       @media (hover: hover) {
@@ -1654,6 +1653,13 @@
     &:hover {
       @media (hover: hover) {
         color: var(--color-maroon);
+      }
+    }
+  }
+  .hover\:text-white {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-white);
       }
     }
   }
@@ -2143,6 +2149,18 @@
       }
     }
   }
+  .lg\:group-hover\:bg-black\/20 {
+    @media (width >= 64rem) {
+      &:is(:where(.group):hover *) {
+        @media (hover: hover) {
+          background-color: color-mix(in srgb, #000 20%, transparent);
+          @supports (color: color-mix(in lab, red, red)) {
+            background-color: color-mix(in oklab, var(--color-black) 20%, transparent);
+          }
+        }
+      }
+    }
+  }
   .lg\:group-hover\:bg-black\/30 {
     @media (width >= 64rem) {
       &:is(:where(.group):hover *) {
@@ -2151,6 +2169,36 @@
           @supports (color: color-mix(in lab, red, red)) {
             background-color: color-mix(in oklab, var(--color-black) 30%, transparent);
           }
+        }
+      }
+    }
+  }
+  .lg\:group-hover\:bg-black\/40 {
+    @media (width >= 64rem) {
+      &:is(:where(.group):hover *) {
+        @media (hover: hover) {
+          background-color: color-mix(in srgb, #000 40%, transparent);
+          @supports (color: color-mix(in lab, red, red)) {
+            background-color: color-mix(in oklab, var(--color-black) 40%, transparent);
+          }
+        }
+      }
+    }
+  }
+  .lg\:group-hover\:bg-white {
+    @media (width >= 64rem) {
+      &:is(:where(.group):hover *) {
+        @media (hover: hover) {
+          background-color: var(--color-white);
+        }
+      }
+    }
+  }
+  .lg\:group-hover\:text-maroon {
+    @media (width >= 64rem) {
+      &:is(:where(.group):hover *) {
+        @media (hover: hover) {
+          color: var(--color-maroon);
         }
       }
     }
@@ -2226,7 +2274,7 @@
 @layer base {
   body {
     background-color: var(--color-white);
-    font-family: var(--font-outfit);
+    font-family: var(--font-sans);
     color: var(--color-main);
     scroll-behavior: smooth;
     scrollbar-gutter: stable;
