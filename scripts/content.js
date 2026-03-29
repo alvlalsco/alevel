@@ -88,15 +88,17 @@ const siteContent = {
         // --- FEATURED EVENT ---
         featuredEvent: {
             //Similar to Events content below, put just 1 event. If no event, don't put anything. Will default to upcoming image and description
-            image: "/images/events/upcoming/ALC-AE.avif",
-            qr_image: "/images/events/upcoming/alc_qr.avif",
-            title: "A-Level Leadership Camp 2026",
-            date: "7,8th February 2026",
-            department: "Leadership Development",
-            description: "A Leadership Camp organised by Leadership Development department that aims to providing A-Level Students an opportunity to explore leadership not as a title, but as a lived experience shaped by communication, empathy and courage.",
-            registration_link: "https://forms.google.com/your-event-form",
-            ig_link: "https://www.instagram.com/p/DWBK7lfEUfH/?img_index=1",
-            button_text: "Registration Closed" // Change to "Registration Upcoming" or "Registration Opened" when needed
+            title: "Alstar Arena Sports Tournament",
+            department: "ALSTAR G1",
+            event_type: "External Trial Run",
+            date: "Friday, 3rd April 2026",
+            image: "/images/events/upcoming/g1etr1.avif",
+            details_image: "/images/events/upcoming/g1etr2.avif",
+            description: "",
+            ig_link: "https://www.instagram.com/p/DWSxBeYEYZp/?img_index=1",
+            registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSeuJEUVfFkaJSL2XkXD0zsu5-oSsL1uvA3QA98VkKHIh7srFQ/viewform",
+            button_text: "Registration Now!",
+            regis_open: true,
         },
 
 
@@ -351,7 +353,7 @@ const siteContent = {
                 title: "The Decision Lab",
                 department: "ALSTAR G3",
                 event_type: "Actual Event",
-                date: "Monday,Tuesday 13,14th April 2026",
+                date: "Monday-Tuesday 13-14th April 2026",
                 image: "/images/events/upcoming/g3ae1.avif",
                 details_image: "/images/events/upcoming/g3ae2.avif",
                 instagram_link: "https://www.instagram.com/p/DWOUHyoEa-z/?img_index=1",
@@ -508,6 +510,20 @@ const siteContent = {
 
         // SECTION 2: PAST EVENTS
         past: [
+            {
+                title: "Teacher Appreciation Week 2026",
+                date: "",
+                department: "Student Welfare",
+                image: "",
+                instagram_link: "",
+            },
+            {
+                title: "A-Level Leadership Camp 2026",
+                date: "Saturday-Sunday, 7-8th February 2026",
+                department: "Leadership Development Department",
+                image: "",
+                instagram_link: "",
+            },
             {
                 title: "A Charity Extravaganze 2026",
                 date: "Saturday, 17th January 2026",

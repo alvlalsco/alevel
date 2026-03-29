@@ -2,9 +2,10 @@
 @import "tailwindcss";
 
 /* 2. TELL TAILWIND WHERE YOUR HTML/JS IS */
+@source "./html_pages/*.html";
+@source "./scripts/*.js";
+@source "./*.js"
 @source "./*.html";
-@source "./html_pages";
-@source "./scripts";
 
 /* 3. DEFINE YOUR CUSTOM BRAND VARIABLES */
 @theme {
