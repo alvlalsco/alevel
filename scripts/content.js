@@ -85,28 +85,12 @@ const siteContent = {
             // { name: "New Partner", image: "images/partner_logo.avif" }, 
         ],
 
-        // --- FEATURED EVENT ---
-        featuredEvent: {
-            //Similar to Events content below, put just 1 event. If no event, don't put anything. Will default to upcoming image and description
-            title: "Alstar Arena Sports Tournament",
-            department: "ALSTAR G1",
-            event_type: "External Trial Run",
-            date: "Friday, 3rd April 2026",
-            image: "/images/events/upcoming/g1etr1.avif",
-            details_image: "/images/events/upcoming/g1etr2.avif",
-            description: "",
-            ig_link: "https://www.instagram.com/p/DWSxBeYEYZp/?img_index=1",
-            registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSeuJEUVfFkaJSL2XkXD0zsu5-oSsL1uvA3QA98VkKHIh7srFQ/viewform",
-            button_text: "Registration Now!",
-            regis_open: true,
-        },
-
 
         // --- LATEST NEWSLETTER ---
         newsletter: {
             image: "/images/newsletters/issue10.avif",
             title: "January Recap: Fresh Beginnings",
-            date: "January 2026", // Displayed implicitly or added to description
+            date: "January 2026",
             description: "Read about our recent events, student achievements, and important upcoming dates for the semester.",
             pdf_link: "https://drive.google.com/your-newsletter-link"
         },

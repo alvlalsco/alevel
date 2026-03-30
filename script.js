@@ -137,7 +137,7 @@ function updateSiteContent() {
             const deptEl = document.getElementById("event-department");
             if (deptEl && eventData.department) {
                 deptEl.textContent = eventData.department;
-                deptEl.className = `shrink-0 px-2 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-xl font-bold uppercase tracking-widest shadow-sm backdrop-blur-md bg-opacity-90 whitespace-nowrap hidden ${getDepartmentColors(eventData.department)}`;
+                deptEl.className = `shrink-0 px-2 py-1 md:px-5 md:py-3 rounded-full text-xs md:text-lg font-bold uppercase tracking-widest shadow-sm backdrop-blur-md bg-opacity-90 whitespace-nowrap hidden ${getDepartmentColors(eventData.department)}`;
                 deptEl.classList.remove("hidden");
             } else if (deptEl) {
                 deptEl.classList.add("hidden");
@@ -785,6 +785,27 @@ function updateSiteContent() {
         // B. Text Content
         setText("alstar-description-text", siteContent.alstarPage.description);
         setText("alstar-difference-text", siteContent.alstarPage.difference);
+
+        // C. Generate Certificate Pillars Dynamically
+        const pillarsContainer = document.getElementById("certificate-pillars-container");
+        if (pillarsContainer && siteContent.alstarPage.certificate) {
+            pillarsContainer.innerHTML = ""; // Clear out any existing content
+
+            siteContent.alstarPage.certificate.forEach((pillar, index) => {
+                // Apply the specific border classes only to the middle item (index 1)
+                const borderClasses = index === 1
+                    ? "border-t-custom border-b-custom sm:border-t-0 sm:border-b-0 sm:border-x-custom py-6 sm:py-0"
+                    : "";
+
+                pillarsContainer.innerHTML += `
+                    <div class="flex flex-col items-center ${borderClasses}">
+                        <span class="text-4xl font-black text-main mb-1">${pillar.count}</span>
+                        <span class="text-xs font-bold uppercase tracking-widest primary-maroon">${pillar.label}</span>
+                        <span class="text-sm text-gray-500 mt-2">${pillar.desc}</span>
+                    </div>
+                `;
+            });
+        }
 
         // C. Submission Forms
         setLink("btn-submit-participation", siteContent.alstarPage.forms.participation);
