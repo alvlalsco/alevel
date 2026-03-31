@@ -1,9 +1,9 @@
-async function submitNewsletter() {
+async function submitEmail() {
     // a. Get Elements
-    const emailInput = document.getElementById("newsletter-email-input");
-    const btn = document.getElementById("newsletter-sub-btn");
-    const successMsg = document.getElementById("newsletter-success-msg");
-    const errorMsg = document.getElementById("newsletter-error-msg");
+    const emailInput = document.getElementById("publication-email-input");
+    const btn = document.getElementById("publication-sub-btn");
+    const successMsg = document.getElementById("publication-success-msg");
+    const errorMsg = document.getElementById("publication-error-msg");
 
     // b. Reset States
     successMsg.classList.add("hidden");

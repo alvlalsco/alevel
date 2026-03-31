@@ -12,7 +12,7 @@ const siteContent = {
             sections: [
                 { name: "Affiliates", id: "affiliates" },
                 { name: "Events", id: "event" },
-                { name: "Newsletter", id: "newsletter" },
+                { name: "Publications", id: "publications" },
                 { name: "FAQ", id: "faq" }
             ]
         },
@@ -43,11 +43,11 @@ const siteContent = {
             ]
         },
         {
-            name: "Newsletters",
-            link: "/html_pages/newsletters.html",
+            name: "Publications",
+            link: "/html_pages/publications.html",
             sections: [
-                { name: "Monthly Post", id: "newsletter-list-container" },
-                { name: "Newsletter", id: "newsletter-list-container" }
+                { name: "Monthly Post", id: "publication-list-container" },
+                { name: "Newsletter", id: "publication-list-container" }
             ]
         },
         {
@@ -86,16 +86,6 @@ const siteContent = {
             // To add more, just copy the line above:
             // { name: "New Partner", image: "images/partner_logo.avif" }, 
         ],
-
-
-        // --- LATEST NEWSLETTER ---
-        newsletter: {
-            image: "/images/newsletters/issue10.avif",
-            title: "January Recap: Fresh Beginnings",
-            date: "January 2026",
-            description: "Read about our recent events, student achievements, and important upcoming dates for the semester.",
-            pdf_link: "https://drive.google.com/your-newsletter-link"
-        },
 
         // --- FAQ SECTION ---
         faq: [
@@ -542,17 +532,17 @@ const siteContent = {
     },
 
     //===========================
-    // 5. NEWSLETTER PAGE
+    // 5. PUBLICATION PAGE
     //===========================
-    newsletterPage: {
+    publicationPage: {
         // 1. HERO SECTION BACKGROUND
-        heroImage: "/images/newsletters/newsletter-bg.avif", // Replace with your image
+        heroImage: "/images/publications/publication-bg.avif", // Replace with your image
 
-        // 2. NEWSLETTER CARDS (Top one is "Latest", others are grid)
-        newsletters: [
+        // 2. PUBLICATION CARDS (Top one is "Latest", others are grid)
+        publications: [
             {
                 title: "March Monthly Post",
-                image: "/images/newsletters/post3.avif", // Preview image
+                image: "/images/publications/post3.avif", // Preview image
                 category: "post",
                 department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/1PbBJVyJJ6wd7IIcJHpzVOTRgmlE23bwq/view?usp=sharing", // PDF download link
@@ -561,7 +551,7 @@ const siteContent = {
             },
             {
                 title: "February Monthly Post",
-                image: "/images/newsletters/post2.avif", // Preview image
+                image: "/images/publications/post2.avif", // Preview image
                 category: "post",
                 department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/19uqO8ACZn4Nu4ejvNohxLSyQr35QW0VY/view?usp=sharing", // PDF download link
@@ -570,7 +560,7 @@ const siteContent = {
             },
             {
                 title: "November Monthly Post",
-                image: "/images/newsletters/post11.avif", // Preview image
+                image: "/images/publications/post11.avif", // Preview image
                 category: "post",
                 department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/11ebHERFPt17D0kmnuv0yaoN6s7JsEHcr/view?usp=sharing", // PDF download link
@@ -579,7 +569,7 @@ const siteContent = {
             },
             {
                 title: "October Monthly Post",
-                image: "/images/newsletters/post10.avif", // Preview image
+                image: "/images/publications/post10.avif", // Preview image
                 category: "post",
                 department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/1N8ZgCI1DBE07AKba1CZOU5p_GQTKMKpu/view?usp=sharing", // PDF download link
@@ -588,7 +578,7 @@ const siteContent = {
             },
             {
                 title: "Newsletter Issue 9",
-                image: "/images/newsletters/issue9.avif",
+                image: "/images/publications/issue9.avif",
                 category: "newsletter",
                 department: "Public Relations",
                 pdf_link: "https://drive.google.com/file/d/11jMQJpoTxtz_Pj5NLlsBVdmF8M_SMqj6/view?usp=sharing",
@@ -596,7 +586,7 @@ const siteContent = {
             },
             {
                 title: "Newsletter Issue 8",
-                image: "/images/newsletters/issue8.avif",
+                image: "/images/publications/issue8.avif",
                 category: "newsletter",
                 department: "Public Relations",
                 pdf_link: "https://drive.google.com/file/d/15CzlrJuMN0M_AkndeWXLdhZPzFi0C7-T/view?usp=sharing",
@@ -604,7 +594,7 @@ const siteContent = {
             },
             {
                 title: "Newsletter Issue 7",
-                image: "/images/newsletters/issue7.avif",
+                image: "/images/publications/issue7.avif",
                 category: "newsletter",
                 department: "Public Relations",
                 pdf_link: "https://drive.google.com/file/d/1wL_zAtEiykwhzWxTYdR08xn-KqPnhQgS/view?usp=sharing",

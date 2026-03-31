@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newsletters | ALSCO</title>
+    <title>Publications | ALSCO</title>
     <link rel="icon" type="image/x-icon" href="/images/alsco_logo.avif">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/output.css">
@@ -15,7 +15,7 @@
     <div id="navbar-placeholder"></div>
 
     <main>
-        <section id="newsletter-hero-bg" class="relative py-20 lg:py-28 bg-gray-900 bg-cover bg-center bg-no-repeat">
+        <section id="publication-hero-bg" class="relative py-20 lg:py-28 bg-gray-900 bg-cover bg-center bg-no-repeat">
             <div class="absolute inset-0 bg-black/30"></div>
 
             <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
@@ -23,24 +23,24 @@
                     <span class="text-gray-200 font-bold tracking-[0.2em] uppercase text-xs mb-4">Monthly Updates</span>
 
                     <h1 class="text-4xl md:text-5xl font-black text-white tracking-tight uppercase mb-8">
-                        Newsletters
+                        Publications
                     </h1>
 
                     <div
                         class="w-full max-w-md bg-white/10 backdrop-blur-sm p-2 rounded-full border border-white/20 flex flex-col sm:flex-row gap-2">
-                        <input id="newsletter-email-input" type="email" placeholder="Enter your email address"
+                        <input id="publication-email-input" type="email" placeholder="Enter your email address"
                             class="grow bg-transparent text-white placeholder-gray-300 px-6 py-3 rounded-full outline-none focus:bg-white/10 transition-colors">
 
-                        <button id="newsletter-sub-btn" onclick="submitNewsletter()"
+                        <button id="publication-sub-btn" onclick="submitEmail()"
                             class="btn-modern bg-white text-maroon hover:bg-gray-100 font-bold whitespace-nowrap px-8 py-3 rounded-full">
                             Subscribe
                         </button>
                     </div>
 
-                    <p id="newsletter-success-msg" class="text-green-400 text-sm mt-3 font-bold hidden">
+                    <p id="publication-success-msg" class="text-green-400 text-sm mt-3 font-bold hidden">
                         ✓ Successfully subscribed!
                     </p>
-                    <p id="newsletter-error-msg" class="text-red-400 text-sm mt-3 font-bold hidden">
+                    <p id="publication-error-msg" class="text-red-400 text-sm mt-3 font-bold hidden">
                         ⚠ Please enter a valid email.
                     </p>
                     <p class="text-gray-300 text-xs mt-3 uppercase tracking-wider">Get the latest updates delivered to
@@ -65,8 +65,8 @@
                 </button>
             </div>
 
-            <article id="newsletter-list-container" class="space-y-8 lg:space-y-12">
-                <p class="text-center text-gray-400">Loading newsletters...</p>
+            <article id="publication-list-container" class="space-y-8 lg:space-y-12">
+                <p class="text-center text-gray-400">Loading publications...</p>
             </article>
         </div>
     </main>
@@ -74,7 +74,7 @@
     <div id="footer-placeholder"></div>
     <script src="/scripts/content.js"></script>
     <script src="/script.js"></script>
-    <script src="/scripts/newsletter.js"></script>
+    <script src="/scripts/publication.js"></script>
 </body>
 
 </html>

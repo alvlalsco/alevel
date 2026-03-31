@@ -156,37 +156,42 @@
             </div>
         </section>
 
-        <section id="newsletter" class="py-16 lg:py-24 bg-white border-t-custom">
+        <section id="publications" class="py-16 lg:py-24 bg-white border-t-custom">
             <div class="max-w-7xl mx-auto px-6 lg:px-8">
-                <div class="mb-10 md:mb-12">
-                    <span class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">Stay
-                        Informed</span>
-                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-black text-main uppercase mt-2">Latest Newsletter
-                    </h2>
+
+                <div class="mb-10 md:mb-12 flex justify-between items-end">
+                    <div>
+                        <span class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">Stay
+                            Informed</span>
+                        <h2 class="text-2xl md:text-3xl lg:text-4xl font-black text-main uppercase mt-2">Latest
+                            Publications</h2>
+                    </div>
+                    <a href="/html_pages/publication.html"
+                        class="hidden md:inline-flex btn-modern btn-ghost w-auto text-sm md:text-base">View All</a>
                 </div>
 
-                <div class="border-custom rounded-4xl overflow-hidden grid lg:grid-cols-5 bg-white">
-                    <div class="lg:col-span-2 h-64 lg:h-auto">
-                        <img id="news-img" src="" class="aspect-fill w-full h-full object-cover" alt="Newsletter Image"
-                            loading="lazy">
-                    </div>
-                    <div class="lg:col-span-3 p-6 md:p-10 lg:p-16 flex flex-col justify-center">
-                        <h3 id="news-title" class="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-6">Loading
-                            News...</h3>
-                        <p id="news-desc"
-                            class="mb-6 md:mb-8 text-sm md:text-base lg:text-lg leading-relaxed text-main text-justify">
-                            Loading...
-                        </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 max-w-4xl mx-auto">
 
-                        <div class="flex flex-wrap gap-3 md:gap-4">
-                            <a id="news-read-btn" href="#" target="_blank"
-                                class="btn-modern btn-maroon w-auto text-sm md:text-base">Read Now</a>
-                            <a href="/html_pages/newsletters.html"
-                                class="btn-modern btn-ghost w-auto text-sm md:text-base">Read All
-                                Newsletters</a>
+                    <div class="flex flex-col gap-4">
+                        <h3 class="text-xl md:text-2xl font-bold text-main border-b-2 border-gray-100 pb-2">Latest
+                            Newsletter</h3>
+                        <div id="latest-newsletter-container">
                         </div>
                     </div>
+
+                    <div class="flex flex-col gap-4">
+                        <h3 class="text-xl md:text-2xl font-bold text-main border-b-2 border-gray-100 pb-2">Latest
+                            Monthly Post</h3>
+                        <div id="latest-post-container">
+                        </div>
+                    </div>
+
                 </div>
+
+                <div class="mt-8 flex justify-center md:hidden">
+                    <a href="/html_pages/publication.html" class="btn-modern btn-ghost w-auto text-sm">View All</a>
+                </div>
+
             </div>
         </section>
 
