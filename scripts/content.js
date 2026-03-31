@@ -10,10 +10,10 @@ const siteContent = {
             name: "Home",
             link: "/",
             sections: [
-                { name: "Affiliates", id: "affiliates-grid" },
-                { name: "Events", id: "event-title" },
-                { name: "Newsletter", id: "news-title" },
-                { name: "FAQ", id: "faq-q1" }
+                { name: "Affiliates", id: "affiliates" },
+                { name: "Events", id: "event" },
+                { name: "Newsletter", id: "newsletter" },
+                { name: "FAQ", id: "faq" }
             ]
         },
         {
@@ -30,7 +30,8 @@ const siteContent = {
             link: "/html_pages/committee.html",
             sections: [
                 { name: "High Council", id: "high-council-tree" },
-                { name: "Departments", id: "dept-roster" }
+                { name: "Members", id: "dept-roster" },
+                { name: "Departments", id: "departments-container" }
             ]
         },
         {
@@ -45,7 +46,8 @@ const siteContent = {
             name: "Newsletters",
             link: "/html_pages/newsletters.html",
             sections: [
-                { name: "All Issues", id: "newsletter-list-container" }
+                { name: "Monthly Post", id: "newsletter-list-container" },
+                { name: "Newsletter", id: "newsletter-list-container" }
             ]
         },
         {
@@ -186,7 +188,7 @@ const siteContent = {
             // Row 3: Secs & Treasurer
             { role: "Secretary", name: "CHUE RYEE EN", image: "/images/committee/high_council/sec1.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
             { role: "Secretary", name: "AUSTIN LAU HONG SHEN", image: "/images/committee/high_council/sec2.avif", quote: "" },
-            { role: "Treasurer", name: "EVAN YEOH JIN QUAN", image: "/images/committee/high_council/treasurer.avif", quote: "Don't settle with a boring college life, be a part of something!" },
+            { role: "Treasurer", name: "EVAN YEOH JIN QUAN", image: "/images/committee/high_council/treasurer.avif", quote: "'Come, let me prove you wrong' - Ms.Careen" },
         ],
 
         // LEVEL 2: DEPARTMENTS
@@ -200,7 +202,7 @@ const siteContent = {
                 ],
                 members: [
                     { role: "General Member", name: "ONG XI WEN", image: "/images/committee/leadership_dev/ldmember1.avif", quote: "" },
-                    { role: "General Member", name: "EVAN YEOH JIN QUAN", image: "/images/committee/leadership_dev/ldmember2.avif", quote: "Don't settle with a boring college life, be a part of something!" },
+                    { role: "General Member", name: "EVAN YEOH JIN QUAN", image: "/images/committee/leadership_dev/ldmember2.avif", quote: "'Come, let me prove you wrong' - Ms.Careen" },
                     { role: "General Member", name: "TAY HUI ER", image: "/images/committee/leadership_dev/ldmember3.avif", quote: "Be the best version of yourself. :)" },
                     { role: "General Member", name: "VINCENT KHOO WEI WEN", image: "/images/committee/leadership_dev/ldmember4.avif", quote: "Failure is merely the ink of a life that dared to write" },
                 ],
@@ -236,8 +238,8 @@ const siteContent = {
                     { role: "Deputy Director", name: "SEW SUN LOONG", image: "/images/committee/student_wel/SWdeputyDirector.avif", quote: "Tacos" }
                 ],
                 members: [
-                    { role: "General Member", name: "LAW JIA HERNG", image: "/images/committee/student_wel/swmember1.avif", quote: "" },
-                    { role: "General Member", name: "JOSHUA LEE CHENG AN", image: "/images/committee/student_wel/swmember2.avif", quote: "" },
+                    { role: "General Member", name: "LAW JIA HERNG", image: "/images/committee/student_wel/swmember1.avif", quote: "'Your GENIUS Friends ah, 2 minus -6 also don't know' - Dr.Poh" },
+                    { role: "General Member", name: "JOSHUA LEE CHENG AN", image: "/images/committee/student_wel/swmember2.avif", quote: "You can't rush greatness" },
                     { role: "General Member", name: "GOH JAY NING", image: "/images/committee/student_wel/swmember3.avif", quote: "Eat well, sleep well, study well. - Mr D. " },
                     { role: "General Member", name: "DANIEL WONG WENG SENG", image: "/images/committee/student_wel/swmember4.avif", quote: "" },
                     { role: "General Member", name: "DANIEL @ HTOO HTET ZAW", image: "/images/committee/student_wel/swmember5.avif", quote: "" },
@@ -496,30 +498,44 @@ const siteContent = {
         past: [
             {
                 title: "Teacher Appreciation Week 2026",
-                date: "",
+                date: "Thursday, 26th February 2026",
                 department: "Student Welfare",
-                image: "",
-                instagram_link: "",
+                image: "/images/events/past/lxs.avif",
+                instagram_link: "https://www.instagram.com/p/DWL2I-GEQAE/?img_index=1",
             },
             {
                 title: "A-Level Leadership Camp 2026",
                 date: "Saturday-Sunday, 7-8th February 2026",
                 department: "Leadership Development Department",
-                image: "",
-                instagram_link: "",
+                image: "/images/events/past/alc.avif",
+                instagram_link: "https://www.instagram.com/p/DWBK7lfEUfH/?img_index=1",
+            },
+            {
+                title: "Alstar First General Meeting",
+                date: "Tuesday, 27th January 2026",
+                department: "ALSCO",
+                image: "/images/events/past/jagm.avif",
+                instagram_link: "https://www.instagram.com/p/DV563smkfkd/?img_index=1",
+            },
+            {
+                title: "January'26 A-Level Orientation",
+                date: "Monday, 19th January 2026",
+                department: "ALSCO",
+                image: "/images/events/past/jot.avif",
+                instagram_link: "https://www.instagram.com/p/DTure53EcOg/?img_index=1",
             },
             {
                 title: "A Charity Extravaganze 2026",
                 date: "Saturday, 17th January 2026",
                 department: "ALSCO",
-                image: "",
+                image: "/images/events/past/ace.avif",
                 instagram_link: "https://www.instagram.com/p/DTpftXIkQLi/?img_index=1",
             },
             {
                 title: "July 2025 Installation Night",
                 date: "Thrusday, 8th Janaury 2026",
                 department: "SST (2 Secretaries & Treasurer)",
-                image: "",
+                image: "/images/events/past/jin.avif",
                 instagram_link: "https://www.instagram.com/p/DTXjonXEc8U/?img_index=1",
             }
         ]
@@ -535,48 +551,62 @@ const siteContent = {
         // 2. NEWSLETTER CARDS (Top one is "Latest", others are grid)
         newsletters: [
             {
+                title: "March Monthly Post",
                 image: "/images/newsletters/post3.avif", // Preview image
                 category: "post",
+                department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/1PbBJVyJJ6wd7IIcJHpzVOTRgmlE23bwq/view?usp=sharing", // PDF download link
-                ig_link: "https://www.instagram.com/p/DWS17hTEd64/?img_index=1",
+                instagram_link: "https://www.instagram.com/p/DWS17hTEd64/?img_index=1",
                 button_text: "Read Now"
             },
             {
+                title: "February Monthly Post",
                 image: "/images/newsletters/post2.avif", // Preview image
                 category: "post",
+                department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/19uqO8ACZn4Nu4ejvNohxLSyQr35QW0VY/view?usp=sharing", // PDF download link
-                ig_link: "https://www.instagram.com/p/DUxxv54EVGe/?img_index=1",
+                instagram_link: "https://www.instagram.com/p/DUxxv54EVGe/?img_index=1",
                 button_text: "Read Now"
             },
             {
+                title: "November Monthly Post",
                 image: "/images/newsletters/post11.avif", // Preview image
                 category: "post",
+                department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/11ebHERFPt17D0kmnuv0yaoN6s7JsEHcr/view?usp=sharing", // PDF download link
-                ig_link: "https://www.instagram.com/p/DTc234xEWFO/?img_index=1",
+                instagram_link: "https://www.instagram.com/p/DTc234xEWFO/?img_index=1",
                 button_text: "Read Now"
             },
             {
+                title: "October Monthly Post",
                 image: "/images/newsletters/post10.avif", // Preview image
                 category: "post",
+                department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/1N8ZgCI1DBE07AKba1CZOU5p_GQTKMKpu/view?usp=sharing", // PDF download link
-                ig_link: "https://www.instagram.com/p/DQjYDcakYz-/?img_index=1",
+                instagram_link: "https://www.instagram.com/p/DQjYDcakYz-/?img_index=1",
                 button_text: "Read Now"
             },
             {
+                title: "Newsletter Issue 9",
                 image: "/images/newsletters/issue9.avif",
                 category: "newsletter",
+                department: "Public Relations",
                 pdf_link: "https://drive.google.com/file/d/11jMQJpoTxtz_Pj5NLlsBVdmF8M_SMqj6/view?usp=sharing",
                 button_text: "Read Now"
             },
             {
+                title: "Newsletter Issue 8",
                 image: "/images/newsletters/issue8.avif",
                 category: "newsletter",
+                department: "Public Relations",
                 pdf_link: "https://drive.google.com/file/d/15CzlrJuMN0M_AkndeWXLdhZPzFi0C7-T/view?usp=sharing",
                 button_text: "Read Now"
             },
             {
+                title: "Newsletter Issue 7",
                 image: "/images/newsletters/issue7.avif",
                 category: "newsletter",
+                department: "Public Relations",
                 pdf_link: "https://drive.google.com/file/d/1wL_zAtEiykwhzWxTYdR08xn-KqPnhQgS/view?usp=sharing",
                 button_text: "Read Now"
             }
@@ -597,14 +627,13 @@ const siteContent = {
         certificate: [
             { count: 5, label: "Participation Points", desc: "Attend events" },
             { count: 6, label: "Volunteer Points", desc: "Contribute time" },
-            { count: 5, label: "Talk / Workshop Points", desc: "Join sessions" }
+            { count: 5, label: "Talk / Workshop Points", desc: "Join Talks" }
         ],
 
-        // Need to upate the forms
+        // update forms if got change
         forms: {
-            participation: "https://forms.google.com/participation-link",
-            volunteer: "https://forms.google.com/volunteer-link",
-            talk: "https://forms.google.com/talk-link"
+            amendment: "https://docs.google.com/forms/d/e/1FAIpQLScyiFYlLV6sNb2XTmwI5h6GVEtDMprkCQjwePBqxFiZNB_z6w/viewform?usp=dialog",
+            talk: "https://docs.google.com/forms/d/e/1FAIpQLSdWPzzalwelN3CFRzxZpIqF4StYiGKwacgpTiZzaihuqo9QyA/viewform?usp=dialog"
         },
 
         // Links to ALSCO's Alstar calender and Malaysia's Holiday

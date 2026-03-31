@@ -87,3 +87,7 @@
 .feature-card {
     background-color: #ffffff;
 }
+
+html {
+    scrollbar-gutter: stable;
+}

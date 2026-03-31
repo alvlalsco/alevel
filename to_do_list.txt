@@ -1,4 +1,1 @@
-1. Update homepage's Featured event card to include instagram link just like events's page's past event.
-3. Add comments to pages
-4. Add function that makes everything appear smoothly when user scrolls
-5. Add SW's monthly post into newsletter part. Doing
+1. Add function that makes everything appear smoothly when user scrolls

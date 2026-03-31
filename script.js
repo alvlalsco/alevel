@@ -45,7 +45,7 @@ function updateSiteContent() {
         }
     };
 
-    function getDepartmentColors(department) {
+    function getDepartmentColor(department) {
         let deptColorClass = "bg-red-100 text-red-700";
         const dept = department.toLowerCase();
         if (dept.includes("leadership")) deptColorClass = "bg-red-100 text-red-700";
@@ -137,7 +137,7 @@ function updateSiteContent() {
             const deptEl = document.getElementById("event-department");
             if (deptEl && eventData.department) {
                 deptEl.textContent = eventData.department;
-                deptEl.className = `shrink-0 px-2 py-1 md:px-5 md:py-3 rounded-full text-xs md:text-lg font-bold uppercase tracking-widest shadow-sm backdrop-blur-md bg-opacity-90 whitespace-nowrap hidden ${getDepartmentColors(eventData.department)}`;
+                deptEl.className = `shrink-0 px-2 py-1 md:px-5 md:py-3 rounded-full text-xs md:text-lg font-bold uppercase tracking-widest shadow-sm backdrop-blur-md bg-opacity-90 whitespace-nowrap hidden ${getDepartmentColor(eventData.department)}`;
                 deptEl.classList.remove("hidden");
             } else if (deptEl) {
                 deptEl.classList.add("hidden");
@@ -488,15 +488,15 @@ function updateSiteContent() {
 
                 // 2. Build the full Card HTML
                 const cardHTML = `
-                        <div class="border-custom bg-white overflow-hidden rounded-2xl flex flex-col group shadow-sm hover:shadow-md transition-shadow">
+                        <div class="border-custom bg-white overflow-hidden rounded-2xl flex flex-col shadow-sm hover:shadow-md transition-shadow">
                             
                             <div class="relative w-full aspect-5/4 bg-gray-100 overflow-hidden">
                                 
                                 <img src="${dept.image}" alt="${dept.title} Formal" loading="lazy"
-                                    class="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-600 group-hover:opacity-0">
+                                    class="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-600 hover:opacity-0">
                                 
                                 <img src="${dept.image_playful}" alt="${dept.title} Playful" loading="lazy"
-                                    class="absolute inset-0 w-full h-full object-cover object-top opacity-0 transition-all duration-600 group-hover:opacity-100 transform group-hover:scale-105">
+                                    class="absolute inset-0 w-full h-full object-cover object-top opacity-0 transition-all duration-600 hover:opacity-100">
                             </div>
 
                             <div class="p-6 md:p-8 flex flex-col grow">
@@ -532,17 +532,6 @@ function updateSiteContent() {
 
             events.forEach((evt, index) => {
 
-                // 1. Department Color Dictionary
-                let deptColorClass = "bg-red-100 text-red-700";
-                if (evt.department) {
-                    const dept = evt.department.toLowerCase();
-                    if (dept.includes("leadership")) deptColorClass = "bg-red-100 text-red-700";
-                    else if (dept.includes("welfare")) deptColorClass = "bg-blue-100 text-blue-700";
-                    else if (dept.includes("relations")) deptColorClass = "bg-pink-100 text-pink-700";
-                    else if (dept.includes("comserve") || dept.includes("community")) deptColorClass = "bg-green-100 text-green-700";
-                    else if (dept.includes("sst") || dept.includes("secretaries")) deptColorClass = "bg-amber-100 text-amber-700";
-                }
-
                 // 2. Zig-Zag Stagger & Links
                 const staggerClass = (index % 2 !== 0) ? "md:mt-24" : "";
                 const regLink = evt.registration_link || "#";
@@ -550,7 +539,7 @@ function updateSiteContent() {
 
                 // 3. New Event Type Tag 
                 // FIX: Added 'shrink-0' so the tag itself doesn't get squished
-                const typeTagHTML = evt.event_type ? `<span class="shrink-0 px-2 py-1 md:px-3 md:py-2 rounded-full text-xs md:text-1 font-bold uppercase tracking-widest shadow-sm bg-maroon text-white backdrop-blur-md bg-opacity-90 whitespace-nowrap" style="font-size: 10px;">${evt.event_type}</span>` : '';
+                const typeTagHTML = evt.event_type ? `<span class="shrink-0 px-2 py-1 md:px-3 md:py-2 rounded-full text-xs md:text-base font-bold uppercase tracking-widest shadow-sm bg-maroon text-white backdrop-blur-md bg-opacity-90 whitespace-nowrap" style="font-size: 10px;">${evt.event_type}</span>` : '';
 
                 // 4. Build the HTML Card
                 const html = `
@@ -560,8 +549,8 @@ function updateSiteContent() {
 
                         <div class="flex flex-row flex-nowrap gap-2 md:gap-3 items-center justify-start flex-1 w-0 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden pb-1">
                             ${typeTagHTML}
-                            ${evt.department ? `<span class="shrink-0 px-2 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-l font-bold uppercase tracking-widest shadow-sm backdrop-blur-md ${deptColorClass} bg-opacity-90 whitespace-nowrap" style="font-size: 10px;">${evt.department}</span>` : ''}
-                            ${evt.date ? `<span class="shrink-0 px-2 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-l bg-black/20 font-bold uppercase tracking-widest shadow-sm text-black backdrop-blur-md whitespace-nowrap" style="font-size: 10px;">${evt.date}</span>` : ''}
+                            ${evt.department ? `<span class="shrink-0 px-2 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-base font-bold uppercase tracking-widest shadow-sm backdrop-blur-md ${getDepartmentColor(evt.department)} bg-opacity-90 whitespace-nowrap" style="font-size: 10px;">${evt.department}</span>` : ''}
+                            ${evt.date ? `<span class="shrink-0 px-2 py-1 md:px-3 md:py-2 rounded-full text-xs md:text-base bg-black/20 font-bold uppercase tracking-widest shadow-sm text-black backdrop-blur-md whitespace-nowrap" style="font-size: 10px;">${evt.date}</span>` : ''}
                         </div>
 
                         ${evt.instagram_link ? `
@@ -613,61 +602,48 @@ function updateSiteContent() {
     if (pastContainer && siteContent.eventsPage && siteContent.eventsPage.past) {
         pastContainer.innerHTML = "";
 
-        // Override default classes to force the zig-zag layout
-        pastContainer.className = "grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 items-start mt-8";
-
         siteContent.eventsPage.past.forEach((evt, index) => {
 
-            // 1. Department Color Dictionary
-            let deptColorClass = "bg-red-100 text-red-700";
-            if (evt.department) {
-                const dept = evt.department.toLowerCase();
-                if (dept.includes("leadership")) deptColorClass = "bg-red-100 text-red-700";
-                else if (dept.includes("welfare")) deptColorClass = "bg-blue-100 text-blue-700";
-                else if (dept.includes("relations")) deptColorClass = "bg-rose-100 text-rose-700";
-                else if (dept.includes("comserve") || dept.includes("community")) deptColorClass = "bg-green-100 text-green-700";
-                else if (dept.includes("sst") || dept.includes("secretaries")) deptColorClass = "bg-amber-100 text-amber-700";
-            }
-
-            // 2. Zig-Zag Stagger & Links
+            // 1. Zig-Zag Stagger & Links
             const staggerClass = (index % 2 !== 0) ? "md:mt-24" : "";
             const link = evt.instagram_link || "#";
-            const target = evt.instagram_link ? "_blank" : "";
+            const target = link !== "#" ? "_blank" : "";
 
-            // 3. Build the HTML Card
+            // 2. Build the HTML Card
             const html = `
-                    <div class="relative block rounded-3xl overflow-hidden shadow-lg border border-gray-200 group ${staggerClass}">
+                <div class="flex flex-col gap-3 ${staggerClass}">
+                    
+                    <div class="flex justify-between items-center w-full gap-2">
 
-                        <img src="${evt.image}" alt="${evt.title}" loading="lazy"
-                            class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105">
-
-                        <div class="absolute top-4 left-4 right-4 flex justify-between items-start z-20 pointer-events-none">
-                            <div class="flex flex-col gap-2 items-start">
-                                ${evt.department ? `<span class="px-3 py-1.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest shadow-sm backdrop-blur-md ${deptColorClass} bg-opacity-90">${evt.department}</span>` : ''}
-                                ${evt.date ? `<span class="px-3 py-1.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest shadow-sm bg-black/80 text-white backdrop-blur-md">${evt.date}</span>` : ''}
-                            </div>
-
-                            ${evt.instagram_link ? `
-                            <div class="bg-white/95 backdrop-blur-sm p-2 rounded-full shadow-md text-[#E1306C]">
-                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                                </svg>
-                            </div>
-                            ` : ''}
+                        <div class="flex flex-row flex-nowrap gap-2 md:gap-3 items-center justify-start flex-1 w-0 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden pb-1">
+                            ${evt.department ? `<span class="shrink-0 px-2 py-1 md:px-3 md:py-2 rounded-full text-xs md:text-base font-bold uppercase tracking-widest shadow-sm backdrop-blur-md ${getDepartmentColor(evt.department)} bg-opacity-90 whitespace-nowrap" style="font-size: 10px;">${evt.department}</span>` : ''}
+                            ${evt.date ? `<span class="shrink-0 px-2 py-1 md:px-3 md:py-2 rounded-full text-xs md:text-base bg-black/20 font-bold uppercase tracking-widest shadow-sm text-black backdrop-blur-md whitespace-nowrap" style="font-size: 10px;">${evt.date}</span>` : ''}
                         </div>
 
-                        <a href="${link}" target="${target}"
-                        class="absolute inset-0 z-10 bg-black/0 group-hover:bg-black/75 transition-colors duration-500 flex flex-col items-center justify-center p-6 text-center ${!evt.instagram_link ? 'cursor-not-allowed' : ''}">
-
-                            <h3 class="text-white text-2xl md:text-3xl font-bold mb-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-6 group-hover:translate-y-0">
-                                ${evt.title}
-                            </h3>
-
-                            <span class="text-white font-bold tracking-[0.2em] uppercase opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-6 group-hover:translate-y-0 border-2 border-white px-8 py-3 rounded-full backdrop-blur-sm hover:bg-white hover:text-black">
-                                ${evt.instagram_link ? 'View on IG' : 'No Link Available'}
-                            </span>
+                        ${evt.instagram_link ? `
+                        <a href="${evt.instagram_link}" target="_blank" aria-label="View on Instagram"
+                            class="shrink-0 bg-[#E1306C] text-white p-2 md:p-2.5 rounded-full transition-all duration-300 lg:hover:scale-110 lg:hover:shadow-lg">
+                            <svg class="w-4 h-4 md:w-5 md:h-5 fill-current" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
                         </a>
-                    </div>`;
+                        ` : ''}    
+                    </div>
+
+                    <div class="relative aspect-4/5 block rounded-3xl overflow-hidden shadow-lg border border-gray-200 group">
+                        
+                        <img src="${evt.image}" alt="${evt.title}" loading="lazy"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 lg:group-hover:scale-105">
+
+                        <div class="absolute inset-0 z-20 flex items-center justify-center transition-all duration-500 bg-black/0 lg:group-hover:bg-black/30 pointer-events-none">
+                            <a href="${link}" target="${target}" 
+                                class="pointer-events-auto text-white font-bold bg-black/10 lg:bg-transparent lg:hover:bg-white lg:hover:text-black tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500 transform lg:translate-y-4 lg:group-hover:translate-y-0 border-2 border-white px-4 py-1.5 md:px-6 md:py-2.5 rounded-full backdrop-blur-sm ${link === '#' ? 'cursor-not-allowed hover:bg-transparent hover:text-white' : ''}" style="font-size: 11px;">
+                                ${link !== '#' ? 'View More' : 'Upcoming'}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
 
             pastContainer.insertAdjacentHTML('beforeend', html);
         });
@@ -708,33 +684,36 @@ function updateSiteContent() {
 
                     // CRITICAL: We stagger based on the new FILTERED index, so the layout never breaks!
                     const staggerClass = (index % 2 !== 0) ? "md:mt-24" : "";
-
-                    // Check if this specific item has an Instagram link in the data
-                    const igButtonHTML = item.ig_link ? `
-                            <a href="${item.ig_link}" target="_blank" aria-label="Watch on Instagram"
-                            class="absolute top-4 left-4 z-30 lg:bg-black/40 bg-[#E1306C] backdrop-blur-md border border-white/20 text-white p-2.5 rounded-full transition-all duration-300 lg:hover:bg-[#E1306C] lg:hover:scale-110 lg:hover:shadow-lg group/ig">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
-                                </svg>
-                            </a>
-                        ` : ''; // If no link exists, inject nothing!
-
                     const cardHTML = `
-                            <div class="relative block rounded-2xl overflow-hidden shadow-lg border border-gray-200 group ${staggerClass} ${isDisabled ? 'opacity-80' : ''}">
-                                
-                                <img src="${item.image}" alt="${item.title}" loading="lazy"
-                                    class="w-full h-auto object-cover transform transition-transform duration-700">
-                                
-                                ${igButtonHTML}
-                                
-                                <a href="${link}" target="${target}" 
-                                class="absolute inset-0 z-10 bg-black/0 lg:group-hover:bg-black/30 transition-colors duration-500 flex items-center justify-center ${isDisabled ? 'cursor-not-allowed' : ''}">
+                        <div class="flex flex-col gap-3 ${staggerClass}">
+                    
+                            <div class="flex justify-between items-center w-full gap-2">
+
+                                <div class="flex flex-row flex-nowrap gap-2 md:gap-3 items-center justify-start flex-1 w-0 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden pb-1">
+                                    ${item.department ? `<span class="shrink-0 px-2 py-1 md:px-3 md:py-2 rounded-full text-xs md:text-base font-bold uppercase tracking-widest shadow-sm backdrop-blur-md ${getDepartmentColor(item.department)} bg-opacity-90 whitespace-nowrap" style="font-size: 10px;">${item.department}</span>` : ''}
                                     
-                                    <span class="text-white font-bold bg-black/20 lg:bg-transparent lg:hover:bg-white lg:hover:text-maroon tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500 transform lg:translate-y-4 lg:group-hover:translate-y-0 border-2 border-white px-6 py-2 rounded-full backdrop-blur-sm">
-                                        ${isDisabled ? 'Coming Soon' : item.button_text}
-                                    </span>
+                                ${item.instagram_link ? `
+                                <a href="${item.instagram_link}" target="_blank" aria-label="View on Instagram"
+                                    class="shrink-0 bg-[#E1306C] text-white p-2 md:p-2.5 rounded-full transition-all duration-300 lg:hover:scale-110 lg:hover:shadow-lg">
+                                    <svg class="w-4 h-4 md:w-5 md:h-5 fill-current" viewBox="0 0 24 24">
+                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                    </svg>
                                 </a>
+                                ` : ''}  
                             </div>
+
+                            <div class="relative block rounded-3xl overflow-hidden shadow-lg border border-gray-200 group">
+                                
+                                <img src="${item.image}" alt="${item.title}"absolute inset-0 class="w-full h-full object-cover">
+
+                                <div class="absolute inset-0 z-20 flex items-center justify-center transition-all duration-500 bg-black/0 lg:group-hover:bg-black/30 pointer-events-none">
+                                    <a href="${link}" target="${target}" 
+                                        class="pointer-events-auto text-white font-bold bg-black/10 lg:bg-transparent lg:hover:bg-white lg:hover:text-black tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500 transform lg:translate-y-4 lg:group-hover:translate-y-0 border-2 border-white px-4 py-1.5 md:px-6 md:py-2.5 rounded-full backdrop-blur-sm ${link === '#' ? 'cursor-not-allowed hover:bg-transparent hover:text-white' : ''}" style="font-size: 11px;">
+                                        ${isDisabled ? 'Coming Soon' : item.button_text}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                         `;
                     gridDiv.insertAdjacentHTML('beforeend', cardHTML);
                 });
@@ -808,8 +787,7 @@ function updateSiteContent() {
         }
 
         // C. Submission Forms
-        setLink("btn-submit-participation", siteContent.alstarPage.forms.participation);
-        setLink("btn-submit-volunteer", siteContent.alstarPage.forms.volunteer);
+        setLink("btn-submit-amendment", siteContent.alstarPage.forms.amendment);
         setLink("btn-submit-talk", siteContent.alstarPage.forms.talk);
 
         // D. Google Calendar Embed
@@ -886,8 +864,30 @@ function navbarManagement() {
 
         // 🔥 CLOSE MENU WHEN CLICK LINK
         content.querySelectorAll("a").forEach(link => {
-            link.addEventListener("click", () => {
-                toggleMenu();
+            link.addEventListener("click", (e) => {
+                // 1. Parse the clicked URL
+                const url = new URL(link.href);
+
+                // 2. Check if this is an anchor link (#) on the CURRENT page
+                if (url.hash && url.pathname === window.location.pathname) {
+                    e.preventDefault(); // Stop the default instant, broken jump
+
+                    toggleMenu(); // Close the menu and remove 'overflow-hidden'
+
+                    // Wait a tiny bit for the DOM to restore scrolling, then smooth scroll to the section
+                    setTimeout(() => {
+                        const targetSection = document.querySelector(url.hash);
+                        if (targetSection) {
+                            // scrollIntoView is native and provides a nice smooth scrolling effect
+                            targetSection.scrollIntoView({ behavior: "smooth" });
+                        }
+                    }, 300); // 300ms gives your menu time to fade out before moving
+
+                } else {
+                    // Normal cross-page link (e.g., going from Home to Events)
+                    // Just close the menu and let the browser navigate normally
+                    toggleMenu();
+                }
             });
         });
     }
@@ -929,19 +929,37 @@ function navbarManagement() {
 
     setActiveLink();
 
+    // Add this variable just above your handleScroll function
+    let lastScrollY = window.scrollY;
+
     function handleScroll() {
         // 🔥 THE FIX: If the menu is open, ignore scrolling entirely!
         if (isOpen) return;
 
-        if (window.scrollY > 200) {
-            // Scrolled down: Hide navbar
+        const currentScrollY = window.scrollY;
+
+        // 1. Always show the navbar if we are at the very top of the page
+        // (This also handles the "rubber-banding" bounce effect on Safari/iOS)
+        if (currentScrollY <= 0) {
+            navbar.classList.remove('-translate-y-full', 'opacity-0');
+            navbar.classList.add('translate-y-0', 'opacity-100');
+            lastScrollY = currentScrollY;
+            return;
+        }
+
+        // 2. Determine scroll direction
+        if (currentScrollY > lastScrollY) {
+            // Scrolling DOWN: Hide navbar
             navbar.classList.remove('translate-y-0', 'opacity-100');
             navbar.classList.add('-translate-y-full', 'opacity-0');
         } else {
-            // At the top: Show navbar
+            // Scrolling UP: Show navbar
             navbar.classList.remove('-translate-y-full', 'opacity-0');
             navbar.classList.add('translate-y-0', 'opacity-100');
         }
+
+        // 3. Update the last scroll position for the next time the user scrolls
+        lastScrollY = currentScrollY;
     }
 
     // 1. Listen for standard scrolling
@@ -949,6 +967,28 @@ function navbarManagement() {
 
     // 2. Run it immediately once on page load to set the correct initial state
     handleScroll();
+
+    // ==========================================
+    // 🔥 HANDLE CROSS-PAGE HASH NAVIGATION
+    // ==========================================
+    function checkHashOnLoad() {
+        // 1. Check if the URL has a hash (e.g., #upcoming)
+        if (window.location.hash) {
+
+            // 2. Wait 150ms to ensure the DOM and images have started rendering
+            setTimeout(() => {
+                const targetSection = document.querySelector(window.location.hash);
+
+                if (targetSection) {
+                    // 3. Smoothly scroll to the section
+                    targetSection.scrollIntoView({ behavior: "smooth" });
+                }
+            }, 150);
+        }
+    }
+
+    // Run the check when the script loads
+    checkHashOnLoad();
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
