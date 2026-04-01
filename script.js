@@ -80,7 +80,7 @@ function updateSiteContent() {
             img.src = partner.image;
             img.alt = partner.name;
             // Style: Grayscale by default, color on hover (modern effect)
-            img.className = "w-16 h-16 w-auto md:h-44 object-contain opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 filter grayscale group-hover:grayscale-0";
+            img.className = "w-20 h-20 md:w-auto md:h-44 object-contain opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 filter grayscale group-hover:grayscale-0";
 
             // Create the name text
             const name = document.createElement("span");
@@ -98,11 +98,35 @@ function updateSiteContent() {
     const upcomingEvents = siteContent.eventsPage?.upcoming || [];
     let currentEventIndex = 0;
     let carouselTimer;
+    let interactionTimeout;
+    let isInteracting = false; // FIX: Track interaction state to prevent overlapping timers
     const carouselDelay = 5000; // 5 seconds per slide
 
     const cardEl = document.getElementById("featured-event-card");
     const wrapperEl = document.getElementById("carousel-wrapper");
     const imgContainer = document.getElementById("details-img-container");
+
+    window.toggleEventInfo = function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        temporarilyPauseCarousel();
+
+        const mainImg = document.getElementById("event-img");
+        const detailsImg = document.getElementById("event-details-img");
+
+        if (detailsImg && mainImg) {
+            if (detailsImg.classList.contains("opacity-0")) {
+                detailsImg.classList.remove("opacity-0");
+                detailsImg.classList.add("opacity-100");
+                mainImg.classList.add("opacity-0");
+            } else {
+                detailsImg.classList.add("opacity-0");
+                detailsImg.classList.remove("opacity-100");
+                mainImg.classList.remove("opacity-0");
+            }
+        }
+    };
 
     function renderFeaturedEvent(index) {
         if (!upcomingEvents || upcomingEvents.length === 0 || !cardEl) return;
@@ -115,25 +139,23 @@ function updateSiteContent() {
 
         // 2. Wait for fade out to finish, then swap data
         setTimeout(() => {
+            // Assume setImage, setText, and getDepartmentColor are globally defined elsewhere
             setImage("event-img", eventData.image);
             setImage("event-details-img", eventData.details_image);
             setText("event-title", eventData.title);
 
-            // Date
             const dateEl = document.getElementById("event-date");
             if (dateEl && eventData.date) {
                 dateEl.textContent = eventData.date;
                 dateEl.classList.remove("hidden");
             }
 
-            // Event Tag
             const eventtypeEl = document.getElementById("event-type");
             if (eventtypeEl && eventData.event_type) {
                 eventtypeEl.textContent = eventData.event_type;
                 eventtypeEl.classList.remove("hidden");
             }
 
-            // Department Tag
             const deptEl = document.getElementById("event-department");
             if (deptEl && eventData.department) {
                 deptEl.textContent = eventData.department;
@@ -143,7 +165,6 @@ function updateSiteContent() {
                 deptEl.classList.add("hidden");
             }
 
-            // Instagram
             const igEl = document.getElementById("event-ig-link");
             if (igEl && eventData.instagram_link) {
                 igEl.href = eventData.instagram_link;
@@ -152,7 +173,6 @@ function updateSiteContent() {
                 igEl.classList.add("hidden");
             }
 
-            // Button Logic
             const eventBtn = document.getElementById("event-reg-btn");
             if (eventBtn) {
                 const regLink = eventData.registration_link;
@@ -167,13 +187,19 @@ function updateSiteContent() {
                 }
             }
 
+            const detailsImg = document.getElementById("event-details-img");
+            const mainImg = document.getElementById("event-img");
+            if (detailsImg && mainImg) {
+                detailsImg.classList.add("opacity-0");
+                mainImg.classList.remove("opacity-0");
+            }
+
             // 3. Fade back in
             cardEl.classList.remove("opacity-0");
             cardEl.classList.add("opacity-100");
         }, 500);
     }
 
-    // Navigation Functions
     function nextSlide() {
         currentEventIndex = (currentEventIndex + 1) % upcomingEvents.length;
         renderFeaturedEvent(currentEventIndex);
@@ -184,79 +210,94 @@ function updateSiteContent() {
         renderFeaturedEvent(currentEventIndex);
     }
 
-    // Helper to manually trigger slide (resets the auto-play timer)
-    function triggerManualSlide(direction) {
+    // FIX: Improved 10-Second Pause Logic
+    function temporarilyPauseCarousel() {
         clearInterval(carouselTimer);
+        clearTimeout(interactionTimeout);
+        isInteracting = true; // Lock the timer state
+
+        interactionTimeout = setTimeout(() => {
+            isInteracting = false; // Unlock state
+            carouselTimer = setInterval(nextSlide, carouselDelay);
+        }, 10000);
+    }
+
+    function triggerManualSlide(direction) {
         if (direction === 'next') nextSlide();
         if (direction === 'prev') prevSlide();
-        carouselTimer = setInterval(nextSlide, carouselDelay);
+        temporarilyPauseCarousel();
     }
 
     // --- INITIALIZE CAROUSEL & EVENT LISTENERS ---
     if (upcomingEvents.length > 0) {
         renderFeaturedEvent(0);
 
-        // 1. Auto-play timer
         carouselTimer = setInterval(nextSlide, carouselDelay);
 
-        // 2. Pause on Hover (Desktop)
         if (wrapperEl) {
-            wrapperEl.addEventListener('mouseenter', () => clearInterval(carouselTimer));
-            wrapperEl.addEventListener('mouseleave', () => {
+            wrapperEl.addEventListener('mouseenter', () => {
                 clearInterval(carouselTimer);
-                carouselTimer = setInterval(nextSlide, carouselDelay);
+                clearTimeout(interactionTimeout);
+                isInteracting = false; // Reset lock if user manually hovers
             });
-        }
 
-        // 3. Arrow Buttons
-        document.getElementById("next-event-btn")?.addEventListener('click', () => triggerManualSlide('next'));
-        document.getElementById("prev-event-btn")?.addEventListener('click', () => triggerManualSlide('prev'));
-
-        // 4. Laptop: Left/Right Half Click Navigation
-        if (imgContainer) {
-            imgContainer.style.cursor = 'pointer'; // Show user it's clickable
-            imgContainer.addEventListener('click', (e) => {
-                // Calculate where the user clicked relative to the image container
-                const rect = imgContainer.getBoundingClientRect();
-                const clickX = e.clientX - rect.left;
-
-                // If clicked on left half, go prev. If right half, go next.
-                if (clickX < rect.width / 2) {
-                    triggerManualSlide('prev');
-                } else {
-                    triggerManualSlide('next');
+            wrapperEl.addEventListener('mouseleave', () => {
+                // FIX: Only restart if we aren't currently serving a 10s interaction pause
+                if (!isInteracting) {
+                    clearInterval(carouselTimer);
+                    carouselTimer = setInterval(nextSlide, carouselDelay);
                 }
             });
 
-            // 5. Mobile: Swipe Gesture Navigation
+            // FIX: Removed touchstart here to avoid double-firing with click on mobile browsers
+            wrapperEl.addEventListener('click', temporarilyPauseCarousel);
+        }
+
+        document.getElementById("next-event-btn")?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            triggerManualSlide('next');
+        });
+
+        document.getElementById("prev-event-btn")?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            triggerManualSlide('prev');
+        });
+
+        // 4. Mobile: Swipe Gestures Navigation
+        if (imgContainer) {
+            imgContainer.style.cursor = 'default';
             let touchStartX = 0;
+            let touchStartY = 0; // FIX: Added Y tracking
             let touchEndX = 0;
+            let touchEndY = 0;   // FIX: Added Y tracking
 
             imgContainer.addEventListener('touchstart', (e) => {
                 touchStartX = e.changedTouches[0].screenX;
-                clearInterval(carouselTimer); // Pause while swiping
+                touchStartY = e.changedTouches[0].screenY;
             }, { passive: true });
 
             imgContainer.addEventListener('touchend', (e) => {
                 touchEndX = e.changedTouches[0].screenX;
+                touchEndY = e.changedTouches[0].screenY;
                 handleSwipe();
-                carouselTimer = setInterval(nextSlide, carouselDelay); // Resume after swipe
             }, { passive: true });
 
             function handleSwipe() {
-                const swipeThreshold = 50; // Minimum pixels to count as a swipe
-                if (touchEndX < touchStartX - swipeThreshold) {
-                    // Swiped Left -> Go to Next
-                    triggerManualSlide('next');
-                }
-                if (touchEndX > touchStartX + swipeThreshold) {
-                    // Swiped Right -> Go to Prev
-                    triggerManualSlide('prev');
+                const deltaX = touchEndX - touchStartX;
+                const deltaY = touchEndY - touchStartY;
+                const swipeThreshold = 50;
+
+                // FIX: Ignore swipe if vertical scrolling is dominant over horizontal
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > swipeThreshold) {
+                    if (deltaX < 0) {
+                        triggerManualSlide('next');
+                    } else {
+                        triggerManualSlide('prev');
+                    }
                 }
             }
         }
     } else {
-        // Hide or load fallback if array is empty
         if (wrapperEl) wrapperEl.style.display = "none";
     }
 
@@ -296,7 +337,7 @@ function updateSiteContent() {
                 ` : ''}  
             </div>
 
-            <div class="relative aspect-4/5 block rounded-3xl overflow-hidden shadow-lg border border-gray-200 group">
+            <div class="relative block rounded-3xl overflow-hidden shadow-lg border border-gray-200 group">
                 <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
 
                 <div class="absolute inset-0 z-20 flex items-center justify-center transition-all duration-500 bg-black/0 lg:group-hover:bg-black/30 pointer-events-none">
@@ -369,6 +410,53 @@ function updateSiteContent() {
     // ==========================================
     // 3. COMMITTEE PAGE
     // ==========================================
+
+    // --- Mobile Interaction Logic ---
+    // Make sure these are globally accessible for inline onclick handlers
+    window.toggleQuote = function (event, btn) {
+        event.stopPropagation(); // Prevents the document click listener from firing immediately
+        const popup = btn.nextElementSibling;
+        const isVisible = popup.classList.contains('opacity-100');
+
+        // Hide all other open popups first for clean UX
+        document.querySelectorAll('.quote-popup').forEach(p => {
+            p.classList.remove('opacity-100', 'scale-100');
+            p.classList.add('opacity-0', 'scale-95');
+        });
+
+        // Toggle the clicked one
+        if (!isVisible) {
+            popup.classList.remove('opacity-0', 'scale-95');
+            popup.classList.add('opacity-100', 'scale-100');
+        }
+    };
+
+    window.toggleDeptImg = function (event, btn) {
+        event.preventDefault();
+        const container = btn.closest('.relative');
+        const playful = container.querySelector('.playful-img');
+        const formal = container.querySelector('.formal-img');
+
+        if (playful.classList.contains('opacity-0')) {
+            playful.classList.remove('opacity-0');
+            playful.classList.add('opacity-100');
+            formal.classList.add('opacity-0');
+        } else {
+            playful.classList.add('opacity-0');
+            playful.classList.remove('opacity-100');
+            formal.classList.remove('opacity-0');
+        }
+    };
+
+    // Close any open mobile quote popups when clicking anywhere else on the screen
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.quote-popup').forEach(p => {
+            p.classList.remove('opacity-100', 'scale-100');
+            p.classList.add('opacity-0', 'scale-95');
+        });
+    });
+
+
     const hcContainer = document.getElementById("high-council-tree");
     const deptRoster = document.getElementById("dept-roster");
     if (hcContainer && siteContent.committee) {
@@ -381,7 +469,7 @@ function updateSiteContent() {
             const card = document.createElement("div");
 
             // Size of the card container
-            card.className = "flex flex-col items-center text-center group w-48 md:w-64";
+            card.className = "flex flex-col items-center text-center group/card w-48 md:w-64";
 
             // Size of the circle
             const imgSize = size === "large"
@@ -393,13 +481,17 @@ function updateSiteContent() {
             card.innerHTML = `
                     <div class="relative mb-4">
                         
-                        <div class="${imgSize} rounded-full overflow-hidden border-4 border-gray-100 group-hover:border-maroon group-hover:shadow-[0_0_20px_rgba(136,17,59,0.3)] transition-all duration-300 p-1 bg-white relative z-30">
+                        <div class="${imgSize} rounded-full overflow-hidden border-4 border-gray-100 md:group-hover/card:border-maroon md:group-hover/card:shadow-[0_0_20px_rgba(136,17,59,0.3)] transition-all duration-300 p-1 bg-white relative z-30">
                             <img src="${member.image}" class="w-full h-full object-cover object-top rounded-full" loading="lazy">
                         </div>
 
-                        <div class="absolute top-1/2 left-[90%] -translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-maroon/10 z-40 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out transform translate-x-2.5 scale-95 group-hover:translate-x-0 group-hover:scale-100 pointer-events-none hidden md:block">
+                        <button onclick="toggleQuote(event, this)" class="md:hidden absolute bottom-0 right-0 md:right-2 bg-white border border-gray-200 text-maroon rounded-full w-9 h-9 flex items-center justify-center shadow-lg z-50 active:scale-95 transition-transform">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+                        </button>
+
+                        <div class="quote-popup absolute top-full left-1/2 -translate-x-1/2 mt-4 md:mt-0 md:top-1/2 md:left-[90%] md:-translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-maroon/10 z-40 opacity-0 md:group-hover/card:opacity-100 transition-all duration-300 ease-out transform scale-95 md:translate-x-2.5 md:group-hover/card:translate-x-0 md:group-hover/card:scale-100 pointer-events-none">
                             
-                            <div class="absolute top-1/2 -left-2 -translate-y-1/2 w-4 h-4 bg-white/95 transform rotate-45 border-l border-b border-maroon/10"></div>
+                            <div class="absolute -top-2 left-1/2 -translate-x-1/2 md:top-1/2 md:-left-2 md:-translate-y-1/2 md:translate-x-0 w-4 h-4 bg-white/95 transform rotate-45 border-t border-l md:border-t-0 md:border-b border-maroon/10"></div>
                             
                             <span class="absolute top-2 left-3 text-maroon/20 text-4xl font-serif leading-none -z-10"></span>
                             
@@ -461,14 +553,19 @@ function updateSiteContent() {
                     const userQuote = leader.quote || "Dedicated to serving the A-Level Student Committee";
 
                     html += `
-                            <div class="flex flex-col items-center text-center group w-48 md:w-64">
+                            <div class="flex flex-col items-center text-center group/card w-48 md:w-64">
                                 <div class="relative mb-4">
-                                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gray-200 group-hover:border-maroon group-hover:shadow-[0_0_15px_rgba(136,17,59,0.4)] transition-all duration-300 p-1 bg-white relative z-10">
+                                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gray-200 md:group-hover/card:border-maroon md:group-hover/card:shadow-[0_0_15px_rgba(136,17,59,0.4)] transition-all duration-300 p-1 bg-white relative z-10">
                                         <img src="${leader.image}" class="w-full h-full object-cover object-top rounded-full" loading="lazy">
                                     </div>
-                                    <div class="absolute top-1/2 left-[90%] -translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-maroon/10 z-40 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out transform translate-x-2.5 scale-95 group-hover:translate-x-0 group-hover:scale-100 pointer-events-none hidden md:block">
-                                
-                                        <div class="absolute top-1/2 -left-2 -translate-y-1/2 w-4 h-4 bg-white/95 transform rotate-45 border-l border-b border-maroon/10"></div>
+
+                                    <button onclick="toggleQuote(event, this)" class="md:hidden absolute bottom-0 right-0 md:right-2 bg-white border border-gray-200 text-maroon rounded-full w-9 h-9 flex items-center justify-center shadow-lg z-50 active:scale-95 transition-transform">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+                                    </button>
+
+                                    <div class="quote-popup absolute top-full left-1/2 -translate-x-1/2 mt-4 md:mt-0 md:top-1/2 md:left-[90%] md:-translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-maroon/10 z-40 opacity-0 md:group-hover/card:opacity-100 transition-all duration-300 ease-out transform scale-95 md:translate-x-2.5 md:group-hover/card:translate-x-0 md:group-hover/card:scale-100 pointer-events-none">
+                                        
+                                        <div class="absolute -top-2 left-1/2 -translate-x-1/2 md:top-1/2 md:-left-2 md:-translate-y-1/2 md:translate-x-0 w-4 h-4 bg-white/95 transform rotate-45 border-t border-l md:border-t-0 md:border-b border-maroon/10"></div>
                                         
                                         <span class="absolute top-2 left-3 text-maroon/20 text-4xl font-serif leading-none -z-10"></span>
                                         
@@ -492,14 +589,19 @@ function updateSiteContent() {
                     const userQuote = member.quote || "Dedicated to serving the A-Level Student Committee";
 
                     html += `
-                        <div class="flex flex-col items-center text-center group w-48 md:w-64">
+                        <div class="flex flex-col items-center text-center group/card w-48 md:w-64">
                             <div class="relative mb-4">
-                                <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gray-200 group-hover:border-maroon group-hover:shadow-[0_0_15px_rgba(136,17,59,0.4)] transition-all duration-300 p-1 bg-white relative z-10">
+                                <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gray-200 md:group-hover/card:border-maroon md:group-hover/card:shadow-[0_0_15px_rgba(136,17,59,0.4)] transition-all duration-300 p-1 bg-white relative z-10">
                                     <img src="${member.image}" class="w-full h-full object-cover object-top rounded-full" loading="lazy">
                                 </div>
-                                <div class="absolute top-1/2 left-[90%] -translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-maroon/10 z-40 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out transform translate-x-2.5 scale-95 group-hover:translate-x-0 group-hover:scale-100 pointer-events-none hidden md:block">
+                                
+                                <button onclick="toggleQuote(event, this)" class="md:hidden absolute bottom-0 right-0 md:right-2 bg-white border border-gray-200 text-maroon rounded-full w-9 h-9 flex items-center justify-center shadow-lg z-50 active:scale-95 transition-transform">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+                                </button>
+
+                                <div class="quote-popup absolute top-full left-1/2 -translate-x-1/2 mt-4 md:mt-0 md:top-1/2 md:left-[90%] md:-translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-maroon/10 z-40 opacity-0 md:group-hover/card:opacity-100 transition-all duration-300 ease-out transform scale-95 md:translate-x-2.5 md:group-hover/card:translate-x-0 md:group-hover/card:scale-100 pointer-events-none">
                             
-                                    <div class="absolute top-1/2 -left-2 -translate-y-1/2 w-4 h-4 bg-white/95 transform rotate-45 border-l border-b border-maroon/10"></div>
+                                    <div class="absolute -top-2 left-1/2 -translate-x-1/2 md:top-1/2 md:-left-2 md:-translate-y-1/2 md:translate-x-0 w-4 h-4 bg-white/95 transform rotate-45 border-t border-l md:border-t-0 md:border-b border-maroon/10"></div>
                                     
                                     <span class="absolute top-2 left-3 text-maroon/20 text-4xl font-serif leading-none -z-10"></span>
                                     
@@ -539,15 +641,19 @@ function updateSiteContent() {
 
                 // 2. Build the full Card HTML
                 const cardHTML = `
-                        <div class="border-custom bg-white overflow-hidden rounded-2xl flex flex-col shadow-sm hover:shadow-md transition-shadow">
+                        <div class="border-custom bg-white overflow-hidden rounded-2xl flex flex-col shadow-sm hover:shadow-md transition-shadow group/dept">
                             
                             <div class="relative w-full aspect-5/4 bg-gray-100 overflow-hidden">
                                 
                                 <img src="${dept.image}" alt="${dept.title} Formal" loading="lazy"
-                                    class="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-600 hover:opacity-0">
+                                    class="formal-img absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-600 md:group-hover/dept:opacity-0">
                                 
                                 <img src="${dept.image_playful}" alt="${dept.title} Playful" loading="lazy"
-                                    class="absolute inset-0 w-full h-full object-cover object-top opacity-0 transition-all duration-600 hover:opacity-100">
+                                    class="playful-img absolute inset-0 w-full h-full object-cover object-top opacity-0 transition-all duration-600 md:group-hover/dept:opacity-100">
+                                
+                                <button onclick="toggleDeptImg(event, this)" class="md:hidden absolute bottom-4 right-4 bg-white/90 backdrop-blur text-maroon p-2.5 rounded-full shadow-lg z-20 flex items-center justify-center border border-maroon/20 active:scale-90 transition-transform" aria-label="Toggle playful image">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                                </button>
                             </div>
 
                             <div class="p-6 md:p-8 flex flex-col grow">
@@ -564,7 +670,6 @@ function updateSiteContent() {
             });
         }
     }
-
     // ==========================================
     // 4. EVENTS PAGE
     // ==========================================

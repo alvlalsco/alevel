@@ -44,7 +44,7 @@ const siteContent = {
         },
         {
             name: "Publications",
-            link: "/html_pages/publications.html",
+            link: "/html_pages/publication.html",
             sections: [
                 { name: "Monthly Post", id: "publication-list-container" },
                 { name: "Newsletter", id: "publication-list-container" }
@@ -316,16 +316,6 @@ const siteContent = {
                 registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSeCTDl1RF7P4K5_SdlU_GsZ6SPs467Ks_1-ozpVcQGVHo8-9A/viewform?usp=publish-editor "
             },
             {
-                title: "Commanding the Capital",
-                department: "ALSTAR G2",
-                event_type: "External Trial Run",
-                date: "Monday, 30th March 2026",
-                image: "/images/events/upcoming/g2etr1.avif",
-                details_image: "/images/events/upcoming/g2etr2.avif",
-                instagram_link: "https://www.instagram.com/p/DWNVggJE7aG/?img_index=1",
-                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSc2KItF68IJ2uWshbQWxGJFwkjoSfjm9TCOfTOtlmMIeS1vcg/viewform?usp=publish-editor "
-            },
-            {
                 title: "The Decision Lab",
                 department: "ALSTAR G3",
                 event_type: "Actual Event",
@@ -336,16 +326,6 @@ const siteContent = {
                 registration_link: "https://forms.gle/r9JTNaQZGsKbTXdCA"
             },
             {
-                title: "The Decision Lab",
-                department: "ALSTAR G3",
-                event_type: "External Trial Run",
-                date: "Wednesday, 1st April 2026",
-                image: "/images/events/upcoming/g3etr1.avif",
-                details_image: "/images/events/upcoming/g3etr2.avif",
-                instagram_link: "https://www.instagram.com/p/DV8Sf9lke55/?img_index=1",
-                registration_link: "https://forms.gle/CiWSdjRB3XNDMyPN6"
-            },
-            {
                 title: "House of Cards",
                 department: "ALSTAR G5",
                 event_type: "Actual Event",
@@ -354,28 +334,6 @@ const siteContent = {
                 details_image: "/images/events/upcoming/g5ae2.avif",
                 instagram_link: "https://www.instagram.com/p/DWBm-uaESgJ/?img_index=1",
                 registration_link: "https://forms.gle/a3nC9BiSKmf3bJBJA"
-            },
-
-            {
-                title: "House of Cards",
-                department: "ALSTAR G5",
-                event_type: "External Trial Run",
-                date: "Wednesday, 1st April 2026",
-                image: "/images/events/upcoming/g5etr1.avif",
-                details_image: "/images/events/upcoming/g5etr2.avif",
-                instagram_link: "https://www.instagram.com/p/DV54AQlEeAh/?img_index=1",
-                registration_link: "https://forms.gle/9bWAQs5WQS2Rw35y7"
-            },
-
-            {
-                title: "Dead On Arrival",
-                department: "ALSTAR G6",
-                event_type: "External Trial Run",
-                date: "Monday, 30th March 2026",
-                image: "/images/events/upcoming/g6etr1.avif",
-                details_image: "/images/events/upcoming/g6etr2.avif",
-                instagram_link: "https://www.instagram.com/p/DWV-3G4EZEL/?img_index=1",
-                registration_link: "https://forms.gle/ktPySaY3hRtSqkj8A "
             },
             {
                 title: "Friendship 101",
@@ -388,16 +346,6 @@ const siteContent = {
                 registration_link: "https://forms.gle/BQwz9qhn9dmVJQiXA"
             },
             {
-                title: "Friendship 101",
-                department: "ALSTAR G7",
-                event_type: "External Trial Run",
-                date: "Tuesday, 31st March 2026",
-                image: "/images/events/upcoming/g7etr1.avif",
-                details_image: "/images/events/upcoming/g7etr2.avif",
-                instagram_link: "https://www.instagram.com/p/DWJHCxSkUsn/?img_index=1",
-                registration_link: "https://forms.gle/yGA3cEBDzwF7tFPo9 "
-            },
-            {
                 title: "Game On, Stress Gone",
                 department: "ALSTAR G8",
                 event_type: "Actual Event",
@@ -406,17 +354,6 @@ const siteContent = {
                 details_image: "/images/events/upcoming/g8ae2.avif",
                 instagram_link: "https://www.instagram.com/p/DWbMVmtETXz/?img_index=1",
                 registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSc2TRHzljbwXLyXpjWky2NYIdBTIy7HOAi_N9j8TaXbPTg5mA/viewform?usp=dialog"
-            },
-
-            {
-                title: "Game On, Stress Gone",
-                department: "ALSTAR G8",
-                event_type: "External Trial Run",
-                date: "Wednesday, 1st April 2026",
-                image: "/images/events/upcoming/g8etr1.avif",
-                details_image: "/images/events/upcoming/g8etr2.avif",
-                instagram_link: "https://www.instagram.com/p/DWDxiLVkRfN/?img_index=1",
-                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSftgKUixAp9HbsatrEY_m0hiqCdZiAnyowfLl5vLhmVMzeDjA/viewform"
             },
             {
                 title: "Clash on Sunway",
@@ -438,17 +375,6 @@ const siteContent = {
                 instagram_link: "https://www.instagram.com/p/DVp46tnETKe/?img_index=1",
                 registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSenXr8L3YSjh4fZ3b_kp5NQ5QM-IjL5bnf-4jDxstxdbI44Pg/viewform?usp=header"
             },
-
-            {
-                title: "Dress To Impress",
-                department: "ALSTAR G10",
-                event_type: "External Trial Run",
-                date: "Tuesday, 31st March 2026",
-                image: "/images/events/upcoming/g10etr1.avif",
-                details_image: "/images/events/upcoming/g10etr2.avif",
-                instagram_link: "https://www.instagram.com/p/DWQuv-2kTHB/?img_index=1",
-                registration_link: "https://forms.gle/AfUmn1TVjTeQGdq79"
-            },
             {
                 title: "Reclaiming The Future",
                 department: "ALSTAR G11",
@@ -459,17 +385,6 @@ const siteContent = {
                 instagram_link: "https://www.instagram.com/p/DWTaSbEkRfN/?img_index=1",
                 registration_link: "https://forms.gle/yjzni855WPP8j7Kf7"
             },
-            {
-                title: "Reclaiming The Future",
-                department: "ALSTAR G11",
-                event_type: "External Trial Run",
-                date: "Tuesday, 31st March 2026",
-                image: "/images/events/upcoming/g11etr1.avif",
-                details_image: "/images/events/upcoming/g11etr2.avif",
-                instagram_link: "https://www.instagram.com/p/DWQ1b9bkf0k/?img_index=1",
-                registration_link: "https://forms.gle/hx6XUiPr7oWeVbmb9"
-            },
-
             {
                 title: "A Gift of Learning",
                 department: "ALSTAR G12",
