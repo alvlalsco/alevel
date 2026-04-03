@@ -47,7 +47,8 @@ const siteContent = {
             link: "/html_pages/publication.html",
             sections: [
                 { name: "Monthly Post", id: "publication-list-container" },
-                { name: "Newsletter", id: "publication-list-container" }
+                { name: "Newsletter", id: "publication-list-container" },
+                { name: "Handbook", id: "handbook" },
             ]
         },
         {
@@ -77,8 +78,9 @@ const siteContent = {
         // --- HERO SECTION ---
         hero: {
             image: "/images/index/alsco_group.avif",
-            description: "We are the official student committee representing all A-Level students at Sunway College. We bridge the gap between students and administration while organizing events that make your college life memorable.",
-            handbook_pdf: "https://drive.google.com/file/d/1cGKNRWNi1seFKY3j8foU6nxRZ_lQBkga/view?usp=sharing"
+            description: "We are the official student committee representing all A-Level students at Sunway College. We bridge the gap between students and administration while organising events that make your college life memorable.",
+            handbook_pdf: "https://drive.google.com/file/d/1cGKNRWNi1seFKY3j8foU6nxRZ_lQBkga/view?usp=sharing",
+            trailer_link: "https://www.instagram.com/p/DTST7w6kYDd/",
         },
 
         affiliates: [
@@ -90,60 +92,60 @@ const siteContent = {
         // --- FAQ SECTION ---
         faq: [
             {
-                question: "How do I join the ALSCO committee?",
-                answer: "Nope, no interviews needed! Becoming an ALSTAR is super straightforward—just fill in the registration form on the ALSTAR page. Once you're in, you’ll receive a confirmation email with everything you need, including the link to join the MS Teams group"
+                question: "How do I join the ALSTAR programme?",
+                answer: "Nope, no interviews needed! Becoming an ALSTAR is straightforward—just fill in the registration form on the ALSTAR page. Once you're in, you’ll receive a confirmation email with everything you need, including the link to join the MS Teams group."
             },
             {
                 question: "What exactly is the ALSTAR journey like?",
-                answer: "Your ALSTAR experience kicks off with your ALSTAR 1st Event. You’ll be grouped with other ALSTARs to plan and execute an event based on a theme—it could be anything from a bake sale to a campaign or even a themed party. Think of it as a hands-on preview of what it’s like to be part of ALSCO. You’ll learn by doing, collaborate with others, and bring ideas to life."
+                answer: "Your ALSTAR experience kicks off with your ALSTAR First Event. You’ll be grouped with other ALSTARs to plan and execute an event based on a theme. It could be anything; from a sports festival, to a workshop, or even a game show. Think of it as a hands-on preview of what it’s like to be a part of ALSCO. You’ll learn by doing, collaborate with others, and bring ideas to life."
             },
             {
-                question: "How do I join ALSCO after being an ALSTAR ?",
-                answer: "After completing your ALSTAR 1st Event, you can decide if ALSCO is for you.If you’re interested, you’ll fill in an application form and go through an interview process.From there, selected candidates will be invited to join the next ALSCO committee."
+                question: "How do I join ALSCO after being an ALSTAR?",
+                answer: "After completing your ALSTAR First Event, you can decide if ALSCO is for you. If you’re interested, you’ll fill in an application form and go through an interview process. From there, selected candidates will be invited to join the next ALSCO committee."
             },
             {
-                question: "Is being an ALSTAR worth it ? How much time does it take ?",
-                answer: "Definitely worth it.You’ll build real skills—communication, teamwork, leadership, and time management—while meeting new people and gaining meaningful experiences. As for time commitment, it’s flexible.You choose which events to join, so how involved you get is entirely up to you."
+                question: "Is being an ALSTAR worth it? How much time does it take?",
+                answer: "Definitely worth it. You’ll build real skills—communication, teamwork, leadership, and time management—while meeting new people and gaining meaningful experiences. As for time commitment, it’s flexible. You choose which events to join, so how involved you get is entirely up to you."
             },
             {
                 question: "Where can I find the ALSTAR points tracker?",
                 answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
             },
             {
-                question: "Can I join other clubs while being an ALSTAR or ALSCO ?",
-                answer: "Yes! Being an ALSTAR(or even an ALSCO) doesn’t stop you from joining other clubs.The only restriction is that ALSCO members can’t join other college councils like SCC, and vice versa.Just make sure you manage your time well—your studies should always come first."
+                question: "Can I join other clubs while being an ALSTAR or ALSCO?",
+                answer: "Yes! Being an ALSTAR (or even an ALSCO) doesn’t stop you from joining other clubs. The only restriction is that ALSCO members can’t join other college councils like SCC, and vice versa. Just make sure you manage your time well and always prioritise your studies."
             },
             {
-                question: "How do I balance A - Levels with ALSCO commitments ?",
-                answer: "It’s definitely a challenge—but a manageable one.Staying organised, prioritising tasks, and asking for help when needed can go a long way.Balancing both isn’t just doable—it’s a valuable experience that builds resilience and prepares you for future challenges."
+                question: "How do I balance A-Levels with ALSCO commitments?",
+                answer: "It’s definitely a challenge, but a manageable one. Staying organised, prioritising tasks, and asking for help when needed can go a long way. Balancing both ALSCO and academics is a valuable experience that builds resilience and prepares you for future challenges."
             },
             {
-                question: "What happens during ALSTAR General Meetings ?",
-                answer: "There are three main meetings: 1st GM(Physical): Introduction to ALSTAR, how everything works, and getting started with your event planning. 2nd GM(Online): You’ll pitch your event ideas and plans. 3rd GM(Online): A post - mortem session where you reflect on your event—what worked, what didn’t, and what you learned."
+                question: "What happens during ALSTAR General Meetings?",
+                answer: "There are three main meetings. The First General Meeting (Physical): Introduction to ALSTAR, how everything works, and getting started with your event planning. The Second General Meeting (Online): You’ll pitch your event ideas and plans. The Third General Meeting (Online): A post-mortem session where you reflect on your event—what worked, what didn’t, and what you learned."
             },
             {
-                question: "What’s the difference between ALSCO and COMSERVE ?",
-                answer: "COMSERVE is a branch of ALSCO that focuses specifically on community service.It operates with some independence(like its own projects and platforms), but it’s still part of the larger ALSCO structure."
+                question: "What’s the difference between ALSCO and COMSERVE?",
+                answer: "COMSERVE is a branch of ALSCO that focuses specifically on community service. It operates with some independence (like its own projects and platforms), but it’s still part of the larger ALSCO structure."
             },
             {
-                question: "Will I receive certificates for participating ?",
-                answer: "For ALSTAR, certificates aren’t given per event.Instead, you’ll need to collect points: 5 Participation Points 6 Volunteer Points 5 Talk / Workshop Points.Once you meet these, you’ll earn your ALSTAR certificate.For COMSERVE, certificates depend on the event or follow their Credit Hour System."
+                question: "Will I receive certificates for participating?",
+                answer: "For ALSTAR, certificates aren’t given per event. Instead, you’ll need to collect points: 5 Participation Points, 6 Volunteer Points, and 5 Talk/Workshop Points. Once you meet these requirements, you’ll earn your ALSTAR certificate. For COMSERVE, certificates depend on the event or follow their Credit Hour System."
             },
             {
-                question: "Are there any fees for COMSERVE activities ?",
-                answer: "It depends on the event.Some are free, while others—especially those held outside of Sunway—may require a registration fee."
+                question: "Are there any fees for COMSERVE activities?",
+                answer: "It depends on the event. Some are free, while some events like those held outside of Sunway may require a registration fee."
             },
             {
-                question: "How can I join the ALSCO committee ?",
-                answer: "ALSCO recruitment happens at the start of each semester.Keep an eye on the official Instagram page for updates on applications and interview dates."
+                question: "How can I join the ALSCO committee?",
+                answer: "ALSCO recruitment happens at the start of each semester. Keep an eye on the ALSTAR communication channels for updates on applications and interview dates."
             },
             {
-                question: "How do I give feedback or raise a concern ?",
-                answer: "You can submit feedback through the “Get In Touch” form on the Contact page or drop a DM on Instagram.All feedback is reviewed regularly."
+                question: "How do I give feedback or raise a concern?",
+                answer: "You can submit feedback through the “Get In Touch” form on the Contact page or drop a DM on Instagram. All feedback is reviewed regularly."
             },
             {
-                question: "Where can I check my ALSTAR points ?",
-                answer: "You can track your points directly on the ALSTAR page—just enter your Student ID to see your current progress."
+                question: "Where can I check my ALSTAR points?",
+                answer: "You can track your points directly on the ALSTAR page by entering your Student ID to see your current progress."
             },
             // If want to include more FAQ, just copy and paste and change the text inside ""
         ],
@@ -155,8 +157,8 @@ const siteContent = {
     // Change the text if required
     about: {
         missionp1: "To enhance the student experience by providing essential services, fostering engagement, and ensuring a supportive environment. We serve as an active bridge between students and the college administration. ",
-        missionp2: " Through strategic collaboration with various councils and societies, we create inclusive experiences that foster a strong sense of belonging and meaningful community engagement throughout the academic year.",
-        representation: "Organizing intake orientations and activities to help students transition smoothly into college life and feel at home within the campus.",
+        missionp2: "Through strategic collaboration with various councils and societies, we create inclusive experiences that foster a strong sense of belonging and meaningful community engagement throughout the academic year.",
+        representation: "Organising intake orientations and activities to help students transition smoothly into college life and feel at home within the campus.",
         development: "Guiding students to meet eligibility criteria for the ALSTAR Certificate through active participation and holistic development opportunities.",
         welfare: "Serving as a vital link between the student body and college administration for all concerns, ensuring your voice is always heard clearly."
     },
@@ -262,7 +264,7 @@ const siteContent = {
                 image: "/images/committee/departmental/CS - FORMAL.avif",
                 image_playful: "/images/committee/departmental/CS - INFORMAL.avif",
                 ig_link: "https://www.instagram.com/alevel.comserve/",
-                description: "Community Service, or COMSERVE for short, organises events for our members that focus on charitable, environmental, or community-orientated work."
+                description: "Community Service, or COMSERVE for short, organises events for our members that focuses on charitable, environmental, or community-orientated work."
             },
             {
                 id: "dept-sw",
@@ -270,7 +272,7 @@ const siteContent = {
                 image: "/images/committee/departmental/SW - FORMAL.avif",
                 image_playful: "/images/committee/departmental/SW - INFORMAL.avif",
                 ig_link: "https://www.instagram.com/p/DTaF8g5EcvH/?img_index=4",
-                description: "Student Welfare strives to foster a supportive and holistic environment within the community by curating initiatives that enhance students’ mental, social, and academic well-being."
+                description: "Student Welfare strives to foster a supportive and holistic environment within the community by curating initiatives that enhance the mental, social, and academic well-being of all A-Level students."
             },
             {
                 id: "dept-pr",
@@ -296,34 +298,37 @@ const siteContent = {
         // SECTION 1: UPCOMING EVENTS
         upcoming: [
             {
-                title: "Alstar Arena Sports Tournament",
+                title: "ALSTAR Arena Sports Tournament",
                 department: "ALSTAR G1",
-                event_type: "External Trial Run",
-                date: "Friday, 3rd April 2026",
-                image: "/images/events/upcoming/g1etr1.avif",
-                details_image: "/images/events/upcoming/g1etr2.avif",
-                instagram_link: "https://www.instagram.com/p/DWSxBeYEYZp/?img_index=1",
-                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSeuJEUVfFkaJSL2XkXD0zsu5-oSsL1uvA3QA98VkKHIh7srFQ/viewform"
+                event_type: "Actual Event",
+                date: "Monday-Wednesday, 13-15th April 2026",
+                image: "/images/events/upcoming/g1ae1.avif",
+                details_image: "/images/events/upcoming/g1ae2.avif",
+                instagram_link: "https://www.instagram.com/p/DWnr_FQEVqT/?img_index=1",
+                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSee-MjSlZAdJ4Cn4iHBtMk0WtqbJj1caYBcdk3Tz9cf7q6yzA/viewform?usp=dialog",
+                trailer_link: "https://www.instagram.com/p/DWiABVNE3iM/"
             },
             {
-                title: "Commanding the Capital",
+                title: "Commanding the Capitol",
                 department: "ALSTAR G2",
                 event_type: "Actual Event",
                 date: "Monday, 13th April 2026",
                 image: "/images/events/upcoming/g2ae1.avif",
                 details_image: "/images/events/upcoming/g2ae2.avif",
                 instagram_link: "https://www.instagram.com/p/DWOC7D7kblr/?img_index=1",
-                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSeCTDl1RF7P4K5_SdlU_GsZ6SPs467Ks_1-ozpVcQGVHo8-9A/viewform?usp=publish-editor "
+                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSeCTDl1RF7P4K5_SdlU_GsZ6SPs467Ks_1-ozpVcQGVHo8-9A/viewform?usp=publish-editor ",
+                trailer_link: "https://www.instagram.com/p/DWX6TwnkT7g/"
             },
             {
                 title: "The Decision Lab",
                 department: "ALSTAR G3",
                 event_type: "Actual Event",
-                date: "Monday-Tuesday 13-14th April 2026",
+                date: "Monday, 13th April 2026 to Tuesday, 14th April 2026",
                 image: "/images/events/upcoming/g3ae1.avif",
                 details_image: "/images/events/upcoming/g3ae2.avif",
                 instagram_link: "https://www.instagram.com/p/DWOUHyoEa-z/?img_index=1",
-                registration_link: "https://forms.gle/r9JTNaQZGsKbTXdCA"
+                registration_link: "https://forms.gle/r9JTNaQZGsKbTXdCA",
+                trailer_link: "https://www.instagram.com/p/DWYnGdLkcsD/",
             },
             {
                 title: "House of Cards",
@@ -333,17 +338,19 @@ const siteContent = {
                 image: "/images/events/upcoming/g5ae1.avif",
                 details_image: "/images/events/upcoming/g5ae2.avif",
                 instagram_link: "https://www.instagram.com/p/DWBm-uaESgJ/?img_index=1",
-                registration_link: "https://forms.gle/a3nC9BiSKmf3bJBJA"
+                registration_link: "https://forms.gle/a3nC9BiSKmf3bJBJA",
+                trailer_link: "https://www.instagram.com/p/DWlqD6FiSeS/",
             },
             {
                 title: "Friendship 101",
                 department: "ALSTAR G7",
                 event_type: "Actual Event",
-                date: "Tuesday-Thursday, 7-9th April 2026",
+                date: "Tuesday, 7th April 2026 to Thursday, 9th April 2026",
                 image: "/images/events/upcoming/g7ae1.avif",
                 details_image: "/images/events/upcoming/g7ae2.avif",
                 instagram_link: "https://www.instagram.com/p/DWTaOMkEe1A/?img_index=1",
-                registration_link: "https://forms.gle/BQwz9qhn9dmVJQiXA"
+                registration_link: "https://forms.gle/BQwz9qhn9dmVJQiXA",
+                trailer_link: "https://www.instagram.com/p/DWoAqkCEfbg/",
             },
             {
                 title: "Game On, Stress Gone",
@@ -353,27 +360,30 @@ const siteContent = {
                 image: "/images/events/upcoming/g8ae1.avif",
                 details_image: "/images/events/upcoming/g8ae2.avif",
                 instagram_link: "https://www.instagram.com/p/DWbMVmtETXz/?img_index=1",
-                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSc2TRHzljbwXLyXpjWky2NYIdBTIy7HOAi_N9j8TaXbPTg5mA/viewform?usp=dialog"
+                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSc2TRHzljbwXLyXpjWky2NYIdBTIy7HOAi_N9j8TaXbPTg5mA/viewform?usp=dialog",
+                trailer_link: "https://www.instagram.com/p/DWbNKB-EZRI/",
             },
             {
                 title: "Clash on Sunway",
                 department: "ALSTAR G9",
                 event_type: "Actual Event",
-                date: "Wednesday-Thursday, 15-16th April 2026",
+                date: "Wednesday, 15th April 2026 to Thursday, 16th April 2026",
                 image: "/images/events/upcoming/g9ae1.avif",
                 details_image: "/images/events/upcoming/g9ae2.avif",
                 instagram_link: "https://www.instagram.com/p/DV7-Ww4EdsL/?img_index=1",
-                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSfiRZ-pIp_OcAbAed-dMyHRSLzHZP9lG_scEKOgFVqT4gjzGA/viewform?usp=header"
+                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSfiRZ-pIp_OcAbAed-dMyHRSLzHZP9lG_scEKOgFVqT4gjzGA/viewform?usp=header",
+                trailer_link: "https://www.instagram.com/p/DWN9H4lkWeG/",
             },
             {
-                title: "Clash on Sunway",
-                department: "ALSTAR G9",
-                event_type: "External Trial Run",
-                date: "Thursday, 2nd April 2026",
-                image: "/images/events/upcoming/g9etr1.avif",
-                details_image: "/images/events/upcoming/g9etr2.avif",
-                instagram_link: "https://www.instagram.com/p/DVp46tnETKe/?img_index=1",
-                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSenXr8L3YSjh4fZ3b_kp5NQ5QM-IjL5bnf-4jDxstxdbI44Pg/viewform?usp=header"
+                title: "Dress to Impress",
+                department: "ALSTAR G10",
+                event_type: "Actual Event",
+                date: "Wednesday, 15th April 2026 to Thursday, 16th April 2026",
+                image: "/images/events/upcoming/g10ae1.avif",
+                details_image: "/images/events/upcoming/g10ae2.avif",
+                instagram_link: "⁠https://www.instagram.com/p/DWgMFH1EVsu/?img_index=1&igsh=MTQ4YWZwZXVleWVhdw==",
+                registration_link: "⁠https://forms.gle/48zt8j3UM1XEs1wL8",
+                trailer_link: "",
             },
             {
                 title: "Reclaiming The Future",
@@ -383,17 +393,19 @@ const siteContent = {
                 image: "/images/events/upcoming/g11ae1.avif",
                 details_image: "/images/events/upcoming/g11ae2.avif",
                 instagram_link: "https://www.instagram.com/p/DWTaSbEkRfN/?img_index=1",
-                registration_link: "https://forms.gle/yjzni855WPP8j7Kf7"
+                registration_link: "https://forms.gle/yjzni855WPP8j7Kf7",
+                trailer_link: "https://www.instagram.com/p/DWYkq_LkQsA/",
             },
             {
                 title: "A Gift of Learning",
                 department: "ALSTAR G12",
-                event_type: "External Trial Run",
-                date: "Friday, 3rd April 2026",
-                image: "/images/events/upcoming/g12etr1.avif",
-                details_image: "/images/events/upcoming/g12etr2.avif",
-                instagram_link: "https://www.instagram.com/p/DV988CmE6Ra/?img_index=1",
-                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSd87KZ8iYZoo8Lv986TDUM37gNYMwMZMPBWBoe4-9TH9bIwIA/viewform?usp=header"
+                event_type: "Actual Event",
+                date: "Friday, 17th April 2026",
+                image: "/images/events/upcoming/g12ae1.avif",
+                details_image: "/images/events/upcoming/g12ae2.avif",
+                instagram_link: "https://www.instagram.com/p/DWnXYTrEY8o/?igsh=aTlqcmh3MDl6bWZt",
+                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSe1BkLQDBg-6j2B0gzViv6qwNiV3XXjT9Gs5IHLyOFN3nJffA/viewform",
+                trailer_link: "https://www.instagram.com/reel/DWp8LpvTaKQ/?igsh=MWRpanpmbXBncmRyZQ==",
             },
 
             // To add more events, just copy the format above and paste and change the details accordingly.
@@ -402,43 +414,43 @@ const siteContent = {
         // SECTION 2: PAST EVENTS
         past: [
             {
-                title: "Teacher Appreciation Week 2026",
+                title: "Lecturer Appreciation Week 2026",
                 date: "Thursday, 26th February 2026",
-                department: "Student Welfare",
+                department: "Student Welfare Department",
                 image: "/images/events/past/lxs.avif",
                 instagram_link: "https://www.instagram.com/p/DWL2I-GEQAE/?img_index=1",
             },
             {
                 title: "A-Level Leadership Camp 2026",
-                date: "Saturday-Sunday, 7-8th February 2026",
+                date: "Saturday, 7th February 2026 to Sunday, 8th February 2026",
                 department: "Leadership Development Department",
                 image: "/images/events/past/alc.avif",
                 instagram_link: "https://www.instagram.com/p/DWBK7lfEUfH/?img_index=1",
             },
             {
-                title: "Alstar First General Meeting",
+                title: "ALSTAR First General Meeting",
                 date: "Tuesday, 27th January 2026",
                 department: "ALSCO",
                 image: "/images/events/past/jagm.avif",
                 instagram_link: "https://www.instagram.com/p/DV563smkfkd/?img_index=1",
             },
             {
-                title: "January'26 A-Level Orientation",
+                title: "January '26 A-Level Orientation",
                 date: "Monday, 19th January 2026",
                 department: "ALSCO",
                 image: "/images/events/past/jot.avif",
                 instagram_link: "https://www.instagram.com/p/DTure53EcOg/?img_index=1",
             },
             {
-                title: "A Charity Extravaganze 2026",
+                title: " July '25 'A Charity Extravaganza'",
                 date: "Saturday, 17th January 2026",
                 department: "ALSCO",
                 image: "/images/events/past/ace.avif",
                 instagram_link: "https://www.instagram.com/p/DTpftXIkQLi/?img_index=1",
             },
             {
-                title: "July 2025 Installation Night",
-                date: "Thrusday, 8th Janaury 2026",
+                title: "July '25 Installation Night",
+                date: "Thursday, 8th Janaury 2026",
                 department: "SST (2 Secretaries & Treasurer)",
                 image: "/images/events/past/jin.avif",
                 instagram_link: "https://www.instagram.com/p/DTXjonXEc8U/?img_index=1",
@@ -515,6 +527,17 @@ const siteContent = {
                 pdf_link: "https://drive.google.com/file/d/1wL_zAtEiykwhzWxTYdR08xn-KqPnhQgS/view?usp=sharing",
                 button_text: "Read Now"
             }
+        ],
+
+        handbook: [
+            {
+                image: "/images/publications/july25Handbook.avif",
+                department: "Student Welfare",
+                intake: "July 2025",
+                pdf_link: "https://drive.google.com/file/d/1cGKNRWNi1seFKY3j8foU6nxRZ_lQBkga/view?usp=sharing",
+                button_text: "Read Now",
+            },
+
         ]
     },
 

@@ -50,31 +50,57 @@
                 </div>
             </div>
         </section>
-    </main>
 
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
-        <div class="flex flex-wrap justify-center gap-3 mb-12">
-            <button data-filter="all"
-                class="filter-btn bg-maroon text-white px-6 py-2 rounded-full border border-maroon font-bold transition-colors">
-                All
-            </button>
-            <button data-filter="newsletter"
-                class="filter-btn bg-transparent text-maroon hover:bg-gray-100 px-6 py-2 rounded-full border border-maroon font-bold transition-colors">
-                Newsletters
-            </button>
-            <button data-filter="post"
-                class="filter-btn bg-transparent text-maroon hover:bg-gray-100 px-6 py-2 rounded-full border border-maroon font-bold transition-colors">
-                Monthly Posts
-            </button>
+        <div class="max-w-6xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <button data-filter="all"
+                    class="filter-btn bg-maroon text-white px-6 py-2 rounded-full border border-maroon font-bold transition-colors">
+                    All
+                </button>
+                <button data-filter="newsletter"
+                    class="filter-btn bg-transparent text-maroon hover:bg-gray-100 px-6 py-2 rounded-full border border-maroon font-bold transition-colors">
+                    Newsletters
+                </button>
+                <button data-filter="post"
+                    class="filter-btn bg-transparent text-maroon hover:bg-gray-100 px-6 py-2 rounded-full border border-maroon font-bold transition-colors">
+                    Monthly Posts
+                </button>
+            </div>
+
+            <article id="publication-list-container" class="space-y-8 lg:space-y-12">
+                <p class="text-center text-gray-400">Loading publications...</p>
+            </article>
         </div>
 
-        <article id="publication-list-container" class="space-y-8 lg:space-y-12">
-            <p class="text-center text-gray-400">Loading publications...</p>
-        </article>
-    </div>
+        <section class="py-12 lg:py-16 border-b-custom">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="flex flex-col items-center text-center">
+                    <span class="primary-maroon font-bold tracking-[0.2em] uppercase text-xs mb-4">Stay Informed</span>
+
+                    <h1 class="text-4xl md:text-5xl font-black text-main tracking-tight uppercase">
+                        HandBook
+                    </h1>
+
+                    <div class="flex items-center gap-4 mt-8">
+                        <div class="w-12 h-0.5 bg-gray-300"></div>
+                        <div class="w-2 h-2 rounded-full bg-maroon"></div>
+                        <div class="w-12 h-0.5 bg-gray-300"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 lg:py-16">
+            <div class="max-w-6xl mx-auto px-6 lg:px-8">
+                <div id="handbook-list-container" class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                    <p class="text-center text-gray-400 col-span-full">Loading Handbook...</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <div id="footer-placeholder"></div>
+
     <script src="/scripts/content.js"></script>
     <script src="/script.js"></script>
     <script src="/scripts/publication.js"></script>

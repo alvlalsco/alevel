@@ -37,17 +37,29 @@
                         Loading...
                     </p>
 
-                    <div class="flex flex-wrap justify-start gap-3 md:gap-4">
+                    <div class="flex flex-row items-center justify-start gap-3 md:gap-4 mt-4">
+
                         <a href="/html_pages/alstar.html"
-                            class="px-6 py-2.5 md:px-8 md:py-3 bg-[#8a1538] text-white text-sm md:text-base font-bold rounded-lg hover:bg-red-900 transition-colors text-center shadow-lg">
+                            class="px-6 py-2.5 md:px-8 md:py-3 bg-[#8a1538] text-white text-sm md:text-base font-bold rounded-lg hover:bg-red-900 transition-colors text-center shadow-lg shrink-0">
                             ALSTAR
                         </a>
+
                         <a id="hero-handbook-btn" href="#" target="_blank"
-                            class="px-6 py-2.5 md:px-8 md:py-3 bg-white/20 backdrop-blur-sm border border-white/50 text-white text-sm md:text-base font-bold rounded-lg hover:bg-white/30 transition-colors text-center shadow-lg">
+                            class="px-6 py-2.5 md:px-8 md:py-3 bg-white/20 backdrop-blur-sm border border-white/50 text-white text-sm md:text-base font-bold rounded-lg hover:bg-white/30 transition-colors text-center shadow-lg shrink-0">
                             Handbook
                         </a>
-                    </div>
 
+                        <a id="hero-trailer-btn" href="#" target="_blank" aria-label="Watch ALSCO Trailer"
+                            class="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-maroon text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_20px_rgba(255,255,255,0.6)] group shrink-0">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                class="w-6 h-6 md:w-8 md:h-8 fill-current transform group-hover:scale-110 transition-transform">
+                                <path
+                                    d="M200-400h360v-280H200v280Zm-40 240q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-480H160v480Zm0 0v-480 480Z" />
+                            </svg>
+                        </a>
+
+                    </div>
                 </div>
             </div>
         </header>
@@ -55,7 +67,7 @@
         <section id="affiliates" class="py-8 md:py-10 bg-gray-50 border-b-custom">
             <div class="max-w-7xl mx-auto px-6 lg:px-8">
                 <div class="flex flex-col items-center">
-                    <span class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs md-4 md:mb-8">
+                    <span class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs mb-4 md:mb-8">
                         In Collaboration With
                     </span>
                     <div id="affiliates-grid" class="flex flex-wrap justify-center gap-12 md:gap-16 lg:gap-24 w-full">
@@ -65,7 +77,7 @@
         </section>
 
         <section id="events" class="py-16 lg:py-24 bg-white relative">
-            <div class="max-w-7xl mx-auto px-8 lg:px-8">
+            <div class="max-w-7xl mx-auto px-8">
                 <div class="mb-10 md:mb-12">
                     <span class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">Don't Miss
                         Out</span>
@@ -105,7 +117,8 @@
                                 <span id="event-department"></span>
 
                                 <a id="event-ig-link" href="#" target="_blank" aria-label="View on Instagram"
-                                    class="shrink-0 bg-[#E1306C] text-white p-2 min-w-11 min-h-11 items-center justify-center rounded-full transition-all duration-300 lg:hover:scale-110 lg:hover:shadow-lg hidden">
+                                    class="shrink-0 inline-flex items-center justify-center w-11 h-11 bg-[#E1306C] text-white rounded-full transition-all duration-300 lg:hover:scale-110 lg:hover:shadow-lg">
+
                                     <svg class="w-5 h-5 md:w-6 md:h-6 pointer-events-none" fill="currentColor"
                                         viewBox="0 0 24 24">
                                         <path fill-rule="evenodd"
@@ -113,9 +126,20 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </a>
+
+                                <a id="event-trailer-link" href="#" target="_blank" aria-label="Watch Event Trailer"
+                                    class="flex items-center justify-center w-11 h-11 bg-maroon text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_20px_rgba(255,255,255,0.6)] group shrink-0">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                        class="w-5 h-5 md:w-6 md:h-6 fill-current transform group-hover:scale-110 transition-transform">
+                                        <path
+                                            d="M200-400h360v-280H200v280Zm-40 240q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-480H160v480Zm0 0v-480 480Z" />
+                                    </svg>
+                                </a>
                             </div>
 
                             <h3 id="event-title" class="text-2xl md:text-3xl font-bold mb-1">Loading Event...</h3>
+
                             <p id="event-date"
                                 class="text-sm md:text-base font-semibold text-gray-500 mb-6 uppercase tracking-widest hidden">
                                 Loading Date...</p>
@@ -142,6 +166,7 @@
                                             d="M15 19l-7-7 7-7"></path>
                                     </svg>
                                 </button>
+
                                 <button id="next-event-btn" aria-label="Next Event"
                                     class="p-3 min-w-11 min-h-11 flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-main rounded-full transition-colors">
                                     <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor"

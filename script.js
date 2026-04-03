@@ -63,6 +63,7 @@ function updateSiteContent() {
     setBackgroundImage("hero-background", siteContent.index.hero.image);
     setText("hero-desc", siteContent.index.hero.description);
     setLink("hero-handbook-btn", siteContent.index.hero.handbook_pdf);
+    setLink("hero-trailer-btn", siteContent.index.hero.trailer_link);
 
     //  B. AFFILIATES 
     const affiliateContainer = document.getElementById("affiliates-grid");
@@ -171,6 +172,14 @@ function updateSiteContent() {
                 igEl.classList.remove("hidden");
             } else if (igEl) {
                 igEl.classList.add("hidden");
+            }
+
+            const trlEl = document.getElementById("event-trailer-link");
+            if (trlEl && eventData.trailer_link) {
+                trlEl.href = eventData.trailer_link;
+                trlEl.classList.remove("hidden");
+            } else if (igEl) {
+                trlEl.classList.add("hidden");
             }
 
             const eventBtn = document.getElementById("event-reg-btn");
@@ -412,20 +421,63 @@ function updateSiteContent() {
     // ==========================================
 
     // --- Mobile Interaction Logic ---
-    // Make sure these are globally accessible for inline onclick handlers
+    // --- Mobile Interaction & Collision Logic ---
     window.toggleQuote = function (event, btn) {
-        event.stopPropagation(); // Prevents the document click listener from firing immediately
+        event.stopPropagation();
         const popup = btn.nextElementSibling;
+        const arrow = popup.querySelector('.popup-arrow');
+        // Get the parent card container
+        const card = btn.closest('.group\\/card');
         const isVisible = popup.classList.contains('opacity-100');
 
-        // Hide all other open popups first for clean UX
+        // Hide all other open popups first
         document.querySelectorAll('.quote-popup').forEach(p => {
             p.classList.remove('opacity-100', 'scale-100');
             p.classList.add('opacity-0', 'scale-95');
         });
 
-        // Toggle the clicked one
         if (!isVisible) {
+
+            // Mobile Collision Detection
+            if (window.innerWidth < 768 && card && popup && arrow) {
+                // Measure where the card is physically located on the screen
+                const rect = card.getBoundingClientRect();
+                const cardCenter = rect.left + rect.width / 2;
+                const screenCenter = window.innerWidth / 2;
+                const threshold = 30; // Pixel margin to consider a card "centered"
+
+                // 1. Strip ALL mobile positioning classes first to start with a blank slate
+                popup.classList.remove(
+                    'top-full', 'left-1/2', '-translate-x-1/2', 'mt-4',
+                    'top-1/2', 'left-[90%]', '-translate-y-1/2', 'translate-x-2.5',
+                    'right-[90%]', '-translate-x-2.5', 'left-auto'
+                );
+
+                arrow.classList.remove(
+                    '-top-2', 'left-1/2', '-translate-x-1/2', 'border-t', 'border-l',
+                    '-left-2', 'top-1/2', '-translate-y-1/2', 'border-b',
+                    '-right-2', 'border-r', 'left-auto'
+                );
+
+                // 2. Apply classes based on screen position
+                if (Math.abs(cardCenter - screenCenter) < threshold) {
+                    // Centered (1 person row) -> Pop to Bottom
+                    popup.classList.add('top-full', 'left-1/2', '-translate-x-1/2', 'mt-4');
+                    arrow.classList.add('-top-2', 'left-1/2', '-translate-x-1/2', 'border-t', 'border-l');
+
+                } else if (cardCenter < screenCenter) {
+                    // Left person -> Pop to Right
+                    popup.classList.add('top-1/2', 'left-[90%]', '-translate-y-1/2', 'translate-x-2.5');
+                    arrow.classList.add('-left-2', 'top-1/2', '-translate-y-1/2', 'border-b', 'border-l');
+
+                } else {
+                    // Right person -> Pop to Left
+                    popup.classList.add('top-1/2', 'right-[90%]', '-translate-y-1/2', '-translate-x-2.5', 'left-auto');
+                    arrow.classList.add('-right-2', 'top-1/2', '-translate-y-1/2', 'border-t', 'border-r', 'left-auto');
+                }
+            }
+
+            // Finally, reveal the popup
             popup.classList.remove('opacity-0', 'scale-95');
             popup.classList.add('opacity-100', 'scale-100');
         }
@@ -448,7 +500,6 @@ function updateSiteContent() {
         }
     };
 
-    // Close any open mobile quote popups when clicking anywhere else on the screen
     document.addEventListener('click', () => {
         document.querySelectorAll('.quote-popup').forEach(p => {
             p.classList.remove('opacity-100', 'scale-100');
@@ -456,6 +507,34 @@ function updateSiteContent() {
         });
     });
 
+    // --- Collision Detection for Desktop Popups ---
+    // This flips the popup to the left side if it goes off the right edge of the screen
+    window.checkPopupBounds = function (card) {
+        if (window.innerWidth < 768) return; // Skip on mobile (handled by bottom popups)
+
+        const popup = card.querySelector('.quote-popup');
+        const arrow = card.querySelector('.popup-arrow');
+        if (!popup || !arrow) return;
+
+        // 1. Reset to default (Right side)
+        popup.classList.remove('md:right-[90%]', 'md:-translate-x-2.5', 'md:left-auto');
+        popup.classList.add('md:left-[90%]', 'md:translate-x-2.5');
+
+        arrow.classList.remove('md:-right-2', 'md:left-auto', 'md:border-t', 'md:border-r');
+        arrow.classList.add('md:-left-2', 'md:border-b', 'md:border-l');
+
+        // 2. Measure the bounding box
+        const rect = popup.getBoundingClientRect();
+
+        // 3. Flip to Left Side if it overflows the window width (with a 20px safety margin)
+        if (rect.right > window.innerWidth - 20) {
+            popup.classList.remove('md:left-[90%]', 'md:translate-x-2.5');
+            popup.classList.add('md:right-[90%]', 'md:-translate-x-2.5', 'md:left-auto');
+
+            arrow.classList.remove('md:-left-2', 'md:border-b', 'md:border-l');
+            arrow.classList.add('md:-right-2', 'md:left-auto', 'md:border-t', 'md:border-r');
+        }
+    };
 
     const hcContainer = document.getElementById("high-council-tree");
     const deptRoster = document.getElementById("dept-roster");
@@ -464,14 +543,13 @@ function updateSiteContent() {
         // --- 1. RENDER HIGH COUNCIL (The Pyramid) ---
         const hc = siteContent.committee.highCouncil;
 
-        // Function to create a Member Card
         const createCard = (member, size = "normal") => {
             const card = document.createElement("div");
 
-            // Size of the card container
-            card.className = "flex flex-col items-center text-center group/card w-48 md:w-64";
+            // ADDED onmouseenter EVENT HERE
+            card.className = "flex flex-col items-center text-center group/card w-40 sm:w-48 md:w-64";
+            card.setAttribute("onmouseenter", "checkPopupBounds(this)");
 
-            // Size of the circle
             const imgSize = size === "large"
                 ? "w-40 h-40 md:w-52 md:h-52"
                 : "w-32 h-32 md:w-40 md:h-40";
@@ -489,9 +567,9 @@ function updateSiteContent() {
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
                         </button>
 
-                        <div class="quote-popup absolute top-full left-1/2 -translate-x-1/2 mt-4 md:mt-0 md:top-1/2 md:left-[90%] md:-translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-maroon/10 z-40 opacity-0 md:group-hover/card:opacity-100 transition-all duration-300 ease-out transform scale-95 md:translate-x-2.5 md:group-hover/card:translate-x-0 md:group-hover/card:scale-100 pointer-events-none">
+                        <div class="quote-popup absolute top-full left-1/2 -translate-x-1/2 mt-4 md:mt-0 md:top-1/2 md:left-[90%] md:-translate-y-1/2 w-44 sm:w-max min-w-44 sm:min-w-48 max-w-[50vw] sm:max-w-xs bg-white/95 backdrop-blur-sm p-2 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-maroon/10 z-40 opacity-0 md:group-hover/card:opacity-100 transition-all duration-300 ease-out transform scale-95 md:translate-x-2.5 md:group-hover/card:translate-x-0 md:group-hover/card:scale-100 pointer-events-none">
                             
-                            <div class="absolute -top-2 left-1/2 -translate-x-1/2 md:top-1/2 md:-left-2 md:-translate-y-1/2 md:translate-x-0 w-4 h-4 bg-white/95 transform rotate-45 border-t border-l md:border-t-0 md:border-b border-maroon/10"></div>
+                            <div class="popup-arrow absolute -top-2 left-1/2 -translate-x-1/2 md:top-1/2 md:-left-2 md:-translate-y-1/2 md:translate-x-0 w-4 h-4 bg-white/95 transform rotate-45 border-t border-l md:border-t-0 md:border-b md:border-l border-maroon/10"></div>
                             
                             <span class="absolute top-2 left-3 text-maroon/20 text-4xl font-serif leading-none -z-10"></span>
                             
@@ -499,7 +577,6 @@ function updateSiteContent() {
                                 "${userQuote}"
                             </p>
                         </div>
-
                     </div>
 
                     <h4 class="font-bold text-lg leading-tight text-main mt-2">${member.name}</h4>
@@ -508,14 +585,12 @@ function updateSiteContent() {
             return card;
         };
 
-        // Row 1: President (Index 0)
         const row1 = document.createElement("div");
         row1.className = "flex justify-center w-full relative";
         row1.innerHTML = `<div class="absolute -bottom-6 left-1/2 w-0.5 h-6 bg-gray-300"></div>`;
         if (hc[0]) row1.appendChild(createCard(hc[0], "large"));
         hcContainer.appendChild(row1);
 
-        // Row 2: VPs (Index 1 & 2)
         const row2 = document.createElement("div");
         row2.className = "flex justify-center gap-12 md:gap-24 w-full relative pt-2";
         row2.innerHTML = `<div class="absolute -top-2 left-1/2 -translate-x-1/2 w-1/2 h-4 border-t-2 border-x-2 border-gray-300 rounded-t-xl"></div>`;
@@ -523,7 +598,6 @@ function updateSiteContent() {
         if (hc[2]) row2.appendChild(createCard(hc[2]));
         hcContainer.appendChild(row2);
 
-        // Row 3: Secs & Treasurer (Index 3, 4, 5)
         const row3 = document.createElement("div");
         row3.className = "flex flex-wrap justify-center gap-8 md:gap-16 w-full pt-6 border-t-2 border-gray-200 mt-4";
         if (hc[3]) row3.appendChild(createCard(hc[3]));
@@ -537,7 +611,6 @@ function updateSiteContent() {
         siteContent.committee.departments.forEach(dept => {
             const section = document.createElement("div");
 
-            // Header
             let html = `
                     <div class="flex items-center gap-4 mb-10 justify-center">
                         <div class="h-0.5 w-12 bg-gray-300"></div>
@@ -547,13 +620,13 @@ function updateSiteContent() {
                     
                     <div class="flex flex-wrap justify-center gap-12 mb-12">`;
 
-            // Add Directors
             if (dept.leaders && dept.leaders.length > 0) {
                 dept.leaders.forEach(leader => {
                     const userQuote = leader.quote || "Dedicated to serving the A-Level Student Committee";
 
+                    // ADDED onmouseenter AND updated w-52 AND popup-arrow
                     html += `
-                            <div class="flex flex-col items-center text-center group/card w-48 md:w-64">
+                            <div class="flex flex-col items-center text-center group/card w-48 md:w-64" onmouseenter="checkPopupBounds(this)">
                                 <div class="relative mb-4">
                                     <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gray-200 md:group-hover/card:border-maroon md:group-hover/card:shadow-[0_0_15px_rgba(136,17,59,0.4)] transition-all duration-300 p-1 bg-white relative z-10">
                                         <img src="${leader.image}" class="w-full h-full object-cover object-top rounded-full" loading="lazy">
@@ -563,9 +636,9 @@ function updateSiteContent() {
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
                                     </button>
 
-                                    <div class="quote-popup absolute top-full left-1/2 -translate-x-1/2 mt-4 md:mt-0 md:top-1/2 md:left-[90%] md:-translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-maroon/10 z-40 opacity-0 md:group-hover/card:opacity-100 transition-all duration-300 ease-out transform scale-95 md:translate-x-2.5 md:group-hover/card:translate-x-0 md:group-hover/card:scale-100 pointer-events-none">
+                                    <div class="quote-popup absolute top-full left-1/2 -translate-x-1/2 mt-4 md:mt-0 md:top-1/2 md:left-[90%] md:-translate-y-1/2 w-max min-w-48 max-w-xs bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-maroon/10 z-40 opacity-0 md:group-hover/card:opacity-100 transition-all duration-300 ease-out transform scale-95 md:translate-x-2.5 md:group-hover/card:translate-x-0 md:group-hover/card:scale-100 pointer-events-none">
                                         
-                                        <div class="absolute -top-2 left-1/2 -translate-x-1/2 md:top-1/2 md:-left-2 md:-translate-y-1/2 md:translate-x-0 w-4 h-4 bg-white/95 transform rotate-45 border-t border-l md:border-t-0 md:border-b border-maroon/10"></div>
+                                        <div class="popup-arrow absolute -top-2 left-1/2 -translate-x-1/2 md:top-1/2 md:-left-2 md:-translate-y-1/2 md:translate-x-0 w-4 h-4 bg-white/95 transform rotate-45 border-t border-l md:border-t-0 md:border-b md:border-l border-maroon/10"></div>
                                         
                                         <span class="absolute top-2 left-3 text-maroon/20 text-4xl font-serif leading-none -z-10"></span>
                                         
@@ -581,15 +654,15 @@ function updateSiteContent() {
             };
             html += `</div>`;
 
-            // Add General Members
             if (dept.members && dept.members.length > 0) {
                 html += `<div class="flex flex-wrap justify-center gap-x-8 gap-y-12 max-w-6xl mx-auto">`;
 
                 dept.members.forEach(member => {
                     const userQuote = member.quote || "Dedicated to serving the A-Level Student Committee";
 
+                    // ADDED onmouseenter AND updated w-52 AND popup-arrow
                     html += `
-                        <div class="flex flex-col items-center text-center group/card w-48 md:w-64">
+                        <div class="flex flex-col items-center text-center group/card w-48 md:w-64" onmouseenter="checkPopupBounds(this)">
                             <div class="relative mb-4">
                                 <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gray-200 md:group-hover/card:border-maroon md:group-hover/card:shadow-[0_0_15px_rgba(136,17,59,0.4)] transition-all duration-300 p-1 bg-white relative z-10">
                                     <img src="${member.image}" class="w-full h-full object-cover object-top rounded-full" loading="lazy">
@@ -599,9 +672,9 @@ function updateSiteContent() {
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
                                 </button>
 
-                                <div class="quote-popup absolute top-full left-1/2 -translate-x-1/2 mt-4 md:mt-0 md:top-1/2 md:left-[90%] md:-translate-y-1/2 w-52 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-maroon/10 z-40 opacity-0 md:group-hover/card:opacity-100 transition-all duration-300 ease-out transform scale-95 md:translate-x-2.5 md:group-hover/card:translate-x-0 md:group-hover/card:scale-100 pointer-events-none">
+                                <div class="quote-popup absolute top-full left-1/2 -translate-x-1/2 mt-4 md:mt-0 md:top-1/2 md:left-[90%] md:-translate-y-1/2 w-max min-w-48 max-w-xs bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-[0_8px_30px_rgba(136,17,59,0.15)] border border-maroon/10 z-40 opacity-0 md:group-hover/card:opacity-100 transition-all duration-300 ease-out transform scale-95 md:translate-x-2.5 md:group-hover/card:translate-x-0 md:group-hover/card:scale-100 pointer-events-none">
                             
-                                    <div class="absolute -top-2 left-1/2 -translate-x-1/2 md:top-1/2 md:-left-2 md:-translate-y-1/2 md:translate-x-0 w-4 h-4 bg-white/95 transform rotate-45 border-t border-l md:border-t-0 md:border-b border-maroon/10"></div>
+                                    <div class="popup-arrow absolute -top-2 left-1/2 -translate-x-1/2 md:top-1/2 md:-left-2 md:-translate-y-1/2 md:translate-x-0 w-4 h-4 bg-white/95 transform rotate-45 border-t border-l md:border-t-0 md:border-b md:border-l border-maroon/10"></div>
                                     
                                     <span class="absolute top-2 left-3 text-maroon/20 text-4xl font-serif leading-none -z-10"></span>
                                     
@@ -625,11 +698,9 @@ function updateSiteContent() {
         // --- CORE STRUCTURE (Committee Page) ---
         const deptContainer = document.getElementById("departments-container");
         if (deptContainer && siteContent.committee && siteContent.committee.coreStructure) {
-            deptContainer.innerHTML = ""; // Clear the loading text
+            deptContainer.innerHTML = "";
 
             siteContent.committee.coreStructure.forEach(dept => {
-
-                // 1. Build the Instagram Button (Only if a link exists in content.js)
                 const igHTML = dept.ig_link ? `
                         <a href="${dept.ig_link}" target="_blank" class="mt-6 inline-flex w-fit items-center gap-2 text-maroon hover:text-[#E1306C] font-bold transition-colors group/link">
                             <svg class="w-5 h-5 transform group-hover/link:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
@@ -639,7 +710,6 @@ function updateSiteContent() {
                         </a>
                     ` : '';
 
-                // 2. Build the full Card HTML
                 const cardHTML = `
                         <div class="border-custom bg-white overflow-hidden rounded-2xl flex flex-col shadow-sm hover:shadow-md transition-shadow group/dept">
                             
@@ -905,6 +975,53 @@ function updateSiteContent() {
         // 4. LOAD THE PAGE INITIALLY
         renderGallery('all');
     }
+
+    const handbookContainer = document.getElementById("handbook-list-container")
+
+    // B. Render Handbook (Zig-Zag Editorial Gallery)
+    if (handbookContainer && siteContent.publicationPage && siteContent.publicationPage.handbook) {
+        handbookContainer.innerHTML = "";
+
+        siteContent.publicationPage.handbook.forEach((book, index) => {
+
+            // 1. Zig-Zag Stagger & Links
+            const staggerClass = (index % 2 !== 0) ? "md:mt-24" : "";
+            const link = book.pdf_link || "#";
+            const target = link !== "#" ? "_blank" : "";
+
+            // 2. Build the HTML Card
+            const html = `
+                <div class="flex flex-col gap-3 ${staggerClass}">
+                    
+                    <div class="flex justify-between items-center w-full gap-2">
+
+                        <div class="flex flex-row flex-nowrap gap-2 md:gap-3 items-center justify-start flex-1 w-0 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden pb-1">
+                            ${book.department ? `<span class="shrink-0 px-2 py-1 md:px-3 md:py-2 rounded-full text-xs md:text-base font-bold uppercase tracking-widest shadow-sm backdrop-blur-md ${getDepartmentColor(book.department)} bg-opacity-90 whitespace-nowrap" style="font-size: 12px;">${book.department}</span>` : ''}
+                            ${book.intake ? `<span class="shrink-0 px-2 py-1 md:px-3 md:py-2 rounded-full text-xs md:text-base bg-black/20 font-bold uppercase tracking-widest shadow-sm text-black backdrop-blur-md whitespace-nowrap" style="font-size: 12px;">${book.intake}</span>` : ''}
+                        </div>
+
+                    </div>
+
+                    <div class="relative block rounded-3xl overflow-hidden shadow-lg border border-gray-200 group">
+                        
+                        <img src="${book.image}" alt="${book.title}" loading="lazy"
+                            class=" w-full h-full object-cover transition-transform duration-700 lg:group-hover:scale-105">
+
+                        <div class="absolute inset-0 z-20 flex items-center justify-center transition-all duration-500 bg-black/0 lg:group-hover:bg-black/30 pointer-events-none">
+                            <a href="${link}" target="${target}" 
+                                class="pointer-events-auto text-white font-bold bg-black/10 lg:bg-transparent lg:hover:bg-white lg:hover:text-black tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500 transform lg:translate-y-4 lg:group-hover:translate-y-0 border-2 border-white px-4 py-1.5 md:px-6 md:py-2.5 rounded-full backdrop-blur-sm ${link === '#' ? 'cursor-not-allowed hover:bg-transparent hover:text-white' : ''}" style="font-size: 11px;">
+                                ${link !== '#' ? 'View More' : 'Upcoming'}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            handbookContainer.insertAdjacentHTML('beforeend', html);
+        });
+    }
+
+
 
     // ==========================================
     // 6. ALSTAR PAGE
