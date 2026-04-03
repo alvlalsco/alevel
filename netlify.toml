@@ -1,0 +1,7 @@
+[build]
+  # This is the command you just set up in package.json
+  command = "npm run build"
+  
+  # This is the folder containing your final HTML and output.css 
+  # Change "public" to whatever folder holds your final site (e.g., "dist", "_site", or "." if it's the root folder)
+  publish = "public"
