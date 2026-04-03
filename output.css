@@ -246,6 +246,9 @@
   .pointer-events-none {
     pointer-events: none;
   }
+  .visible {
+    visibility: visible;
+  }
   .absolute {
     position: absolute;
   }
@@ -537,6 +540,9 @@
   .min-h-11 {
     min-height: calc(var(--spacing) * 11);
   }
+  .min-h-\[32px\] {
+    min-height: 32px;
+  }
   .min-h-screen {
     min-height: 100vh;
   }
@@ -635,6 +641,9 @@
   }
   .max-w-\[50vw\] {
     max-width: 50vw;
+  }
+  .max-w-\[80\%\] {
+    max-width: 80%;
   }
   .max-w-lg {
     max-width: var(--container-lg);
@@ -1365,6 +1374,10 @@
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
+  }
+  .tracking-\[0\.1em\] {
+    --tw-tracking: 0.1em;
+    letter-spacing: 0.1em;
   }
   .tracking-\[0\.2em\] {
     --tw-tracking: 0.2em;

@@ -87,3 +87,47 @@ async function lookupStudent() {
         btn.disabled = false;
     }
 }
+
+// ==========================================
+// 6. ALSTAR PAGE
+// ==========================================
+const alstarContainer = document.getElementById("about-alstar-details");
+
+if (alstarContainer && siteContent.alstarPage) {
+
+    // A. Alstar logo
+    setImage("alstar-logo", siteContent.alstarPage.alstar_logo);
+
+    // B. Text Content
+    setText("alstar-description-text", siteContent.alstarPage.description);
+    setText("alstar-difference-text", siteContent.alstarPage.difference);
+
+    // C. Generate Certificate Pillars Dynamically
+    const pillarsContainer = document.getElementById("certificate-pillars-container");
+    if (pillarsContainer && siteContent.alstarPage.certificate) {
+        pillarsContainer.innerHTML = ""; // Clear out any existing content
+
+        siteContent.alstarPage.certificate.forEach((pillar, index) => {
+            // Apply the specific border classes only to the middle item (index 1)
+            const borderClasses = index === 1
+                ? "border-t-custom border-b-custom sm:border-t-0 sm:border-b-0 sm:border-x-custom py-6 sm:py-0"
+                : "";
+
+            pillarsContainer.innerHTML += `
+                    <div class="flex flex-col items-center ${borderClasses}">
+                        <span class="text-4xl font-black text-main mb-1">${pillar.count}</span>
+                        <span class="text-xs font-bold uppercase tracking-widest primary-maroon">${pillar.label}</span>
+                        <span class="text-sm text-gray-500 mt-2">${pillar.desc}</span>
+                    </div>
+                `;
+        });
+    }
+
+    // C. Submission Forms
+    setLink("btn-submit-amendment", siteContent.alstarPage.forms.amendment);
+    setLink("btn-submit-talk", siteContent.alstarPage.forms.talk);
+
+    // D. Google Calendar Embed
+    const calFrame = document.getElementById("calendar-frame");
+    if (calFrame) calFrame.src = siteContent.alstarPage.calendar;
+}
