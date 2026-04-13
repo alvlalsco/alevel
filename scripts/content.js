@@ -306,7 +306,7 @@ const siteContent = {
                 date: "Monday-Wednesday, 13-15th April 2026",
                 image: "/images/events/upcoming/g1ae1.avif",
                 details_image: "/images/events/upcoming/g1ae2.avif",
-                instagram_link: "https://www.instagram.com/p/DWnr_FQEVqT/?img_index=1",
+                ig_link: "https://www.instagram.com/p/DWnr_FQEVqT/?img_index=1",
                 registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSee-MjSlZAdJ4Cn4iHBtMk0WtqbJj1caYBcdk3Tz9cf7q6yzA/viewform?usp=dialog",
                 trailer_link: "https://www.instagram.com/p/DWiABVNE3iM/"
             },
@@ -317,7 +317,7 @@ const siteContent = {
                 date: "Monday, 13th April 2026",
                 image: "/images/events/upcoming/g2ae1.avif",
                 details_image: "/images/events/upcoming/g2ae2.avif",
-                instagram_link: "https://www.instagram.com/p/DWOC7D7kblr/?img_index=1",
+                ig_link: "https://www.instagram.com/p/DWOC7D7kblr/?img_index=1",
                 registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSeCTDl1RF7P4K5_SdlU_GsZ6SPs467Ks_1-ozpVcQGVHo8-9A/viewform?usp=publish-editor ",
                 trailer_link: "https://www.instagram.com/p/DWX6TwnkT7g/"
             },
@@ -328,7 +328,7 @@ const siteContent = {
                 date: "Monday, 13th April 2026 to Tuesday, 14th April 2026",
                 image: "/images/events/upcoming/g3ae1.avif",
                 details_image: "/images/events/upcoming/g3ae2.avif",
-                instagram_link: "https://www.instagram.com/p/DWOUHyoEa-z/?img_index=1",
+                ig_link: "https://www.instagram.com/p/DWOUHyoEa-z/?img_index=1",
                 registration_link: "https://forms.gle/r9JTNaQZGsKbTXdCA",
                 trailer_link: "https://www.instagram.com/p/DWYnGdLkcsD/",
             },
@@ -339,7 +339,7 @@ const siteContent = {
                 date: "Wednesday, 15th April 2026",
                 image: "/images/events/upcoming/g8ae1.avif",
                 details_image: "/images/events/upcoming/g8ae2.avif",
-                instagram_link: "https://www.instagram.com/p/DWbMVmtETXz/?img_index=1",
+                ig_link: "https://www.instagram.com/p/DWbMVmtETXz/?img_index=1",
                 registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSc2TRHzljbwXLyXpjWky2NYIdBTIy7HOAi_N9j8TaXbPTg5mA/viewform?usp=dialog",
                 trailer_link: "https://www.instagram.com/p/DWbNKB-EZRI/",
             },
@@ -350,7 +350,7 @@ const siteContent = {
                 date: "Wednesday, 15th April 2026 to Thursday, 16th April 2026",
                 image: "/images/events/upcoming/g9ae1.avif",
                 details_image: "/images/events/upcoming/g9ae2.avif",
-                instagram_link: "https://www.instagram.com/p/DV7-Ww4EdsL/?img_index=1",
+                ig_link: "https://www.instagram.com/p/DV7-Ww4EdsL/?img_index=1",
                 registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSfiRZ-pIp_OcAbAed-dMyHRSLzHZP9lG_scEKOgFVqT4gjzGA/viewform?usp=header",
                 trailer_link: "https://www.instagram.com/p/DWN9H4lkWeG/",
             },
@@ -361,7 +361,7 @@ const siteContent = {
                 date: "Wednesday, 15th April 2026 to Thursday, 16th April 2026",
                 image: "/images/events/upcoming/g10ae1.avif",
                 details_image: "/images/events/upcoming/g10ae2.avif",
-                instagram_link: "⁠https://www.instagram.com/p/DWgMFH1EVsu/?img_index=1&igsh=MTQ4YWZwZXVleWVhdw==",
+                ig_link: "⁠https://www.instagram.com/p/DWgMFH1EVsu/?img_index=1&igsh=MTQ4YWZwZXVleWVhdw==",
                 registration_link: "⁠https://forms.gle/48zt8j3UM1XEs1wL8",
                 trailer_link: "",
             },
@@ -372,7 +372,7 @@ const siteContent = {
                 date: "Friday, 17th April 2026",
                 image: "/images/events/upcoming/g12ae1.avif",
                 details_image: "/images/events/upcoming/g12ae2.avif",
-                instagram_link: "https://www.instagram.com/p/DWnXYTrEY8o/?igsh=aTlqcmh3MDl6bWZt",
+                ig_link: "https://www.instagram.com/p/DWnXYTrEY8o/?igsh=aTlqcmh3MDl6bWZt",
                 registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSe1BkLQDBg-6j2B0gzViv6qwNiV3XXjT9Gs5IHLyOFN3nJffA/viewform",
                 trailer_link: "https://www.instagram.com/reel/DWp8LpvTaKQ/?igsh=MWRpanpmbXBncmRyZQ==",
             },
@@ -385,42 +385,42 @@ const siteContent = {
                 date: "Thursday, 26th February 2026",
                 department: "Student Welfare Department",
                 image: "/images/events/past/lxs.avif",
-                instagram_link: "https://www.instagram.com/p/DWL2I-GEQAE/?img_index=1",
+                ig_link: "https://www.instagram.com/p/DWL2I-GEQAE/?img_index=1",
             },
             {
                 title: "A-Level Leadership Camp 2026",
                 date: "Saturday, 7th February 2026 to Sunday, 8th February 2026",
                 department: "Leadership Development Department",
                 image: "/images/events/past/alc.avif",
-                instagram_link: "https://www.instagram.com/p/DWBK7lfEUfH/?img_index=1",
+                ig_link: "https://www.instagram.com/p/DWBK7lfEUfH/?img_index=1",
             },
             {
                 title: "ALSTAR First General Meeting",
                 date: "Tuesday, 27th January 2026",
                 department: "ALSCO",
                 image: "/images/events/past/jagm.avif",
-                instagram_link: "https://www.instagram.com/p/DV563smkfkd/?img_index=1",
+                ig_link: "https://www.instagram.com/p/DV563smkfkd/?img_index=1",
             },
             {
                 title: "January '26 A-Level Orientation",
                 date: "Monday, 19th January 2026",
                 department: "ALSCO",
                 image: "/images/events/past/jot.avif",
-                instagram_link: "https://www.instagram.com/p/DTure53EcOg/?img_index=1",
+                ig_link: "https://www.instagram.com/p/DTure53EcOg/?img_index=1",
             },
             {
                 title: " July '25 'A Charity Extravaganza'",
                 date: "Saturday, 17th January 2026",
                 department: "ALSCO",
                 image: "/images/events/past/ace.avif",
-                instagram_link: "https://www.instagram.com/p/DTpftXIkQLi/?img_index=1",
+                ig_link: "https://www.instagram.com/p/DTpftXIkQLi/?img_index=1",
             },
             {
                 title: "July '25 Installation Night",
                 date: "Thursday, 8th Janaury 2026",
                 department: "SST (2 Secretaries & Treasurer)",
                 image: "/images/events/past/jin.avif",
-                instagram_link: "https://www.instagram.com/p/DTXjonXEc8U/?img_index=1",
+                ig_link: "https://www.instagram.com/p/DTXjonXEc8U/?img_index=1",
             }
         ]
     },
@@ -440,7 +440,7 @@ const siteContent = {
                 category: "post",
                 department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/1PbBJVyJJ6wd7IIcJHpzVOTRgmlE23bwq/view?usp=sharing", // PDF download link
-                instagram_link: "https://www.instagram.com/p/DWS17hTEd64/?img_index=1",
+                ig_link: "https://www.instagram.com/p/DWS17hTEd64/?img_index=1",
                 button_text: "Read Now"
             },
             {
@@ -449,7 +449,7 @@ const siteContent = {
                 category: "post",
                 department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/19uqO8ACZn4Nu4ejvNohxLSyQr35QW0VY/view?usp=sharing", // PDF download link
-                instagram_link: "https://www.instagram.com/p/DUxxv54EVGe/?img_index=1",
+                ig_link: "https://www.instagram.com/p/DUxxv54EVGe/?img_index=1",
                 button_text: "Read Now"
             },
             {
@@ -458,7 +458,7 @@ const siteContent = {
                 category: "post",
                 department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/11ebHERFPt17D0kmnuv0yaoN6s7JsEHcr/view?usp=sharing", // PDF download link
-                instagram_link: "https://www.instagram.com/p/DTc234xEWFO/?img_index=1",
+                ig_link: "https://www.instagram.com/p/DTc234xEWFO/?img_index=1",
                 button_text: "Read Now"
             },
             {
@@ -467,7 +467,7 @@ const siteContent = {
                 category: "post",
                 department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/1N8ZgCI1DBE07AKba1CZOU5p_GQTKMKpu/view?usp=sharing", // PDF download link
-                instagram_link: "https://www.instagram.com/p/DQjYDcakYz-/?img_index=1",
+                ig_link: "https://www.instagram.com/p/DQjYDcakYz-/?img_index=1",
                 button_text: "Read Now"
             },
             {
