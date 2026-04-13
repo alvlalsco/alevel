@@ -175,7 +175,7 @@ const siteContent = {
 
             // Row 2: VPs
             { role: "Vice President of External Affairs", name: "NICHOLAS WONG JUN YEW", image: "/images/committee/high_council/vpe.avif", quote: "The only person you need to beat is the person you were yesterday. " },
-            { role: "Vice President of Internal Affairs", name: "DANIEL @ HTOO HTET ZAW", image: "/images/committee/high_council/vpi.avif", quote: "" },
+            { role: "Vice President of Internal Affairs", name: "DANIEL @ HTOO HTET ZAW", image: "/images/committee/high_council/vpi.avif", quote: "Believe you can, and you're halfway there!" },
 
             // Row 3: Secs & Treasurer
             { role: "Secretary", name: "CHUE RYEE EN", image: "/images/committee/high_council/sec1.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
@@ -193,7 +193,7 @@ const siteContent = {
                     { role: "Deputy Director", name: "CHLOE LIM JING YAN", image: "/images/committee/leadership_dev/LDduputyDirector.avif", quote: "Strategically overthinking so you don’t have to :)" }
                 ],
                 members: [
-                    { role: "General Member", name: "ONG XI WEN", image: "/images/committee/leadership_dev/ldmember1.avif", quote: "" },
+                    { role: "General Member", name: "ONG XI WEN", image: "/images/committee/leadership_dev/ldmember1.avif", quote: "Yep still surviving :))" },
                     { role: "General Member", name: "EVAN YEOH JIN QUAN", image: "/images/committee/leadership_dev/ldmember2.avif", quote: "'Come, let me prove you wrong' - Ms.Careen" },
                     { role: "General Member", name: "TAY HUI ER", image: "/images/committee/leadership_dev/ldmember3.avif", quote: "Be the best version of yourself. :)" },
                     { role: "General Member", name: "VINCENT KHOO WEI WEN", image: "/images/committee/leadership_dev/ldmember4.avif", quote: "Failure is merely the ink of a life that dared to write" },
@@ -202,7 +202,7 @@ const siteContent = {
             {
                 name: "Community Service",
                 leaders: [
-                    { role: "Director", name: "EE JING XUAN", image: "/images/committee/comserve/CSdirector.avif", quote: "" },
+                    { role: "Director", name: "EE JING XUAN", image: "/images/committee/comserve/CSdirector.avif", quote: "But it’s hard to stay mad when there’s so much beauty in the world." },
                     { role: "Deputy Director", name: "NYEIN YU SAN", image: "/images/committee/comserve/CSdeputyDirector.avif", quote: "Growing while giving back through service" }
                 ],
                 members: [
@@ -234,14 +234,14 @@ const siteContent = {
                     { role: "General Member", name: "JOSHUA LEE CHENG AN", image: "/images/committee/student_wel/swmember2.avif", quote: "You can't rush greatness" },
                     { role: "General Member", name: "GOH JAY NING", image: "/images/committee/student_wel/swmember3.avif", quote: "Eat well, sleep well, study well. - Mr D. " },
                     { role: "General Member", name: "DANIEL WONG WENG SENG", image: "/images/committee/student_wel/swmember4.avif", quote: "" },
-                    { role: "General Member", name: "DANIEL @ HTOO HTET ZAW", image: "/images/committee/student_wel/swmember5.avif", quote: "" },
+                    { role: "General Member", name: "DANIEL @ HTOO HTET ZAW", image: "/images/committee/student_wel/swmember5.avif", quote: "Believe you can, and you're halfway there!" },
                     { role: "General Member", name: "CHUE RYEE EN", image: "/images/committee/student_wel/swmember6.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
                 ],
             },
             {
                 name: "General Member",
                 members: [
-                    { role: "General Member", name: "EE CHAO JIAN", image: "/images/committee/public_rel/prmember2.avif", quote: "" },
+                    { role: "General Member", name: "EE CHAO JIAN", image: "/images/committee/public_rel/prmember2.avif", quote: "Have fun!" },
                     { role: "General Member", name: "KAY THARI MON ", image: "/images/committee/public_rel/prmember3.avif", quote: "" },
                     { role: "General Member", name: "SAN DAR WIN", image: "/images/committee/public_rel/prmember4.avif", quote: "" }
                 ]
@@ -298,17 +298,7 @@ const siteContent = {
         // SECTION 1: UPCOMING EVENTS
         upcoming: [
             // To add more events, just copy the format above and paste and change the details accordingly.
-            {
-                title: "Little Notes Big Smiles",
-                department: "Student Welfare",
-                event_type: "Actual Event",
-                date: "",
-                image: "/images/events/upcoming/swlnbsae.avif",
-                details_image: "",
-                instagram_link: "",
-                registration_link: "",
-                trailer_link: ""
-            },
+
             {
                 title: "ALSTAR Arena Sports Tournament",
                 department: "ALSTAR G1",
@@ -343,28 +333,6 @@ const siteContent = {
                 trailer_link: "https://www.instagram.com/p/DWYnGdLkcsD/",
             },
             {
-                title: "House of Cards",
-                department: "ALSTAR G5",
-                event_type: "Actual Event",
-                date: "Thursday, 9th April 2026",
-                image: "/images/events/upcoming/g5ae1.avif",
-                details_image: "/images/events/upcoming/g5ae2.avif",
-                instagram_link: "https://www.instagram.com/p/DWBm-uaESgJ/?img_index=1",
-                registration_link: "https://forms.gle/a3nC9BiSKmf3bJBJA",
-                trailer_link: "https://www.instagram.com/p/DWlqD6FiSeS/",
-            },
-            {
-                title: "Friendship 101",
-                department: "ALSTAR G7",
-                event_type: "Actual Event",
-                date: "Tuesday, 7th April 2026 to Thursday, 9th April 2026",
-                image: "/images/events/upcoming/g7ae1.avif",
-                details_image: "/images/events/upcoming/g7ae2.avif",
-                instagram_link: "https://www.instagram.com/p/DWTaOMkEe1A/?img_index=1",
-                registration_link: "https://forms.gle/BQwz9qhn9dmVJQiXA",
-                trailer_link: "https://www.instagram.com/p/DWoAqkCEfbg/",
-            },
-            {
                 title: "Game On, Stress Gone",
                 department: "ALSTAR G8",
                 event_type: "Actual Event",
@@ -396,17 +364,6 @@ const siteContent = {
                 instagram_link: "⁠https://www.instagram.com/p/DWgMFH1EVsu/?img_index=1&igsh=MTQ4YWZwZXVleWVhdw==",
                 registration_link: "⁠https://forms.gle/48zt8j3UM1XEs1wL8",
                 trailer_link: "",
-            },
-            {
-                title: "Reclaiming The Future",
-                department: "ALSTAR G11",
-                event_type: "Actual Event",
-                date: "Monday, 6th April 2026",
-                image: "/images/events/upcoming/g11ae1.avif",
-                details_image: "/images/events/upcoming/g11ae2.avif",
-                instagram_link: "https://www.instagram.com/p/DWTaSbEkRfN/?img_index=1",
-                registration_link: "https://forms.gle/yjzni855WPP8j7Kf7",
-                trailer_link: "https://www.instagram.com/p/DWYkq_LkQsA/",
             },
             {
                 title: "A Gift of Learning",
