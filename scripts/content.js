@@ -242,8 +242,6 @@ const siteContent = {
                 name: "General Member",
                 members: [
                     { role: "General Member", name: "EE CHAO JIAN", image: "/images/committee/public_rel/prmember2.avif", quote: "Have fun!" },
-                    { role: "General Member", name: "KAY THARI MON ", image: "/images/committee/public_rel/prmember3.avif", quote: "" },
-                    { role: "General Member", name: "SAN DAR WIN", image: "/images/committee/public_rel/prmember4.avif", quote: "" }
                 ]
             }
         ],

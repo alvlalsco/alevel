@@ -24,19 +24,23 @@
     }
 
     h1 {
-        @apply text-4xl md:text-5xl lg:text-6xl font-black text-main;
+        @apply text-3xl md:text-5xl lg:text-6xl font-black text-main;
     }
 
     h2 {
-        @apply text-3xl md:text-4xl lg:text-5xl font-bold text-main uppercase;
+        @apply text-2xl md:text-4xl lg:text-5xl font-bold text-main uppercase;
     }
 
     h3 {
-        @apply text-2xl md:text-3xl font-bold;
+        @apply text-xl md:text-3xl font-bold;
+    }
+
+    h4 {
+        @apply text-base md:text-2xl font-bold;
     }
 
     p {
-        @apply text-base md:text-lg leading-relaxed text-gray-700;
+        @apply text-xs md:text-lg leading-relaxed text-gray-700;
     }
 }
 

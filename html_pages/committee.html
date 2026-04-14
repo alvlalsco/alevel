@@ -15,11 +15,13 @@
     <div id="navbar-placeholder"></div>
 
     <main>
-        <section class="py-16 lg:py-20 bg-gray-50 border-b-custom">
+        <section id="committee-section" class="py-16 lg:py-20 bg-gray-50 border-b-custom">
             <div class="max-w-7xl mx-auto px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <span class="primary-maroon font-bold tracking-[0.2em] uppercase text-xs">The Team</span>
-                    <h1 class="text-4xl md:text-5xl font-black text-main tracking-tight uppercase mt-2">
+
+                <div id="committee-header" class="text-center mb-16">
+                    <span id="committee-subtitle" class="text-maroon font-bold tracking-[0.2em] uppercase text-xs">The
+                        Team</span>
+                    <h1 id="committee-title" class="font-black text-main tracking-tight uppercase mt-2">
                         Meet The Committee
                     </h1>
                 </div>
@@ -29,18 +31,21 @@
 
                 <div id="dept-roster" class="space-y-20">
                 </div>
+
             </div>
         </section>
 
-        <section class="py-12 lg:py-16 border-b-custom">
+        <section id="departments-section" class="py-12 lg:py-16 border-b-custom">
             <div class="max-w-7xl mx-auto px-6 lg:px-8">
-                <div class="flex flex-col items-center text-center">
-                    <span class="primary-maroon font-bold tracking-[0.2em] uppercase text-xs mb-4">Core
-                        Structure</span>
 
-                    <h1 class="text-4xl md:text-5xl font-black text-main tracking-tight uppercase">
+                <div id="departments-header" class="flex flex-col items-center text-center mb-12 lg:mb-16">
+                    <span id="departments-subtitle"
+                        class="text-maroon font-bold tracking-[0.2em] uppercase text-xs mb-4">Core Structure</span>
+
+                    <h2 id="departments-title"
+                        class="text-4xl md:text-5xl font-black text-main tracking-tight uppercase">
                         Departments
-                    </h1>
+                    </h2>
 
                     <div class="flex items-center gap-4 mt-8">
                         <div class="w-12 h-0.5 bg-gray-300"></div>
@@ -48,19 +53,18 @@
                         <div class="w-12 h-0.5 bg-gray-300"></div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section class="py-12 lg:py-16">
-            <div class="max-w-7xl mx-auto px-6 lg:px-8">
                 <div id="departments-container" class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-                    <p class="text-center text-gray-400 col-span-full">Loading departments...</p>
+                    <p id="departments-loading-text" class="text-center text-gray-400 col-span-full">Loading
+                        departments...</p>
                 </div>
+
             </div>
         </section>
     </main>
 
     <div id="footer-placeholder"></div>
+
     <script src="/scripts/content.js"></script>
     <script src="/script.js"></script>
     <script src="/scripts/committee.js"></script>
