@@ -11,6 +11,18 @@
 </head>
 
 <body class="antialiased">
+    <svg style="display: none;">
+        <symbol id="ig-svg" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd"
+                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                clip-rule="evenodd" />
+        </symbol>
+
+        <symbol id="trailer-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+            <path
+                d="M200-400h360v-280H200v280Zm-40 240q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-480H160v480Zm0 0v-480 480Z" />
+        </symbol>
+    </svg>
 
     <div id="navbar-placeholder"></div>
 
@@ -24,35 +36,30 @@
             </div>
 
             <div class="sticky left-0 w-screen min-h-screen flex flex-col justify-end z-10 pb-8 lg:pb-12">
-                <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
 
                     <h1
-                        class="text-2xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase">
+                        class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase">
                         Sunway <span class="text-maroon">A-Level</span> Student Committee
                     </h1>
 
-                    <p id="hero-desc"
-                        class="text-sm md:text-lg lg:text-xl leading-relaxed mb-2 max-w-3xl text-white/90">
+                    <p id="hero-desc" class="mb-2 max-w-3xl text-white/90">
                         Loading...
                     </p>
 
-                    <div class="flex flex-row items-center justify-start gap-3 md:gap-4 mt-4">
-                        <a id="hero-alstar-btn" href="/html_pages/alstar.html"
-                            class="px-6 py-2.5 md:px-8 md:py-3 bg-[#8a1538] text-white text-sm md:text-base font-bold rounded-lg hover:bg-red-900 transition-colors text-center shadow-lg shrink-0">
+                    <div class="flex flex-wrap items-center justify-start gap-3 md:gap-4 mt-4">
+                        <a id="hero-alstar-btn" href="/html_pages/alstar.html" class="btn-maroon">
                             ALSTAR
                         </a>
 
-                        <a id="hero-handbook-btn" href="#" target="_blank"
-                            class="px-6 py-2.5 md:px-8 md:py-3 bg-white/20 backdrop-blur-sm border border-white/50 text-white text-sm md:text-base font-bold rounded-lg hover:bg-white/30 transition-colors text-center shadow-lg shrink-0">
+                        <a id="hero-handbook-btn" href="#" target="_blank" class="btn-ghost">
                             Handbook
                         </a>
 
                         <a id="hero-trailer-btn" href="#" target="_blank" aria-label="Watch ALSCO Trailer"
-                            class="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-maroon text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_20px_rgba(255,255,255,0.6)] group shrink-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
-                                class="w-6 h-6 md:w-8 md:h-8 fill-current transform group-hover:scale-110 transition-transform">
-                                <path
-                                    d="M200-400h360v-280H200v280Zm-40 240q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-480H160v480Zm0 0v-480 480Z" />
+                            class="icon-trailer">
+                            <svg class="icon-trailer-svg">
+                                <use href="#trailer-svg"></use>
                             </svg>
                         </a>
                     </div>
@@ -61,34 +68,40 @@
         </header>
 
         <section id="affiliates-section" class="py-8 md:py-10 bg-gray-50 border-b-custom">
-            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col items-center">
-                    <span class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs mb-4 md:mb-8">
+                    <span
+                        class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs mb-4 md:mb-8 text-center">
                         In Collaboration With
                     </span>
-                    <div id="affiliates-grid" class="flex flex-wrap justify-center gap-12 md:gap-16 lg:gap-24 w-full">
+                    <div id="affiliates-grid"
+                        class="flex flex-wrap justify-center gap-6 sm:gap-12 md:gap-16 lg:gap-24 w-full">
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="events-section" class="py-16 lg:py-24 bg-white relative">
-            <div class="max-w-7xl mx-auto px-8">
+        <section id="events-section" class="py-16 lg:py-24 bg-gray-50 relative">
 
-                <div id="events-header-text" class="mb-10 md:mb-12">
-                    <span class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">Don't Miss
-                        Out</span>
-                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-black text-main uppercase mt-2">Featured Events
+            <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+                <div id="events-header-text" class="mb-8 md:mb-12">
+                    <span class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">
+                        Don't Miss Out
+                    </span>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-main uppercase mt-2">
+                        Featured Events
                     </h2>
                 </div>
 
                 <div id="events-carousel-wrapper"
-                    class="relative border-custom rounded-4xl bg-white overflow-hidden shadow-sm">
+                    class="relative border-custom rounded-3xl sm:rounded-4xl bg-white overflow-hidden shadow-md">
+
                     <div id="event-card"
-                        class="grid lg:grid-cols-5 transition-opacity duration-500 ease-in-out opacity-100">
+                        class="flex flex-col lg:grid lg:grid-cols-5 transition-opacity duration-500 ease-in-out opacity-100 h-full">
 
                         <div id="img-container"
-                            class="lg:col-span-2 relative aspect-4/5 overflow-hidden group bg-gray-100">
+                            class="w-full lg:col-span-2 relative aspect-4/5 overflow-hidden group bg-gray-100 shrink-0 border-b lg:border-b-0 lg:border-r border-gray-100">
                             <img id="event-img" src=""
                                 class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 lg:group-hover:opacity-0 group-[.show-details]:opacity-0"
                                 alt="Event Image" loading="lazy">
@@ -98,7 +111,7 @@
 
                             <button id="mobile-details-toggle" type="button" aria-label="Show details"
                                 onclick="toggleEventInfo(event)"
-                                class="absolute bottom-4 right-4 z-20 lg:hidden bg-black/60 hover:bg-black/80 text-white p-3 min-w-11 min-h-11 flex items-center justify-center rounded-full backdrop-blur-md border border-white/30 transition-all shadow-lg">
+                                class="absolute bottom-4 right-4 z-20 lg:hidden bg-black/60 hover:bg-black/80 text-white p-3 min-w-8 min-h-8 flex items-center justify-center rounded-full backdrop-blur-md border border-white/30 transition-all shadow-lg">
                                 <svg class="w-4 h-4 md:w-5 md:h-5 pointer-events-none" fill="currentColor"
                                     viewBox="0 0 24 24">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -107,71 +120,50 @@
                             </button>
                         </div>
 
-                        <div class="lg:col-span-3 p-6 md:p-10 lg:p-16 flex flex-col relative">
+                        <div class="w-full lg:col-span-3 p-2 sm:p-8 lg:p-16 flex flex-col relative grow">
 
-                            <div class="flex items-center gap-3 mb-4">
+                            <div class="flex flex-wrap items-center gap-2 sm:gap-3 mb-4 w-full">
                                 <span id="event-type-tag"
-                                    class="shrink-0 px-2 py-1 md:px-5 md:py-3 rounded-full text-xs md:text-lg font-bold uppercase tracking-widest shadow-sm bg-maroon text-white backdrop-blur-md bg-opacity-90 whitespace-nowrap hidden"></span>
+                                    class="shrink-0 px-2 py-1 md:px-5 md:py-3 rounded-full text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest shadow-sm bg-maroon text-white backdrop-blur-md bg-opacity-90 whitespace-nowrap hidden"></span>
                                 <span id="event-department-tag"></span>
 
                                 <a id="event-ig-tag" href="#" target="_blank" aria-label="View on Instagram"
-                                    class="shrink-0 inline-flex items-center justify-center w-11 h-11 bg-[#E1306C] text-white rounded-full transition-all duration-300 lg:hover:scale-110 lg:hover:shadow-lg">
-                                    <svg class="w-5 h-5 md:w-6 md:h-6 pointer-events-none" fill="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path fill-rule="evenodd"
-                                            d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                                            clip-rule="evenodd" />
+                                    class="icon-ig">
+                                    <svg class="icon-ig-svg">
+                                        <use href="#ig-svg"></use>
                                     </svg>
                                 </a>
 
                                 <a id="event-trailer-tag" href="#" target="_blank" aria-label="Watch Event Trailer"
-                                    class="flex items-center justify-center w-11 h-11 bg-maroon text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_20px_rgba(255,255,255,0.6)] group shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
-                                        class="w-5 h-5 md:w-6 md:h-6 fill-current transform group-hover:scale-110 transition-transform">
-                                        <path
-                                            d="M200-400h360v-280H200v280Zm-40 240q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-480H160v480Zm0 0v-480 480Z" />
+                                    class="icon-trailer w-8 h-8">
+                                    <svg class="icon-trailer-svg">
+                                        <use href="#trailer-svg"></use>
                                     </svg>
                                 </a>
                             </div>
 
-                            <h3 id="event-title" class="text-2xl md:text-3xl font-bold mb-1">Loading Event...</h3>
-                            <p id="event-date"
-                                class="text-sm md:text-base font-semibold text-gray-500 mb-6 uppercase tracking-widest hidden">
-                                Loading Date...</p>
+                            <h3 id="event-title"
+                                class="text-xl sm:text-2xl md:text-3xl font-bold mb-1 wrap-break-words">
+                                Loading Event...</h3>
+
+                            <h4 id="event-date"
+                                class="text-xs sm:text-sm md:text-base font-semibold text-gray-500 mb-4 sm:mb-6 uppercase tracking-widest hidden wrap-break-words">
+                                Loading Date...
+                            </h4>
+
                             <p id="event-desc"
-                                class="mb-8 text-sm md:text-base lg:text-lg leading-relaxed text-main text-justify hidden">
+                                class="mb-8 text-xs sm:text-sm md:text-base leading-relaxed text-main text-justify hidden wrap-break-words">
                             </p>
 
-                            <div id="event-regis" class="flex flex-wrap gap-3 md:gap-4 mt-auto">
-                                <a id="event-reg-btn" href="#" target="_blank"
-                                    class="btn-modern btn-maroon w-full md:w-auto text-sm md:text-base">
+                            <div id="event-regis" class="flex flex-col sm:flex-row flex-wrap gap-3 mt-auto w-full pt-4">
+                                <a id="event-reg-btn" href="#" target="_blank" class="btn-maroon">
                                     <span id="event-reg-btn-text">Register Now</span>
                                 </a>
-                                <a id="to-events-page" href="/html_pages/events.html"
-                                    class="btn-modern btn-ghost w-full md:w-auto text-sm md:text-base">
+                                <a id="to-events-page" href="/html_pages/events.html" class="btn-outline">
                                     View All Events
                                 </a>
                             </div>
 
-                            <div id="event-nav-controls"
-                                class="absolute bottom-6 right-6 lg:bottom-16 lg:right-16 flex gap-2 z-30">
-                                <button id="prev-event-btn" aria-label="Previous Event"
-                                    class="p-3 min-w-11 min-h-11 flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-main rounded-full transition-colors">
-                                    <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 19l-7-7 7-7"></path>
-                                    </svg>
-                                </button>
-                                <button id="next-event-btn" aria-label="Next Event"
-                                    class="p-3 min-w-11 min-h-11 flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-main rounded-full transition-colors">
-                                    <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -179,7 +171,7 @@
         </section>
 
         <section id="publication-section" class="py-16 lg:py-24 bg-white border-t-custom">
-            <div class="max-w-7xl mx-auto px-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-8">
 
                 <div id="publication-section-header" class="mb-10 md:mb-12 flex justify-between items-end">
                     <div>
@@ -187,8 +179,8 @@
                             class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">Stay
                             Informed</span>
                         <h2 id="publication-header-text-big"
-                            class="text-2xl md:text-3xl lg:text-4xl font-black text-main uppercase mt-2">Latest
-                            Publications</h2>
+                            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-main uppercase mt-2">
+                            Latest Publications</h2>
                     </div>
                     <a id="to-publication-page" href="/html_pages/publication.html"
                         class="hidden md:inline-flex btn-modern btn-ghost w-auto text-sm md:text-base">View All</a>
@@ -196,40 +188,37 @@
 
                 <div id="publication-container"
                     class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 max-w-4xl mx-auto">
-
                     <div id="newsletter-container" class="flex flex-col gap-4">
                         <h3 id="newsletter-text"
-                            class="text-xl md:text-2xl font-bold text-main border-b-2 border-gray-100 pb-2">Latest
-                            Newsletter</h3>
-                        <div id="latest-newsletter-container">
-                        </div>
+                            class="text-lg sm:text-xl md:text-2xl font-bold text-main border-b-2 border-gray-100 pb-2">
+                            Latest Newsletter</h3>
+                        <div id="latest-newsletter-container"></div>
                     </div>
 
                     <div id="monthly-post-container" class="flex flex-col gap-4">
                         <h3 id="monthly-post-text"
-                            class="text-xl md:text-2xl font-bold text-main border-b-2 border-gray-100 pb-2">Latest
-                            Monthly Post</h3>
-                        <div id="latest-post-container">
-                        </div>
+                            class="text-lg sm:text-xl md:text-2xl font-bold text-main border-b-2 border-gray-100 pb-2">
+                            Latest Monthly Post</h3>
+                        <div id="latest-post-container"></div>
                     </div>
-
                 </div>
 
                 <div class="mt-8 flex justify-center md:hidden">
-                    <a href="/html_pages/publication.html" class="btn-modern btn-ghost w-auto text-sm">View All</a>
+                    <a href="/html_pages/publication.html"
+                        class="btn-modern btn-ghost w-full sm:w-auto text-center text-sm">View All</a>
                 </div>
 
             </div>
         </section>
 
         <section id="faq" class="py-16 lg:py-24 bg-white border-t-custom">
-            <div class="max-w-4xl mx-auto px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 <div class="text-center mb-12 md:mb-16">
                     <span class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">Information
                         Hub</span>
-                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-black text-main uppercase mt-2">Frequently Asked
-                        Questions</h2>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-main uppercase mt-2">
+                        Frequently Asked Questions</h2>
                 </div>
 
                 <div id="faq-accordion-container" class="border-t-2 border-[#d1d5db] mb-12">
@@ -237,14 +226,15 @@
                 </div>
 
                 <div id="contact-cta"
-                    class="p-6 md:p-8 lg:p-10 border-custom rounded-3xl bg-gray-50 flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-6">
+                    class="p-5 sm:p-6 md:p-8 lg:p-10 border-custom rounded-3xl bg-gray-50 flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-4 sm:gap-6">
                     <div>
-                        <h4 class="text-lg md:text-xl font-black text-main mb-2">Still have questions?</h4>
-                        <p class="text-xs md:text-sm text-gray-600">Can't find the answer you're looking for? Reach out
-                            to us!</p>
+                        <h4 class="text-base sm:text-lg md:text-xl font-black text-main mb-1 sm:mb-2">Still have
+                            questions?</h4>
+                        <p class="text-[10px] sm:text-xs md:text-sm text-gray-600">Can't find the answer you're looking
+                            for? Reach out to us!</p>
                     </div>
                     <a id="contact-btn" href="/html_pages/contact.html"
-                        class="btn-modern btn-maroon shrink-0 w-full md:w-auto text-sm md:text-base">
+                        class="btn-modern btn-maroon shrink-0 w-full md:w-auto text-xs sm:text-sm md:text-base text-center">
                         Get In Touch
                     </a>
                 </div>

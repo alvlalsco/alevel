@@ -40,27 +40,60 @@
     }
 
     p {
-        @apply text-xs md:text-lg leading-relaxed text-gray-700;
+        @apply text-xs md:text-lg lg:text-xl leading-relaxed text-gray-700;
     }
 }
 
-/* 5. CUSTOM COMPONENTS (Buttons, Nav, Borders) */
 @layer components {
 
-    /* Buttons */
-    .btn-modern {
-        @apply px-8 py-3 rounded-full font-medium inline-flex items-center justify-center transition-all duration-300;
+    /* ==========================================
+       3. BUTTONS (The Big 3)
+       ========================================== */
+
+    /* A. Red Default (Primary) */
+    .btn-maroon {
+        @apply inline-flex items-center justify-center shrink-0 px-6 py-3 md:px-8 rounded-full font-bold text-sm md:text-base text-center transition-all duration-300 bg-maroon text-white lg:hover:bg-maroon-dark;
     }
 
-    .btn-maroon {
-        @apply bg-maroon text-white hover:bg-maroon-dark;
+    /* B. Blur Default (Contextual / Hover Cards) */
+    .btn-blur {
+        @apply inline-flex items-center justify-center shrink-0 px-3 py-2 md:px-6 md:py-3 rounded-full font-bold text-xs md:text-base text-center transition-all duration-300 backdrop-blur-md text-maroon border-2 border-white lg:hover:bg-maroon lg:hover:text-white lg:hover:border-maroon;
+    }
+
+    /* C. White Button with Red Border (Secondary / View All) */
+    .btn-outline {
+        @apply inline-flex items-center justify-center shrink-0 px-6 py-3 md:px-8 rounded-full font-bold text-sm md:text-base text-center transition-all duration-300 bg-white border-2 border-maroon text-maroon lg:hover:bg-maroon lg:hover:text-white;
     }
 
     .btn-ghost {
-        @apply border-2 border-maroon bg-transparent text-maroon hover:bg-maroon hover:text-white;
+        @apply px-6 py-2.5 md:px-8 md:py-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 text-white text-sm md:text-base font-bold hover:bg-white/30 transition-colors text-center shadow-lg shrink-0;
     }
 
-    /* Custom Borders */
+    /* ==========================================
+       4. ICONS (Socials & Media)
+       ========================================== */
+
+    /* D. Instagram */
+    .icon-ig {
+        @apply w-8 h-8 md:w-12 md:h-12 inline-flex items-center justify-center shrink-0 rounded-full bg-[#E1306C] text-white transition-all duration-300 lg:hover:scale-110 lg:hover:shadow-lg;
+    }
+
+    .icon-ig-svg {
+        @apply fill-current w-6 h-6 md:w-10 md:h-10 pointer-events-none;
+    }
+
+    /* E. Trailer */
+    .icon-trailer {
+        @apply w-10 h-10 md:w-12 md:h-12 shrink-0 flex items-center justify-center bg-maroon text-white rounded-full ring-2 ring-inset ring-maroon hover:bg-white hover:text-black hover:ring-maroon transition-all duration-300;
+    }
+
+    .icon-trailer-svg {
+        @apply fill-current w-6 h-6 md:w-8 md:h-8 pointer-events-none;
+    }
+
+    /* ==========================================
+       5. UTILITIES (Keep these as they are great!)
+       ========================================== */
     .border-custom {
         @apply border-2 border-gray-300;
     }
@@ -77,7 +110,6 @@
         @apply border-x-2 border-gray-300;
     }
 
-    /* Utilities */
     .aspect-fill {
         @apply object-cover w-full h-full;
     }
