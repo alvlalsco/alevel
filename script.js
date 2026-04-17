@@ -29,11 +29,11 @@ window.getDepartmentColor = (department) => {
     if (!department) return "";
     let deptColorClass = "bg-red-100 text-red-700";
     const dept = department.toLowerCase();
-    if (dept.includes("leadership")) deptColorClass = "bg-red-100 text-red-700";
-    else if (dept.includes("welfare")) deptColorClass = "bg-blue-100 text-blue-700";
-    else if (dept.includes("relations")) deptColorClass = "bg-pink-100 text-pink-700";
-    else if (dept.includes("comserve") || dept.includes("community")) deptColorClass = "bg-green-100 text-green-700";
-    else if (dept.includes("sst") || dept.includes("secretaries")) deptColorClass = "bg-amber-100 text-amber-700";
+    if (dept.includes("leadership")) deptColorClass = "bg-red-100/90 text-red-700";
+    else if (dept.includes("welfare")) deptColorClass = "bg-blue-100/90 text-blue-700";
+    else if (dept.includes("relations")) deptColorClass = "bg-pink-100/90 text-pink-700";
+    else if (dept.includes("comserve") || dept.includes("community")) deptColorClass = "bg-green-100/90 text-green-700";
+    else if (dept.includes("sst") || dept.includes("secretaries")) deptColorClass = "bg-amber-100/90 text-amber-700";
     return deptColorClass;
 };
 

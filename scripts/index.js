@@ -215,55 +215,65 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (upcomingEvents.length > 0) {
             renderFeaturedEvent(0);
-            carouselTimer = setInterval(nextSlide, carouselDelay);
 
-            if (wrapperEl) {
-                wrapperEl.addEventListener('mouseenter', () => {
-                    clearInterval(carouselTimer);
-                    clearTimeout(interactionTimeout);
-                    isInteracting = false;
-                });
+            if (upcomingEvents.length > 1) {
+                carouselTimer = setInterval(nextSlide, carouselDelay);
 
-                wrapperEl.addEventListener('mouseleave', () => {
-                    if (!isInteracting) {
+                if (wrapperEl) {
+                    wrapperEl.addEventListener('mouseenter', () => {
                         clearInterval(carouselTimer);
-                        carouselTimer = setInterval(nextSlide, carouselDelay);
-                    }
+                        clearTimeout(interactionTimeout);
+                        isInteracting = false;
+                    });
+
+                    wrapperEl.addEventListener('mouseleave', () => {
+                        if (!isInteracting) {
+                            clearInterval(carouselTimer);
+                            carouselTimer = setInterval(nextSlide, carouselDelay);
+                        }
+                    });
+
+                    wrapperEl.addEventListener('click', temporarilyPauseCarousel);
+                }
+
+                document.getElementById("next-event-btn")?.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    triggerManualSlide('next');
                 });
 
-                wrapperEl.addEventListener('click', temporarilyPauseCarousel);
-            }
+                document.getElementById("prev-event-btn")?.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    triggerManualSlide('prev');
+                });
 
-            document.getElementById("next-event-btn")?.addEventListener('click', (e) => {
-                e.stopPropagation();
-                triggerManualSlide('next');
-            });
+                if (wrapperEl) {
+                    let touchStartX = 0, touchStartY = 0;
+                    let touchEndX = 0, touchEndY = 0;
 
-            document.getElementById("prev-event-btn")?.addEventListener('click', (e) => {
-                e.stopPropagation();
-                triggerManualSlide('prev');
-            });
+                    wrapperEl.addEventListener('touchstart', (e) => {
+                        touchStartX = e.changedTouches[0].screenX;
+                        touchStartY = e.changedTouches[0].screenY;
+                    }, { passive: true });
 
-            if (wrapperEl) {
-                let touchStartX = 0, touchStartY = 0;
-                let touchEndX = 0, touchEndY = 0;
+                    wrapperEl.addEventListener('touchend', (e) => {
+                        touchEndX = e.changedTouches[0].screenX;
+                        touchEndY = e.changedTouches[0].screenY;
 
-                wrapperEl.addEventListener('touchstart', (e) => {
-                    touchStartX = e.changedTouches[0].screenX;
-                    touchStartY = e.changedTouches[0].screenY;
-                }, { passive: true });
+                        const deltaX = touchEndX - touchStartX;
+                        const deltaY = touchEndY - touchStartY;
 
-                wrapperEl.addEventListener('touchend', (e) => {
-                    touchEndX = e.changedTouches[0].screenX;
-                    touchEndY = e.changedTouches[0].screenY;
+                        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                            triggerManualSlide(deltaX < 0 ? 'next' : 'prev');
+                        }
+                    }, { passive: true });
+                }
+            } else {
 
-                    const deltaX = touchEndX - touchStartX;
-                    const deltaY = touchEndY - touchStartY;
+                // 3. If there is EXACTLY 1 event, hide the navigation controls
+                document.getElementById("event-nav-controls")?.classList.add("hidden");
+                document.getElementById("next-event-btn")?.classList.add("hidden");
+                document.getElementById("prev-event-btn")?.classList.add("hidden");
 
-                    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
-                        triggerManualSlide(deltaX < 0 ? 'next' : 'prev');
-                    }
-                }, { passive: true });
             }
 
         } else {
@@ -313,8 +323,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             return `
             <div class="flex flex-col gap-3">
-                <div class="flex flex-row flex-nowrap gap-2 md:gap-3 items-center justify-start w-full overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden pb-1">
-                    ${item.department ? `<span class="shrink-0 px-2 py-1 md:px-3 md:py-2 rounded-full text-xs md:text-base font-bold uppercase tracking-widest shadow-sm backdrop-blur-md ${getDepartmentColor(item.department)} bg-opacity-90 whitespace-nowrap" style="font-size: 10px;">${item.department}</span>` : ''}
+                <div class="tag-wrapper">
+                    ${item.department ? `<span class="tag-base ${getDepartmentColor(item.department)} ">${item.department}</span>` : ''}
                     
                     ${item.ig_link ? `
                     <a href="${item.ig_link}" target="_blank" aria-label="View on Instagram" class="icon-ig">
@@ -326,8 +336,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 <div class="relative block rounded-3xl overflow-hidden shadow-lg border border-gray-200 group">
                     <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 z-20 flex items-center justify-center transition-all duration-500 bg-black/0 lg:group-hover:bg-black/30 pointer-events-none">
-                        <a href="${link}" target="${target}" class="pointer-events-auto text-white font-bold bg-black/10 lg:bg-transparent lg:hover:bg-white lg:hover:text-black tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500 transform lg:translate-y-4 lg:group-hover:translate-y-0 border-2 border-white px-3 py-1.5 sm:px-4 sm:py-1.5 md:px-6 md:py-2.5 rounded-full backdrop-blur-sm ${isDisabled ? 'cursor-not-allowed hover:bg-transparent hover:text-white' : ''}" style="font-size: 11px;">
+                    <div class="absolute inset-0 z-20 flex items-center justify-center transition-all duration-500 pointer-events-none">
+                        <a href="${link}" target="${target}" class="btn-blur pointer-events-auto tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transform lg:translate-y-4 lg:group-hover:translate-y-0 duration-500! ${isDisabled ? 'cursor-not-allowed lg:hover:bg-transparent! lg:hover:text-white!' : ''}" style="font-size: 11px;">
                             ${isDisabled ? 'Coming Soon' : item.button_text}
                         </a>
                     </div>

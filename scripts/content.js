@@ -307,7 +307,7 @@ const siteContent = {
                 ig_link: "https://www.instagram.com/p/DWnXYTrEY8o/?igsh=aTlqcmh3MDl6bWZt",
                 registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSe1BkLQDBg-6j2B0gzViv6qwNiV3XXjT9Gs5IHLyOFN3nJffA/viewform",
                 trailer_link: "https://www.instagram.com/reel/DWp8LpvTaKQ/?igsh=MWRpanpmbXBncmRyZQ==",
-                button_text: "Registration Closed",
+                button_text: "Closed",
             },
         ],
 

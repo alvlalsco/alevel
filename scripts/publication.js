@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
 
                             <div class="absolute inset-0 z-20 flex items-center justify-center transition-all duration-500 pointer-events-none">
-                                <a href="${link}" target="${target}" class="btn-blur pointer-events-auto tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transform lg:translate-y-4 lg:group-hover:translate-y-0 !duration-500 ${isDisabled ? 'cursor-not-allowed lg:hover:!bg-transparent lg:hover:!text-white' : ''}" style="font-size: 11px;">
+                                <a href="${link}" target="${target}" class="btn-blur pointer-events-auto tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transform lg:translate-y-4 lg:group-hover:translate-y-0 duration-500! ${isDisabled ? 'cursor-not-allowed lg:hover:bg-transparent! lg:hover:text-white!' : ''}" style="font-size: 11px;">
                                     ${isDisabled ? 'Coming Soon' : item.button_text}
                                 </a>
                             </div>
@@ -186,9 +186,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                     
                     <div class="flex justify-between items-center w-full gap-2">
 
-                        <div class="flex flex-row flex-nowrap gap-2 md:gap-3 items-center justify-start flex-1 w-0 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden pb-1">
-                            ${book.department ? `<span class="shrink-0 px-2 py-1 md:px-3 md:py-2 rounded-full text-xs md:text-base font-bold uppercase tracking-widest shadow-sm backdrop-blur-md ${getDepartmentColor(book.department)} bg-opacity-90 whitespace-nowrap" style="font-size: 12px;">${book.department}</span>` : ''}
-                            ${book.intake ? `<span class="shrink-0 px-2 py-1 md:px-3 md:py-2 rounded-full text-xs md:text-base bg-black/20 font-bold uppercase tracking-widest shadow-sm text-black backdrop-blur-md whitespace-nowrap" style="font-size: 12px;">${book.intake}</span>` : ''}
+                        <div class="tag-wrapper">
+                            ${book.department ? `<span class="tag-base tag-department ${getDepartmentColor(book.department)}">${book.department}</span>` : ''}
+                            ${book.intake ? `<span class="tag-base tag-secondary">${book.intake}</span>` : ''}
                         </div>
 
                     </div>
@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             class=" w-full h-full object-cover transition-transform duration-700 lg:group-hover:scale-105">
 
                         <div class="absolute inset-0 z-20 flex items-center justify-center transition-all duration-500 pointer-events-none">
-                            <a href="${link}" target="${target}" class="btn-blur pointer-events-auto tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transform lg:translate-y-4 lg:group-hover:translate-y-0 !duration-500 ${isDisabled ? 'cursor-not-allowed lg:hover:!bg-transparent lg:hover:!text-white' : ''}" style="font-size: 11px;">
+                            <a href="${link}" target="${target}" class="btn-blur pointer-events-auto tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transform lg:translate-y-4 lg:group-hover:translate-y-0 duration-500! ${isDisabled ? 'cursor-not-allowed lg:hover:bg-transparent! lg:hover:text-white!' : ''}" style="font-size: 11px;">
                                     ${isDisabled ? 'Coming Soon' : book.button_text}
                             </a>
                         </div>

@@ -52,21 +52,21 @@
 
     /* A. Red Default (Primary) */
     .btn-maroon {
-        @apply inline-flex items-center justify-center shrink-0 px-6 py-3 md:px-8 rounded-full font-bold text-sm md:text-base text-center transition-all duration-300 bg-maroon text-white lg:hover:bg-maroon-dark;
+        @apply inline-flex items-center justify-center shrink-0 px-4 py-3 md:px-6 md:py-3 text-sm md:text-base font-bold rounded-full text-center transition-all duration-300 bg-maroon text-white lg:hover:bg-maroon-dark;
     }
 
     /* B. Blur Default (Contextual / Hover Cards) */
     .btn-blur {
-        @apply inline-flex items-center justify-center shrink-0 px-3 py-2 md:px-6 md:py-3 rounded-full font-bold text-xs md:text-base text-center transition-all duration-300 backdrop-blur-md text-maroon border-2 border-white lg:hover:bg-maroon lg:hover:text-white lg:hover:border-maroon;
+        @apply inline-flex items-center justify-center shrink-0 px-4 py-3 md:px-6 md:py-3 text-sm md:text-base font-bold rounded-full text-center transition-all duration-300 backdrop-blur-md text-white border-2 border-white lg:hover:bg-maroon lg:hover:text-white lg:hover:border-maroon;
     }
 
     /* C. White Button with Red Border (Secondary / View All) */
     .btn-outline {
-        @apply inline-flex items-center justify-center shrink-0 px-6 py-3 md:px-8 rounded-full font-bold text-sm md:text-base text-center transition-all duration-300 bg-white border-2 border-maroon text-maroon lg:hover:bg-maroon lg:hover:text-white;
+        @apply inline-flex items-center justify-center shrink-0 px-4 py-3 md:px-6 md:py-3 text-sm md:text-base font-bold rounded-full text-center transition-all duration-300 bg-white border-2 border-maroon text-maroon lg:hover:bg-maroon lg:hover:text-white;
     }
 
     .btn-ghost {
-        @apply px-6 py-2.5 md:px-8 md:py-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 text-white text-sm md:text-base font-bold hover:bg-white/30 transition-colors text-center shadow-lg shrink-0;
+        @apply inline-flex items-center justify-center shrink-0 px-4 py-3 md:px-6 md:py-3 text-sm md:text-base font-bold rounded-full text-center bg-white/20 backdrop-blur-sm border border-white/50 text-white hover:bg-white/30 transition-colors shadow-lg;
     }
 
     /* ==========================================
@@ -75,20 +75,54 @@
 
     /* D. Instagram */
     .icon-ig {
-        @apply w-8 h-8 md:w-12 md:h-12 inline-flex items-center justify-center shrink-0 rounded-full bg-[#E1306C] text-white transition-all duration-300 lg:hover:scale-110 lg:hover:shadow-lg;
+        @apply inline-flex items-center justify-center shrink-0 w-8 h-8 md:w-12 md:h-12 rounded-full bg-[#E1306C] text-white transition-all duration-300 lg:hover:scale-110 lg:hover:shadow-lg;
     }
 
     .icon-ig-svg {
-        @apply fill-current w-6 h-6 md:w-10 md:h-10 pointer-events-none;
+        @apply pointer-events-none fill-current w-6 h-6 md:w-8 md:h-8;
     }
 
     /* E. Trailer */
     .icon-trailer {
-        @apply w-10 h-10 md:w-12 md:h-12 shrink-0 flex items-center justify-center bg-maroon text-white rounded-full ring-2 ring-inset ring-maroon hover:bg-white hover:text-black hover:ring-maroon transition-all duration-300;
+        @apply inline-flex items-center justify-center shrink-0 w-8 h-8 md:w-12 md:h-12 rounded-full bg-maroon text-white ring-2 ring-inset ring-maroon transition-all duration-300 lg:hover:bg-white lg:hover:text-black lg:hover:scale-110 lg:hover:shadow-lg;
     }
 
     .icon-trailer-svg {
-        @apply fill-current w-6 h-6 md:w-8 md:h-8 pointer-events-none;
+        @apply pointer-events-none fill-current w-6 h-6 md:w-8 md:h-8;
+    }
+
+    /* F. Info */
+    .icon-info {
+        @apply absolute bottom-4 right-4 z-20 lg:hidden inline-flex items-center justify-center shrink-0 w-8 h-8 md:w-12 md:h-12 rounded-full bg-black/60 text-white border border-white/30 shadow-lg backdrop-blur-md transition-all duration-300 active:scale-95;
+    }
+
+    .icon-info-svg {
+        @apply pointer-events-none fill-current w-6 h-6 md:w-8 md:h-8;
+    }
+
+    /* --- TAG WRAPPER --- */
+    .tag-wrapper {
+        @apply flex flex-row flex-nowrap gap-2 md:gap-3 items-center justify-start flex-1 w-full overflow-x-auto pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden;
+    }
+
+    /* --- BASE TAG & VARIATIONS COMBINED --- */
+    /* By grouping the selectors, we share the base utilities without chaining @apply */
+    .tag-base,
+    .tag-primary,
+    .tag-secondary,
+    .tag-department {
+        @apply shrink-0 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest shadow-sm backdrop-blur-md whitespace-nowrap;
+    }
+
+    /* Event Type */
+    .tag-primary {
+        @apply bg-maroon/90 text-white;
+        /* Replaced bg-opacity-90 with /90 */
+    }
+
+    /* Date & Intake */
+    .tag-secondary {
+        @apply bg-black/20 text-black;
     }
 
     /* ==========================================

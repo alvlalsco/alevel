@@ -22,6 +22,11 @@
             <path
                 d="M200-400h360v-280H200v280Zm-40 240q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-480H160v480Zm0 0v-480 480Z" />
         </symbol>
+
+        <symbol id="info-svg" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+        </symbol>
     </svg>
 
     <div id="navbar-placeholder"></div>
@@ -110,21 +115,17 @@
                                 alt="Event Details Image" loading="lazy">
 
                             <button id="mobile-details-toggle" type="button" aria-label="Show details"
-                                onclick="toggleEventInfo(event)"
-                                class="absolute bottom-4 right-4 z-20 lg:hidden bg-black/60 hover:bg-black/80 text-white p-3 min-w-8 min-h-8 flex items-center justify-center rounded-full backdrop-blur-md border border-white/30 transition-all shadow-lg">
-                                <svg class="w-4 h-4 md:w-5 md:h-5 pointer-events-none" fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+                                onclick="toggleEventInfo(event)" class="icon-info">
+                                <svg class="icon-info-svg">
+                                    <use href="#info-svg"></use>
                                 </svg>
                             </button>
                         </div>
 
                         <div class="w-full lg:col-span-3 p-2 sm:p-8 lg:p-16 flex flex-col relative grow">
 
-                            <div class="flex flex-wrap items-center gap-2 sm:gap-3 mb-4 w-full">
-                                <span id="event-type-tag"
-                                    class="shrink-0 px-2 py-1 md:px-5 md:py-3 rounded-full text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest shadow-sm bg-maroon text-white backdrop-blur-md bg-opacity-90 whitespace-nowrap hidden"></span>
+                            <div class="tag-wrapper">
+                                <span id="event-type-tag" class="tag-base tag-primary"></span>
                                 <span id="event-department-tag"></span>
 
                                 <a id="event-ig-tag" href="#" target="_blank" aria-label="View on Instagram"
@@ -135,7 +136,7 @@
                                 </a>
 
                                 <a id="event-trailer-tag" href="#" target="_blank" aria-label="Watch Event Trailer"
-                                    class="icon-trailer w-8 h-8">
+                                    class="icon-trailer">
                                     <svg class="icon-trailer-svg">
                                         <use href="#trailer-svg"></use>
                                     </svg>
@@ -182,8 +183,8 @@
                             class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-main uppercase mt-2">
                             Latest Publications</h2>
                     </div>
-                    <a id="to-publication-page" href="/html_pages/publication.html"
-                        class="hidden md:inline-flex btn-modern btn-ghost w-auto text-sm md:text-base">View All</a>
+                    <a id="to-publication-page" href="/html_pages/publication.html" class="btn-outline">
+                        View All</a>
                 </div>
 
                 <div id="publication-container"
