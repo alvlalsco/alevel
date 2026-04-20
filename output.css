@@ -2956,8 +2956,7 @@
   }
   .tag-wrapper {
     display: flex;
-    width: 100%;
-    flex: 1;
+    width: fit-content;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;

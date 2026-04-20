@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 if (deptEl) {
                     if (eventData.department) {
                         deptEl.textContent = eventData.department;
-                        deptEl.className = `shrink-0 px-2 py-1 md:px-5 md:py-3 rounded-full text-[10px] sm:text-xs md:text-lg font-bold uppercase tracking-widest shadow-sm backdrop-blur-md bg-opacity-90 whitespace-nowrap ${getDepartmentColor(eventData.department)}`;
+                        deptEl.className = `tag-base ${getDepartmentColor(eventData.department)}`;
                     } else {
                         deptEl.classList.add("hidden");
                     }
@@ -277,16 +277,16 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
 
         } else {
-            const defaultData = siteContent.eventsPage?.default;
+            const defaultData = siteContent.eventsPage.default;
 
-            if (defaultData && cardEl) {
-                if (typeof setImage === 'function') setImage("event-img", defaultData.default_image);
-                if (typeof setText === 'function') setText("event-title", defaultData.default_title);
+            if (defaultData && wrapperEl) {
+                setImage("event-img", defaultData.default_image);
+                setText("event-title", defaultData.default_title);
 
                 const elementsToHide = [
                     "event-date", "event-type-tag", "event-department-tag",
                     "event-ig-tag", "event-trailer-tag", "event-regis",
-                    "event-nav-controls", "event-details-img"
+                    "event-nav-controls", "event-details-img", "event-desc"
                 ];
 
                 elementsToHide.forEach(id => {

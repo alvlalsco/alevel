@@ -104,25 +104,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Construct identical card DOM without the active hover states
                 upcomingContainer.innerHTML = `
             <div class="flex flex-col gap-3 w-full max-w-md">
-                
-                <div class="flex justify-between items-center w-full gap-2 min-h-8">
-                    <div class="flex flex-row flex-nowrap gap-2 md:gap-3 items-center justify-start flex-1 w-0 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden pb-1">
-                        <span class="shrink-0 px-2 py-1 md:px-3 md:py-2 rounded-full text-xs md:text-base font-bold uppercase tracking-widest shadow-sm bg-maroon text-white backdrop-blur-md bg-opacity-90 whitespace-nowrap" style="font-size: 10px;">INFO</span>
-                    </div>
-                </div>
 
                 <div class="relative aspect-4/5 block rounded-3xl overflow-hidden shadow-lg border border-gray-200">
                     <img src="${defaultData.default_image}" alt="${defaultData.default_title}" loading="lazy"
                         class="absolute inset-0 w-full h-full object-cover">
-                    
-                    <div class="absolute inset-0 bg-black/10 z-10"></div>
-
-                    <div class="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-                        <div class="pointer-events-auto text-white font-bold bg-black/40 tracking-widest uppercase border-2 border-white px-4 py-2 md:px-6 md:py-3 rounded-2xl backdrop-blur-sm text-center max-w-[80%]" style="font-size: 12px;">
-                            ${defaultData.default_title}
-                        </div>
-                    </div>
                 </div>
+
             </div>
         `;
             }
