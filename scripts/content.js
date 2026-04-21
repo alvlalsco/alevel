@@ -265,6 +265,7 @@ const siteContent = {
                 description: "Community Service, or COMSERVE for short, organises events for our members that focuses on charitable, environmental, or community-orientated work."
             },
             {
+
                 id: "dept-sw",
                 title: "Student Welfare",
                 image: "/images/committee/departmental/SW - FORMAL.avif",
