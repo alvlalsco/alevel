@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <div class="relative block rounded-3xl overflow-hidden shadow-lg border border-gray-200 group">
                         
                         <img src="${book.image}" alt="${book.title}" loading="lazy"
-                            class=" w-full h-full object-cover transition-transform duration-700 lg:group-hover:scale-105">
+                            class=" w-full h-full object-cover">
 
                         <div class="absolute inset-0 z-20 flex items-center justify-center transition-all duration-500 pointer-events-none">
                             <a href="${link}" target="${target}" class="btn-blur pointer-events-auto tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transform lg:translate-y-4 lg:group-hover:translate-y-0 duration-500! ${isDisabled ? 'cursor-not-allowed lg:hover:bg-transparent! lg:hover:text-white!' : ''}" style="font-size: 11px;">
