@@ -1,9 +1,10 @@
 // content.js
-// Instructions: Edit the values inside the quotes (" ") to update the website. All images is in the 'images' folder
+// This is considered the data bank of the whole website, it controls what is shown on the website, the people, images, text, etc.
+// Instructions: Edit the values inside the quotes (" ") to update the website. All images is in the 'images' folder. 
 
 const siteContent = {
     //===========================
-    // 0. NAVIGATION BAR
+    // 0. NAVIGATION MENU
     //===========================
     navStructure: [
         {
@@ -75,7 +76,7 @@ const siteContent = {
     // 1. INDEX PAGE
     //===========================
     index: {
-        // --- HERO SECTION ---
+        // A. --- HERO SECTION ---
         hero: {
             image: "/images/index/alsco_group.avif",
             description: "We are the official student committee representing all A-Level students at Sunway College. We bridge the gap between students and administration while organising events that make your college life memorable.",
@@ -84,12 +85,12 @@ const siteContent = {
         },
 
         affiliates: [
-            { name: "Malaysian Bioscience Scholars", image: "/images/index/mbios.avif" }, // Replace with real logo path
+            { name: "Malaysian Bioscience Scholars", image: "/images/index/mbios.avif" },
             // To add more, just copy the line above:
             // { name: "New Partner", image: "images/partner_logo.avif" }, 
         ],
 
-        // --- FAQ SECTION ---
+        // B. --- FAQ SECTION ---
         faq: [
             {
                 question: "How do I join the ALSTAR programme?",
@@ -166,7 +167,7 @@ const siteContent = {
     //===========================
     // 3. COMMITTEE PAGE
     //===========================
-    // Just change the NAME, IMAGE AND QUOTE, NOT the role
+    // Just change the NAME, IMAGE AND QUOTE, don't change the format
     committee: {
         // LEVEL 1: EXECUTIVE (Order matters for the layout!)
         highCouncil: [
@@ -200,31 +201,6 @@ const siteContent = {
                 ],
             },
             {
-                name: "Community Service",
-                leaders: [
-                    { role: "Director", name: "EE JING XUAN", image: "/images/committee/comserve/CSdirector.avif", quote: "But it’s hard to stay mad when there’s so much beauty in the world." },
-                    { role: "Deputy Director", name: "NYEIN YU SAN", image: "/images/committee/comserve/CSdeputyDirector.avif", quote: "Growing while giving back through service" }
-                ],
-                members: [
-                    { role: "General Member", name: "DAKSSHI NATH PILLAY", image: "/images/committee/comserve/csmember1.avif", quote: "Why are we here, just to suffer?" },
-                    { role: "General Member", name: "NICHOLAS WONG JUN YEW", image: "/images/committee/comserve/csmember2.avif", quote: "The only person you need to beat is the person you were yesterday. " },
-                    { role: "General Member", name: "TEH SIN HUI", image: "/images/committee/comserve/csmember3.avif", quote: "" },
-                    { role: "General Member", name: "YAP QIN HUEY", image: "/images/committee/comserve/csmember4.avif", quote: "2% battery, 100% commitment" },
-                ],
-            },
-            {
-                name: "Public Relations",
-                leaders: [
-                    { role: "Director", name: "AYSHALYNN SALAHUDDIN", image: "/images/committee/public_rel/PRdirector.avif", quote: "The silent lamb but innocent tamed and humble soul." },
-                    { role: "Deputy Director", name: "CHONG HUI XIN", image: "/images/committee/public_rel/PRdeputyDirector.avif", quote: "Balancing everything almost took me out, but hey…I survived." }
-                ],
-                members: [
-                    { role: "General Member", name: "AUSTIN LAU HONG SHEN", image: "/images/committee/public_rel/prmember1.avif", quote: "" },
-                    { role: "General Member", name: "EE CHAO JIAN", image: "/images/committee/public_rel/prmember2.avif", quote: "Have fun!" },
-
-                ],
-            },
-            {
                 name: "Student Welfare",
                 leaders: [
                     { role: "Director", name: "YAP CHERN XI", image: "/images/committee/student_wel/SWdirector.avif", quote: "I love eating" },
@@ -239,6 +215,33 @@ const siteContent = {
                     { role: "General Member", name: "CHUE RYEE EN", image: "/images/committee/student_wel/swmember6.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
                 ],
             },
+            {
+                name: "Public Relations",
+                leaders: [
+                    { role: "Director", name: "AYSHALYNN SALAHUDDIN", image: "/images/committee/public_rel/PRdirector.avif", quote: "The silent lamb but innocent tamed and humble soul." },
+                    { role: "Deputy Director", name: "CHONG HUI XIN", image: "/images/committee/public_rel/PRdeputyDirector.avif", quote: "Balancing everything almost took me out, but hey…I survived." }
+                ],
+                members: [
+                    { role: "General Member", name: "AUSTIN LAU HONG SHEN", image: "/images/committee/public_rel/prmember1.avif", quote: "The meeting minutes are not done yet." },
+                    { role: "General Member", name: "EE CHAO JIAN", image: "/images/committee/public_rel/prmember2.avif", quote: "Have fun!" },
+
+                ],
+            },
+            {
+                name: "Community Service",
+                leaders: [
+                    { role: "Director", name: "EE JING XUAN", image: "/images/committee/comserve/CSdirector.avif", quote: "But it’s hard to stay mad when there’s so much beauty in the world." },
+                    { role: "Deputy Director", name: "NYEIN YU SAN", image: "/images/committee/comserve/CSdeputyDirector.avif", quote: "Growing while giving back through service" }
+                ],
+                members: [
+                    { role: "General Member", name: "DAKSSHI NATH PILLAY", image: "/images/committee/comserve/csmember1.avif", quote: "Why are we here, just to suffer?" },
+                    { role: "General Member", name: "NICHOLAS WONG JUN YEW", image: "/images/committee/comserve/csmember2.avif", quote: "The only person you need to beat is the person you were yesterday. " },
+                    { role: "General Member", name: "TEH SIN HUI", image: "/images/committee/comserve/csmember3.avif", quote: "" },
+                    { role: "General Member", name: "YAP QIN HUEY", image: "/images/committee/comserve/csmember4.avif", quote: "2% battery, 100% commitment" },
+                ],
+            },
+
+
         ],
 
         // LEVEL 3: DEPARTMENT PHOTOS. Just change the IMAGE or DESCRIPTION. NOT the ID
@@ -252,15 +255,6 @@ const siteContent = {
                 description: "Leadership Development promotes soft skills and sports to foster interpersonal growth and ensure all A-Level students develop personally and professionally."
             },
             {
-                id: "dept-cs",
-                title: "Community Service",
-                image: "/images/committee/departmental/CS - FORMAL.avif",
-                image_playful: "/images/committee/departmental/CS - INFORMAL.avif",
-                ig_link: "https://www.instagram.com/alevel.comserve/",
-                description: "Community Service, or COMSERVE for short, organises events for our members that focuses on charitable, environmental, or community-orientated work."
-            },
-            {
-
                 id: "dept-sw",
                 title: "Student Welfare",
                 image: "/images/committee/departmental/SW - FORMAL.avif",
@@ -275,7 +269,16 @@ const siteContent = {
                 image_playful: "/images/committee/departmental/PR - INFORMAL.avif",
                 ig_link: "https://www.instagram.com/p/DTaF8g5EcvH/?img_index=4",
                 description: "Public Relations focuses on creating creative and engaging content to communicate effectively and build a strong, connected A-Level community."
-            }
+            },
+            {
+                id: "dept-cs",
+                title: "Community Service",
+                image: "/images/committee/departmental/CS - FORMAL.avif",
+                image_playful: "/images/committee/departmental/CS - INFORMAL.avif",
+                ig_link: "https://www.instagram.com/alevel.comserve/",
+                description: "Community Service, or COMSERVE for short, organises events for our members that focuses on charitable, environmental, or community-orientated work."
+            },
+
         ]
     },
 
@@ -290,7 +293,6 @@ const siteContent = {
         // SECTION 1: UPCOMING EVENTS
         upcoming: [
             // To add more events, just copy the format above and paste and change the details accordingly.
-
             //{
             // title: "A Gift of Learning",
             // department: "ALSTAR G12",
@@ -357,13 +359,13 @@ const siteContent = {
     //===========================
     publicationPage: {
         // 1. HERO SECTION BACKGROUND
-        heroImage: "/images/publications/publication-bg.avif", // Replace with your image
+        heroImage: "/images/publications/publication-bg.avif",
 
-        // 2. PUBLICATION CARDS (Top one is "Latest", others are grid)
+        // 2. PUBLICATION CARDS
         publications: [
             {
                 title: "March Monthly Post",
-                image: "/images/publications/post3.avif", // Preview image
+                image: "/images/publications/post3.avif",
                 category: "post",
                 department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/1PbBJVyJJ6wd7IIcJHpzVOTRgmlE23bwq/view?usp=sharing", // PDF download link
@@ -372,7 +374,7 @@ const siteContent = {
             },
             {
                 title: "February Monthly Post",
-                image: "/images/publications/post2.avif", // Preview image
+                image: "/images/publications/post2.avif",
                 category: "post",
                 department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/19uqO8ACZn4Nu4ejvNohxLSyQr35QW0VY/view?usp=sharing", // PDF download link
@@ -381,7 +383,7 @@ const siteContent = {
             },
             {
                 title: "November Monthly Post",
-                image: "/images/publications/post11.avif", // Preview image
+                image: "/images/publications/post11.avif",
                 category: "post",
                 department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/11ebHERFPt17D0kmnuv0yaoN6s7JsEHcr/view?usp=sharing", // PDF download link
@@ -390,7 +392,7 @@ const siteContent = {
             },
             {
                 title: "October Monthly Post",
-                image: "/images/publications/post10.avif", // Preview image
+                image: "/images/publications/post10.avif",
                 category: "post",
                 department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/1N8ZgCI1DBE07AKba1CZOU5p_GQTKMKpu/view?usp=sharing", // PDF download link
@@ -445,7 +447,6 @@ const siteContent = {
 
         difference: "While ALSCO is the elected student committee responsible for governance and major events, ALSTARs are selected ambassadors who focus on volunteering, peer support, and representing the college at official functions. ALSCO members are automatically part of the ALSTAR community.",
 
-        // This array generates the 3 pillars automatically
         certificate: [
             { count: 5, label: "Participation Points", desc: "Attend events" },
             { count: 6, label: "Volunteer Points", desc: "Contribute time" },
