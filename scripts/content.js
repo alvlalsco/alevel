@@ -220,6 +220,7 @@ const siteContent = {
                 ],
                 members: [
                     { role: "General Member", name: "AUSTIN LAU HONG SHEN", image: "/images/committee/public_rel/prmember1.avif", quote: "" },
+                    { role: "General Member", name: "EE CHAO JIAN", image: "/images/committee/public_rel/prmember2.avif", quote: "Have fun!" },
 
                 ],
             },
@@ -238,12 +239,6 @@ const siteContent = {
                     { role: "General Member", name: "CHUE RYEE EN", image: "/images/committee/student_wel/swmember6.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
                 ],
             },
-            {
-                name: "General Member",
-                members: [
-                    { role: "General Member", name: "EE CHAO JIAN", image: "/images/committee/public_rel/prmember2.avif", quote: "Have fun!" },
-                ]
-            }
         ],
 
         // LEVEL 3: DEPARTMENT PHOTOS. Just change the IMAGE or DESCRIPTION. NOT the ID
