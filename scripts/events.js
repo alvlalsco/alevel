@@ -79,8 +79,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 </button>
                 ` : ''}
 
-                <div class="absolute inset-0 z-20 flex items-center justify-center transition-all duration-500 group-[.show-details]:opacity-0 pointer-events-none">
-                    <a href="${regLink}" target="${target}" class="btn-blur pointer-events-auto tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transform lg:translate-y-4 lg:group-hover:translate-y-0 duration-500! ${regLink == '#' ? 'cursor-not-allowed lg:hover:bg-transparent! lg:hover:text-white!' : ''}">
+                <div class="media-card-overlay group-[.show-details]:opacity-0">
+                    <a href="${regLink}" target="${target}" rel="noopener noreferrer" class="media-card-cta btn-blur ${regLink == '#' ? 'cursor-not-allowed lg:hover:bg-transparent! lg:hover:text-white!' : ''}">
                         ${regLink !== "#" ? evt.button_text : "Coming Soon"}
                     </a>
                 </div>
