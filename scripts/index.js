@@ -322,22 +322,22 @@ document.addEventListener("DOMContentLoaded", async () => {
             const isDisabled = link === '#';
 
             return `
-            <div class="flex flex-col gap-3">
+            <div class="stack-card">
                 <div class="tag-wrapper">
                     ${item.department ? `<span class="tag-base ${getDepartmentColor(item.department)} ">${item.department}</span>` : ''}
                     
                     ${item.ig_link ? `
-                    <a href="${item.ig_link}" target="_blank" aria-label="View on Instagram" class="icon-ig">
+                    <a href="${item.ig_link}" target="_blank" rel="noopener noreferrer" aria-label="View on Instagram" class="icon-ig">
                         <svg class="icon-ig-svg">
                            <use href="#ig-svg"></use>
                         </svg>
                     </a>` : ''}  
                 </div>
 
-                <div class="relative block rounded-3xl overflow-hidden shadow-lg border border-gray-200 group">
+                <div class="media-card group">
                     <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 z-20 flex items-center justify-center transition-all duration-500 pointer-events-none">
-                        <a href="${link}" target="${target}" class="btn-blur pointer-events-auto tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transform lg:translate-y-4 lg:group-hover:translate-y-0 duration-500! ${isDisabled ? 'cursor-not-allowed lg:hover:bg-transparent! lg:hover:text-white!' : ''}" style="font-size: 11px;">
+                    <div class="media-card-overlay group ">
+                        <a href="${link}" target="${target}" rel="noopener noreferrer" class="media-card-cta btn-blur ${isDisabled ? 'cursor-not-allowed lg:hover:bg-transparent! lg:hover:text-white!' : ''}">
                             ${isDisabled ? 'Coming Soon' : item.button_text}
                         </a>
                     </div>

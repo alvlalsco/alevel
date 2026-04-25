@@ -293,18 +293,18 @@ const siteContent = {
         // SECTION 1: UPCOMING EVENTS
         upcoming: [
             // To add more events, just copy the format above and paste and change the details accordingly.
-            //{
-            // title: "A Gift of Learning",
-            // department: "ALSTAR G12",
-            // event_type: "Actual Event",
-            // date: "Friday, 17th April 2026",
-            // image: "/images/events/upcoming/g12ae1.avif",
-            // details_image: "/images/events/upcoming/g12ae2.avif",
-            // ig_link: "https://www.instagram.com/p/DWnXYTrEY8o/?igsh=aTlqcmh3MDl6bWZt",
-            // registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSe1BkLQDBg-6j2B0gzViv6qwNiV3XXjT9Gs5IHLyOFN3nJffA/viewform",
-            // trailer_link: "https://www.instagram.com/reel/DWp8LpvTaKQ/?igsh=MWRpanpmbXBncmRyZQ==",
-            // button_text: "Closed",
-            //},
+            {
+                title: "A Gift of Learning",
+                department: "ALSTAR G12",
+                event_type: "Actual Event",
+                date: "Friday, 17th April 2026",
+                image: "/images/events/upcoming/g12ae1.avif",
+                details_image: "/images/events/upcoming/g12ae2.avif",
+                ig_link: "https://www.instagram.com/p/DWnXYTrEY8o/?igsh=aTlqcmh3MDl6bWZt",
+                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSe1BkLQDBg-6j2B0gzViv6qwNiV3XXjT9Gs5IHLyOFN3nJffA/viewform",
+                trailer_link: "https://www.instagram.com/reel/DWp8LpvTaKQ/?igsh=MWRpanpmbXBncmRyZQ==",
+                button_text: "Closed",
+            },
         ],
 
         // SECTION 2: PAST EVENTS

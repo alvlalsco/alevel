@@ -15,62 +15,65 @@
     <div id="navbar-placeholder"></div>
 
     <main>
-        <section class="py-12 lg:py-4 border-b-custom">
-            <div class="flex flex-col items-center text-center md:mb-16 mb-8">
+        <section class="section-intro">
+            <div class="section-container">
+                <div class="section-heading mb-8 md:mb-16">
 
-                <img id="alstar-logo" alt="ALSTAR Logo" class="w-48 h-auto md:w-auto md:h-auto mb-4 object-contain">
+                    <img id="alstar-logo" alt="ALSTAR Logo" class="w-48 h-auto md:w-auto md:h-auto mb-4 object-contain">
 
-                <a href="https://forms.office.com/r/P80rpPjZsF" target="_blank" class="btn-maroon">
-                    Become an ALSTAR
-                </a>
-            </div>
-
-            <div class="px-4 md:px-0 grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div
-                    class=" px-4 feature-card border-custom p-8 rounded-4xl flex flex-col justify-between h-full bg-white/80 backdrop-blur-sm">
-                    <div>
-                        <div class="flex items-center gap-3 mb-4">
-                            <h3>About ALSTAR</h3>
-                        </div>
-                        <p class="mb-6 text-justify">Discover the mission behind the A-Level Student Ambassador
-                            program and our role in the community.</p>
-                    </div>
-                    <a href="#about-alstar-details" class="btn-outline">Learn More</a>
+                    <a href="https://forms.office.com/r/P80rpPjZsF" target="_blank" rel="noopener noreferrer"
+                        class="btn-maroon">
+                        Become an ALSTAR
+                    </a>
                 </div>
 
-                <div
-                    class="feature-card border-custom p-8 rounded-4xl flex flex-col justify-between h-full bg-white/80 backdrop-blur-sm">
-                    <div>
-                        <div class="flex items-center gap-3 mb-4">
-                            <h3>Points Tracker</h3>
+                <div class="px-4 md:px-0 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div
+                        class=" px-4 feature-card border-custom p-8 rounded-4xl flex flex-col justify-between h-full bg-white/80 backdrop-blur-sm">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <h3>About ALSTAR</h3>
+                            </div>
+                            <p class="mb-6 text-justify">Discover the mission behind the A-Level Student Ambassador
+                                program and our role in the community.</p>
                         </div>
-                        <p class="mb-6 text-justify">Check your current participation status and see how close you
-                            are to certification.</p>
+                        <a href="#about-alstar-details" class="btn-outline">Learn More</a>
                     </div>
-                    <a href="#tracker" onclick="smoothScroll(event, 'tracker')" class="btn-outline">View Points</a>
-                </div>
 
-                <div
-                    class="feature-card border-custom p-8 rounded-4xl flex flex-col justify-between h-full bg-white/80 backdrop-blur-sm">
-                    <div>
-                        <div class="flex items-center gap-3 mb-4">
-                            <h3>ALSTAR Calendar</h3>
+                    <div
+                        class="feature-card border-custom p-8 rounded-4xl flex flex-col justify-between h-full bg-white/80 backdrop-blur-sm">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <h3>Points Tracker</h3>
+                            </div>
+                            <p class="mb-6 text-justify">Check your current participation status and see how close you
+                                are to certification.</p>
                         </div>
-                        <p class="mb-6 text-justify">Stay updated with upcoming workshops, volunteer opportunities,
-                            and events.</p>
+                        <a href="#tracker" onclick="smoothScroll(event, 'tracker')" class="btn-outline">View Points</a>
                     </div>
-                    <a href="#alstar-calendar-section" onclick="smoothScroll(event, 'alstar-calendar-section')"
-                        class="btn-outline">Open Calendar</a>
+
+                    <div
+                        class="feature-card border-custom p-8 rounded-4xl flex flex-col justify-between h-full bg-white/80 backdrop-blur-sm">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <h3>ALSTAR Calendar</h3>
+                            </div>
+                            <p class="mb-6 text-justify">Stay updated with upcoming workshops, volunteer opportunities,
+                                and events.</p>
+                        </div>
+                        <a href="#alstar-calendar-section" onclick="smoothScroll(event, 'alstar-calendar-section')"
+                            class="btn-outline">Open Calendar</a>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="about-alstar-details" class="py-12 lg:py-16 border-b-custom bg-gray-50">
-            <div class="max-w-7xl mx-auto px-6 lg:px-8 space-y-16">
+            <div class="section-container space-y-16">
 
                 <div class="grid lg:grid-cols-5 gap-12 items-center">
                     <div class="lg:col-span-3">
-                        <span class="primary-maroon font-bold tracking-[0.2em] uppercase text-xs">The Program</span>
+                        <span class="font-bold tracking-[0.2em] uppercase text-xs">The Program</span>
                         <h2 class="mt-2 mb-6">What is ALSTAR?</h2>
                         <div id="alstar-description-text" class="text-justify leading-relaxed mb-8">
                             Loading description...
@@ -99,7 +102,7 @@
                     <div class="p-8 md:p-10 border-b-custom">
                         <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-10">
                             <div>
-                                <h3 class="text-2xl font-black uppercase text-main">Certificate Roadmap</h3>
+                                <h3 class="font-black uppercase text-main">Certificate Roadmap</h3>
                                 <p class="text-gray-500 mt-2">Complete these 3 pillars to receive your ALSTAR
                                     Certificate.</p>
                             </div>
@@ -112,18 +115,18 @@
                             class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
                             <div class="flex flex-col items-center">
                                 <span class="text-4xl font-black text-main mb-1">5</span>
-                                <span class="text-xs font-bold uppercase tracking-widest primary-maroon">Participation
+                                <span class="text-xs font-bold uppercase tracking-widest">Participation
                                     Points</span>
                             </div>
                             <div
                                 class="flex flex-col items-center border-t-custom border-b-custom sm:border-t-0 sm:border-b-0 sm:border-x-custom py-6 sm:py-0">
                                 <span class="text-4xl font-black text-main mb-1">6</span>
-                                <span class="text-xs font-bold uppercase tracking-widest primary-maroon">Volunteer
+                                <span class="text-xs font-bold uppercase tracking-widest">Volunteer
                                     Points</span>
                             </div>
                             <div class="flex flex-col items-center">
                                 <span class="text-4xl font-black text-main mb-1">5</span>
-                                <span class="text-xs font-bold uppercase tracking-widest primary-maroon">Talk / Workshop
+                                <span class="text-xs font-bold uppercase tracking-widest">Talk / Workshop
                                     Points</span>
                             </div>
                         </div>
@@ -132,10 +135,12 @@
                     <div class="p-8 md:p-10 bg-gray-50">
                         <h4 class="font-bold text-lg mb-6 text-center md:text-left text-main">Submit Your Proof</h4>
                         <div class="flex flex-col md:flex-row gap-4">
-                            <a id="btn-submit-amendment" href="#" target="_blank" class="btn-outline ">
+                            <a id="btn-submit-amendment" href="#" target="_blank" rel="noopener noreferrer"
+                                class="btn-outline ">
                                 <span>📝</span> Points Amendment
                             </a>
-                            <a id="btn-submit-talk" href="#" target="_blank" class="btn-outline ">
+                            <a id="btn-submit-talk" href="#" target="_blank" rel="noopener noreferrer"
+                                class="btn-outline ">
                                 <span>🎤</span> Talk/Workshop
                             </a>
                         </div>
@@ -145,9 +150,9 @@
         </section>
 
         <section id="tracker" class="py-12 lg:py-16 border-b-custom bg-[#ffffff]">
-            <div class="max-w-4xl mx-auto px-6 lg:px-8">
-                <div class="flex flex-col items-center text-center mb-10">
-                    <h2 class="text-3xl font-black uppercase tracking-tight mb-8">ALSTAR Points Tracker</h2>
+            <div class="section-container">
+                <div class="section-heading mb-10">
+                    <h2 class="font-black tracking-tight mb-8">ALSTAR Points Tracker</h2>
 
                     <div class="flex flex-col sm:flex-row items-center gap-3 w-full max-w-lg">
                         <input id="studentIdInput" type="text" placeholder="Enter Your Student ID"
@@ -162,9 +167,9 @@
                     <div
                         class="flex flex-col md:flex-row justify-between items-start md:items-end border-b-custom pb-6 mb-8 gap-4">
                         <div>
-                            <p id="resIdLabel" class="text-xs font-bold tracking-[0.2em] uppercase primary-maroon mb-1">
+                            <p id="resIdLabel" class="text-xs font-bold tracking-[0.2em] uppercase mb-1">
                                 Registered Name</p>
-                            <p id="resName" class="text-3xl font-black text-main">---</p>
+                            <p id="resName" class="font-black text-main text-2xl md:text-3xl">---</p>
                         </div>
                         <div class="text-left md:text-right">
                             <div id="resStatusBadge"
@@ -178,18 +183,18 @@
                         <div class="flex flex-col items-center">
                             <span class="text-4xl font-black text-main mb-1"><span
                                     id="resParticipation">0</span>/5</span>
-                            <span class="text-xs font-bold uppercase tracking-widest primary-maroon">Participation
+                            <span class="text-xs font-bold uppercase tracking-widest">Participation
                                 Points</span>
                         </div>
                         <div
                             class="flex flex-col items-center border-t-custom border-b-custom sm:border-t-0 sm:border-b-0 sm:border-x-custom py-6 sm:py-0">
                             <span class="text-4xl font-black text-main mb-1"><span id="resVolunteer">0</span>/6</span>
-                            <span class="text-xs font-bold uppercase tracking-widest primary-maroon">Volunteer
+                            <span class="text-xs font-bold uppercase tracking-widest">Volunteer
                                 Points</span>
                         </div>
                         <div class="flex flex-col items-center">
                             <span class="text-4xl font-black text-main mb-1"><span id="resTalk">0</span>/5</span>
-                            <span class="text-xs font-bold uppercase tracking-widest primary-maroon">Talk / Workshop
+                            <span class="text-xs font-bold uppercase tracking-widest">Talk / Workshop
                                 Points</span>
                         </div>
                     </div>
@@ -198,14 +203,15 @@
         </section>
 
         <section id="alstar-calendar-section" class="py-12 lg:py-16">
-            <div class="max-w-7xl mx-auto px-2 lg:px-8">
+            <div class="section-container">
                 <div class="text-center mb-12">
-                    <span class="primary-maroon font-bold tracking-[0.2em] uppercase text-xs">Schedule</span>
-                    <h2 class="text-3xl lg:text-4xl font-black text-main uppercase mt-2">Upcoming Activities</h2>
+                    <span class="font-bold tracking-[0.2em] uppercase text-xs">Schedule</span>
+                    <h2 class="font-black text-main mt-2">Upcoming Activities</h2>
                 </div>
 
                 <div class="border-custom rounded-[2.5rem] p-4 md:p-8 shadow-xl bg-white overflow-hidden">
-                    <div class="relative w-full" style="padding-bottom: 75%; height: 0; overflow: hidden;">
+                    <div class="relative w-full rounded-2xl overflow-hidden border border-maroon "
+                        style="padding-bottom: 75%; height: 0">
                         <iframe id="calendar-frame"
                             style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" src=""
                             frameborder="0" scrolling="no">

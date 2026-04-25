@@ -1,13 +1,13 @@
-/* 1. LOAD TAILWIND V4 */
+/* 1. lOAD TAILWIND V4 */
 @import "tailwindcss";
 
 /* 2. TELL TAILWIND WHERE YOUR HTML/JS IS */
 @source "./html_pages/*.html";
 @source "./scripts/*.js";
-@source "./*.js"
+@source "./*.js";
 @source "./*.html";
 
-/* 3. DEFINE YOUR CUSTOM BRAND VARIABLES */
+/* 3. DEFINE CUSTOM THEME VARIABLES */
 @theme {
     --font-sans: 'Outfit', sans-serif;
     --color-maroon: #88113b;
@@ -24,30 +24,30 @@
     }
 
     h1 {
-        @apply text-3xl md:text-5xl lg:text-6xl font-black text-main;
+        @apply text-4xl md:text-5xl lg:text-6xl font-black text-main;
     }
 
     h2 {
-        @apply text-2xl md:text-4xl lg:text-5xl font-bold text-main uppercase;
+        @apply text-3xl md:text-4xl lg:text-5xl font-bold text-main uppercase;
     }
 
     h3 {
-        @apply text-xl md:text-3xl font-bold;
+        @apply text-2xl md:text-3xl font-bold;
     }
 
     h4 {
-        @apply text-base md:text-2xl font-bold;
+        @apply text-lg md:text-2xl font-bold;
     }
 
     p {
-        @apply text-xs md:text-lg lg:text-xl leading-relaxed text-gray-700;
+        @apply text-sm md:text-base lg:text-lg leading-relaxed text-gray-700;
     }
 }
 
 @layer components {
 
     /* ==========================================
-       3. BUTTONS (The Big 3)
+       3. BUTTONS
        ========================================== */
 
     /* A. Red Default (Primary) */
@@ -57,7 +57,7 @@
 
     /* B. Blur Default (Contextual / Hover Cards) */
     .btn-blur {
-        @apply inline-flex items-center justify-center shrink-0 px-4 py-3 md:px-6 md:py-3 text-sm md:text-base font-bold rounded-full text-center transition-all duration-300 backdrop-blur-md text-white border-2 border-white lg:hover:bg-maroon lg:hover:text-white lg:hover:border-maroon;
+        @apply inline-flex items-center justify-center shrink-0 px-4 py-3 md:px-6 md:py-3 text-sm md:text-base font-bold rounded-full text-center transition-all duration-300 backdrop-blur-md text-black/60 border-2 border-white lg:hover:bg-maroon lg:hover:text-white lg:hover:border-maroon;
     }
 
     /* C. White Button with Red Border (Secondary / View All) */
@@ -65,6 +65,7 @@
         @apply inline-flex items-center justify-center shrink-0 px-4 py-3 md:px-6 md:py-3 text-sm md:text-base font-bold rounded-full text-center transition-all duration-300 bg-white border-2 border-maroon text-maroon lg:hover:bg-maroon lg:hover:text-white;
     }
 
+    /* D. Ghost Button (Transparent with Border) */
     .btn-ghost {
         @apply inline-flex items-center justify-center shrink-0 px-4 py-3 md:px-6 md:py-3 text-sm md:text-base font-bold rounded-full text-center bg-white/20 backdrop-blur-sm border border-white/50 text-white hover:bg-white/30 transition-colors shadow-lg;
     }
@@ -102,16 +103,15 @@
 
     /* --- TAG WRAPPER --- */
     .tag-wrapper {
-        @apply flex flex-row flex-nowrap gap-2 md:gap-3 items-center justify-start w-fit overflow-x-auto pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden;
+        @apply flex flex-row flex-nowrap gap-2 md:gap-3 px-2 py-2 md:px-4 md:py-4 items-center justify-start w-fit overflow-x-auto pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden;
     }
 
     /* --- BASE TAG & VARIATIONS COMBINED --- */
-    /* By grouping the selectors, we share the base utilities without chaining @apply */
     .tag-base,
     .tag-primary,
     .tag-secondary,
     .tag-department {
-        @apply shrink-0 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest shadow-sm backdrop-blur-md whitespace-nowrap;
+        @apply shrink-0 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-[8px] sm:text-xs md:text-sm font-bold uppercase tracking-widest shadow-sm backdrop-blur-md whitespace-nowrap;
     }
 
     /* Event Type */
@@ -126,7 +126,7 @@
     }
 
     /* ==========================================
-       5. UTILITIES (Keep these as they are great!)
+       5. UTILITIES
        ========================================== */
     .border-custom {
         @apply border-2 border-gray-300;
@@ -147,6 +147,86 @@
     .aspect-fill {
         @apply object-cover w-full h-full;
     }
+
+    /* ==========================================
+       6. SECTIONS
+       ========================================== */
+
+    .section-container {
+        @apply max-w-7xl mx-auto px-6 lg:px-8;
+    }
+
+    .section-container-6xl {
+        @apply max-w-6xl mx-auto px-6 lg:px-8;
+    }
+
+    .section-intro {
+        @apply py-16 lg:py-20 border-b-2 border-gray-300;
+    }
+
+    .section-heading {
+        @apply flex flex-col items-center text-center;
+    }
+
+    /* ==========================================
+       7. SECTION DIVIDER
+       ========================================== */
+    .heading-divider {
+        @apply flex items-center gap-4 mt-8;
+    }
+
+    .heading-divider-line {
+        @apply w-12 h-0.5 bg-gray-300;
+    }
+
+    .heading-divider-dot {
+        @apply w-2 h-2 rounded-full bg-maroon;
+    }
+
+    /* ==========================================
+       8. ZIG ZAG CARDS
+       ========================================== */
+    .stack-card {
+        @apply flex flex-col gap-3;
+    }
+
+    .card-meta-row {
+        @apply flex justify-between items-center w-full gap-2;
+    }
+
+    .media-card {
+        @apply relative block rounded-3xl overflow-hidden shadow-lg border border-gray-200;
+    }
+
+    .media-card-overlay {
+        @apply absolute inset-0 z-20 flex items-center justify-center transition-all duration-500 pointer-events-none;
+    }
+
+    .media-card-cta {
+        @apply pointer-events-auto tracking-[0.2em] uppercase opacity-100 duration-500;
+
+        /* Responsive + State logic */
+        @variant lg {
+            @apply opacity-0 translate-y-4;
+
+            /* This is the reliable way to target group-hover in v4 */
+            @variant group-hover {
+                @apply opacity-100 translate-y-0;
+            }
+        }
+    }
+
+    /* ==========================================
+       9. CONTACT CARDS
+       ========================================== */
+    .contact-card {
+        @apply border-2 border-gray-300 bg-white rounded-3xl overflow-hidden;
+    }
+
+    .contact-card-body {
+        @apply p-8 lg:p-10 text-center h-full flex flex-col;
+    }
+
 }
 
 /* Keep the mobile menu toggle logic intact */

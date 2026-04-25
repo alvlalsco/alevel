@@ -23,7 +23,7 @@
 </style>
 
 <nav id="navbar" class="w-full fixed transition-all duration-300 translate-y-0 opacity-100 top-0 left-0 z-20">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="section-container">
         <div class="flex justify-between items-center h-20 md:h-28">
 
             <a href="/" class="flex items-center">
@@ -40,18 +40,14 @@
     </div>
 </nav>
 
-<!-- OVERLAY -->
 <div id="menu-overlay" class="fixed inset-0 bg-black/40 backdrop-blur-sm 
     opacity-0 pointer-events-none transition-all duration-300 z-40">
 </div>
 
-<!-- MENU PANEL -->
-<div id="menu-panel" class="fixed top-20 md:top-28 left-0 w-full max-h-[75vh] 
-    bg-maroon rounded-b-2xl shadow-xl transform 
+<div id="menu-panel" class="fixed top-24 md:top-32 inset-x-4 md:inset-x-8 lg:inset-x-12 max-w-7xl mx-auto max-h-[70vh] 
+    bg-maroon rounded-2xl shadow-2xl transform 
     -translate-y-full opacity-0 pointer-events-none transition-all duration-300 z-50 overflow-y-auto">
 
-    <div id="menu-content"
-        class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 text-white">
-        <!-- JS will inject here -->
+    <div id="menu-content" class="py-10 px-6 md:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 text-white">
     </div>
 </div>

@@ -57,12 +57,12 @@
                             ALSTAR
                         </a>
 
-                        <a id="hero-handbook-btn" href="#" target="_blank" class="btn-ghost">
+                        <a id="hero-handbook-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-ghost">
                             Handbook
                         </a>
 
-                        <a id="hero-trailer-btn" href="#" target="_blank" aria-label="Watch ALSCO Trailer"
-                            class="icon-trailer">
+                        <a id="hero-trailer-btn" href="#" target="_blank" rel="noopener noreferrer"
+                            aria-label="Watch ALSCO Trailer" class="icon-trailer">
                             <svg class="icon-trailer-svg">
                                 <use href="#trailer-svg"></use>
                             </svg>
@@ -73,7 +73,7 @@
         </header>
 
         <section id="affiliates-section" class="py-8 md:py-10 bg-gray-50 border-b-custom">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-container">
                 <div class="flex flex-col items-center">
                     <span
                         class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs mb-4 md:mb-8 text-center">
@@ -88,13 +88,13 @@
 
         <section id="events-section" class="py-16 lg:py-24 bg-gray-50 relative">
 
-            <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="section-container px-5 sm:px-8">
 
                 <div id="events-header-text" class="mb-8 md:mb-12">
                     <span class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">
                         Don't Miss Out
                     </span>
-                    <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-main uppercase mt-2">
+                    <h2 class="font-black text-main mt-2">
                         Featured Events
                     </h2>
                 </div>
@@ -128,36 +128,35 @@
                                 <span id="event-type-tag" class="tag-base tag-primary"></span>
                                 <span id="event-department-tag"></span>
 
-                                <a id="event-ig-tag" href="#" target="_blank" aria-label="View on Instagram"
-                                    class="icon-ig">
+                                <a id="event-ig-tag" href="#" target="_blank" rel="noopener noreferrer"
+                                    aria-label="View on Instagram" class="icon-ig">
                                     <svg class="icon-ig-svg">
                                         <use href="#ig-svg"></use>
                                     </svg>
                                 </a>
 
-                                <a id="event-trailer-tag" href="#" target="_blank" aria-label="Watch Event Trailer"
-                                    class="icon-trailer">
+                                <a id="event-trailer-tag" href="#" target="_blank" rel="noopener noreferrer"
+                                    aria-label="Watch Event Trailer" class="icon-trailer">
                                     <svg class="icon-trailer-svg">
                                         <use href="#trailer-svg"></use>
                                     </svg>
                                 </a>
                             </div>
 
-                            <h3 id="event-title"
-                                class="text-xl sm:text-2xl md:text-3xl font-bold mb-1 wrap-break-words">
+                            <h3 id="event-title" class="font-bold mb-1">
                                 Loading Event...</h3>
 
                             <h4 id="event-date"
-                                class="text-xs sm:text-sm md:text-base font-semibold text-gray-500 mb-4 sm:mb-6 uppercase tracking-widest hidden wrap-break-words">
+                                class="font-semibold text-gray-500 mb-4 sm:mb-6 uppercase tracking-widest hidden">
                                 Loading Date...
                             </h4>
 
-                            <p id="event-desc"
-                                class="mb-8 text-xs sm:text-sm md:text-base leading-relaxed text-main text-justify hidden wrap-break-words">
+                            <p id="event-desc" class="mb-8 text-main text-justify hidden wrap-break-words">
                             </p>
 
                             <div id="event-regis" class="flex flex-col sm:flex-row flex-wrap gap-3 mt-auto w-full pt-4">
-                                <a id="event-reg-btn" href="#" target="_blank" class="btn-maroon">
+                                <a id="event-reg-btn" href="#" target="_blank" rel="noopener noreferrer"
+                                    class="btn-maroon">
                                     <span id="event-reg-btn-text">Register Now</span>
                                 </a>
                                 <a id="to-events-page" href="/html_pages/events.html" class="btn-outline">
@@ -179,8 +178,7 @@
                         <span id="publication-header-text-small"
                             class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">Stay
                             Informed</span>
-                        <h2 id="publication-header-text-big"
-                            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-main uppercase mt-2">
+                        <h2 id="publication-header-text-big" class="font-black text-main mt-2">
                             Latest Publications</h2>
                     </div>
                     <a id="to-publication-page" href="/html_pages/publication.html" class="btn-outline">
@@ -190,23 +188,21 @@
                 <div id="publication-container"
                     class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 max-w-4xl mx-auto">
                     <div id="newsletter-container" class="flex flex-col gap-4">
-                        <h3 id="newsletter-text"
-                            class="text-lg sm:text-xl md:text-2xl font-bold text-main border-b-2 border-gray-100 pb-2">
+                        <h3 id="newsletter-text" class="font-bold text-main border-b-2 border-gray-100 pb-2">
                             Latest Newsletter</h3>
                         <div id="latest-newsletter-container"></div>
                     </div>
 
                     <div id="monthly-post-container" class="flex flex-col gap-4">
-                        <h3 id="monthly-post-text"
-                            class="text-lg sm:text-xl md:text-2xl font-bold text-main border-b-2 border-gray-100 pb-2">
+                        <h3 id="monthly-post-text" class="font-bold text-main border-b-2 border-gray-100 pb-2">
                             Latest Monthly Post</h3>
                         <div id="latest-post-container"></div>
                     </div>
                 </div>
 
                 <div class="mt-8 flex justify-center md:hidden">
-                    <a href="/html_pages/publication.html"
-                        class="btn-modern btn-ghost w-full sm:w-auto text-center text-sm">View All</a>
+                    <a href="/html_pages/publication.html" class="btn-ghost w-full sm:w-auto text-center text-sm">View
+                        All</a>
                 </div>
 
             </div>
@@ -218,20 +214,20 @@
                 <div class="text-center mb-12 md:mb-16">
                     <span class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">Information
                         Hub</span>
-                    <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-main uppercase mt-2">
+                    <h2 class="font-black text-main mt-2">
                         Frequently Asked Questions</h2>
                 </div>
 
                 <div id="faq-accordion-container" class="border-t-2 border-[#d1d5db] mb-12">
-                    <p class="text-center text-gray-400 py-8 text-sm md:text-base">Loading FAQs...</p>
+                    <p class="text-center text-gray-400 py-8">Loading FAQs...</p>
                 </div>
 
                 <div id="contact-cta"
                     class="p-5 sm:p-6 md:p-8 lg:p-10 border-custom rounded-3xl bg-gray-50 flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-4 sm:gap-6">
                     <div>
-                        <h4 class="text-base sm:text-lg md:text-xl font-black text-main mb-1 sm:mb-2">Still have
+                        <h4 class="font-black text-main mb-1 sm:mb-2">Still have
                             questions?</h4>
-                        <p class="text-[10px] sm:text-xs md:text-sm text-gray-600">Can't find the answer you're looking
+                        <p class="text-gray-600">Can't find the answer you're looking
                             for? Reach out to us!</p>
                     </div>
                     <a id="contact-btn" href="/html_pages/contact.html"

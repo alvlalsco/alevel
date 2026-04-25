@@ -101,14 +101,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                         // CRITICAL: We stagger based on the new FILTERED index, so the layout never breaks!
                         const staggerClass = (index % 2 !== 0) ? "md:mt-24" : "";
                         const cardHTML = `
-                        <div class="flex flex-col gap-3 ${staggerClass}">
+                        <div class="stack-card ${staggerClass}">
     
-                        <div class="flex flex-row flex-nowrap gap-2 md:gap-3 items-center justify-start w-full overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden pb-1">
+                        <div class="tag-wrapper w-full">
                             
-                            ${item.department ? `<span class="shrink-0 px-2 py-1 md:px-3 md:py-2 rounded-full text-xs md:text-base font-bold uppercase tracking-widest shadow-sm backdrop-blur-md ${getDepartmentColor(item.department)} bg-opacity-90 whitespace-nowrap" style="font-size: 12px;">${item.department}</span>` : ''}
+                            ${item.department ? `<span class="tag-base ${getDepartmentColor(item.department)}">${item.department}</span>` : ''}
                             
                             ${item.ig_link ? `
-                            <a href="${item.ig_link}" target="_blank" aria-label="View on Instagram"
+                            <a href="${item.ig_link}" target="_blank" rel="noopener noreferrer" aria-label="View on Instagram"
                                 class="icon-ig">
                                 <svg class="icon-ig-svg fill-current" >
                                     <use href="#ig-svg"></use>
@@ -117,12 +117,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                             ` : ''}  
                         </div>
 
-                        <div class="relative block rounded-3xl overflow-hidden shadow-lg border border-gray-200 group">
+                        <div class="media-card">
                             
                             <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
 
-                            <div class="absolute inset-0 z-20 flex items-center justify-center transition-all duration-500 pointer-events-none">
-                                <a href="${link}" target="${target}" class="btn-blur pointer-events-auto tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transform lg:translate-y-4 lg:group-hover:translate-y-0 duration-500! ${isDisabled ? 'cursor-not-allowed lg:hover:bg-transparent! lg:hover:text-white!' : ''}" style="font-size: 11px;">
+                            <div class="media-card-overlay">
+                                <a href="${link}" target="${target}" rel="noopener noreferrer" class="media-card-cta btn-blur ${isDisabled ? 'cursor-not-allowed lg:hover:bg-transparent! lg:hover:text-white!' : ''}">
                                     ${isDisabled ? 'Coming Soon' : item.button_text}
                                 </a>
                             </div>
@@ -182,9 +182,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 // 2. Build the HTML Card
                 const html = `
-                <div class="flex flex-col gap-3 ${staggerClass}">
+                <div class="stack-card ${staggerClass}">
                     
-                    <div class="flex justify-between items-center w-full gap-2">
+                    <div class="card-meta-row">
 
                         <div class="tag-wrapper">
                             ${book.department ? `<span class="tag-base tag-department ${getDepartmentColor(book.department)}">${book.department}</span>` : ''}
@@ -193,13 +193,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     </div>
 
-                    <div class="relative block rounded-3xl overflow-hidden shadow-lg border border-gray-200 group">
+                    <div class="media-card">
                         
                         <img src="${book.image}" alt="${book.title}" loading="lazy"
                             class=" w-full h-full object-cover">
 
-                        <div class="absolute inset-0 z-20 flex items-center justify-center transition-all duration-500 pointer-events-none">
-                            <a href="${link}" target="${target}" class="btn-blur pointer-events-auto tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transform lg:translate-y-4 lg:group-hover:translate-y-0 duration-500! ${isDisabled ? 'cursor-not-allowed lg:hover:bg-transparent! lg:hover:text-white!' : ''}" style="font-size: 11px;">
+                        <div class="media-card-overlay">
+                            <a href="${link}" target="${target}" rel="noopener noreferrer" class="media-card-cta btn-blur ${isDisabled ? 'cursor-not-allowed lg:hover:bg-transparent! lg:hover:text-white!' : ''}">
                                     ${isDisabled ? 'Coming Soon' : book.button_text}
                             </a>
                         </div>

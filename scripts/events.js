@@ -43,9 +43,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     // 4. Build the HTML Card
                     const html = `
-        <div class="flex flex-col gap-3 ${staggerClass}">
+        <div class="stack-card ${staggerClass}">
             
-            <div class="flex justify-between items-center w-full gap-2">
+            <div class="card-meta-row">
 
                 <div class="tag-wrapper">
                     ${typeTagHTML}
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 </div>
 
                 ${evt.ig_link ? `
-                <a href="${evt.ig_link}" target="_blank" aria-label="View on Instagram"
+                <a href="${evt.ig_link}" target="_blank" rel="noopener noreferrer" aria-label="View on Instagram"
                     class="icon-ig">
                     <svg class="icon-ig-svg fill-current">
                         <use href="#ig-svg"></use>    
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 
             </div>
 
-            <div class="relative aspect-4/5 block rounded-3xl overflow-hidden shadow-lg border border-gray-200 group">
+            <div class="media-card group  aspect-4/5">
                 <img src="${evt.image}" alt="${evt.title}" loading="lazy" class="${mainImageClasses}">
 
                 ${hasDetailsImage ? `
@@ -103,9 +103,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 // Construct identical card DOM without the active hover states
                 upcomingContainer.innerHTML = `
-            <div class="flex flex-col gap-3 w-full max-w-md">
+            <div class="stack-card w-full max-w-md">
 
-                <div class="relative aspect-4/5 block rounded-3xl overflow-hidden shadow-lg border border-gray-200">
+                <div class="relative aspect-4/5 rounded-3xl overflow-hidden shadow-lg border border-gray-200">
                     <img src="${defaultData.default_image}" alt="${defaultData.default_title}" loading="lazy"
                         class="absolute inset-0 w-full h-full object-cover">
                 </div>
@@ -127,9 +127,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 // 2. Build the HTML Card
                 const html = `
-                <div class="flex flex-col gap-3 ${staggerClass}">
+                <div class="stack-card ${staggerClass}">
                     
-                    <div class="flex justify-between items-center w-full gap-2">
+                    <div class="card-meta-row">
 
                         <div class="tag-wrapper">
                             ${evt.department ? `<span class="tag-base ${getDepartmentColor(evt.department)}">${evt.department}</span>` : ''}
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         </div>
 
                         ${evt.ig_link ? `
-                        <a href="${evt.ig_link}" target="_blank" aria-label="View on Instagram"
+                        <a href="${evt.ig_link}" target="_blank" rel="noopener noreferrer" aria-label="View on Instagram"
                             class="icon-ig">
                             <svg class="icon-ig-svg fill-current">
                                 <use href="#ig-svg"></use>    
@@ -146,13 +146,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                         ` : ''}    
                     </div>
 
-                    <div class="relative aspect-4/5 block rounded-3xl overflow-hidden shadow-lg border border-gray-200 group">
+                    <div class="media-card group aspect-4/5">
                         
                         <img src="${evt.image}" alt="${evt.title}" loading="lazy"
-                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 lg:group-hover:scale-105">
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700">
 
-                        <div class="absolute inset-0 z-20 flex items-center justify-center transition-all duration-500 group-[.show-details]:opacity-0 pointer-events-none">
-                            <a href="${link}" target="${target}" class="btn-blur pointer-events-auto tracking-[0.2em] uppercase opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transform lg:translate-y-4 lg:group-hover:translate-y-0 duration-500! ${link == '#' ? 'cursor-not-allowed lg:hover:bg-transparent! lg:hover:text-white!' : ''}">
+                        <div class="media-card-overlay group-[.show-details]:opacity-0">
+                            <a href="${link}" target="${target}" rel="noopener noreferrer" class="media-card-cta btn-blur ${link == '#' ? 'cursor-not-allowed lg:hover:bg-transparent! lg:hover:text-white!' : ''}">
                                 ${link !== "#" ? 'View More' : "Upcoming"}
                             </a>
                         </div>
