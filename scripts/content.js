@@ -13,7 +13,7 @@ const siteContent = {
             sections: [
                 { name: "Affiliates", id: "affiliates" },
                 { name: "Events", id: "event" },
-                { name: "Publications", id: "publications" },
+                { name: "resources", id: "resources" },
                 { name: "FAQ", id: "faq" }
             ]
         },
@@ -44,12 +44,13 @@ const siteContent = {
             ]
         },
         {
-            name: "Publications",
-            link: "/html_pages/publication.html",
+            name: "resources",
+            link: "/html_pages/resource.html",
             sections: [
                 { name: "Monthly Post", id: "publication-list-container" },
                 { name: "Newsletter", id: "publication-list-container" },
                 { name: "Handbook", id: "handbook" },
+                { name: "Academic Resources", id: "resource-list-container" }
             ]
         },
         {
@@ -355,17 +356,17 @@ const siteContent = {
     },
 
     //===========================
-    // 5. PUBLICATION PAGE
+    // 5. resource PAGE
     //===========================
-    publicationPage: {
+    resourcePage: {
         // 1. HERO SECTION BACKGROUND
-        heroImage: "/images/publications/publication-bg.avif",
+        heroImage: "/images/resources/resource-bg.avif",
 
         // 2. PUBLICATION CARDS
         publications: [
             {
                 title: "March Monthly Post",
-                image: "/images/publications/post3.avif",
+                image: "/images/resources/post3.avif",
                 category: "post",
                 department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/1PbBJVyJJ6wd7IIcJHpzVOTRgmlE23bwq/view?usp=sharing", // PDF download link
@@ -374,7 +375,7 @@ const siteContent = {
             },
             {
                 title: "February Monthly Post",
-                image: "/images/publications/post2.avif",
+                image: "/images/resources/post2.avif",
                 category: "post",
                 department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/19uqO8ACZn4Nu4ejvNohxLSyQr35QW0VY/view?usp=sharing", // PDF download link
@@ -383,7 +384,7 @@ const siteContent = {
             },
             {
                 title: "November Monthly Post",
-                image: "/images/publications/post11.avif",
+                image: "/images/resources/post11.avif",
                 category: "post",
                 department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/11ebHERFPt17D0kmnuv0yaoN6s7JsEHcr/view?usp=sharing", // PDF download link
@@ -392,7 +393,7 @@ const siteContent = {
             },
             {
                 title: "October Monthly Post",
-                image: "/images/publications/post10.avif",
+                image: "/images/resources/post10.avif",
                 category: "post",
                 department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/1N8ZgCI1DBE07AKba1CZOU5p_GQTKMKpu/view?usp=sharing", // PDF download link
@@ -401,7 +402,7 @@ const siteContent = {
             },
             {
                 title: "Newsletter Issue 9",
-                image: "/images/publications/issue9.avif",
+                image: "/images/resources/issue9.avif",
                 category: "newsletter",
                 department: "Public Relations",
                 pdf_link: "https://drive.google.com/file/d/11jMQJpoTxtz_Pj5NLlsBVdmF8M_SMqj6/view?usp=sharing",
@@ -409,7 +410,7 @@ const siteContent = {
             },
             {
                 title: "Newsletter Issue 8",
-                image: "/images/publications/issue8.avif",
+                image: "/images/resources/issue8.avif",
                 category: "newsletter",
                 department: "Public Relations",
                 pdf_link: "https://drive.google.com/file/d/15CzlrJuMN0M_AkndeWXLdhZPzFi0C7-T/view?usp=sharing",
@@ -417,7 +418,7 @@ const siteContent = {
             },
             {
                 title: "Newsletter Issue 7",
-                image: "/images/publications/issue7.avif",
+                image: "/images/resources/issue7.avif",
                 category: "newsletter",
                 department: "Public Relations",
                 pdf_link: "https://drive.google.com/file/d/1wL_zAtEiykwhzWxTYdR08xn-KqPnhQgS/view?usp=sharing",
@@ -427,13 +428,72 @@ const siteContent = {
 
         handbook: [
             {
-                image: "/images/publications/july25Handbook.avif",
+                image: "/images/resources/july25Handbook.avif",
                 department: "Student Welfare",
                 intake: "July 2025",
                 pdf_link: "https://drive.google.com/file/d/1cGKNRWNi1seFKY3j8foU6nxRZ_lQBkga/view?usp=sharing",
                 button_text: "Read Now",
             },
 
+        ],
+
+        resources: [
+            {
+                category: "Past Papers",
+                items: [
+                    {
+                        title: "PapaCambridge",
+                        description: "Latest CAIE past papers and marking schemes.",
+                        url: "https://pastpapers.papacambridge.com/papers/caie/as-and-a-level"
+                    },
+                    {
+                        title: "GCE Guide",
+                        description: "Extensive repository for O Level & A Level papers.",
+                        url: "https://gceguide.com"
+                    }
+                ]
+            },
+            {
+                category: "Video Tutorials",
+                items: [
+                    {
+                        title: "Zainematics",
+                        description: "A-Level Math and Further Math deep dives.",
+                        url: "https://youtube.com/zainematics"
+                    },
+                    {
+                        title: "ETphysics",
+                        description: "Visualizing complex physics concepts.",
+                        url: "https://youtube.com/etphysics"
+                    },
+                    {
+                        title: "Alt Academy",
+                        description: "A-Level Chemistry & Economics crash courses.",
+                        url: "https://youtube.com/altacademy"
+                    },
+                    {
+                        title: "The Organic Chemistry Tutor",
+                        description: "A-Level Chemistry & More",
+                        url: "https://www.youtube.com/results?search_query=organic+chemistry+tutor",
+
+                    }
+                ]
+            },
+            {
+                category: "Syllabus Guides",
+                items: [
+                    {
+                        title: "Cambridge Syllabus 2024-2026",
+                        description: "Official CAIE subject outlines and requirements.",
+                        url: "https://cambridgeinternational.org"
+                    },
+                    {
+                        title: "Save My Exams",
+                        description: "Topic-by-topic revision notes and mark schemes.",
+                        url: "https://savemyexams.com"
+                    }
+                ]
+            }
         ]
     },
 

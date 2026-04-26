@@ -5,7 +5,7 @@ async function submitEmail() {
     const successMsg = document.getElementById("publication-success-msg");
     const errorMsg = document.getElementById("publication-error-msg");
 
-    // b. Reset States
+    // b. Reset States 
     successMsg.classList.add("hidden");
     errorMsg.classList.add("hidden");
 
@@ -66,17 +66,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     // 2. Initialize Navigation Logic (Requires siteContent to be loaded first)
     if (typeof siteContent !== 'undefined') {
         // ==========================================
-        //  5. PUBLICATION PAGE
+        //  5. RESOURCE PAGE
         // ==========================================
         const publicationContainer = document.getElementById("publication-list-container");
-        const publicationHero = document.getElementById("publication-hero-bg");
-        const newsData = siteContent.publicationPage.publications; // The raw data
+        const resourceHero = document.getElementById("resource-hero-bg");
+        const newsData = siteContent.resourcePage.publications; // The raw data
 
         if (publicationContainer && newsData) {
 
             // 1. Set Background Image
-            if (publicationHero) {
-                publicationHero.style.backgroundImage = `url('${siteContent.publicationPage.heroImage}')`;
+            if (resourceHero) {
+                resourceHero.style.backgroundImage = `url('${siteContent.resourcePage.heroImage}')`;
             }
 
             // 2. THE RENDERING FUNCTION
@@ -169,10 +169,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         const handbookContainer = document.getElementById("handbook-list-container")
 
         // B. Render Handbook (Zig-Zag Editorial Gallery)
-        if (handbookContainer && siteContent.publicationPage && siteContent.publicationPage.handbook) {
+        if (handbookContainer && siteContent.resourcePage && siteContent.resourcePage.handbook) {
             handbookContainer.innerHTML = "";
 
-            siteContent.publicationPage.handbook.forEach((book, index) => {
+            siteContent.resourcePage.handbook.forEach((book, index) => {
 
                 // 1. Zig-Zag Stagger & Links
                 const staggerClass = (index % 2 !== 0) ? "md:mt-24" : "";
@@ -211,6 +211,48 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
         }
 
+        // C. Render Student Resources (Bento Box Gallery)
+        const resourcesContainer = document.getElementById("resources-list-container");
+
+        if (resourcesContainer && siteContent.resourcePage && siteContent.resourcePage.resources) {
+            resourcesContainer.innerHTML = ""; // Clear loading text
+
+            siteContent.resourcePage.resources.forEach((section) => {
+                // 1. Build the list of links (Pill shaped rows)
+                const linksHTML = section.items.map(item => `
+                    <a href="${item.url}" target="_blank" rel="noopener noreferrer"  class="group flex items-center justify-between gap-4 p-4 rounded-2xl bg-white hover:bg-rose-50 border border-gray-100 hover:border-rose-100 transition-all duration-300">
+                        <div class="flex flex-col min-w-0">
+                            <span class="text-gray-900 font-bold text-sm md:text-base group-hover:text-maroon transition-colors truncate">
+                                ${item.title}
+                            </span>
+                            <span class="text-gray-500 text-xs mt-0.5 line-clamp-1">
+                                ${item.description}
+                            </span>
+                        </div>
+                        <div class="shrink-0 text-gray-300 group-hover:text-maroon transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                            </svg>
+                        </div>
+                    </a>
+                `).join('');
+
+                // 2. Build the Category Bento Box Container
+                const categoryCardHTML = `
+                    <div class="bg-gray-50 rounded-3xl p-6 lg:p-8 border border-gray-200 shadow-sm flex flex-col h-full">
+                        <h3 class="text-lg font-bold text-main tracking-wide uppercase mb-6 flex items-center gap-3">
+                            <div class="w-3 h-3 rounded-sm bg-maroon"></div>
+                            ${section.category}
+                        </h3>
+                        <div class="flex flex-col gap-3 grow">
+                            ${linksHTML}
+                        </div>
+                    </div>
+                `;
+
+                resourcesContainer.insertAdjacentHTML('beforeend', categoryCardHTML);
+            });
+        }
 
     } else {
         console.error("content.js not loaded! Navigation cannot be built.");
