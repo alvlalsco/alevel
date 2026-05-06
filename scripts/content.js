@@ -13,7 +13,7 @@ const siteContent = {
             sections: [
                 { name: "Affiliates", id: "affiliates" },
                 { name: "Events", id: "event" },
-                { name: "resources", id: "resources" },
+                { name: "Resources", id: "resources" },
                 { name: "FAQ", id: "faq" }
             ]
         },
@@ -291,10 +291,12 @@ const siteContent = {
             default_image: "/images/events/stay-tuned.avif",
             default_title: "Stay tuned for more from ALSCO!",
         },
+
         // SECTION 1: UPCOMING EVENTS
+        /*
         upcoming: [
             // To add more events, just copy the format above and paste and change the details accordingly.
-            {
+           {
                 title: "A Gift of Learning",
                 department: "ALSTAR G12",
                 event_type: "Actual Event",
@@ -305,8 +307,9 @@ const siteContent = {
                 registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSe1BkLQDBg-6j2B0gzViv6qwNiV3XXjT9Gs5IHLyOFN3nJffA/viewform",
                 trailer_link: "https://www.instagram.com/reel/DWp8LpvTaKQ/?igsh=MWRpanpmbXBncmRyZQ==",
                 button_text: "Closed",
-            },
+           },
         ],
+        */
 
         // SECTION 2: PAST EVENTS
         past: [
