@@ -307,7 +307,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         // --- D. PUBLICATIONS SECTION ---
-        const allPublications = siteContent.publicationPage?.publications || [];
+        const allPublications = siteContent.resourcePage?.publications || [];
         const newsContainer = document.getElementById('latest-newsletter-container');
         const postContainer = document.getElementById('latest-post-container');
 
