@@ -44,7 +44,7 @@ const siteContent = {
             ]
         },
         {
-            name: "resources",
+            name: "Resources",
             link: "/html_pages/resource.html",
             sections: [
                 { name: "Monthly Post", id: "publication-list-container" },
