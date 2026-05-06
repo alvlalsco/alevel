@@ -181,7 +181,7 @@ const siteContent = {
 
             // Row 3: Secs & Treasurer
             { role: "Secretary", name: "CHUE RYEE EN", image: "/images/committee/high_council/sec1.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
-            { role: "Secretary", name: "AUSTIN LAU HONG SHEN", image: "/images/committee/high_council/sec2.avif", quote: "" },
+            { role: "Secretary", name: "AUSTIN LAU HONG SHEN", image: "/images/committee/high_council/sec2.avif", quote: "The meeting minutes are not done yet." },
             { role: "Treasurer", name: "EVAN YEOH JIN QUAN", image: "/images/committee/high_council/treasurer.avif", quote: "'Come, let me prove you wrong' - Ms.Careen" },
         ],
 
