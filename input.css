@@ -1,4 +1,4 @@
-/* 1. lOAD TAILWIND V4 */
+/* 1. LOAD TAILWIND V4 */
 @import "tailwindcss";
 
 /* 2. TELL TAILWIND WHERE YOUR HTML/JS IS */
@@ -19,8 +19,6 @@
 @layer base {
     body {
         @apply font-sans text-main bg-white;
-        scroll-behavior: smooth;
-        scrollbar-gutter: stable;
     }
 
     h1 {
@@ -144,10 +142,6 @@
         @apply border-x-2 border-gray-300;
     }
 
-    .aspect-fill {
-        @apply object-cover w-full h-full;
-    }
-
     /* ==========================================
        6. SECTIONS
        ========================================== */
@@ -229,15 +223,16 @@
 
 }
 
-/* Keep the mobile menu toggle logic intact */
-#menu-toggle:checked~#mobile-menu {
-    display: flex;
-}
-
-.feature-card {
-    background-color: #ffffff;
-}
-
 html {
     scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+    /* Offset hash-scroll targets so they clear the fixed navbar (h-20 mobile) */
+    scroll-padding-top: 6rem;
+}
+
+/* Larger offset for the taller navbar on desktop (h-28) */
+@media (min-width: 1024px) {
+    html {
+        scroll-padding-top: 8rem;
+    }
 }

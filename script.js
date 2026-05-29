@@ -25,6 +25,13 @@ window.setBackgroundImage = (elementId, imageUrl) => {
     }
 };
 
+// Smooth-scroll to an in-page section by id, used by inline onclick handlers
+window.smoothScroll = (event, targetId) => {
+    if (event) event.preventDefault();
+    const target = document.getElementById(targetId);
+    if (target) target.scrollIntoView({ behavior: "smooth" });
+};
+
 window.getDepartmentColor = (department) => {
     if (!department) return "";
     let deptColorClass = "bg-red-100 text-red-700";
@@ -40,11 +47,12 @@ window.getDepartmentColor = (department) => {
 
 // 2. Component Loader
 async function loadComponent(elementId, filePath) {
+    const placeholder = document.getElementById(elementId);
+    if (!placeholder) return; // This page doesn't use the component — skip silently.
     try {
         const response = await fetch(filePath);
         if (response.ok) {
-            const content = await response.text();
-            document.getElementById(elementId).innerHTML = content;
+            placeholder.innerHTML = await response.text();
         } else {
             console.error(`Error loading ${filePath}: ${response.status}`);
         }
@@ -92,7 +100,7 @@ function navbarManagement() {
 
         siteContent.navStructure.forEach(page => {
             const wrapper = document.createElement("div");
-            wrapper.className = "flex flex-col gap-3 items-start text:left lg:items-center lg:text-center";
+            wrapper.className = "flex flex-col gap-3 items-start text-left lg:items-center lg:text-center";
 
             let html = `
                     <a href="${page.link}" 
@@ -187,21 +195,29 @@ function navbarManagement() {
     window.addEventListener('scroll', handleScroll);
     handleScroll();
 
-    // Handle Hash Navigation on Load
+    // Handle Hash Navigation on Load (e.g. arriving from another page's menu link).
+    // Page content is injected asynchronously, so the target may not exist or may
+    // shift as images/content load — scroll once it's present, then re-align on load.
     function checkHashOnLoad() {
-        if (window.location.hash) {
-            setTimeout(() => {
-                const targetSection = document.querySelector(window.location.hash);
-                if (targetSection) targetSection.scrollIntoView({ behavior: "smooth" });
-            }, 150);
-        }
+        if (!window.location.hash) return;
+
+        const scrollToHash = () => {
+            const target = document.getElementById(window.location.hash.slice(1));
+            if (target) target.scrollIntoView({ behavior: "smooth" });
+        };
+
+        // First attempt after the current layout settles.
+        setTimeout(scrollToHash, 150);
+        // Re-align after images/fonts finish loading and change the layout height.
+        window.addEventListener("load", scrollToHash, { once: true });
     }
     checkHashOnLoad();
 }
 
 // 4. Initialize Core Layout
 document.addEventListener("DOMContentLoaded", async () => {
-    // 1. Load the Navbar and Footer HTML
+    // 1. Load shared partials: SVG symbol defs (icon pages only), navbar and footer.
+    await loadComponent("svg-defs-placeholder", "/html_pages/svg-defs.html");
     await loadComponent("navbar-placeholder", "/html_pages/nav.html");
     await loadComponent("footer-placeholder", "/html_pages/footer.html");
 

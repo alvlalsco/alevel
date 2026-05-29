@@ -11,9 +11,9 @@ const siteContent = {
             name: "Home",
             link: "/",
             sections: [
-                { name: "Affiliates", id: "affiliates" },
-                { name: "Events", id: "event" },
-                { name: "Resources", id: "resources" },
+                { name: "Affiliates", id: "affiliates-section" },
+                { name: "Events", id: "events-section" },
+                { name: "Resources", id: "publication-section" },
                 { name: "FAQ", id: "faq" }
             ]
         },
@@ -49,8 +49,8 @@ const siteContent = {
             sections: [
                 { name: "Monthly Post", id: "publication-list-container" },
                 { name: "Newsletter", id: "publication-list-container" },
-                { name: "Handbook", id: "handbook" },
-                { name: "Academic Resources", id: "resource-list-container" }
+                { name: "Handbook", id: "handbook-list-container" },
+                { name: "Academic Resources", id: "resources-list-container" }
             ]
         },
         {
@@ -67,7 +67,7 @@ const siteContent = {
             link: "/html_pages/contact.html",
             sections: [
                 { name: "Instagram", id: "contact_instagram" },
-                { name: "Email", id: "contact_instagram" },
+                { name: "Email", id: "contact_email" },
                 { name: "Tiktok", id: "contact_tiktok" }
             ]
         }
@@ -308,8 +308,8 @@ const siteContent = {
                 trailer_link: "https://www.instagram.com/reel/DWp8LpvTaKQ/?igsh=MWRpanpmbXBncmRyZQ==",
                 button_text: "Closed",
            },
-        ],
-        */
+        ],*/
+
 
         // SECTION 2: PAST EVENTS
         past: [
