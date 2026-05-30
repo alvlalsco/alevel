@@ -1,3 +1,20 @@
+// ============================================================================
+// convert.js — IMAGE OPTIMISER (standalone tool, not part of the website)
+// ============================================================================
+// Batch-converts source photos into small, web-friendly AVIF files.
+//
+// USAGE:
+//   1. Put your .jpg / .jpeg / .png files into  image-converter/image-original/
+//   2. From inside the image-converter/ folder, run:  node convert.js
+//   3. Optimised .avif files appear in  image-converter/image-optimized/
+//   4. Move them into the right images/<page>/ subfolder and reference the path
+//      in scripts/content.js.
+//
+// It resizes to max width 1200px and encodes AVIF at quality 80. This tool has
+// its own package.json (depends on `sharp`) and is unrelated to the site's
+// runtime or the Netlify build.
+// ============================================================================
+
 const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');

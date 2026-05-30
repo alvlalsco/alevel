@@ -12,6 +12,12 @@
 
 <body class="antialiased bg-white">
 
+    <!-- ========================================================================
+         ABOUT PAGE
+         Content comes from siteContent.about via scripts/about.js. The <p> tags
+         with id="about-..." below are placeholders the script fills in.
+         navbar + footer are injected at runtime by script.js.
+         ===================================================================== -->
     <div id="navbar-placeholder"></div>
 
     <main>
@@ -98,9 +104,11 @@
     </main>
 
     <div id="footer-placeholder"></div>
-    <script src="/scripts/content.js"></script>
-    <script src="/script.js"></script>
-    <script src="/scripts/about.js"></script>
+
+    <!-- Load order is a contract — content.js first. See GUIDE.md. -->
+    <script src="/scripts/content.js"></script>  <!-- 1. data bank -->
+    <script src="/script.js"></script>            <!-- 2. helpers + navbar/footer -->
+    <script src="/scripts/about.js"></script>     <!-- 3. fills this page -->
 
 </body>
 

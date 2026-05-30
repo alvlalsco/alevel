@@ -1,14 +1,17 @@
-
-
-// 4. Initialize Core Layout
+// ============================================================================
+// events.js — EVENTS PAGE
+// ============================================================================
+// Builds the Events page from siteContent.eventsPage: the "upcoming" gallery
+// (or a "Stay tuned" empty state when there are none) and the "past" archive.
+// Both use the zig-zag card layout (every other card nudged down with
+// `md:mt-24`). Cards are built as HTML strings and inserted into their
+// containers. getDepartmentColor() (from script.js) colours the department tag.
+// ============================================================================
 document.addEventListener("DOMContentLoaded", async () => {
 
-    // 2. Initialize Navigation Logic (Requires siteContent to be loaded first)
+    // Guard: bail out if content.js failed to load (everything reads siteContent).
     if (typeof siteContent !== 'undefined') {
 
-        // ==========================================
-        // 4. EVENTS PAGE
-        // ==========================================
         const upcomingContainer = document.getElementById("events-upcoming-container");
         const pastContainer = document.getElementById("events-past-container");
 

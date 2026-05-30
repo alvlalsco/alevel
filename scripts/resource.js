@@ -1,3 +1,17 @@
+// ============================================================================
+// resource.js — RESOURCES PAGE
+// ============================================================================
+// Builds the Resources page from siteContent.resourcePage:
+//   • the publications gallery with category filter buttons (All / Newsletter /
+//     Monthly Posts),
+//   • the handbook list,
+//   • the academic "Student Resources" grid.
+// Plus submitEmail() below, which posts the newsletter sign-up form to a Google
+// Apps Script endpoint (writes the email into a Google Sheet). See GUIDE.md.
+// ============================================================================
+
+// Newsletter sign-up: validates the email and POSTs it to the Apps Script URL.
+// Wired to the Subscribe button via inline onclick="submitEmail()" in resource.html.
 async function submitEmail() {
     // a. Get Elements
     const emailInput = document.getElementById("publication-email-input");
@@ -60,14 +74,11 @@ async function submitEmail() {
     }
 }
 
-// 4. Initialize Core Layout
+// Renders the page once the DOM is ready.
 document.addEventListener("DOMContentLoaded", async () => {
 
-    // 2. Initialize Navigation Logic (Requires siteContent to be loaded first)
+    // Guard: bail out if content.js failed to load (everything reads siteContent).
     if (typeof siteContent !== 'undefined') {
-        // ==========================================
-        //  5. RESOURCE PAGE
-        // ==========================================
         const publicationContainer = document.getElementById("publication-list-container");
         const resourceHero = document.getElementById("resource-hero-bg");
         const newsData = siteContent.resourcePage.publications; // The raw data

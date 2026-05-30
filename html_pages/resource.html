@@ -11,9 +11,19 @@
 </head>
 
 <body class="antialiased">
-    <div id="svg-defs-placeholder"></div>
 
-    <div id="navbar-placeholder"></div>
+    <!-- ========================================================================
+         RESOURCES PAGE
+         scripts/resource.js fills these from siteContent.resourcePage:
+           #publication-list-container → publications gallery (+ filter buttons)
+           #handbook-list-container    → handbook list
+           #resources-list-container   → academic resource links
+         The newsletter Subscribe button calls submitEmail() (in resource.js).
+         The three placeholder <div>s below are injected at runtime by script.js.
+         ===================================================================== -->
+    <div id="svg-defs-placeholder"></div>  <!-- shared SVG icons (svg-defs.html) -->
+
+    <div id="navbar-placeholder"></div>    <!-- shared navbar (nav.html) -->
 
     <main>
         <section id="resource-hero-bg" class="relative py-20 lg:py-28 bg-gray-900 bg-cover bg-center bg-no-repeat">
@@ -125,11 +135,12 @@
 
     </main>
 
-    <div id="footer-placeholder"></div>
+    <div id="footer-placeholder"></div>     <!-- shared footer (footer.html) -->
 
-    <script src="/scripts/content.js"></script>
-    <script src="/script.js"></script>
-    <script src="/scripts/resource.js"></script>
+    <!-- Load order is a contract — content.js first. See GUIDE.md. -->
+    <script src="/scripts/content.js"></script>  <!-- 1. data bank -->
+    <script src="/script.js"></script>            <!-- 2. helpers + navbar/footer -->
+    <script src="/scripts/resource.js"></script>  <!-- 3. fills this page -->
 </body>
 
 </html>

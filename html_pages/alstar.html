@@ -12,6 +12,13 @@
 
 <body class="antialiased">
 
+    <!-- ========================================================================
+         ALSTAR PAGE
+         scripts/alstar.js fills these from siteContent.alstarPage (logo, the
+         "What is ALSTAR" / "ALSCO vs ALSTAR" text, certificate pillars, form
+         buttons, calendar iframe) and powers the points tracker (#tracker →
+         lookupStudent()). navbar + footer are injected at runtime by script.js.
+         ===================================================================== -->
     <div id="navbar-placeholder"></div>
 
     <main>
@@ -225,9 +232,11 @@
     </main>
 
     <div id="footer-placeholder"></div>
-    <script src="/scripts/content.js"></script>
-    <script src="/script.js"></script>
-    <script src="/scripts/alstar.js"></script>
+
+    <!-- Load order is a contract — content.js first. See GUIDE.md. -->
+    <script src="/scripts/content.js"></script>  <!-- 1. data bank -->
+    <script src="/script.js"></script>            <!-- 2. helpers + navbar/footer -->
+    <script src="/scripts/alstar.js"></script>    <!-- 3. fills this page -->
 </body>
 
 </html>

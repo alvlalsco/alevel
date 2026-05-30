@@ -1,6 +1,26 @@
-// content.js
-// This is considered the data bank of the whole website, it controls what is shown on the website, the people, images, text, etc.
-// Instructions: Edit the values inside the quotes (" ") to update the website. All images is in the 'images' folder. 
+// ============================================================================
+// content.js — THE DATA BANK
+// ============================================================================
+// This single file holds everything editable on the website: the text, the
+// people, the image paths, and the links. Each page has a matching script
+// (scripts/<page>.js) that reads its slice of `siteContent` below and pours it
+// into the placeholder boxes in the HTML when the page loads.
+//
+// TO UPDATE THE WEBSITE, EDIT THIS FILE. You usually never need to touch the
+// HTML or the page scripts.
+//
+// HOW TO EDIT SAFELY:
+//   • Only change the text INSIDE the quotes "like this".
+//   • Do NOT rename the words before a colon (e.g. `description:`) — those are
+//     keys the page scripts look up by name. Renaming one makes that content
+//     silently disappear.
+//   • To add an item to a list, copy a whole existing { ... } entry (including
+//     its trailing comma) and edit the copy. Keep the same field names.
+//   • Image values are paths into the `images/` folder.
+//
+// Full recipes: see EDITING-CONTENT.md.   How it all wires together: GUIDE.md.
+// Load order matters: this file MUST load before script.js and the page script.
+// ============================================================================
 
 const siteContent = {
     //===========================
@@ -524,6 +544,43 @@ const siteContent = {
 
         // Links to ALSCO's Alstar calender and Malaysia's Holiday
         calendar: "https://calendar.google.com/calendar/embed?src=e3412a49be9e0175532071aac5b55a0c9e75c009c156104af759df5e184a3b40%40group.calendar.google.com&src=en.malaysia%23holiday%40group.v.calendar.google.com&ctz=Asia%2FKuala_Lumpur"
+    },
+
+    //===========================
+    // 7. CONTACT PAGE
+    //===========================
+    // One card per contact method. Copy a { ... } block to add another card.
+    // Keep the `id` values — the nav menu links to them as scroll targets.
+    // Set isEmail: true for mailto links (no "open in new tab"); leave it off /
+    // false for normal website links.
+    contact: {
+        cards: [
+            {
+                id: "contact_instagram",
+                icon: "/images/footer/ig_logo.avif",
+                title: "Instagram",
+                description: "Follow us for live updates, event highlights and photo dumps.",
+                link: "https://instagram.com/alevel.alsco/",
+                link_text: "@alevel.alsco",
+            },
+            {
+                id: "contact_email",
+                icon: "/images/footer/email_logo.avif",
+                title: "Email",
+                description: "For official inquiries, collaborations and student feedback.",
+                link: "mailto:alevel.alsco@gmail.com",
+                link_text: "alevel.alsco@gmail.com",
+                isEmail: true,
+            },
+            {
+                id: "contact_tiktok",
+                icon: "/images/footer/tik_logo.avif",
+                title: "TikTok",
+                description: "See the fun side of ALSCO with behind-the-scenes and trending content.",
+                link: "https://tiktok.com/@alevel.alsco",
+                link_text: "@alevel.alsco",
+            },
+        ]
     },
 
 };

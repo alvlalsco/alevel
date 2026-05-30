@@ -11,9 +11,17 @@
 </head>
 
 <body class="antialiased">
-    <div id="svg-defs-placeholder"></div>
+    <!-- ========================================================================
+         HOME PAGE
+         Content comes from siteContent.index (+ events & publications) via
+         scripts/index.js. The elements with id="..." below are empty placeholders
+         (many show "Loading...") that the script fills in. Renaming an id without
+         updating index.js / content.js makes that piece silently stay empty.
+         The three placeholder <div>s below are filled at runtime by script.js.
+         ===================================================================== -->
+    <div id="svg-defs-placeholder"></div>  <!-- shared SVG icons (svg-defs.html) -->
 
-    <div id="navbar-placeholder"></div>
+    <div id="navbar-placeholder"></div>    <!-- shared navbar (nav.html) -->
 
     <main>
         <header id="hero-section"
@@ -226,11 +234,12 @@
         </section>
     </main>
 
-    <div id="footer-placeholder"></div>
+    <div id="footer-placeholder"></div>     <!-- shared footer (footer.html) -->
 
-    <script src="/scripts/content.js"></script>
-    <script src="/script.js"></script>
-    <script src="/scripts/index.js"></script>
+    <!-- Script load order is a contract — content.js MUST come first. See GUIDE.md. -->
+    <script src="/scripts/content.js"></script>  <!-- 1. the data bank (siteContent) -->
+    <script src="/script.js"></script>            <!-- 2. helpers + navbar/footer + menu -->
+    <script src="/scripts/index.js"></script>     <!-- 3. fills this page -->
 </body>
 
 </html>

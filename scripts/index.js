@@ -1,7 +1,23 @@
+// ============================================================================
+// index.js — HOME PAGE
+// ============================================================================
+// The largest page script. Builds the home page from siteContent, in sections:
+//   A. Hero (background image, blurb, handbook/trailer buttons)
+//   B. Affiliates grid (siteContent.index.affiliates)
+//   C. Featured-events carousel (siteContent.eventsPage.upcoming) — auto-advance,
+//      hover-pause, swipe, prev/next, and a "Stay tuned" default when empty
+//   D. Latest publications (newest newsletter + newest monthly post)
+//   E. FAQ accordion (siteContent.index.faq)
+// toggleFaq() and toggleEventInfo() are global so the inline onclick handlers in
+// the generated markup can reach them. See GUIDE.md for the big picture.
+// ============================================================================
+
 /**
  * ==========================================
  * FAQ ACCORDION LOGIC
  * ==========================================
+ * Opens the clicked FAQ and closes the others (accordion behaviour). Called
+ * from the inline onclick on each generated FAQ button, so it must be global.
  */
 function toggleFaq(clickedIndex) {
     const targetAnswer = document.getElementById(`faq-answer-${clickedIndex}`);

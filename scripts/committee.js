@@ -1,7 +1,17 @@
 /**
- * ==========================================
- * COMMITTEE PAGE LOGIC
- * ==========================================
+ * ============================================================================
+ * committee.js — COMMITTEE PAGE
+ * ============================================================================
+ * Builds the Committee page from siteContent.committee in three blocks (see the
+ * "MAIN DOM CONTENT LOAD" handler below):
+ *   1. High Council "pyramid" — reads highCouncil[0..5] BY POSITION
+ *      (0 President, 1-2 VPs, 3-5 Secretaries/Treasurer), so order matters.
+ *   2. Department rosters — leaders + members per department.
+ *   3. Department detail cards — formal/playful photo toggle + blurb
+ *      (siteContent.committee.coreStructure).
+ * createMemberCardHTML() is the one reusable card builder used by all three.
+ * The window.* functions below back the inline onclick handlers in that markup.
+ * ============================================================================
  */
 
 // --- Global Interaction Functions ---

@@ -12,6 +12,15 @@
 
 <body class="antialiased bg-white overflow-x-hidden">
 
+    <!-- ========================================================================
+         COMMITTEE PAGE
+         scripts/committee.js fills these empty containers from
+         siteContent.committee:
+           #high-council-tree    → the leadership "pyramid" (order-sensitive)
+           #dept-roster          → each department's leaders + members
+           #departments-container→ department detail cards (formal/playful photos)
+         navbar + footer are injected at runtime by script.js.
+         ===================================================================== -->
     <div id="navbar-placeholder"></div>
 
     <main>
@@ -64,9 +73,10 @@
 
     <div id="footer-placeholder"></div>
 
-    <script src="/scripts/content.js"></script>
-    <script src="/script.js"></script>
-    <script src="/scripts/committee.js"></script>
+    <!-- Load order is a contract — content.js first. See GUIDE.md. -->
+    <script src="/scripts/content.js"></script>   <!-- 1. data bank -->
+    <script src="/script.js"></script>             <!-- 2. helpers + navbar/footer -->
+    <script src="/scripts/committee.js"></script>  <!-- 3. fills this page -->
 </body>
 
 </html>

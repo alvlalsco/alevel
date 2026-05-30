@@ -1,9 +1,209 @@
-This is official code for new A-Level Website from July'25 ALSCO Evan Yeoh and Austin. 
-Website has total of 
-6 Pages (index, About, Committee, Events, Resource, ALSTAR)
-1 master script (script.js) and 7 Page Scripts (about, alstar, committee, content, events, index, resource)
-The Content of the website are Stored in 'content.js' and injected into the html pages via their respective scripts. To update the website is to update the content in 'content.js' unless more change is needed to be done.
+# Sunway A-Level Student Committee (ALSCO) Website
 
-The website used html, javascript and Tailwindcss V4. It's hosted on netlify, thus the netlify.toml.
-1 tool for this website is the image-converter. It converts large image size (png, jpg, etc) into .avif files which is optimised for website loading and data transfer. 
-The converter images are stored in 'images' folder. The content.js stores the location of these images in strings to the page scripts could easily obtain image location and get them. 
+The official marketing website for the **Sunway A-Level Student Committee (ALSCO)**.
+It's a static site — no framework, no build step for the JavaScript — built with plain
+HTML, vanilla JavaScript, and [Tailwind CSS v4](https://tailwindcss.com/). It's hosted on
+[Netlify](https://www.netlify.com/).
+
+> **New here? Read this file first, then jump to:**
+> - **[GUIDE.md](GUIDE.md)** — how the code actually works (architecture, the content-driven model, how to add a page).
+> - **[EDITING-CONTENT.md](EDITING-CONTENT.md)** — copy-paste recipes for the everyday edits (add a committee member, add an event, change the FAQ, swap an image).
+
+---
+
+## The one thing to understand first
+
+This site is **content-driven**. You almost never touch the HTML to change what visitors see.
+
+All the editable copy, image paths, and links live in a single file:
+**[`scripts/content.js`](scripts/content.js)**. The HTML pages ship with empty placeholder
+boxes (they show "Loading..." until filled), and a small script per page reads `content.js`
+and pours the content into those boxes when the page loads.
+
+```
+scripts/content.js   →   per-page script   →   placeholder <div> in the HTML
+   (the data)              (the plumbing)          (what the user sees)
+```
+
+So: **to update the website, edit `scripts/content.js`.** Only touch HTML/CSS/JS when you
+need to change layout or behaviour, not text or images. [EDITING-CONTENT.md](EDITING-CONTENT.md)
+walks through the common edits; [GUIDE.md](GUIDE.md) explains why it's wired this way.
+
+---
+
+## Quick start
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) (for the Tailwind CLI and the image converter).
+- A way to serve the folder over HTTP (see the warning below) — e.g. the
+  [VS Code Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+  extension, or `npx serve`.
+
+### Install
+```bash
+npm install
+```
+
+### Run it locally
+You need **two** things running while developing:
+
+1. **A local web server, started from the project root.**
+
+   ⚠️ **Do not open the `.html` files directly** (i.e. `file:///...`). The site loads the
+   shared navbar, footer, and images using absolute paths like `/html_pages/nav.html` and
+   `/images/...`. Those only resolve when `/` means the project root, which requires an HTTP
+   server. Opening files directly will leave you with a broken navbar and missing images.
+
+   ```bash
+   npx serve .
+   ```
+   …then open the URL it prints (e.g. `http://localhost:3000`). Or right-click `index.html`
+   in VS Code → **Open with Live Server**.
+
+2. **The Tailwind watcher**, so your styling changes get compiled into `output.css`:
+   ```bash
+   npm run watch
+   ```
+
+### Build (for deployment)
+```bash
+npm run build      # compiles input.css → output.css (minified)
+```
+Netlify runs this automatically on every deploy (see [`netlify.toml`](netlify.toml)). You
+rarely need to run it by hand.
+
+> There are no tests. `npm test` is just a placeholder that exits with an error.
+
+---
+
+## Project layout
+
+```
+alevel/
+├── index.html              # Home page (the ONLY page at the repo root)
+├── html_pages/             # Every other page + the shared partials
+│   ├── about.html
+│   ├── committee.html
+│   ├── events.html
+│   ├── resource.html
+│   ├── alstar.html
+│   ├── contact.html
+│   ├── nav.html            # Shared navbar  (injected at runtime, not a real page)
+│   ├── footer.html         # Shared footer  (injected at runtime)
+│   └── svg-defs.html       # Shared SVG icon definitions (injected at runtime)
+│
+├── scripts/
+│   ├── content.js          # ⭐ THE DATA BANK — all editable text/images/links live here
+│   ├── index.js            # Page scripts: each fills in one page from content.js
+│   ├── about.js
+│   ├── committee.js
+│   ├── events.js
+│   ├── resource.js
+│   ├── alstar.js
+│   └── contact.js
+│
+├── script.js               # Global layer: loaded on every page (helpers + navbar + footer)
+├── input.css               # Tailwind source (theme + custom component classes). EDIT THIS.
+├── output.css              # Generated by `npm run build`. NEVER edit by hand.
+│
+├── images/                 # Production images (AVIF), grouped by page/section
+├── image-converter/        # Standalone tool to turn JPG/PNG into optimised AVIF
+│
+├── package.json            # Scripts: build / watch
+├── netlify.toml            # Netlify deploy config
+│
+├── README.md               # You are here
+├── GUIDE.md                # Developer deep-dive
+├── EDITING-CONTENT.md      # Content-editing cheat sheet
+└── CLAUDE.md               # Notes for the Claude Code AI assistant
+```
+
+### The pages
+| Page | File | Page script | Data in `content.js` |
+|------|------|-------------|----------------------|
+| Home | `index.html` | `scripts/index.js` | `siteContent.index` (+ events & publications) |
+| About | `html_pages/about.html` | `scripts/about.js` | `siteContent.about` |
+| Committee | `html_pages/committee.html` | `scripts/committee.js` | `siteContent.committee` |
+| Events | `html_pages/events.html` | `scripts/events.js` | `siteContent.eventsPage` |
+| Resources | `html_pages/resource.html` | `scripts/resource.js` | `siteContent.resourcePage` |
+| ALSTAR | `html_pages/alstar.html` | `scripts/alstar.js` | `siteContent.alstarPage` |
+| Contact | `html_pages/contact.html` | `scripts/contact.js` | `siteContent.contact` |
+
+---
+
+## How a page loads (the short version)
+
+Every page includes its scripts in **this exact order** at the bottom of `<body>`:
+
+```html
+<script src="/scripts/content.js"></script>   <!-- 1. the data -->
+<script src="/script.js"></script>             <!-- 2. global helpers, navbar, footer -->
+<script src="/scripts/index.js"></script>      <!-- 3. this page's script -->
+```
+
+1. `content.js` defines the global `siteContent` object.
+2. `script.js` injects the shared navbar/footer/icons and wires up the menu.
+3. The page script reads its slice of `siteContent` and fills the placeholders.
+
+**This order matters.** If `content.js` doesn't load first, everything that depends on
+`siteContent` fails. See [GUIDE.md](GUIDE.md) for the full "contract" between the HTML and
+the scripts — it's the #1 thing that breaks silently.
+
+---
+
+## Styling (Tailwind v4)
+
+- Tailwind is configured **entirely in [`input.css`](input.css)** — there is no
+  `tailwind.config.js`.
+- Theme tokens (brand colours like `--color-maroon`, the `Outfit` font) live in the
+  `@theme` block.
+- Reusable classes you'll see all over the markup (`.btn-maroon`, `.section-container`,
+  `.stack-card`, …) are defined in the `@layer components` block.
+- **Edit `input.css`, then let `npm run watch` rebuild `output.css`.** Never edit
+  `output.css` directly — it's generated and your changes will be wiped on the next build.
+
+---
+
+## Images
+
+Production images are **AVIF** (a small, web-optimised format) and live in `images/`,
+organised into subfolders by page/section. `content.js` stores the *path* to each image as
+a string, so swapping an image is just editing a path.
+
+To add a new photo, optimise it first with the bundled converter:
+
+```bash
+cd image-converter
+npm install            # first time only
+# drop your .jpg/.png files into image-converter/image-original/
+node convert.js        # outputs optimised .avif into image-converter/image-optimized/
+```
+
+Then move the generated `.avif` into the right `images/` subfolder and point `content.js`
+at it. See [EDITING-CONTENT.md](EDITING-CONTENT.md) for the full flow. The converter is a
+one-off helper — it is **not** part of the website's runtime or the Netlify build.
+
+---
+
+## Deployment
+
+Hosted on Netlify. On every push to the connected branch, Netlify runs `npm run build`
+(compiling `output.css`) and publishes the repo root. There's nothing to deploy by hand —
+just push your changes.
+
+---
+
+## Common gotchas
+
+- **Edited the page but nothing changed?** You probably edited the HTML instead of
+  `content.js`. Visible text/images/links come from `content.js`.
+- **A section is stuck showing "Loading..."** Something broke the link between the HTML and
+  the script — usually a renamed `id` or a typo in a `content.js` key. See [GUIDE.md](GUIDE.md).
+- **Navbar/footer missing or images broken locally?** You opened the file directly instead
+  of serving over HTTP. Use `npx serve .` or Live Server.
+- **Styling change didn't apply?** Make sure `npm run watch` is running, and that you edited
+  `input.css` — not `output.css`.
+
+---
+
+*Originally built by the July '25 ALSCO committee (Evan Yeoh & Austin).*

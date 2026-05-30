@@ -6,6 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Static marketing website for the Sunway A-Level Student Committee (ALSCO). No framework, no bundler — plain HTML + vanilla JS, styled with Tailwind CSS v4 (CLI). Deployed on Netlify.
 
+## Human-facing docs
+
+There are three Markdown guides written for the human maintainers (kept in sync with this file): `README.md` (onboarding hub: what it is, how to run, repo map), `GUIDE.md` (developer deep-dive: architecture, the load-order/`id` contracts, how to add a page, known quirks), and `EDITING-CONTENT.md` (copy-paste recipes for editing `content.js`). When you change architecture, consider whether these need updating too.
+
 ## Commands
 
 ```bash
@@ -25,9 +29,9 @@ The site is **content-driven**: structure lives in HTML, all editable copy/image
 
 - **`script.js`** — global layer loaded on every page. Exposes DOM helpers on `window` (`setText`, `setImage`, `setLink`, `setBackgroundImage`, `getDepartmentColor`), loads the shared nav/footer via `loadComponent()` (fetches `html_pages/nav.html` and `html_pages/footer.html` into placeholders), and runs `navbarManagement()` (mobile menu toggle, active-link highlight, scroll hide/show, hash-scroll). It reads `siteContent.navStructure` to build the menu.
 
-- **`scripts/<page>.js`** — one script per page (`index.js`, `about.js`, `committee.js`, `events.js`, `resource.js`, `alstar.js`). Each waits for `DOMContentLoaded`, guards on `typeof siteContent !== 'undefined'`, then reads its slice of `siteContent` and populates the page — either via the `window` helpers or by building `innerHTML` strings (see `createMemberCardHTML` patterns in `committee.js`).
+- **`scripts/<page>.js`** — one script per page (`index.js`, `about.js`, `committee.js`, `events.js`, `resource.js`, `alstar.js`, `contact.js`). Each waits for `DOMContentLoaded`, guards on `typeof siteContent !== 'undefined'`, then reads its slice of `siteContent` and populates the page — either via the `window` helpers or by building `innerHTML` strings (see `createMemberCardHTML` patterns in `committee.js`). In `alstar.js`, only `lookupStudent()` is top-level (called from an inline `onclick`); its page-fill block uses the standard `DOMContentLoaded` + guard like the others. `resource.js` and `alstar.js` also POST to / fetch from hard-coded Google Apps Script endpoints (newsletter sign-up; ALSTAR points lookup).
 
-- **HTML** — `index.html` is at the repo root; all other pages are in `html_pages/`. Each page includes scripts in this order: `scripts/content.js`, then `script.js`, then its own `scripts/<page>.js`. HTML holds static layout with empty placeholder elements (often showing "Loading...") that scripts fill by `id`. `nav.html` and `footer.html` are partials injected at runtime, not standalone pages.
+- **HTML** — `index.html` is at the repo root; all other pages are in `html_pages/`. Each page includes scripts in this order: `scripts/content.js`, then `script.js`, then its own `scripts/<page>.js`. HTML holds static layout with empty placeholder elements (often showing "Loading...") that scripts fill by `id`. `nav.html`, `footer.html`, and `svg-defs.html` are partials injected at runtime, not standalone pages.
 
 ### Load-order contract (important)
 

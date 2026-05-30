@@ -1,6 +1,18 @@
-// ==========================================
-// GLOBAL UTILITIES & LAYOUT MANAGER (script.js)
-// ==========================================
+// ============================================================================
+// script.js — GLOBAL UTILITIES & LAYOUT MANAGER
+// ============================================================================
+// Loaded on EVERY page, after content.js and before the page's own script.
+// It does three jobs:
+//   1. Defines small DOM helpers on `window` (setText/setImage/setLink/...) so
+//      the page scripts and inline onclick handlers can reuse them.
+//   2. Injects the shared partials (svg-defs.html, nav.html, footer.html) into
+//      their placeholder <div>s — see loadComponent() + the DOMContentLoaded
+//      handler at the bottom.
+//   3. Builds and runs the navigation menu from siteContent.navStructure.
+//
+// Depends on the global `siteContent` (from content.js) being loaded first.
+// See GUIDE.md for the full picture.
+// ============================================================================
 
 // 1. Helper Functions (Exposed to the global window object so other scripts can use them)
 window.setText = (id, text) => {
