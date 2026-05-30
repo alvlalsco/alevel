@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <div class="relative mb-4">
                 
                 <div class="${imgSize} rounded-full overflow-hidden border-4 border-gray-100 md:group-hover/card:border-maroon md:group-hover/card:shadow-[0_0_20px_rgba(136,17,59,0.3)] transition-all duration-300 p-1 bg-white relative z-20">
-                    <img src="${member.image}" alt="${member.name}" class="w-full h-full object-cover object-top rounded-full" loading="lazy">
+                    <img src="${member.image}" alt="${member.name}" class="w-full h-full object-cover object-top rounded-full" loading="lazy" decoding="async">
                 </div>
 
                 <button onclick="toggleQuote(event, this)" class="md:hidden absolute bottom-0 right-0 md:right-2 bg-white border border-gray-200 text-maroon rounded-full w-9 h-9 flex items-center justify-center shadow-lg z-30 active:scale-95 transition-transform" aria-label="View Quote">
@@ -262,8 +262,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const cardHTML = `
                     <div class="border-custom bg-white overflow-hidden rounded-2xl flex flex-col shadow-sm hover:shadow-md transition-shadow group/dept">
                         <div class="relative w-full aspect-5/4 bg-gray-100 overflow-hidden">
-                            <img src="${dept.image}" alt="${dept.title} Formal" loading="lazy" class="formal-img absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-600 md:group-hover/dept:opacity-0">
-                            <img src="${dept.image_playful}" alt="${dept.title} Playful" loading="lazy" class="playful-img absolute inset-0 w-full h-full object-cover object-top opacity-0 transition-all duration-600 md:group-hover/dept:opacity-100">
+                            <img src="${dept.image}" alt="${dept.title} Formal" loading="lazy" decoding="async" class="formal-img absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-600 md:group-hover/dept:opacity-0">
+                            <img src="${dept.image_playful}" alt="${dept.title} Playful" loading="lazy" decoding="async" class="playful-img absolute inset-0 w-full h-full object-cover object-top opacity-0 transition-all duration-600 md:group-hover/dept:opacity-100">
                             
                             <button onclick="toggleDeptImg(event, this)" class="md:hidden absolute bottom-4 right-4 bg-white/90 backdrop-blur text-maroon p-2.5 rounded-full shadow-lg z-20 flex items-center justify-center border border-maroon/20 active:scale-90 transition-transform" aria-label="Toggle playful image">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>

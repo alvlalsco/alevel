@@ -68,10 +68,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             </div>
 
             <div class="media-card group  aspect-4/5">
-                <img src="${evt.image}" alt="${evt.title}" loading="lazy" class="${mainImageClasses}">
+                <img src="${evt.image}" alt="${evt.title}" loading="lazy" decoding="async" class="${mainImageClasses}">
 
                 ${hasDetailsImage ? `
-                <img src="${evt.details_image}" loading="lazy" alt="details image"
+                <img src="${evt.details_image}" loading="lazy" decoding="async" alt="details image"
                     class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700 lg:group-hover:opacity-100 group-[.show-details]:opacity-100">
                 
                 <button type="button" aria-label="Toggle details"
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <div class="stack-card w-full max-w-md">
 
                 <div class="relative aspect-4/5 rounded-3xl overflow-hidden shadow-lg border border-gray-200">
-                    <img src="${defaultData.default_image}" alt="${defaultData.default_title}" loading="lazy"
+                    <img src="${defaultData.default_image}" alt="${defaultData.default_title}" loading="lazy" decoding="async"
                         class="absolute inset-0 w-full h-full object-cover">
                 </div>
 
@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     <div class="media-card group aspect-4/5">
                         
-                        <img src="${evt.image}" alt="${evt.title}" loading="lazy"
+                        <img src="${evt.image}" alt="${evt.title}" loading="lazy" decoding="async"
                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700">
 
                         <div class="media-card-overlay group-[.show-details]:opacity-0">

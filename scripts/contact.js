@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <div id="${card.id}" class="contact-card">
                     <div class="contact-card-body">
                         <div class="mb-6 flex justify-center">
-                            <img src="${card.icon}" alt="${card.title}" class="w-12 h-12">
+                            <img src="${card.icon}" alt="${card.title}" loading="lazy" decoding="async" class="w-12 h-12">
                         </div>
                         <h3 class="font-bold mb-4">${card.title}</h3>
                         <p class="text-main mb-8 grow">

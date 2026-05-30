@@ -119,6 +119,17 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         };
 
+        // Preload an image off-screen; resolves once it has loaded OR errored
+        // (never rejects, so a broken URL can't stall the carousel).
+        function preloadImage(src) {
+            return new Promise((resolve) => {
+                if (!src) return resolve();
+                const img = new Image();
+                img.onload = img.onerror = () => resolve();
+                img.src = src;
+            });
+        }
+
         function renderFeaturedEvent(index) {
             if (!upcomingEvents?.length || !cardEl) return;
 
@@ -127,7 +138,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             cardEl.classList.remove("opacity-100");
             cardEl.classList.add("opacity-0");
 
-            setTimeout(() => {
+            // Swap the text + image together, but only once the new image is
+            // ready (so text never appears before its picture) AND the fade-out
+            // has finished — with a hard cap so a slow image can't freeze it.
+            let applied = false;
+            const applyContent = () => {
+                if (applied) return;
+                applied = true;
+
                 const hasDetailsImage = !!eventData.details_image?.trim();
 
                 setImage("event-img", eventData.image);
@@ -200,7 +218,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 cardEl.classList.remove("opacity-0");
                 cardEl.classList.add("opacity-100");
-            }, 500);
+            };
+
+            const minFade = new Promise((r) => setTimeout(r, 500));
+            const imageReady = Promise.all([
+                preloadImage(eventData.image),
+                preloadImage(eventData.details_image),
+            ]);
+            const safetyCap = new Promise((r) => setTimeout(r, 1500));
+
+            Promise.race([Promise.all([minFade, imageReady]), safetyCap]).then(applyContent);
         }
 
         function nextSlide() {
@@ -351,7 +378,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 </div>
 
                 <div class="media-card group">
-                    <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
+                    <img src="${item.image}" alt="${item.title}" loading="lazy" decoding="async" class="w-full h-full object-cover">
                     <div class="media-card-overlay group ">
                         <a href="${link}" target="${target}" rel="noopener noreferrer" class="media-card-cta btn-blur ${isDisabled ? 'cursor-not-allowed lg:hover:bg-transparent! lg:hover:text-white!' : ''}">
                             ${isDisabled ? 'Coming Soon' : item.button_text}

@@ -1,1 +1,0 @@
-1. Add function that makes everything appear smoothly when user scrolls

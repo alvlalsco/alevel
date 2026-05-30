@@ -128,11 +128,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                             ` : ''}  
                         </div>
 
-                        <div class="media-card">
-                            
-                            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
+                        <div class="media-card group">
 
-                            <div class="media-card-overlay">
+                            <img src="${item.image}" alt="${item.title}" loading="lazy" decoding="async" class="w-full h-full object-cover">
+
+                            <div class="media-card-overlay group">
                                 <a href="${link}" target="${target}" rel="noopener noreferrer" class="media-card-cta btn-blur ${isDisabled ? 'cursor-not-allowed lg:hover:bg-transparent! lg:hover:text-white!' : ''}">
                                     ${isDisabled ? 'Coming Soon' : item.button_text}
                                 </a>
@@ -204,9 +204,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     </div>
 
-                    <div class="media-card">
-                        
-                        <img src="${book.image}" alt="${book.title}" loading="lazy"
+                    <div class="media-card group">
+
+                        <img src="${book.image}" alt="${book.title}" loading="lazy" decoding="async"
                             class=" w-full h-full object-cover">
 
                         <div class="media-card-overlay">

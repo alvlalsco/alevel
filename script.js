@@ -22,7 +22,13 @@ window.setText = (id, text) => {
 
 window.setImage = (id, src) => {
     const el = document.getElementById(id);
-    if (el && src) el.src = src;
+    if (el && src) {
+        // Defer off-screen downloads + decode off the main thread. Markup can
+        // opt out of lazy by setting an explicit loading attr (e.g. "eager").
+        if (!el.hasAttribute("loading")) el.setAttribute("loading", "lazy");
+        el.setAttribute("decoding", "async");
+        el.src = src;
+    }
 };
 
 window.setLink = (id, url) => {

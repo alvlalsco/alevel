@@ -18,6 +18,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://sunwayalevelalsco.netlify.app/images/alsco_logo_long.jpg">
     <link rel="icon" type="image/x-icon" href="/images/alsco_logo.avif">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/output.css">
 </head>
@@ -63,9 +65,9 @@
     <div id="footer-placeholder"></div>
 
     <!-- Load order is a contract — content.js first. See GUIDE.md. -->
-    <script src="/scripts/content.js"></script>  <!-- 1. data bank -->
-    <script src="/script.js"></script>            <!-- 2. helpers + navbar/footer -->
-    <script src="/scripts/contact.js"></script>   <!-- 3. fills this page -->
+    <script defer src="/scripts/content.js"></script>  <!-- 1. data bank -->
+    <script defer src="/script.js"></script>            <!-- 2. helpers + navbar/footer -->
+    <script defer src="/scripts/contact.js"></script>   <!-- 3. fills this page -->
 
 </body>
 

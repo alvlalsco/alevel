@@ -313,10 +313,11 @@ const siteContent = {
         },
 
         // SECTION 1: UPCOMING EVENTS
-        /*
+
         upcoming: [
             // To add more events, just copy the format above and paste and change the details accordingly.
-           {
+            /*
+            {
                 title: "A Gift of Learning",
                 department: "ALSTAR G12",
                 event_type: "Actual Event",
@@ -328,8 +329,8 @@ const siteContent = {
                 trailer_link: "https://www.instagram.com/reel/DWp8LpvTaKQ/?igsh=MWRpanpmbXBncmRyZQ==",
                 button_text: "Closed",
            },
-        ],*/
-
+           */
+        ],
 
         // SECTION 2: PAST EVENTS
         past: [
