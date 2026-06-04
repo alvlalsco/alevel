@@ -196,51 +196,23 @@ const siteContent = {
             { role: "President", name: "TAY HUI ER", image: "/images/committee/high_council/president.avif", quote: "Be the best version of yourself. :)" },
 
             // Row 2: VPs
-            { role: "Vice President of External Affairs", name: "NICHOLAS WONG JUN YEW", image: "/images/committee/high_council/vpe.avif", quote: "The only person you need to beat is the person you were yesterday. " },
             { role: "Vice President of Internal Affairs", name: "DANIEL @ HTOO HTET ZAW", image: "/images/committee/high_council/vpi.avif", quote: "Believe you can, and you're halfway there!" },
+            { role: "Vice President of External Affairs", name: "NICHOLAS WONG JUN YEW", image: "/images/committee/high_council/vpe.avif", quote: "The only person you need to beat is the person you were yesterday. " },
 
             // Row 3: Secs & Treasurer
-            { role: "Secretary", name: "CHUE RYEE EN", image: "/images/committee/high_council/sec1.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
             { role: "Secretary", name: "AUSTIN LAU HONG SHEN", image: "/images/committee/high_council/sec2.avif", quote: "The meeting minutes are not done yet." },
-            { role: "Treasurer", name: "EVAN YEOH JIN QUAN", image: "/images/committee/high_council/treasurer.avif", quote: "'Come, let me prove you wrong' - Ms.Careen" },
+            { role: "Secretary", name: "CHUE RYEE EN", image: "/images/committee/high_council/sec1.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
+            { role: "Treasurer", name: "EVAN YEOH JIN QUAN", image: "/images/committee/high_council/treasurer.avif", quote: "'Come, let me prove you wrong.' - Ms.Careen" },
         ],
 
         // LEVEL 2: DEPARTMENTS
         // Copy & paste / delete acocrding to number of members
         departments: [
             {
-                name: "Leadership Development",
-                leaders: [
-                    { role: "Director", name: "LAI ZHENG YI", image: "/images/committee/leadership_dev/LDdirector.avif", quote: "Believe in Yourself, but when in doubt, Freestyle" },
-                    { role: "Deputy Director", name: "CHLOE LIM JING YAN", image: "/images/committee/leadership_dev/LDduputyDirector.avif", quote: "Strategically overthinking so you don’t have to :)" }
-                ],
-                members: [
-                    { role: "General Member", name: "ONG XI WEN", image: "/images/committee/leadership_dev/ldmember1.avif", quote: "Yep still surviving :))" },
-                    { role: "General Member", name: "EVAN YEOH JIN QUAN", image: "/images/committee/leadership_dev/ldmember2.avif", quote: "'Come, let me prove you wrong' - Ms.Careen" },
-                    { role: "General Member", name: "TAY HUI ER", image: "/images/committee/leadership_dev/ldmember3.avif", quote: "Be the best version of yourself. :)" },
-                    { role: "General Member", name: "VINCENT KHOO WEI WEN", image: "/images/committee/leadership_dev/ldmember4.avif", quote: "Failure is merely the ink of a life that dared to write" },
-                ],
-            },
-            {
-                name: "Student Welfare",
-                leaders: [
-                    { role: "Director", name: "YAP CHERN XI", image: "/images/committee/student_wel/SWdirector.avif", quote: "I love eating" },
-                    { role: "Deputy Director", name: "SEW SUN LOONG", image: "/images/committee/student_wel/SWdeputyDirector.avif", quote: "Tacos" }
-                ],
-                members: [
-                    { role: "General Member", name: "LAW JIA HERNG", image: "/images/committee/student_wel/swmember1.avif", quote: "'Your GENIUS Friends ah, 2 plud -6 also don't know' - Dr.Poh" },
-                    { role: "General Member", name: "JOSHUA LEE CHENG AN", image: "/images/committee/student_wel/swmember2.avif", quote: "You can't rush greatness" },
-                    { role: "General Member", name: "GOH JAY NING", image: "/images/committee/student_wel/swmember3.avif", quote: "Eat well, sleep well, study well. - Mr D. " },
-                    { role: "General Member", name: "DANIEL WONG WENG SENG", image: "/images/committee/student_wel/swmember4.avif", quote: "" },
-                    { role: "General Member", name: "DANIEL @ HTOO HTET ZAW", image: "/images/committee/student_wel/swmember5.avif", quote: "Believe you can, and you're halfway there!" },
-                    { role: "General Member", name: "CHUE RYEE EN", image: "/images/committee/student_wel/swmember6.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
-                ],
-            },
-            {
                 name: "Public Relations",
                 leaders: [
                     { role: "Director", name: "AYSHALYNN SALAHUDDIN", image: "/images/committee/public_rel/PRdirector.avif", quote: "The silent lamb but innocent tamed and humble soul." },
-                    { role: "Deputy Director", name: "CHONG HUI XIN", image: "/images/committee/public_rel/PRdeputyDirector.avif", quote: "Balancing everything almost took me out, but hey…I survived." }
+                    { role: "Deputy Director", name: "CHONG HUI XIN", image: "/images/committee/public_rel/PRdeputyDirector.avif", quote: "Balancing everything almost took me out, but hey… I survived." }
                 ],
                 members: [
                     { role: "General Member", name: "AUSTIN LAU HONG SHEN", image: "/images/committee/public_rel/prmember1.avif", quote: "The meeting minutes are not done yet." },
@@ -249,47 +221,64 @@ const siteContent = {
                 ],
             },
             {
+                name: "Leadership Development",
+                leaders: [
+                    { role: "Director", name: "LAI ZHENG YI", image: "/images/committee/leadership_dev/LDdirector.avif", quote: "Believe in Yourself, but when in doubt, freestyle!" },
+                    { role: "Deputy Director", name: "CHLOE LIM JING YAN", image: "/images/committee/leadership_dev/LDduputyDirector.avif", quote: "Strategically overthinking so you don’t have to. :)" }
+                ],
+                members: [
+                    { role: "General Member", name: "EVAN YEOH JIN QUAN", image: "/images/committee/leadership_dev/ldmember2.avif", quote: "'Come, let me prove you wrong.' - Ms.Careen" },
+                    { role: "General Member", name: "ONG XI WEN", image: "/images/committee/leadership_dev/ldmember1.avif", quote: "Yep, still surviving. :))" },
+                    { role: "General Member", name: "TAY HUI ER", image: "/images/committee/leadership_dev/ldmember3.avif", quote: "Be the best version of yourself. :)" },
+                    { role: "General Member", name: "VINCENT KHOO WEI WEN", image: "/images/committee/leadership_dev/ldmember4.avif", quote: "Failure is merely the ink of a life that dared to write." },
+                ],
+            },
+            {
                 name: "Community Service",
                 leaders: [
                     { role: "Director", name: "EE JING XUAN", image: "/images/committee/comserve/CSdirector.avif", quote: "But it’s hard to stay mad when there’s so much beauty in the world." },
-                    { role: "Deputy Director", name: "NYEIN YU SAN", image: "/images/committee/comserve/CSdeputyDirector.avif", quote: "Growing while giving back through service" }
+                    { role: "Deputy Director", name: "NYEIN YU SAN", image: "/images/committee/comserve/CSdeputyDirector.avif", quote: "Growing while giving back through service." }
                 ],
                 members: [
                     { role: "General Member", name: "DAKSSHI NATH PILLAY", image: "/images/committee/comserve/csmember1.avif", quote: "Why are we here, just to suffer?" },
                     { role: "General Member", name: "NICHOLAS WONG JUN YEW", image: "/images/committee/comserve/csmember2.avif", quote: "The only person you need to beat is the person you were yesterday. " },
                     { role: "General Member", name: "TEH SIN HUI", image: "/images/committee/comserve/csmember3.avif", quote: "" },
-                    { role: "General Member", name: "YAP QIN HUEY", image: "/images/committee/comserve/csmember4.avif", quote: "2% battery, 100% commitment" },
+                    { role: "General Member", name: "YAP QIN HUEY", image: "/images/committee/comserve/csmember4.avif", quote: "2% battery, 100% commitment!" },
                 ],
             },
-
-
+            {
+                name: "Student Welfare",
+                leaders: [
+                    { role: "Director", name: "YAP CHERN XI", image: "/images/committee/student_wel/SWdirector.avif", quote: "I love eating!" },
+                    { role: "Deputy Director", name: "SEW SUN LOONG", image: "/images/committee/student_wel/SWdeputyDirector.avif", quote: "Tacos!" }
+                ],
+                members: [
+                    { role: "General Member", name: "CHUE RYEE EN", image: "/images/committee/student_wel/swmember6.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
+                    { role: "General Member", name: "DANIEL @ HTOO HTET ZAW", image: "/images/committee/student_wel/swmember5.avif", quote: "Believe you can, and you're halfway there!" },
+                    { role: "General Member", name: "DANIEL WONG WENG SENG", image: "/images/committee/student_wel/swmember4.avif", quote: "" },
+                    { role: "General Member", name: "GOH JAY NING", image: "/images/committee/student_wel/swmember3.avif", quote: "Eat well, sleep well, study well. - Mr D. " },
+                    { role: "General Member", name: "JOSHUA LEE CHENG AN", image: "/images/committee/student_wel/swmember2.avif", quote: "You can't rush greatness." },
+                    { role: "General Member", name: "LAW JIA HERNG", image: "/images/committee/student_wel/swmember1.avif", quote: "'Your GENIUS Friends ah, 2 plus -6 also don't know.' - Dr.Poh" },
+                ],
+            },
+            
         ],
 
         // LEVEL 3: DEPARTMENT PHOTOS. Just change the IMAGE or DESCRIPTION. NOT the ID
         coreStructure: [
+             {
+                id: "dept-pr",
+                title: "Public Relations",
+                image: "/images/committee/departmental/PR - FORMAL.avif",
+                image_playful: "/images/committee/departmental/PR - INFORMAL.avif",
+                description: "Public Relations focuses on creating creative and engaging content to communicate effectively and build a strong, connected A-Level community."
+            },
             {
                 id: "dept-ld",
                 title: "Leadership Development",
                 image: "/images/committee/departmental/LD - FORMAL.avif",
                 image_playful: "/images/committee/departmental/LD - INFORMAL.avif",
-                ig_link: "https://www.instagram.com/p/DTaF8g5EcvH/?img_index=4",
                 description: "Leadership Development promotes soft skills and sports to foster interpersonal growth and ensure all A-Level students develop personally and professionally."
-            },
-            {
-                id: "dept-sw",
-                title: "Student Welfare",
-                image: "/images/committee/departmental/SW - FORMAL.avif",
-                image_playful: "/images/committee/departmental/SW - INFORMAL.avif",
-                ig_link: "https://www.instagram.com/p/DTaF8g5EcvH/?img_index=4",
-                description: "Student Welfare strives to foster a supportive and holistic environment within the community by curating initiatives that enhance the mental, social, and academic well-being of all A-Level students."
-            },
-            {
-                id: "dept-pr",
-                title: "Public Relations",
-                image: "/images/committee/departmental/PR - FORMAL.avif",
-                image_playful: "/images/committee/departmental/PR - INFORMAL.avif",
-                ig_link: "https://www.instagram.com/p/DTaF8g5EcvH/?img_index=4",
-                description: "Public Relations focuses on creating creative and engaging content to communicate effectively and build a strong, connected A-Level community."
             },
             {
                 id: "dept-cs",
@@ -299,7 +288,14 @@ const siteContent = {
                 ig_link: "https://www.instagram.com/alevel.comserve/",
                 description: "Community Service, or COMSERVE for short, organises events for our members that focuses on charitable, environmental, or community-orientated work."
             },
-
+            {
+                id: "dept-sw",
+                title: "Student Welfare",
+                image: "/images/committee/departmental/SW - FORMAL.avif",
+                image_playful: "/images/committee/departmental/SW - INFORMAL.avif",
+                description: "Student Welfare strives to foster a supportive and holistic environment within the community by curating initiatives that enhance the mental, social, and academic well-being of all A-Level students."
+            },
+           
         ]
     },
 
@@ -335,6 +331,13 @@ const siteContent = {
         // SECTION 2: PAST EVENTS
         past: [
             {
+                title: "April '26 A-Level Orientation",
+                date: "Monday, 13th April 2026",
+                department: "ALSCO",
+                image: "/images/events/past/aot.avif",
+                ig_link: "https://www.instagram.com/p/DXEbykckTOI/?img_index=1",
+            },
+            {
                 title: "Lecturer Appreciation Week 2026",
                 date: "Thursday, 26th February 2026",
                 department: "Student Welfare Department",
@@ -359,7 +362,7 @@ const siteContent = {
                 title: "January '26 A-Level Orientation",
                 date: "Monday, 19th January 2026",
                 department: "ALSCO",
-                image: "/images/events/past/jot.avif",
+                image: "/images/events/past/jot2.avif",
                 ig_link: "https://www.instagram.com/p/DTure53EcOg/?img_index=1",
             },
             {
@@ -388,6 +391,39 @@ const siteContent = {
 
         // 2. PUBLICATION CARDS
         publications: [
+            {
+                title: "Newsletter Issue 9",
+                image: "/images/resources/issue9.avif",
+                category: "newsletter",
+                department: "Public Relations",
+                pdf_link: "https://drive.google.com/file/d/11jMQJpoTxtz_Pj5NLlsBVdmF8M_SMqj6/view?usp=sharing",
+                button_text: "Read Now"
+            },
+            {
+                title: "Newsletter Issue 8",
+                image: "/images/resources/issue8.avif",
+                category: "newsletter",
+                department: "Public Relations",
+                pdf_link: "https://drive.google.com/file/d/15CzlrJuMN0M_AkndeWXLdhZPzFi0C7-T/view?usp=sharing",
+                button_text: "Read Now"
+            },
+            {
+                title: "Newsletter Issue 7",
+                image: "/images/resources/issue7.avif",
+                category: "newsletter",
+                department: "Public Relations",
+                pdf_link: "https://drive.google.com/file/d/1wL_zAtEiykwhzWxTYdR08xn-KqPnhQgS/view?usp=sharing",
+                button_text: "Read Now"
+            }
+            {
+                title: "May Monthly Post",
+                image: "/images/resources/post12.avif",
+                category: "post",
+                department: "Student Welfare",
+                pdf_link: "https://drive.google.com/file/d/1qN63Iu5skR6kFxzAeWXU-WwSV2oQB1uw/view?usp=sharing", // PDF download link
+                ig_link: "https://www.instagram.com/p/DX1dgetERWk/?img_index=1",
+                button_text: "Read Now"
+            },
             {
                 title: "March Monthly Post",
                 image: "/images/resources/post3.avif",
@@ -424,30 +460,7 @@ const siteContent = {
                 ig_link: "https://www.instagram.com/p/DQjYDcakYz-/?img_index=1",
                 button_text: "Read Now"
             },
-            {
-                title: "Newsletter Issue 9",
-                image: "/images/resources/issue9.avif",
-                category: "newsletter",
-                department: "Public Relations",
-                pdf_link: "https://drive.google.com/file/d/11jMQJpoTxtz_Pj5NLlsBVdmF8M_SMqj6/view?usp=sharing",
-                button_text: "Read Now"
-            },
-            {
-                title: "Newsletter Issue 8",
-                image: "/images/resources/issue8.avif",
-                category: "newsletter",
-                department: "Public Relations",
-                pdf_link: "https://drive.google.com/file/d/15CzlrJuMN0M_AkndeWXLdhZPzFi0C7-T/view?usp=sharing",
-                button_text: "Read Now"
-            },
-            {
-                title: "Newsletter Issue 7",
-                image: "/images/resources/issue7.avif",
-                category: "newsletter",
-                department: "Public Relations",
-                pdf_link: "https://drive.google.com/file/d/1wL_zAtEiykwhzWxTYdR08xn-KqPnhQgS/view?usp=sharing",
-                button_text: "Read Now"
-            }
+            
         ],
 
         handbook: [
