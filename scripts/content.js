@@ -387,7 +387,7 @@ const siteContent = {
     //===========================
     resourcePage: {
         // 1. HERO SECTION BACKGROUND
-        heroImage: "/images/resources/resource-bg.avif",
+        heroImage: "/images/index/alsco_group.avif",
 
         // 2. PUBLICATION CARDS
         publications: [
@@ -414,7 +414,7 @@ const siteContent = {
                 department: "Public Relations",
                 pdf_link: "https://drive.google.com/file/d/1wL_zAtEiykwhzWxTYdR08xn-KqPnhQgS/view?usp=sharing",
                 button_text: "Read Now"
-            }
+            },
             {
                 title: "May Monthly Post",
                 image: "/images/resources/post12.avif",
