@@ -387,7 +387,7 @@ const siteContent = {
     //===========================
     resourcePage: {
         // 1. HERO SECTION BACKGROUND
-        heroImage: "/images/index/alsco_group.avif",
+        heroImage: "/images/resources/banner.avif",
 
         // 2. PUBLICATION CARDS
         publications: [
