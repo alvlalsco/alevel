@@ -616,9 +616,9 @@ const siteContent = {
         tagline:               "One batch. No restock. Don't miss it.",
         priceTag:              "As low as RM80!",                     // shown in hero
         orderGoal:             100,
-        deadline:              "2025-06-26T23:59:59",                // ISO date string
-        formUrl:               "<https://docs.google.com/forms/d/e/1FAIpQLScnCvvvrt0e4zgkn1gzsi_UOwLTnK-nptOx9uGXNVr5-7J_mg/viewform?usp=header>",
-        formEmbedUrl:          "<google form embed url>",            // /viewform?embedded=true version
+        deadline:              "2026-06-30T23:59:59",                // ISO date string
+        formUrl:               "https://forms.gle/uqwh23UJuWWK9Yf5A",
+        formEmbedUrl:          "https://forms.gle/uqwh23UJuWWK9Yf5A?embedded=true",            // /viewform?embedded=true version
 
         // ── Live order feed ─────────────────────────────────────────────────
         // Publish the response sheet: File → Share → Publish to web → CSV.
@@ -672,7 +672,7 @@ const siteContent = {
 
         // ── Try-it-on booth ─────────────────────────────────────────────────
         tryItOn: {
-            week:        "22–26 June 2025",
+            week:        "22–26 June 2026",
             location:    "TBA",      // update when confirmed
             hours:       "TBA",                             // e.g. "10 am – 5 pm"
             description: "Not sure about sizing? Come try on the sample jacket at the graduation booth or during Try-Out Week before committing to your order.",
@@ -703,7 +703,7 @@ const siteContent = {
             },
             {
                 question: "What's the exact deadline?",
-                answer:   "The order closes on 26 June 2025 at 11:59 PM. No extensions — the supplier needs a fixed headcount to begin production."
+                answer:   "The order closes on 30 June 2026 at 11:59 PM. No extensions — the supplier needs a fixed headcount to begin production."
             },
         ],
     },
