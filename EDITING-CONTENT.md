@@ -29,6 +29,7 @@ scripts for any of these.
 - [Add a publication / newsletter / handbook](#add-a-publication--newsletter--handbook)
 - [Update the ALSTAR forms or calendar](#update-the-alstar-forms-or-calendar)
 - [Edit the contact cards](#edit-the-contact-cards)
+- [Run a jacket / T-shirt / product sale](#run-a-jacket--t-shirt--product-sale)
 - [If the site goes blank](#if-the-site-goes-blank)
 
 ---
@@ -240,6 +241,56 @@ To **add a card**, copy a whole block and edit it. Notes:
 - For an **email** card, use a `mailto:` link and add `isEmail: true,` so it opens the mail
   app instead of a new browser tab.
 - `icon` points to a logo in `images/footer/`.
+
+---
+
+## Run a jacket / T-shirt / product sale
+
+The **Jacket Sale page** is a reusable template — the same page can run a T-shirt sale, a
+hoodie sale, or next year's jacket. Everything visible lives in `content.js` under
+`jacketSale`. Edit the strings inside the quotes; don't rename the keys.
+
+```js
+jacketSale: {
+    title:    "A-Level Varsity Jacket",         // big hero heading
+    tagline:  "One batch. No restock. Don't miss it.",
+    priceTag: "As low as RM80!",                // the price line under the tagline
+    orderGoal: 100,                             // the target (right end of the timeline)
+    deadline: "2026-06-30T23:59:59",            // close date — drives the countdown + footer
+    formUrl:  "https://forms.gle/XXXX",         // the Google Form every "Pre-order now" opens
+
+    designImages: [                             // image #1 = front, #2 = back (hover/tap to flip)
+        { src: "/images/events/upcoming/jacketfront.avif", alt: "Jacket — front view" },
+        { src: "/images/events/upcoming/jacketback.avif",  alt: "Jacket — back view"  },
+    ],
+    sizeChartImage: "/images/events/upcoming/size.avif",
+
+    priceTiers: [                               // the price table; goalTier:true is highlighted
+        { range: "30–49", base: 90, withName: 93 },
+        { range: "50–99", base: 85, withName: 88 },
+        { range: "100+",  base: 80, withName: 83, goalTier: true },
+    ],
+    milestones: [                               // the timeline ticks: orders → total discount
+        { orders: 50,  discount: 5  },
+        { orders: 100, discount: 10 },
+    ],
+
+    groupDiscount: { title: "Special Group Discount!", description: "RM25 off ...", faqHint: "..." },
+    countdown:     { prefix: "Pre-order sale ends on", urgency: "You only have {days} days ..." },
+    // ...howItWorks, tryItOn, faq lists — copy an entry to add more (same as elsewhere).
+},
+```
+
+Notes:
+- **`{days}`** in `countdown.urgency` is replaced automatically with the real number of days
+  left until `deadline` — leave the `{days}` text in place.
+- **Front/back swap:** put exactly two images in `designImages`. One image ⇒ no flip.
+- **The live order counter** (`orderCountUrl`, `currentOrdersFallback`) and its Google Apps
+  Script are a **developer task** — see [GUIDE.md → The Jacket Sale page](GUIDE.md#the-jacket-sale-page-a-reusable-product-sale-template).
+  If you just want a static number, leave `orderCountUrl` as the `<...>` placeholder and set
+  `currentOrdersFallback`.
+- After editing images **or** anything that changes styling, a developer should run
+  `npm run build` once so everything compiles (text edits alone don't need it).
 
 ---
 

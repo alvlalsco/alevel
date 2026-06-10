@@ -90,6 +90,18 @@ const siteContent = {
                 { name: "Email", id: "contact_email" },
                 { name: "Tiktok", id: "contact_tiktok" }
             ]
+        },
+        {
+            name: "Jacket Sale",
+            link: "/html_pages/jacket.html",
+            sections: [
+                { name: "Jacket Design", id: "jacket-image-group" },
+                { name: "Price Chart", id: "price-chart" },
+                { name: "Total Order Tracker", id: "total-order-timeline" },
+                { name: "How it Works", id: "jacket-how-section" },
+                { name: "Size Chart", id: "jacket-size-chart" },
+                { name: "FAQ", id: "jacket-faq-section" },
+            ]
         }
     ],
 
@@ -261,12 +273,12 @@ const siteContent = {
                     { role: "General Member", name: "LAW JIA HERNG", image: "/images/committee/student_wel/swmember1.avif", quote: "'Your genius friends ah, 2 plus -6 also don't know.' - Dr.Poh" },
                 ],
             },
-            
+
         ],
 
         // LEVEL 3: DEPARTMENT PHOTOS. Just change the IMAGE or DESCRIPTION. NOT the ID
         coreStructure: [
-             {
+            {
                 id: "dept-pr",
                 title: "Public Relations",
                 image: "/images/committee/departmental/PR - FORMAL.avif",
@@ -295,7 +307,7 @@ const siteContent = {
                 image_playful: "/images/committee/departmental/SW - INFORMAL.avif",
                 description: "Student Welfare strives to foster a supportive and holistic environment within the community by curating initiatives that enhance the mental, social, and academic well-being of all A-Level students."
             },
-           
+
         ]
     },
 
@@ -326,7 +338,7 @@ const siteContent = {
                 button_text: "Closed",
            },
            */
-          {
+            {
                 title: "A-level Jacket Sale",
                 department: "ALSCO",
                 date: "Monday, 26th June 2026 to Friday, 30th June 2026",
@@ -335,7 +347,7 @@ const siteContent = {
                 ig_link: "https://www.instagram.com/p/DWnXYTrEY8o/?igsh=aTlqcmh3MDl6bWZt",
                 registration_link: "/html_pages/jacket.html",  // internal page — opens in same tab
                 button_text: "Learn More",
-          }
+            }
         ],
 
         // SECTION 2: PAST EVENTS
@@ -470,7 +482,7 @@ const siteContent = {
                 ig_link: "https://www.instagram.com/p/DQjYDcakYz-/?img_index=1",
                 button_text: "Read Now"
             },
-            
+
         ],
 
         handbook: [
@@ -610,29 +622,30 @@ const siteContent = {
     //===========================
     // 8. JACKET SALE PAGE
     //===========================
-   jacketSale: {
+    jacketSale: {
         // ── Core settings ──────────────────────────────────────────────────
-        title:                 "A-Level Batch Jacket",
-        tagline:               "One batch. No restock. Don't miss it.",
-        priceTag:              "As low as RM80!",                     // shown in hero
-        orderGoal:             100,
-        deadline:              "2026-06-30T23:59:59",                // ISO date string
-        formUrl:               "https://forms.gle/uqwh23UJuWWK9Yf5A",
-        formEmbedUrl:          "https://forms.gle/uqwh23UJuWWK9Yf5A?embedded=true",            // /viewform?embedded=true version
+        title: "11th June till 30th June 2026",
+        tagline: "One batch. No restock. Don't miss it.",
+        priceTag: "As low as RM80!",                     // shown in hero
+        orderGoal: 100,
+        deadline: "2026-06-30T23:59:59",                // ISO date string
+        formUrl: "https://forms.gle/uqwh23UJuWWK9Yf5A",
+        formEmbedUrl: "https://forms.gle/uqwh23UJuWWK9Yf5A?embedded=true",            // /viewform?embedded=true version
 
         // ── Live order feed ─────────────────────────────────────────────────
-        // Publish the response sheet: File → Share → Publish to web → CSV.
-        // Leave as "<...>" placeholder to use the fallback constant instead.
-        sheetCsvUrl:           "<published Google Sheet CSV url>",
+        // Apps Script Web App that returns only { "count": N } — the response
+        // sheet stays private (same pattern as alstar.js). See GUIDE.md / plan
+        // for the doGet snippet. Leave as "<...>" to use the fallback instead.
+        orderCountUrl: "https://script.google.com/macros/s/AKfycbwOPrYi0StG4eGd1FLOC9AUjHWb_CDlfbeg1EogXPqnzdJWgpxAlbeh06dgatNq4Qhn/exec",
         currentOrdersFallback: 0,                                   // used if fetch fails
-        cacheMinutes:          3,                                    // revalidate interval
+        cacheMinutes: 3,                                    // revalidate interval
 
         // ── Design carousel ─────────────────────────────────────────────────
         // Add as many images as needed — becomes a carousel if more than one.
         designImages: [
-            { src: "/images/events/upcoming/jacketfront.avif",  alt: "Jacket — front view"  },
-            { src: "/images/events/upcoming/jacketback.avif",   alt: "Jacket — back view"   },
-            
+            { src: "/images/events/upcoming/jacketfront.avif", alt: "Jacket — front view" },
+            { src: "/images/events/upcoming/jacketback.avif", alt: "Jacket — back view" },
+
         ],
 
         // ── Size chart ──────────────────────────────────────────────────────
@@ -641,17 +654,40 @@ const siteContent = {
         // ── Pricing tiers ───────────────────────────────────────────────────
         // List from lowest to highest. goalTier marks the highlighted row.
         priceTiers: [
-            { range: "30–49",  base: 90, withName: 93 },
-            { range: "50–99",  base: 85, withName: 88 },
-            { range: "100+",   base: 80, withName: 83, goalTier: true },
+            { range: "30–49", base: 90, withName: 93 },
+            { range: "50–99", base: 85, withName: 88 },
+            { range: "100+", base: 80, withName: 83, goalTier: true },
         ],
+
+        // ── Progress timeline milestones ────────────────────────────────────
+        // Each point on the live timeline: order count + the total discount
+        // unlocked at that count (RM off the RM90 base). Light up as orders pass.
+        milestones: [
+            { orders: 50, discount: 5 },   // RM5 off  → RM85
+            { orders: 100, discount: 10 },   // RM10 off → RM80
+        ],
+
+        // ── Special group discount blurb ────────────────────────────────────
+        groupDiscount: {
+            title: "Special Group Discount!",
+            description: "RM25 off for purchases in groups of 5! Get your friends to join you to enjoy more discounts!",
+            faqHint: "For more info, check out the FAQs",
+        },
+
+        // ── "Sale ends" countdown ───────────────────────────────────────────
+        // The date and the day count are derived from `deadline` above.
+        // {days} is replaced with the live number of days left.
+        countdown: {
+            prefix: "Pre-order sale ends on",
+            urgency: "You only have {days} days to purchase this exclusive jacket!",
+        },
 
         // ── How it works — four fixed steps ─────────────────────────────────
         howItWorks: [
             {
                 step: "01",
                 heading: "Pre-order & pay RM90",
-                body: "Fill in the form and pay the base price of RM90 (highest tier). You're locked in — no need to worry about missing out."
+                body: "Fill in the form and pay the base price of RM90 (RM93 to personalise with your own name). You're locked in — no need to worry about missing out."
             },
             {
                 step: "02",
@@ -672,38 +708,42 @@ const siteContent = {
 
         // ── Try-it-on booth ─────────────────────────────────────────────────
         tryItOn: {
-            week:        "22–26 June 2026",
-            location:    "TBA",      // update when confirmed
-            hours:       "TBA",                             // e.g. "10 am – 5 pm"
-            description: "Not sure about sizing? Come try on the sample jacket at the graduation booth or during Try-Out Week before committing to your order.",
+            week: "22–26 June 2026",
+            location: "A-Level Hub, Sunway College",      // update when confirmed
+            hours: "10:00 a.m. to 2:00 p.m.",                             // e.g. "10 am – 5 pm"
+            description: "Not sure about sizing? Come try on the sample jacket during Try-Out Week before committing to your order.",
         },
 
         // ── FAQ accordion ────────────────────────────────────────────────────
         // Copy a { question, answer } block to add more items.
         faq: [
             {
-                question: "Is this a China import?",
-                answer:   "No. The jacket is locally manufactured to a spec we chose — fabric, cut, and embroidery are all quality-checked before the order is placed with the supplier."
+                question: "Should I be worried about the quality of the jacket? ",
+                answer: "No. The jacket is locally sourced and manufactured by our trusted supplier that has been supplying us with the same quality jacket for the past few years."
             },
             {
                 question: "Why does the price range from RM80 to RM90?",
-                answer:   "It's a group-discount model. The supplier charges less per unit when we order more. At 30–49 orders the price is RM90; 50–99 brings it to RM85; 100+ locks it at RM80. Everyone pays the same final price regardless of when they ordered."
+                answer: "It's a group-discount model. The supplier charges less per unit when we order more. At 30–49 orders the price is RM90; 50–99 brings it to RM85; 100+ locks it at RM80. Everyone pays the same final price regardless of when they ordered."
             },
             {
                 question: "What do I pay now, and how does the refund work?",
-                answer:   "You pay RM90 (or RM93 with name print) upfront. When the order closes, the final tier is calculated. If the price drops, you get the difference back in cash when you collect your jacket — no forms, no transfers needed."
+                answer: "You pay RM90 (or RM93 with name print) upfront. When the order closes, the final tier is calculated. If the price drops, you get the difference back in cash when you collect your jacket — no forms, no transfers needed."
             },
             {
                 question: "What if the jacket doesn't fit?",
-                answer:   "That's why there's a Try-Out Week (22–26 June). Come try the sample on before you order. Exchanges after production are not guaranteed, so please check the size chart carefully and try it on if you can."
+                answer: "That's why there's a Try-Out Week (22–26 June). Come try the sample on before you order. Exchanges after production are not guaranteed, so please check the size chart carefully and try it on if you can."
             },
             {
                 question: "When will I get my jacket?",
-                answer:   "Estimated 4–6 weeks after the order closes and payment is confirmed. We'll announce the collection date via the group chat and Instagram."
+                answer: "Estimated 6 weeks after the order closes and payment is confirmed. We'll announce the collection date via the Whatsapp group chat and Instagram."
             },
             {
                 question: "What's the exact deadline?",
-                answer:   "The order closes on 30 June 2026 at 11:59 PM. No extensions — the supplier needs a fixed headcount to begin production."
+                answer: "The order closes on 30 June 2026 at 11:59 PM. No extensions — the supplier needs a fixed headcount to begin production."
+            },
+            {
+                question: "How does the special group discount work? ",
+                answer: "Fill in the pre-order form and enter your group name when asked, if all 5 responses checks out, each person gets an additional RM5 refund at collection. Eg. if total orders = 100. Each person gets total RM 15 refunds."
             },
         ],
     },
