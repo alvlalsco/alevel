@@ -328,7 +328,7 @@ const siteContent = {
            */
           {
                 title: "A-level Jacket Sale",
-                department: "Public Relations",
+                department: "ALSCO",
                 date: "Monday, 26th June 2026 to Friday, 30th June 2026",
                 image: "/images/events/upcoming/jacket.avif",
                 details_image: "/images/events/upcoming/jacket2.avif",
@@ -614,7 +614,7 @@ const siteContent = {
         // ── Core settings ──────────────────────────────────────────────────
         title:                 "A-Level Batch Jacket",
         tagline:               "One batch. No restock. Don't miss it.",
-        priceTag:              "As low as RM80",                     // shown in hero
+        priceTag:              "As low as RM80!",                     // shown in hero
         orderGoal:             100,
         deadline:              "2025-06-26T23:59:59",                // ISO date string
         formUrl:               "<https://docs.google.com/forms/d/e/1FAIpQLScnCvvvrt0e4zgkn1gzsi_UOwLTnK-nptOx9uGXNVr5-7J_mg/viewform?usp=header>",
@@ -673,7 +673,7 @@ const siteContent = {
         // ── Try-it-on booth ─────────────────────────────────────────────────
         tryItOn: {
             week:        "22–26 June 2025",
-            location:    "TBA — watch the group chat",      // update when confirmed
+            location:    "TBA",      // update when confirmed
             hours:       "TBA",                             // e.g. "10 am – 5 pm"
             description: "Not sure about sizing? Come try on the sample jacket at the graduation booth or during Try-Out Week before committing to your order.",
         },
