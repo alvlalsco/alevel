@@ -202,7 +202,7 @@ const siteContent = {
             // Row 3: Secs & Treasurer
             { role: "Secretary", name: "AUSTIN LAU HONG SHEN", image: "/images/committee/high_council/sec2.avif", quote: "The meeting minutes are not done yet." },
             { role: "Secretary", name: "CHUE RYEE EN", image: "/images/committee/high_council/sec1.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
-            { role: "Treasurer", name: "EVAN YEOH JIN QUAN", image: "/images/committee/high_council/treasurer.avif", quote: "'Come, let me prove you wrong.' - Ms.Careen" },
+            { role: "Treasurer", name: "EVAN YEOH JIN QUAN", image: "/images/committee/high_council/treasurer.avif", quote: "'Come, let me prove you wrong.' - Ms Careen" },
         ],
 
         // LEVEL 2: DEPARTMENTS
@@ -223,12 +223,12 @@ const siteContent = {
             {
                 name: "Leadership Development",
                 leaders: [
-                    { role: "Director", name: "LAI ZHENG YI", image: "/images/committee/leadership_dev/LDdirector.avif", quote: "Believe in Yourself, but when in doubt, freestyle!" },
+                    { role: "Director", name: "LAI ZHENG YI", image: "/images/committee/leadership_dev/LDdirector.avif", quote: "Believe in yourself, but when in doubt, freestyle!" },
                     { role: "Deputy Director", name: "CHLOE LIM JING YAN", image: "/images/committee/leadership_dev/LDduputyDirector.avif", quote: "Strategically overthinking so you don’t have to. :)" }
                 ],
                 members: [
-                    { role: "General Member", name: "EVAN YEOH JIN QUAN", image: "/images/committee/leadership_dev/ldmember2.avif", quote: "'Come, let me prove you wrong.' - Ms.Careen" },
-                    { role: "General Member", name: "ONG XI WEN", image: "/images/committee/leadership_dev/ldmember1.avif", quote: "Yep, still surviving. :))" },
+                    { role: "General Member", name: "EVAN YEOH JIN QUAN", image: "/images/committee/leadership_dev/ldmember2.avif", quote: "'Come, let me prove you wrong.' -Ms.Careen" },
+                    { role: "General Member", name: "ONG XI WEN", image: "/images/committee/leadership_dev/ldmember1.avif", quote: "Yep, still surviving. :)" },
                     { role: "General Member", name: "TAY HUI ER", image: "/images/committee/leadership_dev/ldmember3.avif", quote: "Be the best version of yourself. :)" },
                     { role: "General Member", name: "VINCENT KHOO WEI WEN", image: "/images/committee/leadership_dev/ldmember4.avif", quote: "Failure is merely the ink of a life that dared to write." },
                 ],
@@ -256,9 +256,9 @@ const siteContent = {
                     { role: "General Member", name: "CHUE RYEE EN", image: "/images/committee/student_wel/swmember6.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
                     { role: "General Member", name: "DANIEL @ HTOO HTET ZAW", image: "/images/committee/student_wel/swmember5.avif", quote: "Believe you can, and you're halfway there!" },
                     { role: "General Member", name: "DANIEL WONG WENG SENG", image: "/images/committee/student_wel/swmember4.avif", quote: "" },
-                    { role: "General Member", name: "GOH JAY NING", image: "/images/committee/student_wel/swmember3.avif", quote: "Eat well, sleep well, study well. - Mr D. " },
+                    { role: "General Member", name: "GOH JAY NING", image: "/images/committee/student_wel/swmember3.avif", quote: "Eat well, sleep well, study well. - Mr D " },
                     { role: "General Member", name: "JOSHUA LEE CHENG AN", image: "/images/committee/student_wel/swmember2.avif", quote: "You can't rush greatness." },
-                    { role: "General Member", name: "LAW JIA HERNG", image: "/images/committee/student_wel/swmember1.avif", quote: "'Your GENIUS Friends ah, 2 plus -6 also don't know.' - Dr.Poh" },
+                    { role: "General Member", name: "LAW JIA HERNG", image: "/images/committee/student_wel/swmember1.avif", quote: "'Your genius friends ah, 2 plus -6 also don't know.' - Dr.Poh" },
                 ],
             },
             
@@ -326,6 +326,16 @@ const siteContent = {
                 button_text: "Closed",
            },
            */
+          {
+                title: "A-level Jacket Sale",
+                department: "Public Relations",
+                date: "Monday, 26th June 2026 to Friday, 30th June 2026",
+                image: "/images/events/upcoming/jacket.avif",
+                details_image: "/images/events/upcoming/jacket2.avif",
+                ig_link: "https://www.instagram.com/p/DWnXYTrEY8o/?igsh=aTlqcmh3MDl6bWZt",
+                registration_link: "/html_pages/jacket.html",  // internal page — opens in same tab
+                button_text: "Learn More",
+          }
         ],
 
         // SECTION 2: PAST EVENTS
@@ -416,7 +426,7 @@ const siteContent = {
                 button_text: "Read Now"
             },
             {
-                title: "May Monthly Post",
+                title: "April Monthly Post",
                 image: "/images/resources/post12.avif",
                 category: "post",
                 department: "Student Welfare",
@@ -444,7 +454,7 @@ const siteContent = {
             },
             {
                 title: "November Monthly Post",
-                image: "/images/resources/post11.avif",
+                image: "/images/resources/post13.avif",
                 category: "post",
                 department: "Student Welfare",
                 pdf_link: "https://drive.google.com/file/d/11ebHERFPt17D0kmnuv0yaoN6s7JsEHcr/view?usp=sharing", // PDF download link
@@ -597,4 +607,104 @@ const siteContent = {
         ]
     },
 
+    //===========================
+    // 8. JACKET SALE PAGE
+    //===========================
+   jacketSale: {
+        // ── Core settings ──────────────────────────────────────────────────
+        title:                 "A-Level Batch Jacket",
+        tagline:               "One batch. No restock. Don't miss it.",
+        priceTag:              "As low as RM80",                     // shown in hero
+        orderGoal:             100,
+        deadline:              "2025-06-26T23:59:59",                // ISO date string
+        formUrl:               "<https://docs.google.com/forms/d/e/1FAIpQLScnCvvvrt0e4zgkn1gzsi_UOwLTnK-nptOx9uGXNVr5-7J_mg/viewform?usp=header>",
+        formEmbedUrl:          "<google form embed url>",            // /viewform?embedded=true version
+
+        // ── Live order feed ─────────────────────────────────────────────────
+        // Publish the response sheet: File → Share → Publish to web → CSV.
+        // Leave as "<...>" placeholder to use the fallback constant instead.
+        sheetCsvUrl:           "<published Google Sheet CSV url>",
+        currentOrdersFallback: 0,                                   // used if fetch fails
+        cacheMinutes:          3,                                    // revalidate interval
+
+        // ── Design carousel ─────────────────────────────────────────────────
+        // Add as many images as needed — becomes a carousel if more than one.
+        designImages: [
+            { src: "/images/events/upcoming/jacketfront.avif",  alt: "Jacket — front view"  },
+            { src: "/images/events/upcoming/jacketback.avif",   alt: "Jacket — back view"   },
+            
+        ],
+
+        // ── Size chart ──────────────────────────────────────────────────────
+        sizeChartImage: "/images/events/upcoming/size.avif",
+
+        // ── Pricing tiers ───────────────────────────────────────────────────
+        // List from lowest to highest. goalTier marks the highlighted row.
+        priceTiers: [
+            { range: "30–49",  base: 90, withName: 93 },
+            { range: "50–99",  base: 85, withName: 88 },
+            { range: "100+",   base: 80, withName: 83, goalTier: true },
+        ],
+
+        // ── How it works — four fixed steps ─────────────────────────────────
+        howItWorks: [
+            {
+                step: "01",
+                heading: "Pre-order & pay RM90",
+                body: "Fill in the form and pay the base price of RM90 (highest tier). You're locked in — no need to worry about missing out."
+            },
+            {
+                step: "02",
+                heading: "Price drops as orders come in",
+                body: "Every order brings us closer to RM80. The final price is set when the deadline hits — whatever tier we land on, that's what you pay."
+            },
+            {
+                step: "03",
+                heading: "Cash back at collection",
+                body: "Paid RM90 but we hit 100 orders? You get RM10 back when you collect your jacket. The difference is refunded on the spot."
+            },
+            {
+                step: "04",
+                heading: "One batch, no restock",
+                body: "This is a single group order. Once the deadline passes, the order closes for good — there's no second run."
+            },
+        ],
+
+        // ── Try-it-on booth ─────────────────────────────────────────────────
+        tryItOn: {
+            week:        "22–26 June 2025",
+            location:    "TBA — watch the group chat",      // update when confirmed
+            hours:       "TBA",                             // e.g. "10 am – 5 pm"
+            description: "Not sure about sizing? Come try on the sample jacket at the graduation booth or during Try-Out Week before committing to your order.",
+        },
+
+        // ── FAQ accordion ────────────────────────────────────────────────────
+        // Copy a { question, answer } block to add more items.
+        faq: [
+            {
+                question: "Is this a China import?",
+                answer:   "No. The jacket is locally manufactured to a spec we chose — fabric, cut, and embroidery are all quality-checked before the order is placed with the supplier."
+            },
+            {
+                question: "Why does the price range from RM80 to RM90?",
+                answer:   "It's a group-discount model. The supplier charges less per unit when we order more. At 30–49 orders the price is RM90; 50–99 brings it to RM85; 100+ locks it at RM80. Everyone pays the same final price regardless of when they ordered."
+            },
+            {
+                question: "What do I pay now, and how does the refund work?",
+                answer:   "You pay RM90 (or RM93 with name print) upfront. When the order closes, the final tier is calculated. If the price drops, you get the difference back in cash when you collect your jacket — no forms, no transfers needed."
+            },
+            {
+                question: "What if the jacket doesn't fit?",
+                answer:   "That's why there's a Try-Out Week (22–26 June). Come try the sample on before you order. Exchanges after production are not guaranteed, so please check the size chart carefully and try it on if you can."
+            },
+            {
+                question: "When will I get my jacket?",
+                answer:   "Estimated 4–6 weeks after the order closes and payment is confirmed. We'll announce the collection date via the group chat and Instagram."
+            },
+            {
+                question: "What's the exact deadline?",
+                answer:   "The order closes on 26 June 2025 at 11:59 PM. No extensions — the supplier needs a fixed headcount to begin production."
+            },
+        ],
+    },
 };
