@@ -192,7 +192,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                     const isValidReg = regLink && regLink !== "#";
 
                     eventBtn.href = isValidReg ? regLink : "#";
-                    setText("event-reg-btn-text", isValidReg ? "Register Now" : "Coming Soon");
+                    // Internal links open in same tab; external URLs open in new tab.
+                    const isExternal = regLink && (regLink.startsWith("http://") || regLink.startsWith("https://"));
+                    eventBtn.target = isExternal ? "_blank" : "_self";
+                    setText("event-reg-btn-text", isValidReg ? (eventData.button_text || "Learn More") : "Coming Soon");
                     eventBtn.classList.toggle("cursor-not-allowed", !isValidReg);
                     eventBtn.classList.toggle("opacity-70", !isValidReg);
                 }
