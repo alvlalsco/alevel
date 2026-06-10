@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // 1. Initialize with the first image cleanly
         carouselTrack.innerHTML = `
             <div class="w-full h-full">
-                <img id="jacket-active-img" src="${d.designImages.src}" alt="${d.designImages.alt}" 
+                <img id="jacket-active-img" src="${d.designImages[0].src}" alt="${d.designImages[0].alt}" 
                      loading="eager" class="w-full h-full object-cover rounded-[2rem] block">
             </div>
         `;
