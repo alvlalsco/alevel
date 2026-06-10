@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jacket Sale 2025 | Sunway A-Level Student Committee (ALSCO)</title>
+    <meta name="description"
+        content="Pre-order your official ALSCO A-Level batch jacket. As low as RM80 — more orders, lower price. Limited run, no restock.">
+    <link rel="canonical" href="https://sunwayalevelalsco.netlify.app/html_pages/jacket.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Sunway A-Level Student Committee (ALSCO)">
+    <meta property="og:title" content="Jacket Sale 2025 | Sunway A-Level Student Committee">
+    <meta property="og:description"
+        content="Pre-order your official ALSCO A-Level batch jacket. As low as RM80 — more orders, lower price.">
+    <meta property="og:url" content="https://sunwayalevelalsco.netlify.app/html_pages/jacket.html">
+    <meta property="og:image" content="https://sunwayalevelalsco.netlify.app/images/alsco_logo_long.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://sunwayalevelalsco.netlify.app/images/alsco_logo_long.jpg">
+    <link rel="icon" type="image/x-icon" href="/images/alsco_logo.avif">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/output.css">
+</head>
+
+<body class="antialiased bg-white">
+
+    <!-- ========================================================================
+         JACKET SALE PAGE
+         scripts/jacket.js fills everything from siteContent.jacketSale.
+         Sections:
+           A. Hero           — title, tagline, price tag, carousel, CTA
+           B. Progress tracker — live CSV order counter + progress bar
+           C. Price chart    — tier table (goal row highlighted)
+           D. How it works   — four step cards
+           E. Try-it-on      — booth info
+           F. Size chart     — zoomable image
+           G. Pre-order form — iframe embed + fallback link
+           H. FAQ            — accordion
+           I. Deadline CTA   — footer repeat + sticky bar
+         navbar + footer injected at runtime by script.js.
+         ===================================================================== -->
+    <div id="navbar-placeholder"></div>
+
+    <main>
+
+        <!-- ================================================================
+             A. HERO
+             ================================================================ -->
+
+        <!-- Banner — matches section-intro style used across other pages -->
+        <section class="section-intro">
+            <div class="section-container">
+                <div class="section-heading">
+                    <span class="text-maroon font-bold tracking-[0.2em] uppercase text-xs mb-4">
+                        Public Relations
+                    </span>
+                    <h1 class="font-black text-main tracking-tight uppercase">
+                        A-Level Jacket Sale
+                    </h1>
+                    <div class="heading-divider">
+                        <div class="heading-divider-line"></div>
+                        <div class="heading-divider-dot"></div>
+                        <div class="heading-divider-line"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dark hero below the banner -->
+        <section class="bg-[#0c0c1a] text-white overflow-hidden">
+            <div class="section-container py-16 md:py-24">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+                    <!-- Text -->
+                    <div class="text-center lg:text-left">
+
+                        <h1 id="jacket-hero-title" class="font-black text-white tracking-tight mb-4">
+                            Loading...
+                        </h1>
+
+                        <p id="jacket-hero-tagline" class="text-gray-400 text-base md:text-lg mb-6">
+                            Loading...
+                        </p>
+
+                        <div class="flex justify-center md:justify-start mb-8">
+                            <div class="inline-flex items-center gap-3 bg-white/10 rounded-2xl px-6 py-4">
+                                <span class="text-xs uppercase tracking-widest text-gray-400 font-medium">As low as RM80!</span>
+                                <span id="jacket-hero-price" class="text-3xl font-black text-[#f5c518]">—</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                            <a id="jacket-hero-cta" href="#" target="_blank" rel="noopener noreferrer"
+                                class="btn-maroon text-center">
+                                Pre-order now →
+                            </a>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Carousel --> 
+                    <div class="mx-auto overflow-hidden rounded-[2rem] aspect-square bg-black w-full max-w-md relative group shadow-2xl">
+                        <div id="jacket-carousel-track" class="w-full h-full transform transition-transform duration-500 ease-in-out">
+                            </div>
+
+                        <button id="jacket-carousel-prev" aria-label="Previous image" 
+                                class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 backdrop-blur-sm text-white w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                            ←
+                        </button>
+                        <button id="jacket-carousel-next" aria-label="Next image" 
+                                class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 backdrop-blur-sm text-white w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                            →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================================================================
+             B. PROGRESS TRACKER
+             ================================================================ -->
+        <section class="py-12 lg:py-16 border-b-custom">
+            <div class="section-container">
+
+                <span class="text-maroon font-bold tracking-[0.2em] uppercase text-xs mb-6 block">
+                    Live Progress
+                </span>
+
+                <div class="flex items-baseline gap-3 mb-2">
+                    <span id="jacket-order-count"
+                          class="text-5xl md:text-6xl font-black tracking-tight text-main">—</span>
+                    <span class="text-gray-400 text-base md:text-lg">
+                        / <span id="jacket-order-goal">—</span> orders
+                    </span>
+                    <span id="jacket-source-badge" class="ml-2 text-xs text-gray-400"></span>
+                </div>
+
+                <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden mb-3">
+                    <div id="jacket-progress-bar"
+                         class="h-full rounded-full bg-maroon transition-all duration-1000 ease-out"
+                         style="width: 0%">
+                    </div>
+                </div>
+
+                <p id="jacket-to-go-label" class="text-sm font-semibold text-gray-500"></p>
+
+            </div>
+        </section>
+
+
+        <!-- ================================================================
+             C. PRICE CHART
+             ================================================================ -->
+        <section class="py-12 lg:py-16 border-b-custom bg-gray-50">
+            <div class="section-container">
+
+                <div class="section-heading mb-10">
+                    <span class="text-maroon font-bold tracking-[0.2em] uppercase text-xs mb-4">Group Discount</span>
+                    <h2 class="font-black text-main tracking-tight uppercase">Price Chart</h2>
+                    <div class="heading-divider">
+                        <div class="heading-divider-line"></div>
+                        <div class="heading-divider-dot"></div>
+                        <div class="heading-divider-line"></div>
+                    </div>
+                </div>
+
+                <div class="overflow-hidden rounded-[2rem] border-custom">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-50 border-b border-gray-100">
+                                <th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-gray-400">
+                                    Total Orders
+                                </th>
+                                <th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-gray-400">
+                                    Base Price
+                                </th>
+                                <th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-gray-400">
+                                    + Name Print
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="jacket-price-table-body">
+                            <!-- Rows injected by jacket.js -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="text-sm text-gray-400 mt-4 text-center">
+                    Price is locked at the tier we land on when the deadline passes. Everyone pays the same final price.
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- ================================================================
+             D. HOW IT WORKS
+             ================================================================ -->
+        <section id="jacket-how-section" class="py-12 lg:py-16 border-b-custom">
+            <div class="section-container">
+
+                <div class="section-heading mb-12">
+                    <span class="text-maroon font-bold tracking-[0.2em] uppercase text-xs mb-4">Simple</span>
+                    <h2 class="font-black text-main tracking-tight uppercase">How It Works</h2>
+                    <div class="heading-divider">
+                        <div class="heading-divider-line"></div>
+                        <div class="heading-divider-dot"></div>
+                        <div class="heading-divider-line"></div>
+                    </div>
+                </div>
+
+                <!-- Cards injected by jacket.js -->
+                <div id="jacket-how-container"
+                     class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================================================================
+             E. TRY-IT-ON
+             ================================================================ -->
+        <section class="py-12 lg:py-16 border-b-custom bg-gray-50">
+            <div class="section-container">
+
+                <div class="grid lg:grid-cols-2 gap-10 items-center">
+
+                    <div>
+                        <span class="text-maroon font-bold tracking-[0.2em] uppercase text-xs mb-4 block">
+                            Before You Commit
+                        </span>
+                        <h2 class="font-black text-main tracking-tight uppercase mb-4">Try It On</h2>
+
+                        <p id="jacket-tryon-description" class="text-gray-500 leading-relaxed mb-8">
+                            Loading...
+                        </p>
+
+                        <a id="jacket-hero-cta-tryon" href="#jacket-form-section"
+                            class="btn-maroon">
+                            Pre-order now →
+                        </a>
+                    </div>
+
+                    <div class="border-custom rounded-[2rem] bg-white p-8 space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-maroon/10 rounded-xl flex items-center justify-center shrink-0">
+                                <svg class="w-5 h-5 text-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Try-Out Week</p>
+                                <p id="jacket-tryon-week" class="font-bold text-main">—</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-maroon/10 rounded-xl flex items-center justify-center shrink-0">
+                                <svg class="w-5 h-5 text-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Location</p>
+                                <p id="jacket-tryon-location" class="font-bold text-main">—</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-maroon/10 rounded-xl flex items-center justify-center shrink-0">
+                                <svg class="w-5 h-5 text-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Hours</p>
+                                <p id="jacket-tryon-hours" class="font-bold text-main">—</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================================================================
+             F. SIZE CHART
+             ================================================================ -->
+        <section class="py-12 lg:py-16 border-b-custom">
+            <div class="section-container">
+
+                <div class="section-heading mb-10">
+                    <span class="text-maroon font-bold tracking-[0.2em] uppercase text-xs mb-4">Measurements</span>
+                    <h2 class="font-black text-main tracking-tight uppercase">Size Chart</h2>
+                    <div class="heading-divider">
+                        <div class="heading-divider-line"></div>
+                        <div class="heading-divider-dot"></div>
+                        <div class="heading-divider-line"></div>
+                    </div>
+                </div>
+
+                <div class="max-w-2xl mx-auto">
+                    <!-- tap-to-zoom wired by jacket.js initSizeZoom() -->
+                    <img id="jacket-size-chart-img"
+                         src="" alt="Jacket size chart — tap to zoom"
+                         loading="lazy" decoding="async"
+                         class="w-full rounded-[2rem] border-custom object-contain">
+                    <p class="text-center text-xs text-gray-400 mt-3">Tap the image to zoom in on mobile.</p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================================================================
+             G. PRE-ORDER FORM
+             ================================================================ -->
+        <section id="jacket-form-section" class="py-12 lg:py-16 border-b-custom bg-gray-50">
+            <div class="section-container">
+
+                <div class="section-heading mb-10">
+                    <span class="text-maroon font-bold tracking-[0.2em] uppercase text-xs mb-4">Secure Yours</span>
+                    <h2 class="font-black text-main tracking-tight uppercase">Pre-Order Form</h2>
+                    <div class="heading-divider">
+                        <div class="heading-divider-line"></div>
+                        <div class="heading-divider-dot"></div>
+                        <div class="heading-divider-line"></div>
+                    </div>
+                </div>
+
+                <!-- iframe embed (src set by jacket.js) -->
+                <div class="border-custom rounded-[2rem] overflow-hidden bg-white">
+                    <div class="relative w-full" style="padding-bottom: 120%; height: 0;">
+                        <iframe id="jacket-form-frame"
+                                src=""
+                                style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+                                loading="lazy"
+                                title="Jacket Pre-Order Form">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Fallback for mobile where iframes can be flaky -->
+                <p class="text-center text-sm text-gray-400 mt-4">
+                    Form not loading?
+                    <a id="jacket-form-fallback" href="#" target="_blank" rel="noopener noreferrer"
+                       class="text-maroon font-semibold hover:underline">
+                        Open in new tab →
+                    </a>
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- ================================================================
+             H. FAQ
+             ================================================================ -->
+        <section class="py-12 lg:py-16 border-b-custom">
+            <div class="section-container">
+
+                <div class="section-heading mb-12">
+                    <span class="text-maroon font-bold tracking-[0.2em] uppercase text-xs mb-4">Got Questions?</span>
+                    <h2 class="font-black text-main tracking-tight uppercase">FAQ</h2>
+                    <div class="heading-divider">
+                        <div class="heading-divider-line"></div>
+                        <div class="heading-divider-dot"></div>
+                        <div class="heading-divider-line"></div>
+                    </div>
+                </div>
+
+                <!-- Items injected by jacket.js -->
+                <div id="jacket-faq-container" class="max-w-2xl mx-auto"></div>
+
+            </div>
+        </section>
+
+
+        <!-- ================================================================
+             I. DEADLINE CTA FOOTER
+             ================================================================ -->
+        <section class="py-12 lg:py-16">
+            <div class="section-container">
+                <div class="bg-maroon rounded-[2rem] p-8 md:p-14 text-center text-white">
+
+                    <span class="font-bold tracking-[0.2em] uppercase text-xs opacity-70 mb-4 block">
+                        Order closes
+                    </span>
+
+                    <h2 id="jacket-footer-deadline"
+                        class="font-black text-white tracking-tight text-3xl md:text-4xl mb-6">
+                        —
+                    </h2>
+
+                    <p class="text-white text-sm md:text-base mb-8 max-w-sm mx-auto">
+                        One batch. No restock. Once the deadline passes, the order closes for good.
+                    </p>
+
+                    <a id="jacket-footer-cta" href="#" target="_blank" rel="noopener noreferrer"
+                        class="shrink-0 bg-white text-maroon font-bold text-sm px-5 py-2 rounded-full
+                      hover:bg-gray-100 transition-colors whitespace-nowrap">
+                        Pre-order now →
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- ========================================================================
+         STICKY DEADLINE BAR
+         Simple bar showing the order-close date + a single CTA.
+         jacket.js fills jacket-sticky-deadline and jacket-sticky-cta.
+         ===================================================================== -->
+    <div id="jacket-sticky-bar"
+         class="fixed bottom-0 left-0 right-0 z-30 px-6 py-3 bg-maroon text-white">
+        <div class="section-container flex items-center justify-between gap-4">
+            <p class="text-sm font-semibold text-white">
+                Order closes <span id="jacket-sticky-deadline" class="font-black text-white">—</span>
+            </p>
+            <a id="jacket-sticky-cta" href="#" target="_blank" rel="noopener noreferrer"
+               class="shrink-0 bg-white text-maroon font-bold text-sm px-5 py-2 rounded-full
+                      hover:bg-gray-100 transition-colors whitespace-nowrap">
+                Pre-order now →
+            </a>
+        </div>
+    </div>
+
+    <!-- Load order is a contract — content.js first. See GUIDE.md. -->
+    <script defer src="/scripts/content.js"></script>  <!-- 1. data bank -->
+    <script defer src="/script.js"></script>            <!-- 2. helpers + navbar/footer -->
+    <script defer src="/scripts/jacket.js"></script>    <!-- 3. fills this page -->
+
+</body>
+
+</html>
