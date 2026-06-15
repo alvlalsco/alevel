@@ -187,8 +187,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const d = siteContent.jacketSale;
 
-    const deadlineDate = new Date(d.deadline)
-        .toLocaleDateString('en-MY', { day: 'numeric', month: 'long', year: 'numeric' });
+    const deadlineDate = new Date(d.deadline).toLocaleDateString('en-MY', { weekday: 'long' })
+        + ', ' + formatOrdinalDate(d.deadline);
 
 
     // -------------------------------------------------------------------------
@@ -302,8 +302,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // -------------------------------------------------------------------------
     if (d.countdown) {
         const daysLeft = Math.max(0, Math.ceil((new Date(d.deadline) - new Date()) / 86400000));
+        const countdownWeekday = new Date(d.deadline).toLocaleDateString('en-MY', { weekday: 'long' });
         setText('jacket-countdown-prefix', d.countdown.prefix);
-        setText('jacket-countdown-date',   formatOrdinalDate(d.deadline));
+        setText('jacket-countdown-date',   `${countdownWeekday}, ${formatOrdinalDate(d.deadline)}`);
         setText('jacket-countdown-days',   d.countdown.urgency.replace('{days}', String(daysLeft)));
         setLink('jacket-countdown-cta',    d.formUrl);
     }
