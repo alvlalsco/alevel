@@ -652,8 +652,8 @@ const siteContent = {
         // ── Design carousel ─────────────────────────────────────────────────
         // Add as many images as needed — becomes a carousel if more than one.
         designImages: [
-            { src: "/images/events/upcoming/Jacket  (2).avif", alt: "Jacket — front view" },
-            { src: "/images/events/upcoming/jacket  (1).avif", alt: "Jacket — back view" },
+            { src: "/images/events/upcoming/Jacket  (1).avif", alt: "Jacket — front view" },
+            { src: "/images/events/upcoming/Jacket  (2).avif", alt: "Jacket — back view" },
 
         ],
 
