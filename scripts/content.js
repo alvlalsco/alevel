@@ -270,7 +270,7 @@ const siteContent = {
                     { role: "General Member", name: "DANIEL WONG WENG SENG", image: "/images/committee/student_wel/swmember4.avif", quote: "" },
                     { role: "General Member", name: "GOH JAY NING", image: "/images/committee/student_wel/swmember3.avif", quote: "Eat well, sleep well, study well. - Mr D " },
                     { role: "General Member", name: "JOSHUA LEE CHENG AN", image: "/images/committee/student_wel/swmember2.avif", quote: "You can't rush greatness." },
-                    { role: "General Member", name: "LAW JIA HERNG", image: "/images/committee/student_wel/swmember1.avif", quote: "'Your genius friends ah, 2 plus -6 also don't know.' - Dr.Poh" },
+                    { role: "General Member", name: "LAW JIA HERNG", image: "/images/committee/student_wel/swmember1.avif", quote: "'Your genius friends, 2 plus -6 also don't know.' - Dr.Poh" },
                 ],
             },
 
@@ -344,7 +344,7 @@ const siteContent = {
                 date: "Monday, 26th June 2026 to Friday, 30th June 2026",
                 image: "/images/events/upcoming/jacket.avif",
                 details_image: "/images/events/upcoming/jacket2.avif",
-                ig_link: "https://www.instagram.com/p/DWnXYTrEY8o/?igsh=aTlqcmh3MDl6bWZt",
+                ig_link: "https://www.instagram.com/p/DZhafoyEatY/?img_index=1",
                 registration_link: "/html_pages/jacket.html",  // internal page — opens in same tab
                 button_text: "Learn More",
             }
@@ -435,6 +435,15 @@ const siteContent = {
                 category: "newsletter",
                 department: "Public Relations",
                 pdf_link: "https://drive.google.com/file/d/1wL_zAtEiykwhzWxTYdR08xn-KqPnhQgS/view?usp=sharing",
+                button_text: "Read Now"
+            },
+            {
+                title: "May Monthly Post",
+                image: "/images/resources/post14.avif",
+                category: "post",
+                department: "Student Welfare",
+                pdf_link: "https://drive.google.com/file/d/1s2FHQCdawoR-PEYZ-eBiwY4dc4AJeal1/view?usp=sharing", // PDF download link
+                ig_link: "https://www.instagram.com/p/DZkKCFEkV6I/?img_index=1",
                 button_text: "Read Now"
             },
             {
@@ -624,7 +633,7 @@ const siteContent = {
     //===========================
     jacketSale: {
         // ── Core settings ──────────────────────────────────────────────────
-        title: "11th June till 30th June 2026",
+        title: "Thursday, 11th June to Tuesday, 30th June 2026",
         tagline: "One batch. No restock. Don't miss it.",
         priceTag: "As low as RM80!",                     // shown in hero
         orderGoal: 100,
@@ -643,8 +652,8 @@ const siteContent = {
         // ── Design carousel ─────────────────────────────────────────────────
         // Add as many images as needed — becomes a carousel if more than one.
         designImages: [
-            { src: "/images/events/upcoming/jacketfront.avif", alt: "Jacket — front view" },
-            { src: "/images/events/upcoming/jacketback.avif", alt: "Jacket — back view" },
+            { src: "/images/events/upcoming/Jacket  (1).avif", alt: "Jacket — front view" },
+            { src: "/images/events/upcoming/Jacket  (2).avif", alt: "Jacket — back view" },
 
         ],
 
@@ -708,9 +717,9 @@ const siteContent = {
 
         // ── Try-it-on booth ─────────────────────────────────────────────────
         tryItOn: {
-            week: "22–26 June 2026",
+            week: "Monday, 22nd June 2026 to Friday, 26th June 2026",
             location: "A-Level Hub, Sunway College",      // update when confirmed
-            hours: "10:00 a.m. to 2:00 p.m.",                             // e.g. "10 am – 5 pm"
+            hours: "10:00 A.M. to 2:00 P.M.",                             // e.g. "10 am – 5 pm"
             description: "Not sure about sizing? Come try on the sample jacket during Try-Out Week before committing to your order.",
         },
 
@@ -731,7 +740,7 @@ const siteContent = {
             },
             {
                 question: "What if the jacket doesn't fit?",
-                answer: "That's why there's a Try-Out Week (22–26 June). Come try the sample on before you order. Exchanges after production are not guaranteed, so please check the size chart carefully and try it on if you can."
+                answer: "That's why there's a Try-Out Week (Monday, 22nd June to Friday, 26th June 2026). Come try the sample on before you order. Exchanges after production are not guaranteed, so please check the size chart carefully and try it on if you can."
             },
             {
                 question: "When will I get my jacket?",
@@ -739,7 +748,7 @@ const siteContent = {
             },
             {
                 question: "What's the exact deadline?",
-                answer: "The order closes on 30 June 2026 at 11:59 PM. No extensions — the supplier needs a fixed headcount to begin production."
+                answer: "The order closes on Tuesday, 30th June 2026 at 11:59 PM. No extensions — the supplier needs a fixed headcount to begin production."
             },
             {
                 question: "How does the special group discount work? ",
