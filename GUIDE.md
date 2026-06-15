@@ -142,8 +142,10 @@ Loaded on every page. Four parts:
      or the value is empty.
    - `smoothScroll(event, targetId)` — used by inline `onclick` on in-page anchor buttons.
    - `getDepartmentColor(department)` — maps a department name to its Tailwind colour
-     classes (used for the coloured tags on cards). If you add a new department, add a
-     matching branch here.
+     classes (used for the coloured tags on cards). Colours are defined in one place: the
+     `DEPARTMENT_COLORS` map at the top of `script.js`. To add or change a department,
+     edit that map (and mirror the colour in `design_system/`) — no need to touch the
+     function.
 
 2. **`loadComponent(elementId, filePath)`** — `fetch`es an HTML partial and injects it into
    the placeholder `<div>`. Silently skips if the placeholder isn't on the page (that's why
@@ -332,6 +334,20 @@ Tailwind v4, configured **only in `input.css`** (no `tailwind.config.js`):
 Workflow: edit `input.css` → `npm run watch` regenerates `output.css` → refresh the browser.
 **Never hand-edit `output.css`.**
 
+### The design system (`design_system/`)
+
+The visual language is also packaged as a portable, framework-agnostic **design system** in
+`design_system/`, intended for reuse in other ALSCO tech projects. It contains
+`tokens.css` (the **single source of truth** — CSS custom properties), `tokens.json` (a
+machine-readable mirror), `tailwind-theme.css` (a Tailwind v4 `@theme` + `@layer
+components` starter), and `DESIGN-SYSTEM.md` (the human reference).
+
+**Keep it in sync.** Whenever you change a token, component class, or visual pattern in
+`input.css`, mirror the change in `design_system/` in the same commit. One thing to watch:
+the **department colours live in two places** — `getDepartmentColor()` in `script.js`
+(the runtime classes) *and* the design system (tokens + the table in `DESIGN-SYSTEM.md`).
+Change a department colour, or add a department, in **both**.
+
 ---
 
 ## Images & the converter
@@ -372,7 +388,9 @@ Things that are easy to trip over — documented so you don't think they're bugs
   `resource.js` historically carried headers copied from `script.js` like
   `// 4. Initialize Core Layout` / `// 2. Initialize Navigation Logic` that don't describe
   what those files do. These have been corrected to describe each file's real job.
-- **`getDepartmentColor` matches by substring.** It lowercases the department name and checks
-  for keywords (`leadership`, `welfare`, `relations`, `comserve`/`community`,
-  `sst`/`secretaries`). A department whose name doesn't contain one of those falls back to
-  red. Add a branch if you introduce a new department.
+- **`getDepartmentColor` matches by substring.** It lowercases the department name and looks
+  it up against the `DEPARTMENT_COLORS` map in `script.js` — each entry lists the keyword(s)
+  to match (`leadership`, `welfare`, `relations`, `comserve`/`community`, `sst`/`secretaries`)
+  and the Tailwind classes. First match wins; a department whose name doesn't contain one of
+  those falls back to red (`DEPARTMENT_COLOR_DEFAULT`). Add an entry to that map if you
+  introduce a new department.

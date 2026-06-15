@@ -43,6 +43,12 @@ The site is **content-driven**: structure lives in HTML, all editable copy/image
 
 Tailwind v4, configured entirely in `input.css` (no `tailwind.config.js`). Theme tokens (`--color-maroon`, `--color-main`, `--font-sans: Outfit`) are defined in the `@theme` block; reusable component classes (`.btn-maroon`, `.btn-ghost`, `.section-container`, etc.) live in `@layer components`. `@source` directives tell Tailwind to scan `html_pages/`, `scripts/`, and root `*.html`/`*.js` for class usage. Edit `input.css` and rebuild; never hand-edit the generated `output.css`.
 
+## Design system
+
+The ALSCO visual language is documented in **`design_system/`** — a portable design system meant to be reused across other ALSCO tech projects, not just this website. It holds `tokens.css` (the **single source of truth**: framework-agnostic CSS custom properties), `tokens.json` (machine-readable mirror), `tailwind-theme.css` (a Tailwind v4 `@theme` + `@layer components` starter), and `DESIGN-SYSTEM.md` (the human reference).
+
+**Keep it in sync (important).** Whenever you change a design token, component class, or visual pattern in `input.css` — or the department palette (the `DEPARTMENT_COLORS` map in `script.js`) — update `design_system/` in the **same** change so it stays the source of truth. Specifically: a color/font/spacing value → `tokens.css` + `tokens.json` + `tailwind-theme.css` + `input.css`'s `@theme`; a component class → `tailwind-theme.css` + `input.css`; a department color → the table in `DESIGN-SYSTEM.md` + the tokens + the `DEPARTMENT_COLORS` map in `script.js` (the single place department colors are defined).
+
 ## Images
 
 Production images are AVIF in `images/`, grouped by page/section. The standalone **`image-converter/`** project (separate `package.json`, uses `sharp`) batch-converts source JPG/PNG to width-1200 AVIF at quality 80 — run `node convert.js` inside that folder, reading from `image-original/` and writing to `image-optimized/`. It is a tooling helper, unrelated to the site's runtime or the Netlify build.

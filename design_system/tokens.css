@@ -1,0 +1,146 @@
+/* =====================================================================
+   ALSCO DESIGN SYSTEM — DESIGN TOKENS (framework-agnostic)
+   ---------------------------------------------------------------------
+   This file is the SINGLE SOURCE OF TRUTH for the ALSCO visual language.
+   tokens.json and tailwind-theme.css mirror these values — if you change
+   a value here, change it there too (see design_system/README.md).
+
+   Drop this into ANY project (plain CSS, React, Vue, etc.) and consume
+   the variables, e.g.  color: var(--alsco-color-text);
+
+   Naming: primitives (raw values) -> semantic roles (intent-based).
+   Prefer the SEMANTIC tokens in product code; primitives are the palette.
+   ===================================================================== */
+
+:root {
+    /* ---------------------------------------------------------------
+       1. PRIMITIVE COLORS (the raw palette — avoid using directly)
+       --------------------------------------------------------------- */
+    --alsco-maroon: #88113b;        /* brand red */
+    --alsco-maroon-dark: #6d0d2f;   /* brand red, pressed/hover */
+    --alsco-ink: #1f2937;           /* near-black, headings (Tailwind gray-800) */
+
+    --alsco-white: #ffffff;
+    --alsco-black: #000000;
+    --alsco-gray-700: #374151;      /* body text */
+    --alsco-gray-300: #d1d5db;      /* hairline borders */
+
+    /* Brand-adjacent / social */
+    --alsco-instagram: #e1306c;
+
+    /* ---------------------------------------------------------------
+       2. SEMANTIC COLOR ROLES (use these in product code)
+       --------------------------------------------------------------- */
+    --alsco-color-primary: var(--alsco-maroon);
+    --alsco-color-primary-hover: var(--alsco-maroon-dark);
+    --alsco-color-on-primary: var(--alsco-white);
+
+    --alsco-color-bg: var(--alsco-white);
+    --alsco-color-text: var(--alsco-gray-700);     /* body copy */
+    --alsco-color-heading: var(--alsco-ink);       /* h1–h4 */
+    --alsco-color-border: var(--alsco-gray-300);
+
+    --alsco-color-focus-ring: var(--alsco-maroon); /* keyboard focus */
+
+    /* ---------------------------------------------------------------
+       3. DEPARTMENT PALETTE (tag colors)
+       Mirrors getDepartmentColor() in script.js. Each department gets a
+       soft background (Tailwind *-100) + a strong text color (*-700).
+       "leadership" doubles as the default/fallback.
+       --------------------------------------------------------------- */
+    --alsco-dept-leadership-bg: #fee2e2;   /* red-100  */
+    --alsco-dept-leadership-text: #b91c1c; /* red-700  */
+    --alsco-dept-welfare-bg: #dbeafe;      /* blue-100 */
+    --alsco-dept-welfare-text: #1d4ed8;    /* blue-700 */
+    --alsco-dept-relations-bg: #fce7f3;    /* pink-100 */
+    --alsco-dept-relations-text: #be185d;  /* pink-700 */
+    --alsco-dept-comserve-bg: #dcfce7;     /* green-100 */
+    --alsco-dept-comserve-text: #15803d;   /* green-700 */
+    --alsco-dept-sst-bg: #fef3c7;          /* amber-100 */
+    --alsco-dept-sst-text: #b45309;        /* amber-700 */
+
+    /* ---------------------------------------------------------------
+       4. TYPOGRAPHY
+       --------------------------------------------------------------- */
+    --alsco-font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+
+    --alsco-weight-light: 300;
+    --alsco-weight-regular: 400;
+    --alsco-weight-medium: 500;
+    --alsco-weight-semibold: 600;
+    --alsco-weight-bold: 700;
+    --alsco-weight-extrabold: 800;  /* requires Outfit 800 in the font import */
+    --alsco-weight-black: 900;      /* requires Outfit 900 in the font import */
+
+    --alsco-leading-tight: 1.1;
+    --alsco-leading-normal: 1.5;
+    --alsco-leading-relaxed: 1.625;
+
+    /* Font-size scale (Tailwind-derived). Used by the responsive type
+       ramp below — see typography section in DESIGN-SYSTEM.md. */
+    --alsco-text-sm: 0.875rem;   /* 14px */
+    --alsco-text-base: 1rem;     /* 16px */
+    --alsco-text-lg: 1.125rem;   /* 18px */
+    --alsco-text-xl: 1.25rem;    /* 20px */
+    --alsco-text-2xl: 1.5rem;    /* 24px */
+    --alsco-text-3xl: 1.875rem;  /* 30px */
+    --alsco-text-4xl: 2.25rem;   /* 36px */
+    --alsco-text-5xl: 3rem;      /* 48px */
+    --alsco-text-6xl: 3.75rem;   /* 60px */
+
+    /* Fluid heading/body sizes — collapse the responsive ramp into one
+       value each (min @ mobile, max @ desktop). For pixel-exact parity
+       with the live Tailwind site, use the per-breakpoint sizes above. */
+    --alsco-font-h1: clamp(2.25rem, 1.5rem + 3.2vw, 3.75rem);
+    --alsco-font-h2: clamp(1.875rem, 1.35rem + 2.2vw, 3rem);
+    --alsco-font-h3: clamp(1.5rem, 1.3rem + 0.9vw, 1.875rem);
+    --alsco-font-h4: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
+    --alsco-font-body: clamp(0.875rem, 0.8rem + 0.4vw, 1.125rem);
+
+    /* ---------------------------------------------------------------
+       5. RADIUS
+       --------------------------------------------------------------- */
+    --alsco-radius-sm: 0.5rem;    /* 8px  — inputs, small chips */
+    --alsco-radius-card: 1.5rem;  /* 24px — cards (rounded-3xl) */
+    --alsco-radius-pill: 9999px;  /* buttons, tags */
+
+    /* ---------------------------------------------------------------
+       6. SPACING & LAYOUT
+       --------------------------------------------------------------- */
+    --alsco-space-section-y: 4rem;      /* py-16, mobile section rhythm */
+    --alsco-space-section-y-lg: 5rem;   /* lg:py-20 */
+    --alsco-space-gutter: 1.5rem;       /* px-6, container side padding */
+    --alsco-space-gutter-lg: 2rem;      /* lg:px-8 */
+
+    --alsco-container-7xl: 80rem;       /* default content max-width */
+    --alsco-container-6xl: 72rem;       /* narrower content max-width */
+
+    /* ---------------------------------------------------------------
+       7. ELEVATION (shadows — Tailwind defaults)
+       --------------------------------------------------------------- */
+    --alsco-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --alsco-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --alsco-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+    /* ---------------------------------------------------------------
+       8. MOTION
+       --------------------------------------------------------------- */
+    --alsco-duration: 300ms;        /* default transitions */
+    --alsco-duration-slow: 500ms;   /* card overlay reveals */
+    --alsco-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* ---------------------------------------------------------------
+       9. FOCUS RING (accessibility)
+       --------------------------------------------------------------- */
+    --alsco-focus-ring-width: 2px;
+    --alsco-focus-ring-offset: 2px;
+
+    /* ---------------------------------------------------------------
+       BREAKPOINTS (reference only — CSS custom properties cannot be used
+       in media queries; these document the Tailwind defaults the system
+       is built around)
+         sm  640px   md  768px   lg 1024px   xl 1280px   2xl 1536px
+       Note: hover affordances are gated to `lg` and up (lg:hover:) so
+       touch devices don't get sticky hover states.
+       --------------------------------------------------------------- */
+}
