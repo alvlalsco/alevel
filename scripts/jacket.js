@@ -7,13 +7,15 @@
 // Helpers setText / setImage / setLink are defined in script.js.
 //
 // Sections built here:
-//   A. Hero            — title, tagline, price tag, design carousel, CTA
-//   B. Progress tracker— live CSV fetch with cache + graceful fallback
-//   C. Price chart     — table with goal-tier highlighted
+//   A. Hero            — title, tagline, price, front/back image swap, CTA
+//   B. Price chart     — table with goal-tier highlighted
+//   C. Progress timeline — live count + discount milestones + live pointer
+//   C2. Group discount — blurb + scroll-to-FAQ CTA
+//   C3. Countdown      — sale-ends date + live days-left + CTA
 //   D. How it works    — four step cards from config
 //   E. Try-it-on       — booth details from config
 //   F. Size chart      — tap-to-zoom image
-//   G. Pre-order form  — iframe embed + fallback link
+//   G. Pre-order       — Try-It-On CTA links out to the Google Form
 //   H. FAQ             — accordion (toggleJacketFaq, global)
 //   I. Deadline footer — close date + repeat CTA
 //
@@ -39,20 +41,21 @@ async function fetchOrderCount(d) {
     } catch (_) { /* ignore parse errors */ }
 
     // Bail early if URL is still a placeholder
-    if (!d.sheetCsvUrl || d.sheetCsvUrl.startsWith('<')) {
+    if (!d.orderCountUrl || d.orderCountUrl.startsWith('<')) {
         return { count: d.currentOrdersFallback, source: 'fallback' };
     }
 
     try {
-        const res  = await fetch(d.sheetCsvUrl);
+        const res  = await fetch(d.orderCountUrl);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const text = await res.text();
-        const count = Math.max(0, text.trim().split('\n').slice(1).filter(r => r.trim()).length);
+        // Endpoint returns only { count: N } — no respondent data is exposed.
+        const { count } = await res.json();
+        const safeCount = Math.max(0, Number(count) || 0);
         // Write cache
-        sessionStorage.setItem(CACHE_KEY, JSON.stringify({ count, timestamp: now }));
-        return { count, source: 'live' };
+        sessionStorage.setItem(CACHE_KEY, JSON.stringify({ count: safeCount, timestamp: now }));
+        return { count: safeCount, source: 'live' };
     } catch (err) {
-        console.warn('jacket.js: CSV fetch failed, using fallback.', err);
+        console.warn('jacket.js: order count fetch failed, using fallback.', err);
         return { count: d.currentOrdersFallback, source: 'fallback' };
     }
 }
@@ -104,6 +107,74 @@ function initSizeZoom(imgId) {
 
 
 // ============================================================================
+// DATE HELPER — "30th June 2026" (ordinal day + full month + year)
+// ============================================================================
+function formatOrdinalDate(dateInput) {
+    const dt  = new Date(dateInput);
+    const day = dt.getDate();
+    const k   = day % 100, j = day % 10;
+    const suffix = (k >= 11 && k <= 13) ? 'th'
+                 : j === 1 ? 'st' : j === 2 ? 'nd' : j === 3 ? 'rd' : 'th';
+    const month = dt.toLocaleDateString('en-MY', { month: 'long' });
+    return `${day}${suffix} ${month} ${dt.getFullYear()}`;
+}
+
+
+// ============================================================================
+// PROGRESS TIMELINE — bar + discount milestones + live pointer
+// ============================================================================
+// Builds an x-axis-style timeline into `container`:
+//   • a track (0 → goal) with a maroon fill up to the live order count
+//   • a grey vertical tick at each milestone, "RMx" above and the order count
+//     below; both labels light up maroon (with a faint glow) once passed
+//   • a maroon pointer line + count label at the live count, layered above the
+//     milestone labels so it overlaps them when they coincide
+function buildTimeline(container, { milestones = [], goal, count }) {
+    if (!container) return;
+
+    const pos     = v => Math.max(0, Math.min((v / goal) * 100, 100));
+    const fillPct = pos(count);
+    const litClass = 'text-maroon [text-shadow:0_0_10px_rgba(136,17,59,0.55)]';
+    const dimClass = 'text-gray-400';
+
+    let ticks = '';
+    milestones.forEach(m => {
+        const left = pos(m.orders);
+        const lit  = count >= m.orders ? litClass : dimClass;
+        // grey vertical tick line (only the text lights up, not the line)
+        ticks += `<div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-px h-8 bg-gray-300 z-10" style="left:${left}%"></div>`;
+        // discount label above the bar
+        ticks += `<div class="absolute -translate-x-1/2 z-10 text-sm font-black transition-colors duration-500 ${lit}" style="left:${left}%; top:6px">RM${m.discount}</div>`;
+        // order-count label below the bar
+        ticks += `<div class="absolute -translate-x-1/2 z-10 text-sm font-bold transition-colors duration-500 ${lit}" style="left:${left}%; bottom:6px">${m.orders}</div>`;
+    });
+
+    container.innerHTML = `
+        <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-3 bg-gray-100 rounded-full overflow-hidden">
+            <div id="jacket-timeline-fill" class="h-full bg-maroon rounded-full transition-all duration-1000 ease-out" style="width:0%"></div>
+        </div>
+        ${ticks}
+        <div id="jacket-timeline-pointer-line"
+             class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-0.5 h-10 bg-maroon rounded-full z-20 transition-all duration-1000 ease-out"
+             style="left:0%"></div>
+        <div id="jacket-timeline-pointer-label"
+             class="absolute -translate-x-1/2 z-30 text-sm font-black text-maroon [text-shadow:0_0_10px_rgba(136,17,59,0.55)] transition-all duration-1000 ease-out"
+             style="left:0%; bottom:6px">${count}</div>
+    `;
+
+    // Animate fill + pointer in from the left on first paint.
+    requestAnimationFrame(() => {
+        const fill  = container.querySelector('#jacket-timeline-fill');
+        const pLine = container.querySelector('#jacket-timeline-pointer-line');
+        const pTxt  = container.querySelector('#jacket-timeline-pointer-label');
+        if (fill)  fill.style.width  = `${fillPct}%`;
+        if (pLine) pLine.style.left  = `${fillPct}%`;
+        if (pTxt)  pTxt.style.left   = `${fillPct}%`;
+    });
+}
+
+
+// ============================================================================
 // MAIN
 // ============================================================================
 document.addEventListener('DOMContentLoaded', async () => {
@@ -116,8 +187,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const d = siteContent.jacketSale;
 
-    const deadlineDate = new Date(d.deadline)
-        .toLocaleDateString('en-MY', { day: 'numeric', month: 'long', year: 'numeric' });
+    const deadlineDate = new Date(d.deadline).toLocaleDateString('en-MY', { weekday: 'long' })
+        + ', ' + formatOrdinalDate(d.deadline);
 
 
     // -------------------------------------------------------------------------
@@ -128,122 +199,53 @@ document.addEventListener('DOMContentLoaded', async () => {
     setText('jacket-hero-price',   d.priceTag);
     setLink('jacket-hero-cta',     d.formUrl);
 
-    const carouselTrack = document.getElementById('jacket-carousel-track');
-    const carouselDots  = document.getElementById('jacket-carousel-dots');
+    // Front/back jacket image — desktop hover swaps, mobile tap toggles. Same
+    // .show-details mechanism as the event cards (events.js / index.js).
+    const imgs      = d.designImages || [];
+    const frontImg  = document.getElementById('jacket-img-front');
+    const backImg   = document.getElementById('jacket-img-back');
+    const imgToggle = document.getElementById('jacket-img-toggle');
+    const imgGroup  = document.getElementById('jacket-image-group');
+    const hasBack   = imgs.length > 1;
 
-    if (carouselTrack && d.designImages.length > 0) {
-        carouselTrack.innerHTML = '';
-        if (carouselDots) carouselDots.innerHTML = '';
+    if (frontImg && imgs[0]) {
+        frontImg.src = imgs[0].src;
+        frontImg.alt = imgs[0].alt || d.title;
+    }
 
-        const totalImages = d.designImages.length;
-        let currentIndex = 0;
-        let isTransitioning = false;
-
-        // 1. Initialize with the first image cleanly
-        carouselTrack.innerHTML = `
-            <div class="w-full h-full">
-                <img id="jacket-active-img" src="${d.designImages[0].src}" alt="${d.designImages[0].alt}" 
-                     loading="eager" class="w-full h-full object-cover rounded-[2rem] block">
-            </div>
-        `;
-
-        // 2. Build dots navigation safely
-        if (carouselDots && totalImages > 1) {
-            d.designImages.forEach((_, i) => {
-                const dot = document.createElement('button');
-                dot.dataset.slide = i;
-                dot.setAttribute('aria-label', `View image ${i + 1}`);
-                dot.className = `w-2 h-2 rounded-full transition-all duration-300 ${i === 0 ? 'bg-maroon w-5' : 'bg-gray-300'}`;
-                dot.addEventListener('click', () => {
-                    if (i !== currentIndex) transitionToImage(i, i > currentIndex ? 'next' : 'prev');
-                });
-                carouselDots.appendChild(dot);
-            });
-        }
-
-        // 3. Update active dot visibility
-        function updateDots(activeIdx) {
-            document.querySelectorAll('[data-slide]').forEach((dot, i) => {
-                dot.className = `w-2 h-2 rounded-full transition-all duration-300 ${i === activeIdx ? 'bg-maroon w-5' : 'bg-gray-300'}`;
-            });
-        }
-
-        // 4. Perfect Slide-and-Swap Transition Engine
-        function transitionToImage(targetIdx, direction = 'next') {
-            if (isTransitioning) return;
-            isTransitioning = true;
-
-            const activeImg = document.getElementById('jacket-active-img');
-            if (!activeImg) return;
-
-            // Step A: Slide the active frame completely out of view
-            carouselTrack.style.transition = 'transform 250ms ease-in-out';
-            carouselTrack.style.transform = direction === 'next' ? 'translateX(-100%)' : 'translateX(100%)';
-
-            setTimeout(() => {
-                // Step B: While hidden, instantly swap the image file source path
-                currentIndex = targetIdx;
-                activeImg.src = d.designImages[currentIndex].src;
-                activeImg.alt = d.designImages[currentIndex].alt;
-                updateDots(currentIndex);
-
-                // Step C: Teleport the frame instantly to the opposite side out of view
-                carouselTrack.style.transition = 'none';
-                carouselTrack.style.transform = direction === 'next' ? 'translateX(100%)' : 'translateX(-100%)';
-
-                // Force layout reflow execution
-                carouselTrack.offsetHeight;
-
-                // Step D: Slide the newly updated image smoothly back to center center position
-                carouselTrack.style.transition = 'transform 250ms ease-in-out';
-                carouselTrack.style.transform = 'translateX(0%)';
-
-                setTimeout(() => {
-                    isTransitioning = false;
-                }, 250);
-
-            }, 250);
-        }
-
-        // Navigation controls handlers
-        function handleNext() {
-            let nextIdx = currentIndex + 1;
-            if (nextIdx >= totalImages) nextIdx = 0;
-            transitionToImage(nextIdx, 'next');
-        }
-
-        function handlePrev() {
-            let prevIdx = currentIndex - 1;
-            if (prevIdx < 0) prevIdx = totalImages - 1;
-            transitionToImage(prevIdx, 'prev');
-        }
-
-        // Wire up HTML controls safely
-        const prevBtn = document.getElementById('jacket-carousel-prev');
-        const nextBtn = document.getElementById('jacket-carousel-next');
-        if (prevBtn) prevBtn.addEventListener('click', handlePrev);
-        if (nextBtn) nextBtn.addEventListener('click', handleNext);
-
-        // Auto play looping timer (advances every 4 seconds)
-        if (totalImages > 1) {
-            setInterval(handleNext, 4000);
+    if (backImg) {
+        if (hasBack) {
+            backImg.src = imgs[1].src;
+            backImg.alt = imgs[1].alt || d.title;
+        } else {
+            backImg.classList.add('hidden');
         }
     }
 
+    if (!hasBack) {
+        // One image only: drop the hover-swap (no blank state) and hide the toggle.
+        frontImg?.classList.remove('lg:group-hover:opacity-0', 'group-[.show-details]:opacity-0');
+        imgToggle?.classList.add('hidden');
+    } else if (imgToggle && imgGroup) {
+        imgToggle.addEventListener('click', () => imgGroup.classList.toggle('show-details'));
+    }
+
     // -------------------------------------------------------------------------
-    // B. PROGRESS TRACKER
+    // C. PROGRESS TIMELINE
     // -------------------------------------------------------------------------
     const { count: currentOrders, source } = await fetchOrderCount(d);
 
     const activeTier = d.priceTiers.find(t => t.goalTier) || d.priceTiers[d.priceTiers.length - 1];
-    const progress   = Math.min((currentOrders / d.orderGoal) * 100, 100);
     const toGo       = Math.max(0, d.orderGoal - currentOrders);
 
     setText('jacket-order-count', String(currentOrders));
     setText('jacket-order-goal',  String(d.orderGoal));
 
-    const bar = document.getElementById('jacket-progress-bar');
-    if (bar) bar.style.width = `${progress}%`;
+    buildTimeline(document.getElementById('jacket-timeline'), {
+        milestones: d.milestones || [],
+        goal:       d.orderGoal,
+        count:      currentOrders,
+    });
 
     const toGoEl = document.getElementById('jacket-to-go-label');
     if (toGoEl) {
@@ -263,7 +265,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     // -------------------------------------------------------------------------
-    // C. PRICE CHART
+    // B. PRICE CHART
     // -------------------------------------------------------------------------
     const tableBody = document.getElementById('jacket-price-table-body');
 
@@ -282,6 +284,29 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </tr>
             `);
         });
+    }
+
+
+    // -------------------------------------------------------------------------
+    // C2. SPECIAL GROUP DISCOUNT  (CTA scroll handled by static href in HTML)
+    // -------------------------------------------------------------------------
+    if (d.groupDiscount) {
+        setText('jacket-group-title',   d.groupDiscount.title);
+        setText('jacket-group-desc',    d.groupDiscount.description);
+        setText('jacket-group-faqhint', d.groupDiscount.faqHint);
+    }
+
+
+    // -------------------------------------------------------------------------
+    // C3. SALE-ENDS COUNTDOWN  (date + days-left derived from d.deadline)
+    // -------------------------------------------------------------------------
+    if (d.countdown) {
+        const daysLeft = Math.max(0, Math.ceil((new Date(d.deadline) - new Date()) / 86400000));
+        const countdownWeekday = new Date(d.deadline).toLocaleDateString('en-MY', { weekday: 'long' });
+        setText('jacket-countdown-prefix', d.countdown.prefix);
+        setText('jacket-countdown-date',   `${countdownWeekday}, ${formatOrdinalDate(d.deadline)}`);
+        setText('jacket-countdown-days',   d.countdown.urgency.replace('{days}', String(daysLeft)));
+        setLink('jacket-countdown-cta',    d.formUrl);
     }
 
 
@@ -325,19 +350,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     // -------------------------------------------------------------------------
-    // G. PRE-ORDER FORM EMBED
+    // G. PRE-ORDER (link-out) — Try-It-On CTA points at the Google Form,
+    //    same as the hero/footer/sticky CTAs. No on-page embed.
     // -------------------------------------------------------------------------
-    const formFrame    = document.getElementById('jacket-form-frame');
-    const formFallback = document.getElementById('jacket-form-fallback');
-
-    if (formFrame && d.formEmbedUrl && !d.formEmbedUrl.startsWith('<')) {
-        formFrame.src = d.formEmbedUrl;
-    } else if (formFrame) {
-        // Hide iframe and show fallback link if embed URL not set
-        formFrame.closest('div')?.classList.add('hidden');
-    }
-
-    if (formFallback) setLink('jacket-form-fallback', d.formUrl);
+    setLink('jacket-hero-cta-tryon', d.formUrl);
 
 
     // -------------------------------------------------------------------------
