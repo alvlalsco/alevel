@@ -11,6 +11,7 @@ change text or images, you may not need this at all: see
 - [`content.js` — the data bank](#contentjs--the-data-bank)
 - [`script.js` — the global layer](#scriptjs--the-global-layer)
 - [The page scripts](#the-page-scripts)
+- [The Jacket Sale page (a reusable product-sale template)](#the-jacket-sale-page-a-reusable-product-sale-template)
 - [Shared partials (nav, footer, SVG icons)](#shared-partials-nav-footer-svg-icons)
 - [Styling system](#styling-system)
 - [Images & the converter](#images--the-converter)
@@ -116,6 +117,7 @@ map to pages:
 | `eventsPage` | `events.js` + `index.js` | `default` (empty state), `upcoming`, `past`. The home-page carousel reads `upcoming`. |
 | `resourcePage` | `resource.js` + `index.js` | `publications` (filtered by `category`), `handbook`, `resources`. The home page shows the latest of each `category`. |
 | `alstarPage` | `alstar.js` | Logo, descriptions, certificate pillars, form links, calendar embed URL. |
+| `jacketSale` | `jacket.js` | A whole product-sale campaign: hero copy + front/back `designImages`, `priceTiers`, the timeline `milestones`, `orderGoal`/`deadline`, `groupDiscount`, `countdown`, form URLs, and the live-count `orderCountUrl`. See [The Jacket Sale page](#the-jacket-sale-page-a-reusable-product-sale-template). |
 
 Editing rules of thumb:
 - Change values **inside the quotes**. Don't rename keys.
@@ -189,11 +191,106 @@ Per-page notes:
   `DOMContentLoaded` + `siteContent` guard as the others.
 - **`contact.js`** — builds the contact cards from `siteContent.contact.cards`. Each card
   keeps its `id` (e.g. `contact_instagram`) so the nav menu's scroll-target links still work.
+- **`jacket.js`** — the product-sale page. Bigger than most: front/back image swap, the
+  `buildTimeline()` discount timeline, the live order-count fetch (`fetchOrderCount`, cached
+  in `sessionStorage`), the FAQ accordion (`toggleJacketFaq`, global), and a derived
+  countdown. Covered in detail in its own section below.
 
-> **External endpoints:** `resource.js` and `alstar.js` talk to Google Apps Script Web App
-> URLs (newsletter sign-ups → a Google Sheet; student-ID lookups → the points sheet). Those
-> URLs are hard-coded in the scripts. If the form or tracker breaks, the Apps Script
-> deployment behind that URL is the place to look.
+> **External endpoints:** `resource.js`, `alstar.js`, and `jacket.js` talk to Google Apps
+> Script Web App URLs (newsletter sign-ups → a Google Sheet; student-ID lookups → the points
+> sheet; jacket order count → the responses sheet). Those URLs are hard-coded in the scripts
+> (`jacket.js` reads its URL from `siteContent.jacketSale.orderCountUrl`). If a form, tracker,
+> or counter breaks, the Apps Script deployment behind that URL is the place to look.
+
+---
+
+## The Jacket Sale page (a reusable product-sale template)
+
+`html_pages/jacket.html` + `scripts/jacket.js` + `siteContent.jacketSale` are built to be
+**re-skinned for any one-batch product sale** — a T-shirt sale, hoodie sale, next year's
+jacket, etc. Almost nothing is hard-coded in the markup; the page reads everything from the
+`jacketSale` slice and builds the dynamic bits at load. To run a new sale you mostly edit
+`content.js` (and deploy one small Apps Script). See the
+[reuse recipe](#reusing-it-for-a-new-sale-t-shirt-hoodie-) at the end.
+
+### What `siteContent.jacketSale` holds
+
+| Key | Drives |
+|-----|--------|
+| `title`, `tagline`, `priceTag` | Hero heading (maroon), sub-line (grey), and the "As low as RM80!" price line. |
+| `formUrl` / `formEmbedUrl` | The Google Form pre-order link. `formUrl` is used by every "Pre-order now" CTA (hero, try-it-on, countdown, footer, sticky bar). |
+| `orderGoal`, `deadline` | The timeline's right end (the goal) and the close date (ISO string) used by the countdown + footer. |
+| `orderCountUrl` | Apps Script Web App that returns **only `{ "count": N }`** (see below). A `<...>` placeholder disables the live fetch. |
+| `currentOrdersFallback`, `cacheMinutes` | Count shown if the fetch fails/placeholder; how long a fetched count is cached in `sessionStorage`. |
+| `designImages` | Array of `{ src, alt }`. Image #1 = front, #2 = back (the hover/tap swap). One image only ⇒ no swap, no flip button. |
+| `sizeChartImage` | The tap-to-zoom size-chart image. |
+| `priceTiers` | The price table rows (`{ range, base, withName, goalTier? }`). The `goalTier: true` row is highlighted. |
+| `milestones` | Timeline ticks: `{ orders, discount }` (e.g. 50 → RM5 off, 100 → RM10 off). |
+| `howItWorks`, `tryItOn`, `faq` | The step cards, the try-it-on booth details, and the FAQ accordion items. |
+| `groupDiscount` | The "Special Group Discount" blurb (`title`, `description`, `faqHint`). |
+| `countdown` | `prefix` + an `urgency` string containing `{days}`, which is replaced with the live days-left. |
+
+### The reusable mechanisms (how the dynamic bits work)
+
+- **Front/back image swap** — the hero image reuses the **same `.show-details` pattern as the
+  event cards** (`events.js` / `index.js`). On desktop, `lg:group-hover:opacity-0/100` cross-
+  fades front→back on hover; on mobile, the flip button toggles `.show-details` on the
+  `#jacket-image-group` element. The container is borderless/shadowless so the (non-
+  transparent) square image blends into the white hero. **Trade-off:** because the image is a
+  rectangle, hovering its empty corners still triggers the swap — accepted, since per-pixel
+  hit-testing isn't practical for raster images. Tightly-cropped images minimise the dead zone.
+- **Discount timeline** — `buildTimeline(container, { milestones, goal, count })` draws an
+  x-axis-style bar into `#jacket-timeline`: a maroon fill up to `count/goal`, a grey vertical
+  tick at each milestone with `RMx` above and the order number below, and a maroon **pointer**
+  (line + count label, `z-30`) at the live count that overlaps the milestone labels when they
+  coincide. A milestone's labels light up maroon **with a faint glow** once `count` passes it
+  — the glow is an arbitrary utility, `[text-shadow:0_0_10px_rgba(136,17,59,0.55)]`, so it
+  **only appears after `npm run build`** (arbitrary classes must be scanned + compiled).
+- **Live order count (private)** — `fetchOrderCount()` hits `orderCountUrl` and reads `.count`
+  from the JSON. The endpoint is a Google Apps Script Web App whose `doGet` returns *only the
+  count*, so the **response sheet stays private** — this is deliberately different from a
+  "Publish to web → CSV", which would expose every respondent's data to anyone who views the
+  page source. The fetch is cached in `sessionStorage` for `cacheMinutes`, and degrades
+  gracefully to `currentOrdersFallback` (with an "● Estimated" badge) on any failure.
+- **Countdown** — `formatOrdinalDate(deadline)` renders "30th June 2026", and the days-left is
+  `Math.ceil((deadline - now) / 86400000)` substituted into `countdown.urgency`'s `{days}`.
+
+### The Apps Script behind the order count
+
+Deploy this as a **Web App** (Deploy → New deployment → *Web app*, **Execute as: Me**,
+**Who has access: Anyone**), then paste the `/exec` URL into `orderCountUrl`:
+
+```js
+function doGet() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet()
+                  .getSheetByName('Form Responses 1');   // match the real tab name
+  const count = Math.max(0, sheet.getLastRow() - 1);     // minus the header row
+  return ContentService
+    .createTextOutput(JSON.stringify({ count }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+```
+
+The URL is safe to commit — it returns only an integer, never respondent rows. (Same trust
+model as the `alstar.js` points endpoint.)
+
+### Reusing it for a new sale (T-shirt, hoodie, …)
+
+1. **Copy the data, not the code.** In `content.js`, edit `siteContent.jacketSale` in place
+   (or duplicate the whole page — see [How to add a new page](#how-to-add-a-new-page) — and
+   rename the slice/ids if you want both live at once). Update `title`/`tagline`/`priceTag`,
+   the `priceTiers`, `milestones`, `orderGoal`, `deadline`, `groupDiscount`, `countdown`, and
+   the `formUrl`/`formEmbedUrl`.
+2. **Swap the images.** Replace `designImages` (front/back) and `sizeChartImage` with new
+   AVIFs (optimise via `image-converter/` — see [Images](#images--the-converter)).
+3. **Point the live count at the new form's responses** — deploy the Apps Script above against
+   the new response sheet and update `orderCountUrl` (or leave the `<...>` placeholder and edit
+   `currentOrdersFallback` by hand).
+4. **Rebuild** (`npm run build`) so any new arbitrary classes (e.g. the glow) compile.
+5. The page is wired into the menu via `siteContent.navStructure` ("Jacket Sale"); its section
+   `id`s (`jacket-image-group`, `price-chart`, `total-order-timeline`, `jacket-how-section`,
+   `jacket-size-chart`, `jacket-faq-section`) are the dropdown scroll targets — keep them in
+   sync with the menu if you rename anything (see [Contract 2](#contract-2--matching-ids-and-keys)).
 
 ---
 

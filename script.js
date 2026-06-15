@@ -215,19 +215,23 @@ function navbarManagement() {
 
     // Handle Hash Navigation on Load (e.g. arriving from another page's menu link).
     // Page content is injected asynchronously, so the target may not exist or may
-    // shift as images/content load — scroll once it's present, then re-align on load.
+    // shift as images/content load — scroll once it's present, then strip the hash
+    // so a later reload starts at the top instead of re-scrolling to the section.
     function checkHashOnLoad() {
         if (!window.location.hash) return;
 
         const scrollToHash = () => {
             const target = document.getElementById(window.location.hash.slice(1));
-            if (target) target.scrollIntoView({ behavior: "smooth" });
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth" });
+                // Drop the hash from the URL (without adding a history entry) so
+                // reloading the page lands at the top, not back on this section.
+                history.replaceState(null, "", window.location.pathname + window.location.search);
+            }
         };
 
         // First attempt after the current layout settles.
         setTimeout(scrollToHash, 150);
-        // Re-align after images/fonts finish loading and change the layout height.
-        window.addEventListener("load", scrollToHash, { once: true });
     }
     checkHashOnLoad();
 }

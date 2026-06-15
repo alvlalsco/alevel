@@ -88,6 +88,7 @@ alevel/
 │   ├── resource.html
 │   ├── alstar.html
 │   ├── contact.html
+│   ├── jacket.html         # Jacket Sale — reusable product-sale template
 │   ├── nav.html            # Shared navbar  (injected at runtime, not a real page)
 │   ├── footer.html         # Shared footer  (injected at runtime)
 │   └── svg-defs.html       # Shared SVG icon definitions (injected at runtime)
@@ -100,7 +101,8 @@ alevel/
 │   ├── events.js
 │   ├── resource.js
 │   ├── alstar.js
-│   └── contact.js
+│   ├── contact.js
+│   └── jacket.js
 │
 ├── script.js               # Global layer: loaded on every page (helpers + navbar + footer)
 ├── input.css               # Tailwind source (theme + custom component classes). EDIT THIS.
@@ -128,6 +130,7 @@ alevel/
 | Resources | `html_pages/resource.html` | `scripts/resource.js` | `siteContent.resourcePage` |
 | ALSTAR | `html_pages/alstar.html` | `scripts/alstar.js` | `siteContent.alstarPage` |
 | Contact | `html_pages/contact.html` | `scripts/contact.js` | `siteContent.contact` |
+| Jacket Sale | `html_pages/jacket.html` | `scripts/jacket.js` | `siteContent.jacketSale` |
 
 ---
 
