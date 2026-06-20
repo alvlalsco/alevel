@@ -197,6 +197,9 @@ Per-page notes:
   `buildTimeline()` discount timeline, the live order-count fetch (`fetchOrderCount`, cached
   in `sessionStorage`), the FAQ accordion (`toggleJacketFaq`, global), and a derived
   countdown. Covered in detail in its own section below.
+- **`announcement.js`** — the **homepage entry modal**, loaded only by `index.html`. Reads
+  `siteContent.announcementModal`, shows the first date-active announcement, and remembers
+  dismissals per-id in `localStorage`. Covered in its own section below.
 
 > **External endpoints:** `resource.js`, `alstar.js`, and `jacket.js` talk to Google Apps
 > Script Web App URLs (newsletter sign-ups → a Google Sheet; student-ID lookups → the points
@@ -293,6 +296,46 @@ model as the `alstar.js` points endpoint.)
    `id`s (`jacket-image-group`, `price-chart`, `total-order-timeline`, `jacket-how-section`,
    `jacket-size-chart`, `jacket-faq-section`) are the dropdown scroll targets — keep them in
    sync with the menu if you rename anything (see [Contract 2](#contract-2--matching-ids-and-keys)).
+
+---
+
+## The homepage announcement modal
+
+`scripts/announcement.js` + `siteContent.announcementModal` add a pop-up that appears when a
+visitor lands on the **home page** (it's loaded only by `index.html`). The point is to *push*
+the single most important update — a jacket sale, a big event, a new newsletter, an Instagram
+reel — to students the moment they arrive, instead of relying on them to navigate and find it.
+
+**How it decides what (and whether) to show:**
+
+1. Bails unless `announcementModal.enabled` is `true` and the page has the
+   `#announcement-modal-placeholder` div (homepage only).
+2. Picks the **first** entry in `announcements` that is **date-active** — today is on/after
+   `showFrom` (if set) and on/before the end of `expires` (if set) — and **not already
+   dismissed**. Omit either date to leave that side of the window open.
+3. Dismissals are stored **per-id** as a JSON array in `localStorage` under
+   `alsco_dismissed_announcements`. Because the check is by `id`, the modal shows **once per
+   announcement**: closing it hides it for that visitor forever, but publishing a new
+   announcement with a **new `id`** re-triggers it for everyone. (Queuing a future
+   announcement with a later `showFrom` is how you line up the next one.)
+
+**Behaviour / contract:**
+
+- Single curated item only (no carousel). The card reuses existing styling — `.btn-maroon`
+  for the CTA, and the nav overlay's backdrop + `overflow-hidden` scroll-lock pattern.
+- **Responsive layout (`hasImage` flag).** With an image the card is two-column on
+  laptop (`md:flex-row`, image in a `md:w-2/5` left column, text/CTA right) and stacks on
+  mobile; the card widens to `md:max-w-2xl`. With no image it falls back to a single-column
+  `max-w-md` card. The image is shown at its **natural ratio** (`w-full h-auto`, no
+  `aspect-*`/`object-*`) so any shape — portrait Instagram posters included — displays
+  uncropped with no letterbox whitespace.
+- Closing via the ✕ button, **ESC**, or **click-outside** all record the dismissal; following
+  the CTA does too (so it won't re-pop when the visitor comes back).
+- The `id` is the contract: change it to re-show, keep it to keep it dismissed. The
+  `ctaLink` can be an internal page, a `#hash`, or a full external URL.
+
+To publish or change an announcement, edit `siteContent.announcementModal` only — see
+EDITING-CONTENT.md "Publishing a homepage announcement".
 
 ---
 

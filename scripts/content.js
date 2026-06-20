@@ -756,4 +756,47 @@ const siteContent = {
             },
         ],
     },
+
+    //===========================
+    // 9. ANNOUNCEMENT MODAL (homepage entry pop-up)
+    //===========================
+    // A single curated "featured announcement" that pops up when a visitor lands
+    // on the home page — used to push the most important update (a jacket sale, a
+    // big event, a new newsletter, an Instagram reel) instead of waiting for
+    // students to find it. Read by scripts/announcement.js. See EDITING-CONTENT.md
+    // "Publishing a new announcement" for the copy-paste recipe.
+    //
+    // Behaviour: the modal shows the FIRST announcement in the list that is
+    // currently "active" (today is within its showFrom→expires window). Once a
+    // visitor dismisses it, it stays gone for them — UNTIL you publish a new
+    // announcement with a NEW `id`, which re-triggers it for everyone. Dismissals
+    // are remembered per-id in localStorage ("alsco_dismissed_announcements").
+    announcementModal: {
+        enabled: true,                       // master kill-switch — false = never show
+
+        announcements: [
+            {
+                // CHANGE the id whenever you publish a new announcement — that is
+                // what makes the modal re-appear for people who dismissed the old one.
+                id: "jacket-sale-2026",
+
+                eyebrow: "New Drop",                          // small maroon kicker (optional)
+                title: "ALSCO Jacket Sale is Live!",
+                body: "Pre-order the limited batch ALSCO jacket from as low as RM80. One batch, no restock — don't miss out.",
+
+                image: "/images/events/upcoming/jacket.avif",   // optional — omit to hide
+                imageAlt: "ALSCO jacket front view",
+
+                ctaText: "Order Now",
+                ctaLink: "/html_pages/jacket.html",           // internal page, #hash, or full https:// URL
+
+                // Optional scheduling (ISO date strings). Omit either to leave that
+                // side open. The modal only auto-shows while today is inside the window.
+                showFrom: "2026-06-11",                       // don't show before this date
+                expires: "2026-06-30",                       // stop showing after this date
+            },
+            // Queue the next announcement here (with its own future showFrom) — the
+            // script always shows the first ACTIVE one in this list.
+        ],
+    },
 };

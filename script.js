@@ -126,7 +126,7 @@ function navbarManagement() {
 
         siteContent.navStructure.forEach(page => {
             const wrapper = document.createElement("div");
-            wrapper.className = "flex flex-col gap-3 items-start text-left lg:items-center lg:text-center";
+            wrapper.className = "flex flex-col gap-3 items-start text-left";
 
             let html = `
                     <a href="${page.link}" 
@@ -182,13 +182,10 @@ function navbarManagement() {
 
         links.forEach(link => {
             const linkUrl = link.href.split('#')[0];
-            if (currentUrl === linkUrl) {
-                if (link.classList.contains('text-2xl')) {
-                    link.classList.add('text-yellow-400', 'underline', 'underline-offset-8');
-                } else {
-                    link.classList.remove('opacity-80');
-                    link.classList.add('text-yellow-200', 'font-bold');
-                }
+            // Highlight only the page-name link (the text-2xl one). Sub-section
+            // links share the same base URL, so they'd also match — skip them.
+            if (currentUrl === linkUrl && link.classList.contains('text-2xl')) {
+                link.classList.add('text-yellow-400', 'underline', 'underline-offset-8');
             }
         });
     }
