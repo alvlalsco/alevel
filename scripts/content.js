@@ -339,7 +339,7 @@ const siteContent = {
            },
            */
             {
-                title: "A-level Jacket Sale",
+                title: "A-Level Jacket Sale",
                 department: "ALSCO",
                 date: "Monday, 26th June 2026 to Friday, 30th June 2026",
                 image: "/images/events/upcoming/jacket.avif",
@@ -347,6 +347,26 @@ const siteContent = {
                 ig_link: "https://www.instagram.com/p/DZhafoyEatY/?img_index=1",
                 registration_link: "/html_pages/jacket.html",  // internal page — opens in same tab
                 button_text: "Learn More",
+            },
+            {
+                title: "Turning Pages, Changing Lives",
+                department: "Community Service",
+                date: "Monday, 26th June 2026 to Friday, 30th June 2026",
+                image: "/images/events/upcoming/tpcl.avif",
+                details_image: "/images/events/upcoming/tpcl2.avif",
+                ig_link: "https://www.instagram.com/p/DZuLBAEkQPI/?img_index=1",
+                registration_link: "https://docs.google.com/document/d/15kOYryyIViSsSe4bRRMNaty0xldhSTM5IpLknQ08Gv8/edit?usp=drivesdk",  // internal page — opens in same tab
+                button_text: "Learn More",
+            },
+            {
+                title: "Letters of Light",
+                department: "ALSCO",
+                date: "Thursday, 29th June 2026 to Friday, 30th June 2026",
+                image: "/images/events/upcoming/lol.avif",
+                details_image: "/images/events/upcoming/lol2.avif",
+                ig_link: "https://www.instagram.com/p/DZuLBAEkQPI/?img_index=1",
+                registration_link: "https://forms.gle/CJ7rZfk8by7utd4h8",  // internal page — opens in same tab
+                button_text: "Proof of Participation Form",
             }
         ],
 
@@ -435,6 +455,15 @@ const siteContent = {
                 category: "newsletter",
                 department: "Public Relations",
                 pdf_link: "https://drive.google.com/file/d/1wL_zAtEiykwhzWxTYdR08xn-KqPnhQgS/view?usp=sharing",
+                button_text: "Read Now"
+            },
+            {
+                title: "June Monthly Post",
+                image: "/images/resources/post15.avif",
+                category: "post",
+                department: "Student Welfare",
+                pdf_link: "https://drive.google.com/file/d/1VRBQbYIHOBEtSDEymWHqkO3-koUvf4MO/view?usp=sharing", // PDF download link
+                ig_link: "https://www.instagram.com/p/DZwzE_eEf-D/?img_index=1",
                 button_text: "Read Now"
             },
             {
@@ -652,8 +681,8 @@ const siteContent = {
         // ── Design carousel ─────────────────────────────────────────────────
         // Add as many images as needed — becomes a carousel if more than one.
         designImages: [
-            { src: "/images/events/upcoming/Jacket  (2).avif", alt: "Jacket — front view" },
-            { src: "/images/events/upcoming/jacket  (1).avif", alt: "Jacket — back view" },
+            { src: "/images/events/upcoming/Jacket  (1).avif", alt: "Jacket — front view" },
+            { src: "/images/events/upcoming/Jacket  (2).avif", alt: "Jacket — back view" },
 
         ],
 
@@ -754,6 +783,49 @@ const siteContent = {
                 question: "How does the special group discount work? ",
                 answer: "Fill in the pre-order form and enter your group name when asked, if all 5 responses checks out, each person gets an additional RM5 refund at collection. Eg. if total orders = 100. Each person gets total RM 15 refunds."
             },
+        ],
+    },
+
+    //===========================
+    // 9. ANNOUNCEMENT MODAL (homepage entry pop-up)
+    //===========================
+    // A single curated "featured announcement" that pops up when a visitor lands
+    // on the home page — used to push the most important update (a jacket sale, a
+    // big event, a new newsletter, an Instagram reel) instead of waiting for
+    // students to find it. Read by scripts/announcement.js. See EDITING-CONTENT.md
+    // "Publishing a new announcement" for the copy-paste recipe.
+    //
+    // Behaviour: the modal shows the FIRST announcement in the list that is
+    // currently "active" (today is within its showFrom→expires window). Once a
+    // visitor dismisses it, it stays gone for them — UNTIL you publish a new
+    // announcement with a NEW `id`, which re-triggers it for everyone. Dismissals
+    // are remembered per-id in localStorage ("alsco_dismissed_announcements").
+    announcementModal: {
+        enabled: true,                       // master kill-switch — false = never show
+
+        announcements: [
+            {
+                // CHANGE the id whenever you publish a new announcement — that is
+                // what makes the modal re-appear for people who dismissed the old one.
+                id: "jacket-sale-2026",
+
+                eyebrow: "New Drop",                          // small maroon kicker (optional)
+                title: "ALSCO Jacket Sale is Live!",
+                body: "Pre-order the limited batch ALSCO jacket from as low as RM80. One batch, no restock — don't miss out.",
+
+                image: "/images/events/upcoming/jacket.avif",   // optional — omit to hide
+                imageAlt: "ALSCO jacket front view",
+
+                ctaText: "Order Now",
+                ctaLink: "/html_pages/jacket.html",           // internal page, #hash, or full https:// URL
+
+                // Optional scheduling (ISO date strings). Omit either to leave that
+                // side open. The modal only auto-shows while today is inside the window.
+                showFrom: "2026-06-11",                       // don't show before this date
+                expires: "2026-06-30",                       // stop showing after this date
+            },
+            // Queue the next announcement here (with its own future showFrom) — the
+            // script always shows the first ACTIVE one in this list.
         ],
     },
 };
