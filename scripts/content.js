@@ -339,7 +339,7 @@ const siteContent = {
            },
            */
             {
-                title: "A-level Jacket Sale",
+                title: "A-Level Jacket Sale",
                 department: "ALSCO",
                 date: "Monday, 26th June 2026 to Friday, 30th June 2026",
                 image: "/images/events/upcoming/jacket.avif",
@@ -347,6 +347,26 @@ const siteContent = {
                 ig_link: "https://www.instagram.com/p/DZhafoyEatY/?img_index=1",
                 registration_link: "/html_pages/jacket.html",  // internal page — opens in same tab
                 button_text: "Learn More",
+            },
+            {
+                title: "Turning Pages, Changing Lives",
+                department: "Community Service",
+                date: "Monday, 26th June 2026 to Friday, 30th June 2026",
+                image: "/images/events/upcoming/tpcl.avif",
+                details_image: "/images/events/upcoming/tpcl2.avif",
+                ig_link: "https://www.instagram.com/p/DZuLBAEkQPI/?img_index=1",
+                registration_link: "https://docs.google.com/document/d/15kOYryyIViSsSe4bRRMNaty0xldhSTM5IpLknQ08Gv8/edit?usp=drivesdk",  // internal page — opens in same tab
+                button_text: "Learn More",
+            },
+            {
+                title: "Letters of Light",
+                department: "ALSCO",
+                date: "Thursday, 29th June 2026 to Friday, 30th June 2026",
+                image: "/images/events/upcoming/lol.avif",
+                details_image: "/images/events/upcoming/lol2.avif",
+                ig_link: "https://www.instagram.com/p/DZuLBAEkQPI/?img_index=1",
+                registration_link: "https://forms.gle/CJ7rZfk8by7utd4h8",  // internal page — opens in same tab
+                button_text: "Proof of Participation Form",
             }
         ],
 
@@ -435,6 +455,15 @@ const siteContent = {
                 category: "newsletter",
                 department: "Public Relations",
                 pdf_link: "https://drive.google.com/file/d/1wL_zAtEiykwhzWxTYdR08xn-KqPnhQgS/view?usp=sharing",
+                button_text: "Read Now"
+            },
+            {
+                title: "June Monthly Post",
+                image: "/images/resources/post15.avif",
+                category: "post",
+                department: "Student Welfare",
+                pdf_link: "https://drive.google.com/file/d/1VRBQbYIHOBEtSDEymWHqkO3-koUvf4MO/view?usp=sharing", // PDF download link
+                ig_link: "https://www.instagram.com/p/DZwzE_eEf-D/?img_index=1",
                 button_text: "Read Now"
             },
             {
