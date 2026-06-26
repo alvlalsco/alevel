@@ -20,26 +20,13 @@
     <link rel="icon" type="image/x-icon" href="/images/alsco_logo.avif">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="/output.css">
 </head>
 
 <body class="antialiased bg-white">
 
-    <!-- ========================================================================
-         JACKET SALE PAGE
-         scripts/jacket.js fills everything from siteContent.jacketSale.
-         Sections:
-           A. Hero           — title, tagline, price tag, carousel, CTA
-           B. Progress tracker — live CSV order counter + progress bar
-           C. Price chart    — tier table (goal row highlighted)
-           D. How it works   — four step cards
-           E. Try-it-on      — booth info (CTA links out to the Google Form)
-           F. Size chart     — zoomable image
-           H. FAQ            — accordion
-           I. Deadline CTA   — footer repeat + sticky bar
-         navbar + footer injected at runtime by script.js.
-         ===================================================================== -->
     <div id="navbar-placeholder"></div>
 
     <main>
@@ -56,7 +43,7 @@
                         SUNWAY A-LEVEL STUDENT COMMITTEE PRESENTS
                     </span>
                     <h1 class="font-black text-main tracking-tight uppercase">
-                        A-Level Jacket Sale
+                        A-Level Varsity Jacket Sale
                     </h1>
                     <div class="heading-divider">
                         <div class="heading-divider-line"></div>
@@ -150,7 +137,6 @@
                             </tr>
                         </thead>
                         <tbody id="jacket-price-table-body">
-                            <!-- Rows injected by jacket.js -->
                         </tbody>
                     </table>
                 </div>
@@ -162,11 +148,6 @@
             </div>
         </section>
 
-
-        <!-- ================================================================
-             C. PROGRESS TIMELINE  (live order count + discount milestones)
-             jacket.js builds the bar, ticks, labels and pointer in #jacket-timeline.
-             ================================================================ -->
         <section class="py-12 lg:py-16 border-b-custom">
             <div id="total-order-timeline" class="section-container">
 
@@ -188,7 +169,6 @@
                         Total Discount
                     </p>
 
-                    <!-- Timeline: bar + milestone ticks/labels + live pointer (built by jacket.js) -->
                     <div id="jacket-timeline" class="relative h-24"></div>
 
                     <p class="text-center text-[11px] font-bold uppercase tracking-widest text-gray-400 mt-3">

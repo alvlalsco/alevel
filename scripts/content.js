@@ -633,9 +633,9 @@ const siteContent = {
     //===========================
     jacketSale: {
         // ── Core settings ──────────────────────────────────────────────────
-        title: "Thursday, 11th June to Tuesday, 30th June 2026",
+        title: "YOUR A-LEVELS . YOUR JACKET . ONE CHANCE TO CLAIM IT",
         tagline: "One batch. No restock. Don't miss it.",
-        priceTag: "As low as RM80!",                     // shown in hero
+        priceTag: "CUSTOM NAME . CUSTOM CLASS",                     // shown in hero
         orderGoal: 100,
         deadline: "2026-06-30T23:59:59",                // ISO date string
         formUrl: "https://forms.gle/uqwh23UJuWWK9Yf5A",
@@ -645,9 +645,10 @@ const siteContent = {
         // Apps Script Web App that returns only { "count": N } — the response
         // sheet stays private (same pattern as alstar.js). See GUIDE.md / plan
         // for the doGet snippet. Leave as "<...>" to use the fallback instead.
-        orderCountUrl: "https://script.google.com/macros/s/AKfycbwOPrYi0StG4eGd1FLOC9AUjHWb_CDlfbeg1EogXPqnzdJWgpxAlbeh06dgatNq4Qhn/exec",
-        currentOrdersFallback: 0,                                   // used if fetch fails
-        cacheMinutes: 3,                                    // revalidate interval
+        orderCountUrl: "https://script.google.com/macros/s/AKfycby3R2WR9P4QGqXMDqQdfWBIVXFHfgu7vPpSffB7XfrcSKxMJxLx4Y7IMWPqgZK6Gzsn/exec",
+        currentOrdersFallback: 0,      // used if fetch fails
+        cacheMinutes: 3,       // revalidate interval
+        orderOffset: 0,       // manual/offline orders not in the response sheet — added to the live count everywhere
 
         // ── Design carousel ─────────────────────────────────────────────────
         // Add as many images as needed — becomes a carousel if more than one.
@@ -679,7 +680,7 @@ const siteContent = {
         // ── Special group discount blurb ────────────────────────────────────
         groupDiscount: {
             title: "Special Group Discount!",
-            description: "RM25 off for purchases in groups of 5! Get your friends to join you to enjoy more discounts!",
+            description: "Total RM15 off for purchases in groups of 3! Get your friends to join you to enjoy more discounts!",
             faqHint: "For more info, check out the FAQs",
         },
 
@@ -752,7 +753,7 @@ const siteContent = {
             },
             {
                 question: "How does the special group discount work? ",
-                answer: "Fill in the pre-order form and enter your group name when asked, if all 5 responses checks out, each person gets an additional RM5 refund at collection. Eg. if total orders = 100. Each person gets total RM 15 refunds."
+                answer: "Fill in the pre-order form and enter your group name when asked, if all 3 responses checks out, each person gets an additional RM5 refund at collection. Eg. if total orders = 100. Each person gets total RM 15 refunds."
             },
         ],
     },
