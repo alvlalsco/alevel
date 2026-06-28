@@ -339,6 +339,20 @@ const siteContent = {
            },
            */
             {
+                title: "Finance Proofing 101",
+                department: "Leadership Development",
+                date: "Thursday, 2nd July 2026",
+                image: "/images/events/upcoming/finance.avif",
+                details_image: "/images/events/upcoming/finance2.avif",
+                ig_link: "https://www.instagram.com/p/DaAVRLTkV_4/?img_index=1",
+                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSdIsUqYsLC5cOROSSy_n4hIba0P9VhYkjkUQpTqpYc4axsNng/viewform?usp=dialog",  // internal page — opens in same tab
+                button_text: "Register Now",
+            },
+        ],
+
+        // SECTION 2: PAST EVENTS
+        past: [
+            {
                 title: "A-Level Jacket Sale",
                 department: "ALSCO",
                 date: "Monday, 26th June 2026 to Friday, 30th June 2026",
@@ -364,14 +378,10 @@ const siteContent = {
                 date: "Thursday, 29th June 2026 to Friday, 30th June 2026",
                 image: "/images/events/upcoming/lol.avif",
                 details_image: "/images/events/upcoming/lol2.avif",
-                ig_link: "https://www.instagram.com/p/DZuLBAEkQPI/?img_index=1",
+                ig_link: "https://www.instagram.com/p/DZ2AWWzkbQd/?img_index=1",
                 registration_link: "https://forms.gle/CJ7rZfk8by7utd4h8",  // internal page — opens in same tab
                 button_text: "Proof of Participation Form",
-            }
-        ],
-
-        // SECTION 2: PAST EVENTS
-        past: [
+            },
             {
                 title: "April '26 A-Level Orientation",
                 date: "Monday, 13th April 2026",
@@ -807,22 +817,22 @@ const siteContent = {
             {
                 // CHANGE the id whenever you publish a new announcement — that is
                 // what makes the modal re-appear for people who dismissed the old one.
-                id: "jacket-sale-2026",
+                id: "finance-proofing-101",                 // unique string (no spaces) — used to track dismissals
 
-                eyebrow: "New Drop",                          // small maroon kicker (optional)
-                title: "ALSCO Jacket Sale is Live!",
-                body: "Pre-order the limited batch ALSCO jacket from as low as RM80. One batch, no restock — don't miss out.",
+                eyebrow: "New Event",                          // small maroon kicker (optional)
+                title: "Finance Proofing 101",
+                body: "Join our workshop on finance proofing and learn how to manage your finances effectively.",
 
-                image: "/images/events/upcoming/jacket.avif",   // optional — omit to hide
-                imageAlt: "ALSCO jacket front view",
+                image: "/images/events/upcoming/finance.avif",   // optional — omit to hide
+                imageAlt: "Finance Proofing 101 event",
 
-                ctaText: "Order Now",
-                ctaLink: "/html_pages/jacket.html",           // internal page, #hash, or full https:// URL
+                ctaText: "Register Now",
+                ctaLink: "https://docs.google.com/forms/d/e/1FAIpQLSdIsUqYsLC5cOROSSy_n4hIba0P9VhYkjkUQpTqpYc4axsNng/viewform?usp=dialog",           // internal page, #hash, or full https:// URL
 
                 // Optional scheduling (ISO date strings). Omit either to leave that
                 // side open. The modal only auto-shows while today is inside the window.
-                showFrom: "2026-06-11",                       // don't show before this date
-                expires: "2026-06-30",                       // stop showing after this date
+                showFrom: "2026-06-28",                       // don't show before this date
+                expires: "2026-07-02",                       // stop showing after this date
             },
             // Queue the next announcement here (with its own future showFrom) — the
             // script always shows the first ACTIVE one in this list.
