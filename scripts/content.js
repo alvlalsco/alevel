@@ -91,6 +91,7 @@ const siteContent = {
                 { name: "Tiktok", id: "contact_tiktok" }
             ]
         },
+        /*
         {
             name: "Jacket Sale",
             link: "/html_pages/jacket.html",
@@ -103,6 +104,7 @@ const siteContent = {
                 { name: "FAQ", id: "jacket-faq-section" },
             ]
         }
+        */
     ],
 
     //===========================
