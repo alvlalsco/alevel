@@ -338,6 +338,28 @@ const siteContent = {
                 button_text: "Closed",
            },
            */
+           {
+                title: "January '26 ALSCO Installation Ceremony",
+                department: "ALSCO",
+                date: "Friday, 10th July 2026",
+                image: "/images/events/upcoming/installation.avif",
+                ig_link: "https://www.instagram.com/p/DaURFjPRHsG/",
+            }, 
+           {
+                title: "Trimonthly A-lympics: A-ROX",
+                department: "Leadership Development",
+                date: "Thursday, 16th July 2026",
+                image: "/images/events/upcoming/tma.avif",
+                details_image: "/images/events/upcoming/tma2.avif",
+                ig_link: "https://www.instagram.com/p/DaSDF18Eavm/?img_index=1",
+                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSf2TMpvpy8gS4-xjGIRJLO4ZEvz1eJ8DaUzFt5xp_wxUXbuwQ/viewform?usp=publish-editor",  // internal page — opens in same tab
+                button_text: "Register Now",
+            },
+            
+        ],
+
+        // SECTION 2: PAST EVENTS
+        past: [
             {
                 title: "Finance Proofing 101",
                 department: "Leadership Development",
@@ -348,10 +370,6 @@ const siteContent = {
                 registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSdIsUqYsLC5cOROSSy_n4hIba0P9VhYkjkUQpTqpYc4axsNng/viewform?usp=dialog",  // internal page — opens in same tab
                 button_text: "Register Now",
             },
-        ],
-
-        // SECTION 2: PAST EVENTS
-        past: [
             {
                 title: "A-Level Jacket Sale",
                 department: "ALSCO",
@@ -814,17 +832,17 @@ const siteContent = {
         enabled: true,                       // master kill-switch — false = never show
 
         announcements: [
-            {
+            /*{
                 // CHANGE the id whenever you publish a new announcement — that is
                 // what makes the modal re-appear for people who dismissed the old one.
-                id: "finance-proofing-101",                 // unique string (no spaces) — used to track dismissals
+                id: "installation-ceremony",                 // unique string (no spaces) — used to track dismissals
 
                 eyebrow: "New Event",                          // small maroon kicker (optional)
-                title: "Finance Proofing 101",
-                body: "Join our workshop on finance proofing and learn how to manage your finances effectively.",
+                title: "January '26 ALSCO Installation Ceremony",
+                body: "Join us for the installation ceremony and celebrate the new team.",
 
-                image: "/images/events/upcoming/finance.avif",   // optional — omit to hide
-                imageAlt: "Finance Proofing 101 event",
+                image: "/images/events/upcoming/installation.avif",   // optional — omit to hide
+                imageAlt: "Installation Ceremony event",
 
                 ctaText: "Register Now",
                 ctaLink: "https://docs.google.com/forms/d/e/1FAIpQLSdIsUqYsLC5cOROSSy_n4hIba0P9VhYkjkUQpTqpYc4axsNng/viewform?usp=dialog",           // internal page, #hash, or full https:// URL
@@ -833,9 +851,26 @@ const siteContent = {
                 // side open. The modal only auto-shows while today is inside the window.
                 showFrom: "2026-06-28",                       // don't show before this date
                 expires: "2026-07-02",                       // stop showing after this date
+            },*/
+            {
+                // CHANGE the id whenever you publish a new announcement — that is
+                // what makes the modal re-appear for people who dismissed the old one.
+                id: "installation-ceremony",                 // unique string (no spaces) — used to track dismissals
+
+                eyebrow: "New Event",                          // small maroon kicker (optional)
+                title: "January '26 ALSCO Installation Ceremony",
+                body: "Join us for the installation ceremony and celebrate the new team.",
+
+                image: "/images/events/upcoming/installation.avif",   // optional — omit to hide
+                imageAlt: "Installation Ceremony event",
+
+
+                // Optional scheduling (ISO date strings). Omit either to leave that
+                // side open. The modal only auto-shows while today is inside the window.
+                showFrom: "2026-07-04",                       // don't show before this date
+                expires: "2026-07-10",                       // stop showing after this date
             },
             // Queue the next announcement here (with its own future showFrom) — the
             // script always shows the first ACTIVE one in this list.
         ],
     },
-};
