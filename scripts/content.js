@@ -462,6 +462,14 @@ const siteContent = {
         // 2. PUBLICATION CARDS
         publications: [
             {
+                title: "Newsletter Issue 10",
+                image: "/images/resources/issue10.avif",
+                category: "newsletter",
+                department: "Public Relations",
+                pdf_link: "https://drive.google.com/file/d/10aKs6p6FGOd_ZjNYAYrc6L4PV0b5x-fh/view?usp=sharing",
+                button_text: "Read Now"
+            },
+            {
                 title: "Newsletter Issue 9",
                 image: "/images/resources/issue9.avif",
                 category: "newsletter",
