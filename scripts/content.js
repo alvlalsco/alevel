@@ -468,7 +468,7 @@ const siteContent = {
                 image: "/images/resources/issue10.avif",
                 category: "newsletter",
                 department: "Public Relations",
-                pdf_link: "https://drive.google.com/file/d/10aKs6p6FGOd_ZjNYAYrc6L4PV0b5x-fh/view?usp=sharing",
+                pdf_link: "https://drive.google.com/file/d/1l-d6b0hysLeRi8FFDMDpXDZq7hpHyp1A/view?usp=sharing",
                 button_text: "Read Now"
             },
             {
