@@ -113,14 +113,21 @@ const siteContent = {
     index: {
         // A. --- HERO SECTION ---
         hero: {
-            image: "/images/index/alsco_group.avif",
-            description: "We are the official student committee representing all A-Level students at Sunway College. We bridge the gap between students and administration while organising events that make your college life memorable.",
+            image: "/images/index/alsco.avif",
+            
             handbook_pdf: "https://drive.google.com/file/d/1cGKNRWNi1seFKY3j8foU6nxRZ_lQBkga/view?usp=sharing",
-            trailer_link: "https://www.instagram.com/p/DTST7w6kYDd/",
+            trailer_link: "https://www.instagram.com/p/DapurlJzC-C/",
         },
 
         affiliates: [
             { name: "Malaysian Bioscience Scholars", image: "/images/index/mbios.avif" },
+            { name: "Sunway Counselling & Wellness | Student Life", image: "/images/index/studentlife.avif" },
+            { name: "Pertubuhan Kebajikan Orang Tua Cacat dan Kurang Upaya Taman Connaught", image: "/images/index/plotckutu.avif" },
+            { name: "Shelter Home for Children", image: "/images/index/shfc.avif" },
+            { name: "StudyBuddyMY", image: "/images/index/studybuddymy.avif" },
+            { name: "Dignity for Children Foundation", image: "/images/index/dignity.avif" },
+            { name: "Mrs Malaysia World 2025", image: "/images/index/mrsmalaysia.avif" },
+            { name: "Yayasan Sunbeams Home", image: "/images/index/sunbeams.avif" },
             // To add more, just copy the line above:
             // { name: "New Partner", image: "images/partner_logo.avif" }, 
         ],
@@ -207,16 +214,16 @@ const siteContent = {
         // LEVEL 1: EXECUTIVE (Order matters for the layout!)
         highCouncil: [
             // Row 1: President
-            { role: "President", name: "TAY HUI ER", image: "/images/committee/high_council/president.avif", quote: "Be the best version of yourself. :)" },
+            { role: "President", name: "TEOH YU SHAN", image: "/images/committee/leadership_dev/amber.avif", quote: "I'ts not about making the right decisions, it's about making the decisions right." },
 
             // Row 2: VPs
-            { role: "Vice President of Internal Affairs", name: "DANIEL @ HTOO HTET ZAW", image: "/images/committee/high_council/vpi.avif", quote: "Believe you can, and you're halfway there!" },
-            { role: "Vice President of External Affairs", name: "NICHOLAS WONG JUN YEW", image: "/images/committee/high_council/vpe.avif", quote: "The only person you need to beat is the person you were yesterday. " },
+            { role: "Vice President of Internal Affairs", name: "TEOH WEI XIN", image: "/images/committee/leadership_dev/weixin.avif", quote: "Being alive is as special an occasion as it gets." },
+            { role: "Vice President of External Affairs", name: "EDEL WONG CHZE HUI", image: "/images/committee/student_wel/edel.avif", quote: "Every chapter costs me one hour of sleep, inflation is crazy. " },
 
             // Row 3: Secs & Treasurer
-            { role: "Secretary", name: "AUSTIN LAU HONG SHEN", image: "/images/committee/high_council/sec2.avif", quote: "The meeting minutes are not done yet." },
-            { role: "Secretary", name: "CHUE RYEE EN", image: "/images/committee/high_council/sec1.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
-            { role: "Treasurer", name: "EVAN YEOH JIN QUAN", image: "/images/committee/high_council/treasurer.avif", quote: "'Come, let me prove you wrong.' - Ms Careen" },
+            { role: "Secretary", name: "CHERYLYN CHAN YU HOONG", image: "/images/committee/public_rel/cherylyn.avif", quote: "67 minutes in the meeting is equal to 67 hours writing the meeting minutes." },
+            { role: "Secretary", name: "KRISTIN CHIA BAO YI", image: "/images/committee/comserve/kristin.avif", quote: "Be happy!" },
+            { role: "Treasurer", name: "BEATRICE GWEE WAN NING", image: "/images/committee/leadership_dev/beatrice.avif", quote: "What is sleep?" },
         ],
 
         // LEVEL 2: DEPARTMENTS
@@ -225,54 +232,59 @@ const siteContent = {
             {
                 name: "Public Relations",
                 leaders: [
-                    { role: "Director", name: "AYSHALYNN SALAHUDDIN", image: "/images/committee/public_rel/PRdirector.avif", quote: "The silent lamb but innocent tamed and humble soul." },
-                    { role: "Deputy Director", name: "CHONG HUI XIN", image: "/images/committee/public_rel/PRdeputyDirector.avif", quote: "Balancing everything almost took me out, but hey… I survived." }
+                    { role: "Director", name: "WONG CAITLIN", image: "/images/committee/public_rel/caitlin.avif", quote: "Bigbacking through life." },
+                    { role: "Deputy Director", name: "PRABHLEEN KAUR BEDI", image: "/images/committee/public_rel/prabs.avif", quote: "Back hurts from carrying." }
                 ],
                 members: [
-                    { role: "General Member", name: "AUSTIN LAU HONG SHEN", image: "/images/committee/public_rel/prmember1.avif", quote: "The meeting minutes are not done yet." },
-                    { role: "General Member", name: "EE CHAO JIAN", image: "/images/committee/public_rel/prmember2.avif", quote: "Have fun!" },
-
+                    { role: "General Member", name: "CHEONG JUN HUA", image: "/images/committee/public_rel/junhua.avif", quote: "Racecar spelled backwards is racecar." },
+                    { role: "General Member", name: "CHERYLYN CHAN YU HOONG", image: "/images/committee/public_rel/cherylyn.avif", quote: "67 minutes in the meeting is equal to 67 hours writing the meeting minutes." },
+                    { role: "General Member", name: "NATASHA LYNN AMRAN", image: "/images/committee/public_rel/natasha.avif", quote: "Who lives in a pineapple under the sea?" },
+                    { role: "General Member", name: "RYENNE LIM RYUI EN", image: "/images/committee/public_rel/ryenne.avif", quote: "Meow. " },
+                    { role: "General Member", name: "SITI KHADEJA BINTI NOR'AZAM", image: "/images/committee/public_rel/khadeja.avif", quote: "A bombshell has entered the villa." },
+                    { role: "General Member", name: "SKY ONG ALAI", image: "/images/committee/public_rel/sky.avif", quote: "Tacocat spelled backwards is tacocat. " },
                 ],
             },
             {
                 name: "Leadership Development",
                 leaders: [
-                    { role: "Director", name: "LAI ZHENG YI", image: "/images/committee/leadership_dev/LDdirector.avif", quote: "Believe in yourself, but when in doubt, freestyle!" },
-                    { role: "Deputy Director", name: "CHLOE LIM JING YAN", image: "/images/committee/leadership_dev/LDduputyDirector.avif", quote: "Strategically overthinking so you don’t have to. :)" }
+                    { role: "Director", name: "CORDELIA JASMIN POLKO", image: "/images/committee/leadership_dev/cordelia.avif", quote: "To be number one, you have to be odd." },
+                    { role: "Deputy Director", name: "FRANCENA DOMINIC FRANCIS", image: "/images/committee/leadership_dev/francena.avif", quote: "You can sleep when you’re dead." }
                 ],
                 members: [
-                    { role: "General Member", name: "EVAN YEOH JIN QUAN", image: "/images/committee/leadership_dev/ldmember2.avif", quote: "'Come, let me prove you wrong.' -Ms.Careen" },
-                    { role: "General Member", name: "ONG XI WEN", image: "/images/committee/leadership_dev/ldmember1.avif", quote: "Yep, still surviving. :)" },
-                    { role: "General Member", name: "TAY HUI ER", image: "/images/committee/leadership_dev/ldmember3.avif", quote: "Be the best version of yourself. :)" },
-                    { role: "General Member", name: "VINCENT KHOO WEI WEN", image: "/images/committee/leadership_dev/ldmember4.avif", quote: "Failure is merely the ink of a life that dared to write." },
+                    { role: "General Member", name: "BEATRICE GWEE WAN NING", image: "/images/committee/leadership_dev/beatrice.avif", quote: "What is sleep?" },
+                    { role: "General Member", name: "KUAN ZHOU-ZIEN", image: "/images/committee/leadership_dev/kuan.avif", quote: "Mistakes are meant to guide you, not define you." },
+                    { role: "General Member", name: "DIYA REYHANA", image: "/images/committee/leadership_dev/rey.avif", quote: "Tables turn, bridges burn, you live and learn." },
+                    { role: "General Member", name: "TEOH WEI XIN", image: "/images/committee/leadership_dev/weixin.avif", quote: "Being alive is as special an occasion as it gets." },
+                    { role: "General Member", name: "TEOH YU SHAN", image: "/images/committee/leadership_dev/amber.avif", quote: "It’s not about making the right decisions, it‘s about making the decisions right." },
                 ],
             },
             {
                 name: "Community Service",
                 leaders: [
-                    { role: "Director", name: "EE JING XUAN", image: "/images/committee/comserve/CSdirector.avif", quote: "But it’s hard to stay mad when there’s so much beauty in the world." },
-                    { role: "Deputy Director", name: "NYEIN YU SAN", image: "/images/committee/comserve/CSdeputyDirector.avif", quote: "Growing while giving back through service." }
+                    { role: "Director", name: "ARJUN JEEVAN", image: "/images/committee/comserve/arjun.avif", quote: "Tough times never last, only tough people last. " },
+                    { role: "Deputy Director", name: "KARNA NATHAN SOLAYAR", image: "/images/committee/comserve/karna.avif", quote: "If you went back in time to erase all your mistakes, you’d end up erasing yourself." }
                 ],
                 members: [
-                    { role: "General Member", name: "DAKSSHI NATH PILLAY", image: "/images/committee/comserve/csmember1.avif", quote: "Why are we here, just to suffer?" },
-                    { role: "General Member", name: "NICHOLAS WONG JUN YEW", image: "/images/committee/comserve/csmember2.avif", quote: "The only person you need to beat is the person you were yesterday. " },
-                    { role: "General Member", name: "TEH SIN HUI", image: "/images/committee/comserve/csmember3.avif", quote: "" },
-                    { role: "General Member", name: "YAP QIN HUEY", image: "/images/committee/comserve/csmember4.avif", quote: "2% battery, 100% commitment!" },
+                    { role: "General Member", name: "EILEEN WONG ZHI LING", image: "/images/committee/comserve/eileen.avif", quote: "Young, wild and free." },
+                    { role: "General Member", name: "EVA ALEXIS CHONG WEN QI", image: "/images/committee/comserve/eva.avif", quote: "Faith over fear." },
+                    { role: "General Member", name: "KRISTIN CHIA BAO YI", image: "/images/committee/comserve/kristin.avif", quote: "Be happy!" },
+                    { role: "General Member", name: "LIM TONG YAN", image: "/images/committee/comserve/vanice.avif", quote: "Find joy in the little things!" },
+                    { role: "General Member", name: "YONG SZEE SHAN", image: "/images/committee/comserve/szeeshan.avif", quote: "Be the reason someone smiles!" },
                 ],
             },
             {
                 name: "Student Welfare",
                 leaders: [
-                    { role: "Director", name: "YAP CHERN XI", image: "/images/committee/student_wel/SWdirector.avif", quote: "I love eating!" },
-                    { role: "Deputy Director", name: "SEW SUN LOONG", image: "/images/committee/student_wel/SWdeputyDirector.avif", quote: "Tacos!" }
+                    { role: "Director", name: "EUNICE TIN XIN YING", image: "/images/committee/student_wel/eunice.avif", quote: "Each flower is the dream come true of a tiny seed. <3" },
+                    { role: "Deputy Director", name: "JANE LOH XIU CHEN", image: "/images/committee/student_wel/jane.avif", quote: "Questioning life choices." }
                 ],
                 members: [
-                    { role: "General Member", name: "CHUE RYEE EN", image: "/images/committee/student_wel/swmember6.avif", quote: "If today isn't the due date, tomorrow isn't the- wait..." },
-                    { role: "General Member", name: "DANIEL @ HTOO HTET ZAW", image: "/images/committee/student_wel/swmember5.avif", quote: "Believe you can, and you're halfway there!" },
-                    { role: "General Member", name: "DANIEL WONG WENG SENG", image: "/images/committee/student_wel/swmember4.avif", quote: "" },
-                    { role: "General Member", name: "GOH JAY NING", image: "/images/committee/student_wel/swmember3.avif", quote: "Eat well, sleep well, study well. - Mr D " },
-                    { role: "General Member", name: "JOSHUA LEE CHENG AN", image: "/images/committee/student_wel/swmember2.avif", quote: "You can't rush greatness." },
-                    { role: "General Member", name: "LAW JIA HERNG", image: "/images/committee/student_wel/swmember1.avif", quote: "'Your genius friends, 2 plus -6 also don't know.' - Dr.Poh" },
+                    { role: "General Member", name: "CHO YUJIN", image: "/images/committee/student_wel/yujin.avif", quote: "Everything that happens was meant to happen." },
+                    { role: "General Member", name: "CHUA YI JIA", image: "/images/committee/student_wel/yijia.avif", quote: "Jia si ting bi bo." },
+                    { role: "General Member", name: "EDEL WONG CHZE HUI", image: "/images/committee/student_wel/edel.avif", quote: "Every chapter costs me one hour of sleep, inflation is crazy." },
+                    { role: "General Member", name: "LEE JUN MAN", image: "/images/committee/student_wel/junman.avif", quote: "I hate physics." },
+                    { role: "General Member", name: "OKADA SHUN", image: "/images/committee/student_wel/shun.avif", quote: "Triple T is my GOAT!" },
+                    { role: "General Member", name: "YOON HARLEY", image: "/images/committee/student_wel/harley.avif", quote: "Sometimes, i tend to overthink the unexpected." },
                 ],
             },
 
@@ -283,30 +295,30 @@ const siteContent = {
             {
                 id: "dept-pr",
                 title: "Public Relations",
-                image: "/images/committee/departmental/PR - FORMAL.avif",
-                image_playful: "/images/committee/departmental/PR - INFORMAL.avif",
+                image: "/images/committee/departmental/prf.avif",
+                image_playful: "/images/committee/departmental/pri.avif",
                 description: "Public Relations focuses on creating creative and engaging content to communicate effectively and build a strong, connected A-Level community."
             },
             {
                 id: "dept-ld",
                 title: "Leadership Development",
-                image: "/images/committee/departmental/LD - FORMAL.avif",
-                image_playful: "/images/committee/departmental/LD - INFORMAL.avif",
+                image: "/images/committee/departmental/ldf.avif",
+                image_playful: "/images/committee/departmental/ldi.avif",
                 description: "Leadership Development promotes soft skills and sports to foster interpersonal growth and ensure all A-Level students develop personally and professionally."
             },
             {
                 id: "dept-cs",
                 title: "Community Service",
-                image: "/images/committee/departmental/CS - FORMAL.avif",
-                image_playful: "/images/committee/departmental/CS - INFORMAL.avif",
+                image: "/images/committee/departmental/cf.avif",
+                image_playful: "/images/committee/departmental/ci.avif",
                 ig_link: "https://www.instagram.com/alevel.comserve/",
                 description: "Community Service, or COMSERVE for short, organises events for our members that focuses on charitable, environmental, or community-orientated work."
             },
             {
                 id: "dept-sw",
                 title: "Student Welfare",
-                image: "/images/committee/departmental/SW - FORMAL.avif",
-                image_playful: "/images/committee/departmental/SW - INFORMAL.avif",
+                image: "/images/committee/departmental/swf.avif",
+                image_playful: "/images/committee/departmental/swi.avif",
                 description: "Student Welfare strives to foster a supportive and holistic environment within the community by curating initiatives that enhance the mental, social, and academic well-being of all A-Level students."
             },
 
@@ -341,13 +353,6 @@ const siteContent = {
            },
            */
            {
-                title: "January '26 ALSCO Installation Ceremony",
-                department: "ALSCO",
-                date: "Friday, 10th July 2026",
-                image: "/images/events/upcoming/installation.avif",
-                ig_link: "https://www.instagram.com/p/DaURFjPRHsG/",
-            }, 
-           {
                 title: "Trimonthly A-lympics: A-ROX",
                 department: "Leadership Development",
                 date: "Thursday, 16th July 2026",
@@ -357,11 +362,29 @@ const siteContent = {
                 registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSf2TMpvpy8gS4-xjGIRJLO4ZEvz1eJ8DaUzFt5xp_wxUXbuwQ/viewform?usp=publish-editor",  // internal page — opens in same tab
                 button_text: "Register Now",
             },
+            {
+                title: "A-Level Leadership Camp 2026",
+                department: "Leadership Development",
+                date: "Saturday, 1st August 2026 to Sunday, 2nd August 2026",
+                image: "/images/events/upcoming/alcaug.avif",
+                details_image: "/images/events/upcoming/alcaug2.avif",
+                ig_link: "https://www.instagram.com/p/DaSDF18Eavm/?img_index=1",
+                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSd4RN8zToRK8hTe1PtLiFNw2_3VgDUnP8sDqGKpT6TueNef3Q/viewform",  // internal page — opens in same tab
+                trailer_link: "https://www.instagram.com/reel/DWp8LpvTaKQ/?igsh=MWRpanpmbXBncmRyZQ==",
+                button_text: "Register Now",
+            },
             
         ],
 
         // SECTION 2: PAST EVENTS
         past: [
+            {
+                title: "January '26 ALSCO Installation Ceremony",
+                department: "ALSCO",
+                date: "Friday, 10th July 2026",
+                image: "/images/events/upcoming/installation.avif",
+                ig_link: "https://www.instagram.com/p/DaURFjPRHsG/",
+            }, 
             {
                 title: "Finance Proofing 101",
                 department: "Leadership Development",
@@ -373,14 +396,19 @@ const siteContent = {
                 button_text: "Register Now",
             },
             {
+                title: " January '26 'A Charity Extravaganza'",
+                date: "Saturday, 28th June 2026",
+                department: "ALSCO",
+                image: "/images/events/past/acejan26.avif",
+                ig_link: "https://www.instagram.com/p/DaoikE6k3Xj/?img_index=1",
+            },
+            {
                 title: "A-Level Jacket Sale",
                 department: "ALSCO",
                 date: "Monday, 26th June 2026 to Friday, 30th June 2026",
                 image: "/images/events/upcoming/jacket.avif",
                 details_image: "/images/events/upcoming/jacket2.avif",
                 ig_link: "https://www.instagram.com/p/DZhafoyEatY/?img_index=1",
-                registration_link: "/html_pages/jacket.html",  // internal page — opens in same tab
-                button_text: "Learn More",
             },
             {
                 title: "Turning Pages, Changing Lives",
@@ -389,8 +417,6 @@ const siteContent = {
                 image: "/images/events/upcoming/tpcl.avif",
                 details_image: "/images/events/upcoming/tpcl2.avif",
                 ig_link: "https://www.instagram.com/p/DZuLBAEkQPI/?img_index=1",
-                registration_link: "https://docs.google.com/document/d/15kOYryyIViSsSe4bRRMNaty0xldhSTM5IpLknQ08Gv8/edit?usp=drivesdk",  // internal page — opens in same tab
-                button_text: "Learn More",
             },
             {
                 title: "Letters of Light",
@@ -885,4 +911,6 @@ const siteContent = {
             // script always shows the first ACTIVE one in this list.
         ],
     },
+
+
 };
