@@ -142,8 +142,10 @@ Loaded on every page. Four parts:
      or the value is empty.
    - `smoothScroll(event, targetId)` — used by inline `onclick` on in-page anchor buttons.
    - `getDepartmentColor(department)` — maps a department name to its Tailwind colour
-     classes (used for the coloured tags on cards). If you add a new department, add a
-     matching branch here.
+     classes (used for the coloured tags on cards). Colours are defined in one place: the
+     `DEPARTMENT_COLORS` map at the top of `script.js`. To add or change a department,
+     edit that map (and mirror the colour in `design_system/`) — no need to touch the
+     function.
 
 2. **`loadComponent(elementId, filePath)`** — `fetch`es an HTML partial and injects it into
    the placeholder `<div>`. Silently skips if the placeholder isn't on the page (that's why
@@ -195,6 +197,9 @@ Per-page notes:
   `buildTimeline()` discount timeline, the live order-count fetch (`fetchOrderCount`, cached
   in `sessionStorage`), the FAQ accordion (`toggleJacketFaq`, global), and a derived
   countdown. Covered in detail in its own section below.
+- **`announcement.js`** — the **homepage entry modal**, loaded only by `index.html`. Reads
+  `siteContent.announcementModal`, shows the first date-active announcement, and remembers
+  dismissals per-id in `localStorage`. Covered in its own section below.
 
 > **External endpoints:** `resource.js`, `alstar.js`, and `jacket.js` talk to Google Apps
 > Script Web App URLs (newsletter sign-ups → a Google Sheet; student-ID lookups → the points
@@ -294,6 +299,46 @@ model as the `alstar.js` points endpoint.)
 
 ---
 
+## The homepage announcement modal
+
+`scripts/announcement.js` + `siteContent.announcementModal` add a pop-up that appears when a
+visitor lands on the **home page** (it's loaded only by `index.html`). The point is to *push*
+the single most important update — a jacket sale, a big event, a new newsletter, an Instagram
+reel — to students the moment they arrive, instead of relying on them to navigate and find it.
+
+**How it decides what (and whether) to show:**
+
+1. Bails unless `announcementModal.enabled` is `true` and the page has the
+   `#announcement-modal-placeholder` div (homepage only).
+2. Picks the **first** entry in `announcements` that is **date-active** — today is on/after
+   `showFrom` (if set) and on/before the end of `expires` (if set) — and **not already
+   dismissed**. Omit either date to leave that side of the window open.
+3. Dismissals are stored **per-id** as a JSON array in `localStorage` under
+   `alsco_dismissed_announcements`. Because the check is by `id`, the modal shows **once per
+   announcement**: closing it hides it for that visitor forever, but publishing a new
+   announcement with a **new `id`** re-triggers it for everyone. (Queuing a future
+   announcement with a later `showFrom` is how you line up the next one.)
+
+**Behaviour / contract:**
+
+- Single curated item only (no carousel). The card reuses existing styling — `.btn-maroon`
+  for the CTA, and the nav overlay's backdrop + `overflow-hidden` scroll-lock pattern.
+- **Responsive layout (`hasImage` flag).** With an image the card is two-column on
+  laptop (`md:flex-row`, image in a `md:w-2/5` left column, text/CTA right) and stacks on
+  mobile; the card widens to `md:max-w-2xl`. With no image it falls back to a single-column
+  `max-w-md` card. The image is shown at its **natural ratio** (`w-full h-auto`, no
+  `aspect-*`/`object-*`) so any shape — portrait Instagram posters included — displays
+  uncropped with no letterbox whitespace.
+- Closing via the ✕ button, **ESC**, or **click-outside** all record the dismissal; following
+  the CTA does too (so it won't re-pop when the visitor comes back).
+- The `id` is the contract: change it to re-show, keep it to keep it dismissed. The
+  `ctaLink` can be an internal page, a `#hash`, or a full external URL.
+
+To publish or change an announcement, edit `siteContent.announcementModal` only — see
+EDITING-CONTENT.md "Publishing a homepage announcement".
+
+---
+
 ## Shared partials (nav, footer, SVG icons)
 
 `html_pages/nav.html`, `footer.html`, and `svg-defs.html` are **not standalone pages** —
@@ -331,6 +376,20 @@ Tailwind v4, configured **only in `input.css`** (no `tailwind.config.js`):
 
 Workflow: edit `input.css` → `npm run watch` regenerates `output.css` → refresh the browser.
 **Never hand-edit `output.css`.**
+
+### The design system (`design_system/`)
+
+The visual language is also packaged as a portable, framework-agnostic **design system** in
+`design_system/`, intended for reuse in other ALSCO tech projects. It contains
+`tokens.css` (the **single source of truth** — CSS custom properties), `tokens.json` (a
+machine-readable mirror), `tailwind-theme.css` (a Tailwind v4 `@theme` + `@layer
+components` starter), and `DESIGN-SYSTEM.md` (the human reference).
+
+**Keep it in sync.** Whenever you change a token, component class, or visual pattern in
+`input.css`, mirror the change in `design_system/` in the same commit. One thing to watch:
+the **department colours live in two places** — `getDepartmentColor()` in `script.js`
+(the runtime classes) *and* the design system (tokens + the table in `DESIGN-SYSTEM.md`).
+Change a department colour, or add a department, in **both**.
 
 ---
 
@@ -372,7 +431,9 @@ Things that are easy to trip over — documented so you don't think they're bugs
   `resource.js` historically carried headers copied from `script.js` like
   `// 4. Initialize Core Layout` / `// 2. Initialize Navigation Logic` that don't describe
   what those files do. These have been corrected to describe each file's real job.
-- **`getDepartmentColor` matches by substring.** It lowercases the department name and checks
-  for keywords (`leadership`, `welfare`, `relations`, `comserve`/`community`,
-  `sst`/`secretaries`). A department whose name doesn't contain one of those falls back to
-  red. Add a branch if you introduce a new department.
+- **`getDepartmentColor` matches by substring.** It lowercases the department name and looks
+  it up against the `DEPARTMENT_COLORS` map in `script.js` — each entry lists the keyword(s)
+  to match (`leadership`, `welfare`, `relations`, `comserve`/`community`, `sst`/`secretaries`)
+  and the Tailwind classes. First match wins; a department whose name doesn't contain one of
+  those falls back to red (`DEPARTMENT_COLOR_DEFAULT`). Add an entry to that map if you
+  introduce a new department.

@@ -1,21 +1,53 @@
-/* 1. LOAD TAILWIND V4 */
-@import "tailwindcss";
+/* =====================================================================
+   ALSCO DESIGN SYSTEM — TAILWIND v4 STARTER
+   ---------------------------------------------------------------------
+   Copy this into a new Tailwind v4 project's entry CSS (the file that
+   does `@import "tailwindcss";`). It gives you the ALSCO brand tokens
+   (@theme) and the shared component classes (@layer components) for free.
 
-/* 2. TELL TAILWIND WHERE YOUR HTML/JS IS */
-@source "./html_pages/*.html";
-@source "./scripts/*.js";
-@source "./*.js";
-@source "./*.html";
+   Values here MIRROR design_system/tokens.css (the source of truth).
+   If you change a token, update tokens.css + tokens.json too.
 
-/* 3. DEFINE CUSTOM THEME VARIABLES */
+   Quick start in a new project:
+     1. @import "tailwindcss";
+     2. add @source lines for your markup/JS folders
+     3. paste the @theme and @layer components blocks below
+     4. load Outfit (300;400;500;600;700;800;900) from Google Fonts
+   ===================================================================== */
+
+/* @import "tailwindcss";  <-- uncomment in the consuming project */
+
+/* Tell Tailwind where to scan for class usage (adjust per project) */
+/* @source "./*.html";
+   @source "./src/**/*.{html,js,jsx,ts,tsx,vue}"; */
+
+/* ---------------------------------------------------------------------
+   THEME TOKENS  (exposed as Tailwind utilities: bg-maroon, text-main, …)
+   --------------------------------------------------------------------- */
 @theme {
     --font-sans: 'Outfit', sans-serif;
+
     --color-maroon: #88113b;
     --color-maroon-dark: #6d0d2f;
     --color-main: #1f2937;
+
+    /* Brand-adjacent */
+    --color-instagram: #e1306c;
+
+    /* Department palette (also generated from Tailwind's red/blue/pink/
+       green/amber 100 & 700 — listed here for documentation parity). */
+    --color-dept-leadership: #b91c1c;
+    --color-dept-welfare: #1d4ed8;
+    --color-dept-relations: #be185d;
+    --color-dept-comserve: #15803d;
+    --color-dept-sst: #b45309;
 }
 
-/* 4. GLOBAL HTML RULES (The "Write Once" text sizes) */
+/* ---------------------------------------------------------------------
+   BASE TYPOGRAPHY  (the "write once" responsive text ramp)
+   NOTE: h1 uses font-black (900); load Outfit weight 900 in the font
+   import or it will be faux-synthesized.
+   --------------------------------------------------------------------- */
 @layer base {
     body {
         @apply font-sans text-main bg-white;
@@ -45,31 +77,32 @@
 @layer components {
 
     /* ==========================================
-       3. BUTTONS
+       BUTTONS  (rounded-full pills, desktop-only hover)
        ========================================== */
 
-    /* A. Red Default (Primary) */
+    /* Primary — solid maroon */
     .btn-maroon {
         @apply inline-flex items-center justify-center shrink-0 px-4 py-3 md:px-6 md:py-3 text-sm md:text-base font-bold rounded-full text-center transition-all duration-300 bg-maroon text-white lg:hover:bg-maroon-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon focus-visible:ring-offset-2;
     }
 
-    /* B. Blur Default (Contextual / Hover Cards) */
+    /* Contextual — frosted glass, sits over imagery / hover cards.
+       Grey text on a faint white backing keeps it legible over any photo. */
     .btn-blur {
         @apply inline-flex items-center justify-center shrink-0 px-4 py-3 md:px-6 md:py-3 text-sm md:text-base font-bold rounded-full text-center transition-all duration-300 backdrop-blur-md bg-white/40 text-gray-800 border-2 border-white lg:hover:bg-maroon lg:hover:text-white lg:hover:border-maroon focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon focus-visible:ring-offset-2;
     }
 
-    /* C. White Button with Red Border (Secondary / View All) */
+    /* Secondary — white with maroon outline (View All, etc.) */
     .btn-outline {
         @apply inline-flex items-center justify-center shrink-0 px-4 py-3 md:px-6 md:py-3 text-sm md:text-base font-bold rounded-full text-center transition-all duration-300 bg-white border-2 border-maroon text-maroon lg:hover:bg-maroon lg:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon focus-visible:ring-offset-2;
     }
 
-    /* D. Ghost Button (Transparent with Border) */
+    /* Ghost — transparent over dark imagery */
     .btn-ghost {
         @apply inline-flex items-center justify-center shrink-0 px-4 py-3 md:px-6 md:py-3 text-sm md:text-base font-bold rounded-full text-center bg-white/20 backdrop-blur-sm border border-white/50 text-white hover:bg-white/30 transition-colors shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2;
     }
 
-    /* E. Disabled state (shared) — applies while a button's `disabled` attr is set,
-       e.g. form submit buttons mid-request. */
+    /* Optional disabled state — apply [disabled] / .is-disabled when wiring
+       up form submit buttons (not yet used on the live site). */
     .btn-maroon:disabled,
     .btn-outline:disabled,
     .btn-blur:disabled,
@@ -78,10 +111,8 @@
     }
 
     /* ==========================================
-       4. ICONS (Socials & Media)
+       ICONS (Socials & Media)
        ========================================== */
-
-    /* D. Instagram */
     .icon-ig {
         @apply inline-flex items-center justify-center shrink-0 w-8 h-8 md:w-12 md:h-12 rounded-full bg-[#E1306C] text-white transition-all duration-300 lg:hover:scale-110 lg:hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon focus-visible:ring-offset-2;
     }
@@ -90,7 +121,6 @@
         @apply pointer-events-none fill-current w-6 h-6 md:w-8 md:h-8;
     }
 
-    /* E. Trailer */
     .icon-trailer {
         @apply inline-flex items-center justify-center shrink-0 w-8 h-8 md:w-12 md:h-12 rounded-full bg-maroon text-white ring-2 ring-inset ring-maroon transition-all duration-300 lg:hover:bg-white lg:hover:text-black lg:hover:scale-110 lg:hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon focus-visible:ring-offset-2;
     }
@@ -99,7 +129,6 @@
         @apply pointer-events-none fill-current w-6 h-6 md:w-8 md:h-8;
     }
 
-    /* F. Info */
     .icon-info {
         @apply absolute bottom-4 right-4 z-20 lg:hidden inline-flex items-center justify-center shrink-0 w-8 h-8 md:w-12 md:h-12 rounded-full bg-black/60 text-white border border-white/30 shadow-lg backdrop-blur-md transition-all duration-300 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white;
     }
@@ -108,12 +137,13 @@
         @apply pointer-events-none fill-current w-6 h-6 md:w-8 md:h-8;
     }
 
-    /* --- TAG WRAPPER --- */
+    /* ==========================================
+       TAGS
+       ========================================== */
     .tag-wrapper {
         @apply flex flex-row flex-nowrap gap-2 md:gap-3 px-2 py-2 md:px-4 md:py-4 items-center justify-start w-fit overflow-x-auto pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden;
     }
 
-    /* --- BASE TAG & VARIATIONS COMBINED --- */
     .tag-base,
     .tag-primary,
     .tag-secondary,
@@ -121,19 +151,18 @@
         @apply shrink-0 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-[8px] sm:text-xs md:text-sm font-bold uppercase tracking-widest shadow-sm backdrop-blur-md whitespace-nowrap;
     }
 
-    /* Event Type */
+    /* Event type */
     .tag-primary {
         @apply bg-maroon/90 text-white;
-        /* Replaced bg-opacity-90 with /90 */
     }
 
-    /* Date & Intake */
+    /* Date & intake */
     .tag-secondary {
         @apply bg-black/20 text-black;
     }
 
     /* ==========================================
-       5. UTILITIES
+       UTILITIES — hairline borders
        ========================================== */
     .border-custom {
         @apply border-2 border-gray-300;
@@ -152,9 +181,8 @@
     }
 
     /* ==========================================
-       6. SECTIONS
+       SECTIONS
        ========================================== */
-
     .section-container {
         @apply max-w-7xl mx-auto px-6 lg:px-8;
     }
@@ -172,7 +200,7 @@
     }
 
     /* ==========================================
-       7. SECTION DIVIDER
+       SECTION DIVIDER
        ========================================== */
     .heading-divider {
         @apply flex items-center gap-4 mt-8;
@@ -187,7 +215,7 @@
     }
 
     /* ==========================================
-       8. ZIG ZAG CARDS
+       ZIG-ZAG / MEDIA CARDS
        ========================================== */
     .stack-card {
         @apply flex flex-col gap-3;
@@ -208,11 +236,9 @@
     .media-card-cta {
         @apply pointer-events-auto tracking-[0.2em] uppercase opacity-100 duration-500;
 
-        /* Responsive + State logic */
         @variant lg {
             @apply opacity-0 translate-y-4;
 
-            /* This is the reliable way to target group-hover in v4 */
             @variant group-hover {
                 @apply opacity-100 translate-y-0;
             }
@@ -220,7 +246,7 @@
     }
 
     /* ==========================================
-       9. CONTACT CARDS
+       CONTACT CARDS
        ========================================== */
     .contact-card {
         @apply border-2 border-gray-300 bg-white rounded-3xl overflow-hidden;
@@ -229,17 +255,18 @@
     .contact-card-body {
         @apply p-8 lg:p-10 text-center h-full flex flex-col;
     }
-
 }
 
+/* ---------------------------------------------------------------------
+   GLOBAL HTML BEHAVIOUR — fixed-navbar scroll offsets & smooth scroll.
+   Adjust the offset to match the consuming project's navbar height.
+   --------------------------------------------------------------------- */
 html {
     scrollbar-gutter: stable;
     scroll-behavior: smooth;
-    /* Offset hash-scroll targets so they clear the fixed navbar (h-20 mobile) */
     scroll-padding-top: 6rem;
 }
 
-/* Larger offset for the taller navbar on desktop (h-28) */
 @media (min-width: 1024px) {
     html {
         scroll-padding-top: 8rem;

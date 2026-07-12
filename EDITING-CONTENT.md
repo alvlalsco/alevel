@@ -30,6 +30,7 @@ scripts for any of these.
 - [Update the ALSTAR forms or calendar](#update-the-alstar-forms-or-calendar)
 - [Edit the contact cards](#edit-the-contact-cards)
 - [Run a jacket / T-shirt / product sale](#run-a-jacket--t-shirt--product-sale)
+- [Publishing a homepage announcement](#publishing-a-homepage-announcement)
 - [If the site goes blank](#if-the-site-goes-blank)
 
 ---
@@ -291,6 +292,53 @@ Notes:
   `currentOrdersFallback`.
 - After editing images **or** anything that changes styling, a developer should run
   `npm run build` once so everything compiles (text edits alone don't need it).
+
+---
+
+## Publishing a homepage announcement
+
+The **homepage announcement modal** is the pop-up that greets visitors when they land on the
+home page — use it to push the one most important thing right now (a jacket sale, a big event,
+a new newsletter, an Instagram reel). It lives in `content.js` under `announcementModal`.
+
+```js
+announcementModal: {
+    enabled: true,                          // set false to turn the pop-up off entirely
+
+    announcements: [
+        {
+            id: "jacket-sale-2026",         // ⚠️ CHANGE this string to re-show after people dismissed the old one
+            eyebrow: "New Drop",            // small kicker above the title (optional — delete the line to hide)
+            title: "ALSCO Jacket Sale is Live!",
+            body:  "Pre-order the limited batch ALSCO jacket from as low as RM80. One batch, no restock.",
+            image: "/images/events/upcoming/Jacket  (1).avif",  // optional — delete the line for a text-only card
+            imageAlt: "ALSCO jacket front view",
+            ctaText: "Order Now",
+            ctaLink: "/html_pages/jacket.html",   // a page, a "#section", or a full https://... link
+            showFrom: "2026-06-11",         // optional — don't show before this date
+            expires:  "2026-06-30",         // optional — stop showing after this date
+        },
+        // To line up the NEXT announcement, copy the block above, give it a new id,
+        // and set its showFrom to a future date. The pop-up always shows the first
+        // one whose date window covers today.
+    ],
+},
+```
+
+How it behaves (worth knowing):
+
+- **It only nags once.** When a visitor closes the pop-up (✕, the Esc key, or clicking
+  outside it) or clicks the button, it won't bother them again — **unless you change the
+  `id`**. So whenever you publish a genuinely new announcement, give it a **new `id`**; that's
+  what makes it reappear for people who dismissed the previous one.
+- **Dates are optional.** Leave out `showFrom`/`expires` to show it immediately / forever. An
+  expired announcement simply stops appearing on its own — handy so a finished sale doesn't
+  keep popping up if you forget to delete it.
+- **Homepage only**, and **one at a time** (the first active one in the list).
+- **The image can be any shape.** It's shown at its natural ratio and never cropped — a tall
+  portrait Instagram poster (4:5) works just as well as a square or landscape one. On a laptop
+  the pop-up puts the image beside the text; on a phone it stacks the image on top.
+- Editing this is a **text edit** — no `npm run build` needed unless you also changed images.
 
 ---
 

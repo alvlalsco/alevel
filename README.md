@@ -165,6 +165,18 @@ the scripts — it's the #1 thing that breaks silently.
 - **Edit `input.css`, then let `npm run watch` rebuild `output.css`.** Never edit
   `output.css` directly — it's generated and your changes will be wiped on the next build.
 
+### Design system (`design_system/`)
+
+The brand's colours, fonts, spacing, and component patterns are documented as a portable
+**design system** in [`design_system/`](design_system/) — built to be reused in other
+ALSCO projects too, not just this site. Start with
+[`design_system/DESIGN-SYSTEM.md`](design_system/DESIGN-SYSTEM.md).
+
+> ⚠️ **Keep it in sync.** If you change a colour, font, spacing value, or a component class
+> in `input.css` (or a department colour in the `DEPARTMENT_COLORS` map in `script.js`),
+> **update `design_system/` in the same change**. `design_system/tokens.css` is the single
+> source of truth — see that folder's README for exactly which files to touch.
+
 ---
 
 ## Images

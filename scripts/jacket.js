@@ -30,7 +30,7 @@
 // cacheMinutes don't hammer the endpoint.
 async function fetchOrderCount(d) {
     const CACHE_KEY = 'jacketOrderCache';
-    const now       = Date.now();
+    const now = Date.now();
 
     // Try cache first
     try {
@@ -46,8 +46,19 @@ async function fetchOrderCount(d) {
     }
 
     try {
-        const res  = await fetch(d.orderCountUrl);
+        const res = await fetch(d.orderCountUrl);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        // A public Web App returns JSON directly. If the deployment requires a
+        // login, Google redirects the request to accounts.google.com and serves
+        // an HTML login page with a 200 status — so res.ok is true but the body
+        // is not our JSON. Detect that and explain the actual fix.
+        if (res.redirected && /accounts\.google\.com/.test(res.url)) {
+            throw new Error("redirected to Google login — set the Web App 'Who has access' to Anyone");
+        }
+        const contentType = res.headers.get('content-type') || '';
+        if (!contentType.includes('application/json')) {
+            throw new Error(`expected JSON but got "${contentType}" — check the Web App deployment access`);
+        }
         // Endpoint returns only { count: N } — no respondent data is exposed.
         const { count } = await res.json();
         const safeCount = Math.max(0, Number(count) || 0);
@@ -67,8 +78,8 @@ async function fetchOrderCount(d) {
 // Global — wired via inline onclick="toggleJacketFaq(n)" in generated markup.
 // Same open/close pattern as toggleFaq() in index.js.
 function toggleJacketFaq(clickedIndex) {
-    const answer  = document.getElementById(`jacket-faq-answer-${clickedIndex}`);
-    const icon    = document.getElementById(`jacket-faq-icon-${clickedIndex}`);
+    const answer = document.getElementById(`jacket-faq-answer-${clickedIndex}`);
+    const icon = document.getElementById(`jacket-faq-icon-${clickedIndex}`);
     const isClosed = answer.classList.contains('grid-rows-[0fr]');
 
     document.querySelectorAll('[id^="jacket-faq-answer-"]').forEach(el => {
@@ -95,7 +106,7 @@ function initSizeZoom(imgId) {
     if (!img) return;
 
     const overlay = document.createElement('div');
-    overlay.id        = 'size-zoom-overlay';
+    overlay.id = 'size-zoom-overlay';
     overlay.className = 'fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 hidden cursor-zoom-out';
     overlay.innerHTML = `<img src="${img.src}" alt="${img.alt}" class="max-w-full max-h-full rounded-2xl shadow-2xl object-contain">`;
     document.body.appendChild(overlay);
@@ -110,11 +121,11 @@ function initSizeZoom(imgId) {
 // DATE HELPER — "30th June 2026" (ordinal day + full month + year)
 // ============================================================================
 function formatOrdinalDate(dateInput) {
-    const dt  = new Date(dateInput);
+    const dt = new Date(dateInput);
     const day = dt.getDate();
-    const k   = day % 100, j = day % 10;
+    const k = day % 100, j = day % 10;
     const suffix = (k >= 11 && k <= 13) ? 'th'
-                 : j === 1 ? 'st' : j === 2 ? 'nd' : j === 3 ? 'rd' : 'th';
+        : j === 1 ? 'st' : j === 2 ? 'nd' : j === 3 ? 'rd' : 'th';
     const month = dt.toLocaleDateString('en-MY', { month: 'long' });
     return `${day}${suffix} ${month} ${dt.getFullYear()}`;
 }
@@ -132,7 +143,7 @@ function formatOrdinalDate(dateInput) {
 function buildTimeline(container, { milestones = [], goal, count }) {
     if (!container) return;
 
-    const pos     = v => Math.max(0, Math.min((v / goal) * 100, 100));
+    const pos = v => Math.max(0, Math.min((v / goal) * 100, 100));
     const fillPct = pos(count);
     const litClass = 'text-maroon [text-shadow:0_0_10px_rgba(136,17,59,0.55)]';
     const dimClass = 'text-gray-400';
@@ -140,7 +151,7 @@ function buildTimeline(container, { milestones = [], goal, count }) {
     let ticks = '';
     milestones.forEach(m => {
         const left = pos(m.orders);
-        const lit  = count >= m.orders ? litClass : dimClass;
+        const lit = count >= m.orders ? litClass : dimClass;
         // grey vertical tick line (only the text lights up, not the line)
         ticks += `<div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-px h-8 bg-gray-300 z-10" style="left:${left}%"></div>`;
         // discount label above the bar
@@ -164,12 +175,12 @@ function buildTimeline(container, { milestones = [], goal, count }) {
 
     // Animate fill + pointer in from the left on first paint.
     requestAnimationFrame(() => {
-        const fill  = container.querySelector('#jacket-timeline-fill');
+        const fill = container.querySelector('#jacket-timeline-fill');
         const pLine = container.querySelector('#jacket-timeline-pointer-line');
-        const pTxt  = container.querySelector('#jacket-timeline-pointer-label');
-        if (fill)  fill.style.width  = `${fillPct}%`;
-        if (pLine) pLine.style.left  = `${fillPct}%`;
-        if (pTxt)  pTxt.style.left   = `${fillPct}%`;
+        const pTxt = container.querySelector('#jacket-timeline-pointer-label');
+        if (fill) fill.style.width = `${fillPct}%`;
+        if (pLine) pLine.style.left = `${fillPct}%`;
+        if (pTxt) pTxt.style.left = `${fillPct}%`;
     });
 }
 
@@ -194,19 +205,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     // -------------------------------------------------------------------------
     // A. HERO
     // -------------------------------------------------------------------------
-    setText('jacket-hero-title',   d.title);
+    setText('jacket-hero-title', d.title);
     setText('jacket-hero-tagline', d.tagline);
-    setText('jacket-hero-price',   d.priceTag);
-    setLink('jacket-hero-cta',     d.formUrl);
+    setText('jacket-hero-price', d.priceTag);
+    setLink('jacket-hero-cta', d.formUrl);
 
     // Front/back jacket image — desktop hover swaps, mobile tap toggles. Same
     // .show-details mechanism as the event cards (events.js / index.js).
-    const imgs      = d.designImages || [];
-    const frontImg  = document.getElementById('jacket-img-front');
-    const backImg   = document.getElementById('jacket-img-back');
+    const imgs = d.designImages || [];
+    const frontImg = document.getElementById('jacket-img-front');
+    const backImg = document.getElementById('jacket-img-back');
     const imgToggle = document.getElementById('jacket-img-toggle');
-    const imgGroup  = document.getElementById('jacket-image-group');
-    const hasBack   = imgs.length > 1;
+    const imgGroup = document.getElementById('jacket-image-group');
+    const hasBack = imgs.length > 1;
 
     if (frontImg && imgs[0]) {
         frontImg.src = imgs[0].src;
@@ -233,18 +244,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     // -------------------------------------------------------------------------
     // C. PROGRESS TIMELINE
     // -------------------------------------------------------------------------
-    const { count: currentOrders, source } = await fetchOrderCount(d);
+    const { count: fetchedOrders, source } = await fetchOrderCount(d);
+
+    // Add the manual/offline-order offset once, then use this everywhere (the
+    // cached value stays the raw sheet count).
+    const currentOrders = fetchedOrders + (d.orderOffset || 0);
 
     const activeTier = d.priceTiers.find(t => t.goalTier) || d.priceTiers[d.priceTiers.length - 1];
-    const toGo       = Math.max(0, d.orderGoal - currentOrders);
+    const toGo = Math.max(0, d.orderGoal - currentOrders);
 
     setText('jacket-order-count', String(currentOrders));
-    setText('jacket-order-goal',  String(d.orderGoal));
+    setText('jacket-order-goal', String(d.orderGoal));
 
     buildTimeline(document.getElementById('jacket-timeline'), {
         milestones: d.milestones || [],
-        goal:       d.orderGoal,
-        count:      currentOrders,
+        goal: d.orderGoal,
+        count: currentOrders,
     });
 
     const toGoEl = document.getElementById('jacket-to-go-label');
@@ -258,7 +273,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const sourceBadge = document.getElementById('jacket-source-badge');
     if (sourceBadge) {
         sourceBadge.textContent = source === 'live' ? '● Live' : source === 'cache' ? '● Updated recently' : '● Estimated';
-        sourceBadge.className   = source === 'live'
+        sourceBadge.className = source === 'live'
             ? 'text-xs font-semibold text-green-600'
             : 'text-xs font-semibold text-gray-400';
     }
@@ -291,8 +306,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // C2. SPECIAL GROUP DISCOUNT  (CTA scroll handled by static href in HTML)
     // -------------------------------------------------------------------------
     if (d.groupDiscount) {
-        setText('jacket-group-title',   d.groupDiscount.title);
-        setText('jacket-group-desc',    d.groupDiscount.description);
+        setText('jacket-group-title', d.groupDiscount.title);
+        setText('jacket-group-desc', d.groupDiscount.description);
         setText('jacket-group-faqhint', d.groupDiscount.faqHint);
     }
 
@@ -304,9 +319,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         const daysLeft = Math.max(0, Math.ceil((new Date(d.deadline) - new Date()) / 86400000));
         const countdownWeekday = new Date(d.deadline).toLocaleDateString('en-MY', { weekday: 'long' });
         setText('jacket-countdown-prefix', d.countdown.prefix);
-        setText('jacket-countdown-date',   `${countdownWeekday}, ${formatOrdinalDate(d.deadline)}`);
-        setText('jacket-countdown-days',   d.countdown.urgency.replace('{days}', String(daysLeft)));
-        setLink('jacket-countdown-cta',    d.formUrl);
+        setText('jacket-countdown-date', `${countdownWeekday}, ${formatOrdinalDate(d.deadline)}`);
+        setText('jacket-countdown-days', d.countdown.urgency.replace('{days}', String(daysLeft)));
+        setLink('jacket-countdown-cta', d.formUrl);
     }
 
 
@@ -333,9 +348,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // -------------------------------------------------------------------------
     // E. TRY-IT-ON
     // -------------------------------------------------------------------------
-    setText('jacket-tryon-week',        d.tryItOn.week);
-    setText('jacket-tryon-location',    d.tryItOn.location);
-    setText('jacket-tryon-hours',       d.tryItOn.hours);
+    setText('jacket-tryon-week', d.tryItOn.week);
+    setText('jacket-tryon-location', d.tryItOn.location);
+    setText('jacket-tryon-hours', d.tryItOn.hours);
     setText('jacket-tryon-description', d.tryItOn.description);
 
 
@@ -399,8 +414,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // I. DEADLINE FOOTER + STICKY BAR
     // -------------------------------------------------------------------------
     setText('jacket-footer-deadline', deadlineDate);
-    setLink('jacket-footer-cta',      d.formUrl);
-    setLink('jacket-sticky-cta',      d.formUrl);
+    setLink('jacket-footer-cta', d.formUrl);
+    setLink('jacket-sticky-cta', d.formUrl);
     setText('jacket-sticky-deadline', deadlineDate);
 
 });

@@ -50,16 +50,24 @@ window.smoothScroll = (event, targetId) => {
     if (target) target.scrollIntoView({ behavior: "smooth" });
 };
 
+// Single source of truth for department tag colors (mirrors the department palette
+// documented in design_system/). To add or edit a department, change ONLY this map:
+// add an entry with the keyword(s) to match (lowercased, substring) and the Tailwind
+// classes. First match wins; unmatched departments fall back to DEPARTMENT_COLOR_DEFAULT.
+const DEPARTMENT_COLORS = [
+    { match: ["leadership"], classes: "bg-red-100/90 text-red-700" },
+    { match: ["welfare"], classes: "bg-blue-100/90 text-blue-700" },
+    { match: ["relations"], classes: "bg-pink-100/90 text-pink-700" },
+    { match: ["comserve", "community"], classes: "bg-green-100/90 text-green-700" },
+    { match: ["sst", "secretaries"], classes: "bg-amber-100/90 text-amber-700" },
+];
+const DEPARTMENT_COLOR_DEFAULT = "bg-red-100 text-red-700";
+
 window.getDepartmentColor = (department) => {
     if (!department) return "";
-    let deptColorClass = "bg-red-100 text-red-700";
     const dept = department.toLowerCase();
-    if (dept.includes("leadership")) deptColorClass = "bg-red-100/90 text-red-700";
-    else if (dept.includes("welfare")) deptColorClass = "bg-blue-100/90 text-blue-700";
-    else if (dept.includes("relations")) deptColorClass = "bg-pink-100/90 text-pink-700";
-    else if (dept.includes("comserve") || dept.includes("community")) deptColorClass = "bg-green-100/90 text-green-700";
-    else if (dept.includes("sst") || dept.includes("secretaries")) deptColorClass = "bg-amber-100/90 text-amber-700";
-    return deptColorClass;
+    const found = DEPARTMENT_COLORS.find((d) => d.match.some((k) => dept.includes(k)));
+    return found ? found.classes : DEPARTMENT_COLOR_DEFAULT;
 };
 
 
@@ -118,7 +126,7 @@ function navbarManagement() {
 
         siteContent.navStructure.forEach(page => {
             const wrapper = document.createElement("div");
-            wrapper.className = "flex flex-col gap-3 items-start text-left lg:items-center lg:text-center";
+            wrapper.className = "flex flex-col gap-3 items-start text-left";
 
             let html = `
                     <a href="${page.link}" 
@@ -174,13 +182,10 @@ function navbarManagement() {
 
         links.forEach(link => {
             const linkUrl = link.href.split('#')[0];
-            if (currentUrl === linkUrl) {
-                if (link.classList.contains('text-2xl')) {
-                    link.classList.add('text-yellow-400', 'underline', 'underline-offset-8');
-                } else {
-                    link.classList.remove('opacity-80');
-                    link.classList.add('text-yellow-200', 'font-bold');
-                }
+            // Highlight only the page-name link (the text-2xl one). Sub-section
+            // links share the same base URL, so they'd also match — skip them.
+            if (currentUrl === linkUrl && link.classList.contains('text-2xl')) {
+                link.classList.add('text-yellow-400', 'underline', 'underline-offset-8');
             }
         });
     }

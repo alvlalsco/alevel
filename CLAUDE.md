@@ -33,6 +33,8 @@ The site is **content-driven**: structure lives in HTML, all editable copy/image
 
 - **`scripts/jacket.js` + `siteContent.jacketSale`** — the **Jacket Sale page**, designed as a **reusable product-sale template** (re-skin it for a T-shirt sale, hoodie sale, etc. — see GUIDE.md "The Jacket Sale page"). Everything is config-driven from `jacketSale`: hero with a front/back image swap (reuses the event-card `.show-details` hover/tap pattern), a tiered `priceTiers` table, a live **discount timeline** built by `buildTimeline()` from `milestones` + the live order count, a group-discount blurb, and a deadline **countdown** (date + days-left derived from `deadline`). The live count comes from a Google Apps Script Web App that returns **only `{ "count": N }`** (set in `orderCountUrl`) — the response sheet stays private, unlike a "publish to web" CSV. Leave `orderCountUrl` as a `<...>` placeholder to fall back to `currentOrdersFallback`.
 
+- **`scripts/announcement.js` + `siteContent.announcementModal`** — the **homepage entry modal**, loaded only by `index.html`. On `DOMContentLoaded` it reads `announcementModal` (a master `enabled` flag plus an `announcements` array), shows the **first announcement whose `showFrom`→`expires` date window covers today**, and injects it into `#announcement-modal-placeholder`. Purpose: *push* the most important update (a jacket sale, event, newsletter, Instagram reel) to visitors instead of waiting for them to find it. Dismissal is remembered **per-id** in `localStorage` (`alsco_dismissed_announcements`), so it shows once per announcement — changing the `id` re-triggers it for everyone. Closing (✕ / ESC / click-outside) and following the CTA both record the dismissal. Reuses existing styling (`.btn-maroon`, the nav overlay/scroll-lock pattern); single curated item only. The card is responsive (a `hasImage` flag drives a two-column image-beside-text layout on laptop, stacked on mobile) and shows the image at its natural ratio (`w-full h-auto`) so portrait posters aren't cropped.
+
 - **HTML** — `index.html` is at the repo root; all other pages are in `html_pages/`. Each page includes scripts in this order: `scripts/content.js`, then `script.js`, then its own `scripts/<page>.js`. HTML holds static layout with empty placeholder elements (often showing "Loading...") that scripts fill by `id`. `nav.html`, `footer.html`, and `svg-defs.html` are partials injected at runtime, not standalone pages.
 
 ### Load-order contract (important)
@@ -42,6 +44,12 @@ The site is **content-driven**: structure lives in HTML, all editable copy/image
 ## Styling
 
 Tailwind v4, configured entirely in `input.css` (no `tailwind.config.js`). Theme tokens (`--color-maroon`, `--color-main`, `--font-sans: Outfit`) are defined in the `@theme` block; reusable component classes (`.btn-maroon`, `.btn-ghost`, `.section-container`, etc.) live in `@layer components`. `@source` directives tell Tailwind to scan `html_pages/`, `scripts/`, and root `*.html`/`*.js` for class usage. Edit `input.css` and rebuild; never hand-edit the generated `output.css`.
+
+## Design system
+
+The ALSCO visual language is documented in **`design_system/`** — a portable design system meant to be reused across other ALSCO tech projects, not just this website. It holds `tokens.css` (the **single source of truth**: framework-agnostic CSS custom properties), `tokens.json` (machine-readable mirror), `tailwind-theme.css` (a Tailwind v4 `@theme` + `@layer components` starter), and `DESIGN-SYSTEM.md` (the human reference).
+
+**Keep it in sync (important).** Whenever you change a design token, component class, or visual pattern in `input.css` — or the department palette (the `DEPARTMENT_COLORS` map in `script.js`) — update `design_system/` in the **same** change so it stays the source of truth. Specifically: a color/font/spacing value → `tokens.css` + `tokens.json` + `tailwind-theme.css` + `input.css`'s `@theme`; a component class → `tailwind-theme.css` + `input.css`; a department color → the table in `DESIGN-SYSTEM.md` + the tokens + the `DEPARTMENT_COLORS` map in `script.js` (the single place department colors are defined).
 
 ## Images
 
