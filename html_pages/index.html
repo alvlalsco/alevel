@@ -3,16 +3,281 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Redirecting...</title>
-    <meta http-equiv="refresh" content="0; url=/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Sunway A-Level Student Committee (ALSCO)</title>
+    <meta name="description"
+        content="ALSCO is the official student committee for all A-Level students at Sunway College — bridging students and administration, organising events, and supporting your college life.">
+    <link rel="canonical" href="https://sunwayalevelalsco.netlify.app/">
+
+    <!-- Open Graph / social link previews -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Sunway A-Level Student Committee (ALSCO)">
+    <meta property="og:title" content="Sunway A-Level Student Committee (ALSCO)">
+    <meta property="og:description"
+        content="The official student committee for all A-Level students at Sunway College. Events, resources, ALSTAR and more.">
+    <meta property="og:url" content="https://sunwayalevelalsco.netlify.app/">
+    <meta property="og:image" content="https://sunwayalevelalsco.netlify.app/images/alsco_logo_long.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sunway A-Level Student Committee (ALSCO)">
+    <meta name="twitter:description"
+        content="The official student committee for all A-Level students at Sunway College.">
+    <meta name="twitter:image" content="https://sunwayalevelalsco.netlify.app/images/alsco_logo_long.jpg">
+
+    <!-- Structured data: marks ALSCO as a known organisation -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Sunway A-Level Student Committee",
+      "alternateName": "ALSCO",
+      "url": "https://sunwayalevelalsco.netlify.app/",
+      "logo": "https://sunwayalevelalsco.netlify.app/images/alsco_logo.avif",
+      "description": "The official student committee representing all A-Level students at Sunway College.",
+      "parentOrganization": {
+        "@type": "CollegeOrUniversity",
+        "name": "Sunway College"
+      }
+    }
+    </script>
+
+    <link rel="icon" type="image/x-icon" href="/images/alsco_logo.avif">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/output.css">
 </head>
 
-<body>
-    <p>Redirecting you back to the main site...</p>
-    <script>
-        // A JavaScript backup redirect just in case the meta tag fails
-        window.location.href = "/";
-    </script>
+<body class="antialiased">
+    <!-- ========================================================================
+         HOME PAGE
+         Content comes from siteContent.index (+ events & publications) via
+         scripts/index.js. The elements with id="..." below are empty placeholders
+         (many show "Loading...") that the script fills in. Renaming an id without
+         updating index.js / content.js makes that piece silently stay empty.
+         The three placeholder <div>s below are filled at runtime by script.js.
+         ===================================================================== -->
+    <div id="svg-defs-placeholder"></div> <!-- shared SVG icons (svg-defs.html) -->
+
+    <div id="navbar-placeholder"></div> <!-- shared navbar (nav.html) -->
+
+    <div id="announcement-modal-placeholder"></div> <!-- homepage entry modal (announcement.js) -->
+
+    <main>
+        <header id="hero-section"
+            class="relative min-h-screen flex flex-col overflow-x-auto overflow-y-hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+
+            <div id="hero-background"
+                class="absolute inset-y-0 left-0 w-[200vw] md:w-full bg-cover bg-center bg-no-repeat z-0">
+                <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"></div>
+            </div>
+
+            <div class="sticky left-0 w-screen min-h-screen flex flex-col justify-end z-10 pb-8 lg:pb-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+
+                    <h1
+                        class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase">
+                        Sunway <span class="text-maroon">A-Level</span> Student Committee
+                    </h1>
+
+                    
+
+                    <div class="flex flex-wrap items-center justify-start gap-3 md:gap-4 mt-4">
+                        <a id="hero-alstar-btn" href="/html_pages/alstar.html" class="btn-maroon">
+                            ALSTAR
+                        </a>
+
+                        <a id="hero-handbook-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-ghost">
+                            Handbook
+                        </a>
+
+                        <a id="hero-trailer-btn" href="#" target="_blank" rel="noopener noreferrer"
+                            aria-label="Watch ALSCO Trailer" class="icon-trailer">
+                            <svg class="icon-trailer-svg">
+                                <use href="#trailer-svg"></use>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="affiliates-section" class="py-8 md:py-10 bg-gray-50 border-b-custom">
+            <div class="section-container">
+                <div class="flex flex-col items-center">
+                    <span
+                        class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs mb-4 md:mb-8 text-center">
+                        In Collaboration With
+                    </span>
+                    <div id="affiliates-grid"
+                        class="flex flex-wrap justify-center gap-6 sm:gap-12 md:gap-16 lg:gap-24 w-full">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="events-section" class="py-16 lg:py-24 bg-gray-50 relative">
+
+            <div class="section-container px-5 sm:px-8">
+
+                <div id="events-header-text" class="mb-8 md:mb-12">
+                    <span class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">
+                        Don't Miss Out
+                    </span>
+                    <h2 class="font-black text-main mt-2">
+                        Featured Events
+                    </h2>
+                </div>
+
+                <div id="events-carousel-wrapper"
+                    class="relative border-custom rounded-3xl sm:rounded-4xl bg-white overflow-hidden shadow-md">
+
+                    <div id="event-card"
+                        class="flex flex-col lg:grid lg:grid-cols-5 transition-opacity duration-500 ease-in-out opacity-100 h-full">
+
+                        <div id="img-container"
+                            class="w-full lg:col-span-2 relative aspect-4/5 overflow-hidden group bg-gray-100 shrink-0 border-b lg:border-b-0 lg:border-r border-gray-100">
+                            <img id="event-img" src=""
+                                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 lg:group-hover:opacity-0 group-[.show-details]:opacity-0"
+                                alt="Event Image" loading="eager">
+                            <img id="event-details-img" src=""
+                                class="absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-700 lg:group-hover:opacity-100 group-[.show-details]:opacity-100"
+                                alt="Event Details Image" loading="eager">
+
+                            <button id="mobile-details-toggle" type="button" aria-label="Show details"
+                                onclick="toggleEventInfo(event)" class="icon-info">
+                                <svg class="icon-info-svg">
+                                    <use href="#info-svg"></use>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="w-full lg:col-span-3 p-2 sm:p-8 lg:p-16 flex flex-col justify-start relative grow">
+
+                            <div class="tag-wrapper">
+                                <span id="event-type-tag" class="tag-base tag-primary"></span>
+                                <span id="event-department-tag"></span>
+
+                                <a id="event-ig-tag" href="#" target="_blank" rel="noopener noreferrer"
+                                    aria-label="View on Instagram" class="icon-ig">
+                                    <svg class="icon-ig-svg">
+                                        <use href="#ig-svg"></use>
+                                    </svg>
+                                </a>
+
+                                <a id="event-trailer-tag" href="#" target="_blank" rel="noopener noreferrer"
+                                    aria-label="Watch Event Trailer" class="icon-trailer">
+                                    <svg class="icon-trailer-svg">
+                                        <use href="#trailer-svg"></use>
+                                    </svg>
+                                </a>
+                            </div>
+
+                            <h3 id="event-title" class="font-bold mb-1">
+                                Loading Event...</h3>
+
+                            <h4 id="event-date"
+                                class="font-semibold text-gray-500 mb-4 sm:mb-6 uppercase tracking-widest hidden">
+                                Loading Date...
+                            </h4>
+
+                            <p id="event-desc" class="mb-8 text-main text-justify hidden wrap-break-words">
+                            </p>
+
+                            <div id="event-regis" class="flex flex-col sm:flex-row flex-wrap gap-3 mt-auto w-full pt-4">
+                                <a id="event-reg-btn" href="#" target="_blank" rel="noopener noreferrer"
+                                    class="btn-maroon">
+                                    <span id="event-reg-btn-text">Register Now</span>
+                                </a>
+                                <a id="to-events-page" href="/html_pages/events.html" class="btn-outline">
+                                    View All Events
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="publication-section" class="py-16 lg:py-24 bg-white border-t-custom">
+            <div class="max-w-7xl mx-auto px-4 sm:px-8">
+
+                <div id="publication-section-header" class="mb-10 md:mb-12 flex justify-between items-end">
+                    <div>
+                        <span id="publication-header-text-small"
+                            class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">Stay
+                            Informed</span>
+                        <h2 id="publication-header-text-big" class="font-black text-main mt-2">
+                            Latest Publications</h2>
+                    </div>
+                    <a id="to-publication-page" href="/html_pages/resource.html#publication-list-container"
+                        class="btn-outline">
+                        View All</a>
+                </div>
+
+                <div id="publication-container"
+                    class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 max-w-4xl mx-auto">
+                    <div id="newsletter-container" class="flex flex-col gap-4">
+                        <h3 id="newsletter-text" class="font-bold text-main border-b-2 border-gray-100 pb-2">
+                            Latest Newsletter</h3>
+                        <div id="latest-newsletter-container"></div>
+                    </div>
+
+                    <div id="monthly-post-container" class="flex flex-col gap-4">
+                        <h3 id="monthly-post-text" class="font-bold text-main border-b-2 border-gray-100 pb-2">
+                            Latest Monthly Post</h3>
+                        <div id="latest-post-container"></div>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex justify-center md:hidden">
+                    <a href="/html_pages/resource.html#publication-list-container"
+                        class="btn-ghost w-full sm:w-auto text-center text-sm">View
+                        All</a>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="faq" class="py-16 lg:py-24 bg-white border-t-custom">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center mb-12 md:mb-16">
+                    <span class="text-maroon font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">Information
+                        Hub</span>
+                    <h2 class="font-black text-main mt-2">
+                        Frequently Asked Questions</h2>
+                </div>
+
+                <div id="faq-accordion-container" class="border-t-2 border-[#d1d5db] mb-12">
+                    <p class="text-center text-gray-400 py-8">Loading FAQs...</p>
+                </div>
+
+                <div id="contact-cta"
+                    class="p-5 sm:p-6 md:p-8 lg:p-10 border-custom rounded-3xl bg-gray-50 flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-4 sm:gap-6">
+                    <div>
+                        <h4 class="font-black text-main mb-1 sm:mb-2">Still have
+                            questions?</h4>
+                        <p class="text-gray-600">Can't find the answer you're looking
+                            for? Reach out to us!</p>
+                    </div>
+                    <a id="contact-btn" href="/html_pages/contact.html"
+                        class="btn-maroon shrink-0 w-full md:w-auto text-xs sm:text-sm md:text-base text-center">
+                        Get In Touch
+                    </a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div> <!-- shared footer (footer.html) -->
+
+    <!-- Script load order is a contract — content.js MUST come first. See GUIDE.md. -->
+    <script defer src="/scripts/content.js"></script> <!-- 1. the data bank (siteContent) -->
+    <script defer src="/script.js"></script> <!-- 2. helpers + navbar/footer + menu -->
+    <script defer src="/scripts/index.js"></script> <!-- 3. fills this page -->
+    <script defer src="/scripts/announcement.js"></script> <!-- 4. homepage entry modal -->
 </body>
 
 </html>
