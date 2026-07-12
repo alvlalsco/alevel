@@ -252,8 +252,8 @@ const siteContent = {
                 ],
                 members: [
                     { role: "General Member", name: "BEATRICE GWEE WAN NING", image: "/images/committee/leadership_dev/beatrice.avif", quote: "What is sleep?" },
+                     { role: "General Member", name: "DIYA REYHANAA", image: "/images/committee/leadership_dev/rey.avif", quote: "Tables turn, bridges burn, you live and learn." },
                     { role: "General Member", name: "KUAN ZHOU-ZIEN", image: "/images/committee/leadership_dev/kuan.avif", quote: "Mistakes are meant to guide you, not define you." },
-                    { role: "General Member", name: "DIYA REYHANAA", image: "/images/committee/leadership_dev/rey.avif", quote: "Tables turn, bridges burn, you live and learn." },
                     { role: "General Member", name: "TEOH WEI XIN", image: "/images/committee/leadership_dev/weixin.avif", quote: "Being alive is as special an occasion as it gets." },
                     { role: "General Member", name: "TEOH YU SHAN", image: "/images/committee/leadership_dev/amber.avif", quote: "It’s not about making the right decisions, it‘s about making the decisions right." },
                 ],
