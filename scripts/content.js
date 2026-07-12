@@ -114,7 +114,7 @@ const siteContent = {
         // A. --- HERO SECTION ---
         hero: {
             image: "/images/index/alsco.avif",
-            
+            description: "January '26 ALSCO",
             handbook_pdf: "https://drive.google.com/file/d/1cGKNRWNi1seFKY3j8foU6nxRZ_lQBkga/view?usp=sharing",
             trailer_link: "https://www.instagram.com/p/DapurlJzC-C/",
         },
@@ -253,7 +253,7 @@ const siteContent = {
                 members: [
                     { role: "General Member", name: "BEATRICE GWEE WAN NING", image: "/images/committee/leadership_dev/beatrice.avif", quote: "What is sleep?" },
                     { role: "General Member", name: "KUAN ZHOU-ZIEN", image: "/images/committee/leadership_dev/kuan.avif", quote: "Mistakes are meant to guide you, not define you." },
-                    { role: "General Member", name: "DIYA REYHANA", image: "/images/committee/leadership_dev/rey.avif", quote: "Tables turn, bridges burn, you live and learn." },
+                    { role: "General Member", name: "DIYA REYHANAA", image: "/images/committee/leadership_dev/rey.avif", quote: "Tables turn, bridges burn, you live and learn." },
                     { role: "General Member", name: "TEOH WEI XIN", image: "/images/committee/leadership_dev/weixin.avif", quote: "Being alive is as special an occasion as it gets." },
                     { role: "General Member", name: "TEOH YU SHAN", image: "/images/committee/leadership_dev/amber.avif", quote: "It’s not about making the right decisions, it‘s about making the decisions right." },
                 ],
