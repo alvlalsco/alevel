@@ -353,14 +353,22 @@ const siteContent = {
            },
            */
            {
-                title: "Trimonthly A-lympics: A-ROX",
-                department: "Leadership Development",
-                date: "Thursday, 16th July 2026",
-                image: "/images/events/upcoming/tma.avif",
-                details_image: "/images/events/upcoming/tma2.avif",
-                ig_link: "https://www.instagram.com/p/DaSDF18Eavm/?img_index=1",
-                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSf2TMpvpy8gS4-xjGIRJLO4ZEvz1eJ8DaUzFt5xp_wxUXbuwQ/viewform?usp=publish-editor",  // internal page — opens in same tab
-                button_text: "Register Now",
+                title: "Dear Stranger",
+                department: "Student Welfare",
+                date: "Tuesday, 28th July 2026",
+                image: "/images/events/upcoming/dearstranger.avif",
+                details_image: "/images/events/upcoming/dearstranger2.avif",
+                ig_link: "https://www.instagram.com/p/DbA5-D3E5oa/?img_index=1",
+                button_text: "Join Now",
+            },
+            {
+                title: "A-Level Spirit Week 2026",
+                department: "Public Relations and Student Welfare",
+                date: "Monday, 27th July 2026 to Friday, 31st July 2026",
+                image: "/images/events/upcoming/spirit.avif",
+                details_image: "/images/events/upcoming/spirit2.avif",
+                ig_link: "https://www.instagram.com/p/DbA5-D3E5oa/?img_index=1",
+                button_text: "Join Now",
             },
             {
                 title: "A-Level Leadership Camp 2026",
@@ -370,7 +378,7 @@ const siteContent = {
                 details_image: "/images/events/upcoming/alcaug2.avif",
                 ig_link: "https://www.instagram.com/p/DaSDF18Eavm/?img_index=1",
                 registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSd4RN8zToRK8hTe1PtLiFNw2_3VgDUnP8sDqGKpT6TueNef3Q/viewform",  // internal page — opens in same tab
-                trailer_link: "https://www.instagram.com/reel/DWp8LpvTaKQ/?igsh=MWRpanpmbXBncmRyZQ==",
+                trailer_link: "https://www.instagram.com/p/DauORwwRlKg/",
                 button_text: "Register Now",
             },
             
@@ -379,11 +387,27 @@ const siteContent = {
         // SECTION 2: PAST EVENTS
         past: [
             {
+                title: "Trimonthly A-lympics: A-ROX",
+                department: "Leadership Development",
+                date: "Thursday, 16th July 2026",
+                image: "/images/events/upcoming/tma.avif",
+                details_image: "/images/events/upcoming/tma2.avif",
+                ig_link: "https://www.instagram.com/p/DaSDF18Eavm/?img_index=1",
+                
+            },
+            {
+                title: "July '26 A-Level Orientation",
+                date: "Monday, 13th July 2026",
+                department: "ALSCO",
+                image: "/images/events/past/julyori.avif",
+                ig_link: "https://www.instagram.com/p/Da2oskrEwLN/?img_index=1",
+            },
+            {
                 title: "January '26 ALSCO Installation Ceremony",
                 department: "ALSCO",
                 date: "Friday, 10th July 2026",
-                image: "/images/events/upcoming/installation.avif",
-                ig_link: "https://www.instagram.com/p/DaURFjPRHsG/",
+                image: "/images/events/past/installation.avif",
+                ig_link: "https://www.instagram.com/p/Da7wL95E5YB/?img_index=1",
             }, 
             {
                 title: "Finance Proofing 101",
@@ -519,6 +543,15 @@ const siteContent = {
                 category: "newsletter",
                 department: "Public Relations",
                 pdf_link: "https://drive.google.com/file/d/1wL_zAtEiykwhzWxTYdR08xn-KqPnhQgS/view?usp=sharing",
+                button_text: "Read Now"
+            },
+            {
+                title: "July Monthly Post",
+                image: "/images/resources/post16.avif",
+                category: "post",
+                department: "Student Welfare",
+                pdf_link: "https://drive.google.com/file/d/1K3V4ZYzG5goywSSCg5KaVMK0f8eqxnux/view?usp=sharing", // PDF download link
+                ig_link: "https://www.instagram.com/p/Da0BM9IE4iV/?img_index=1",
                 button_text: "Read Now"
             },
             {
@@ -892,20 +925,23 @@ const siteContent = {
             {
                 // CHANGE the id whenever you publish a new announcement — that is
                 // what makes the modal re-appear for people who dismissed the old one.
-                id: "installation-ceremony",                 // unique string (no spaces) — used to track dismissals
+                id: "alc",                 // unique string (no spaces) — used to track dismissals
 
                 eyebrow: "New Event",                          // small maroon kicker (optional)
-                title: "January '26 ALSCO Installation Ceremony",
-                body: "Join us for the installation ceremony and celebrate the new team.",
+                title: "January '26 A-Level Leadership Camp: A Midnight Massacre",
+                body: "Join us",
 
-                image: "/images/events/upcoming/installation.avif",   // optional — omit to hide
-                imageAlt: "Installation Ceremony event",
+                image: "/images/events/upcoming/alcaug.avif",   // optional — omit to hide
+                imageAlt: "A-Level Leadership Camp event",
+
+                ctaText: "Register Now",
+                ctaLink: "https://docs.google.com/forms/d/e/1FAIpQLSd4RN8zToRK8hTe1PtLiFNw2_3VgDUnP8sDqGKpT6TueNef3Q/viewform",           // internal page, #hash, or full https:// URL
 
 
                 // Optional scheduling (ISO date strings). Omit either to leave that
                 // side open. The modal only auto-shows while today is inside the window.
-                showFrom: "2026-07-04",                       // don't show before this date
-                expires: "2026-07-10",                       // stop showing after this date
+                showFrom: "2026-07-26",                       // don't show before this date
+                expires: "2026-07-31",                       // stop showing after this date
             },
             // Queue the next announcement here (with its own future showFrom) — the
             // script always shows the first ACTIVE one in this list.
