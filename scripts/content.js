@@ -701,17 +701,42 @@ const siteContent = {
 
         difference: "While ALSCO is the elected student committee responsible for governance and major events, ALSTARs are selected ambassadors who focus on volunteering, peer support, and representing the college at official functions. ALSCO members are automatically part of the ALSTAR community.",
 
+        // ====================================================================
+        // CERTIFICATE TIERS — Bronze / Silver / Gold
+        // EDIT: hours thresholds and labels freely.
+        // DO NOT rename: certificate / hours / label / color
+        // ====================================================================
         certificate: [
-            { count: 5, label: "Participation Points", desc: "Attend events" },
-            { count: 6, label: "Volunteer Points", desc: "Contribute time" },
-            { count: 5, label: "Talk / Workshop Points", desc: "Join Talks" }
+            { hours: 30, label: "Bronze", color: "#cd7f32" },  // EDIT: hours threshold
+            { hours: 40, label: "Silver", color: "#a8a9ad" },  // EDIT
+            { hours: 50, label: "Gold",   color: "#ffd700" },  // EDIT
         ],
 
         // update forms if got change
         forms: {
-            amendment: "https://docs.google.com/forms/d/e/1FAIpQLScyiFYlLV6sNb2XTmwI5h6GVEtDMprkCQjwePBqxFiZNB_z6w/viewform?usp=dialog",
-            talk: "https://docs.google.com/forms/d/e/1FAIpQLSdWPzzalwelN3CFRzxZpIqF4StYiGKwacgpTiZzaihuqo9QyA/viewform?usp=dialog"
+            amendment: "https://docs.google.com/forms/d/e/1FAIpQLSeKOe24rnBNuAHT_Rc0e4UG3WsWQp9Yl8bVZDSM7iyaiiLOwA/viewform?fbzx=738014352895659912",
         },
+
+        // ====================================================================
+        // HOURS SHEET — two tabs published separately as CSV
+        //
+        // HOW TO SET UP (do this for BOTH tabs):
+        //   1. Open the Google Sheet.
+        //   2. File → Share → Publish to web.
+        //   3. First dropdown: select the tab → Second dropdown: CSV → Publish.
+        //   4. Copy the URL and paste below.
+        //
+        // Tab 1 — Summary tab columns (in order):
+        //   Student ID | Name | Intake | ALSTAR Hours | Certificate
+        //
+        // Tab 2 — Events tab columns (in order):
+        //   Student ID | Name | Intake | Event Name | Event Date | ALSTAR Hours
+        //
+        // Leave as "<...>" to disable fetching from that tab.
+        // DO NOT rename: hoursSummaryTabUrl / hoursEventsTabUrl
+        // ====================================================================
+        hoursSummaryTabUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSud6wApWAAR9tcIS5DZGBRwxYhthDdBZxYUyKzNbpLiM7yFkPKbIP5MqbHi0Yk9q8XpMojGXesWeOj/pub?gid=0&single=true&output=csv",  // EDIT
+        hoursEventsTabUrl:  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSud6wApWAAR9tcIS5DZGBRwxYhthDdBZxYUyKzNbpLiM7yFkPKbIP5MqbHi0Yk9q8XpMojGXesWeOj/pub?gid=933625461&single=true&output=csv",   // EDIT
 
         // Links to ALSCO's Alstar calender and Malaysia's Holiday
         calendar: "https://calendar.google.com/calendar/embed?src=e3412a49be9e0175532071aac5b55a0c9e75c009c156104af759df5e184a3b40%40group.calendar.google.com&src=en.malaysia%23holiday%40group.v.calendar.google.com&ctz=Asia%2FKuala_Lumpur"
