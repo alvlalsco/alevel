@@ -20,7 +20,7 @@
     <link rel="icon" type="image/x-icon" href="/images/alsco_logo.avif">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/output.css">
 </head>
 
@@ -65,12 +65,12 @@
                         class="border-custom p-8 rounded-4xl flex flex-col justify-between h-full bg-white/80 backdrop-blur-sm">
                         <div>
                             <div class="flex items-center gap-3 mb-4">
-                                <h3>Points Tracker</h3>
+                                <h3>Hours Tracker</h3>
                             </div>
-                            <p class="mb-6 text-justify">Check your current participation status and see how close you
+                            <p class="mb-6 text-justify">Check your current ALSTAR hours and see how close you
                                 are to certification.</p>
                         </div>
-                        <a href="#tracker" onclick="smoothScroll(event, 'tracker')" class="btn-outline">View Points</a>
+                        <a href="#tracker" onclick="smoothScroll(event, 'tracker')" class="btn-outline">View Hours</a>
                     </div>
 
                     <div
@@ -124,32 +124,15 @@
                         <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-10">
                             <div>
                                 <h3 class="font-black uppercase text-main">Certificate Roadmap</h3>
-                                <p class="text-gray-500 mt-2">Complete these 3 pillars to receive your ALSTAR
-                                    Certificate.</p>
+                                <p class="text-gray-500 mt-2">Accumulate ALSTAR hours to unlock Bronze, Silver and Gold certificates.</p>
                             </div>
                             <a href="#tracker" onclick="smoothScroll(event, 'tracker')" class="btn-maroon">
-                                Check My Points
+                                Check My Hours
                             </a>
                         </div>
 
-                        <div id="certificate-pillars-container"
-                            class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-                            <div class="flex flex-col items-center">
-                                <span class="text-4xl font-black text-main mb-1">5</span>
-                                <span class="text-xs font-bold uppercase tracking-widest">Participation
-                                    Points</span>
-                            </div>
-                            <div
-                                class="flex flex-col items-center border-t-custom border-b-custom sm:border-t-0 sm:border-b-0 sm:border-x-custom py-6 sm:py-0">
-                                <span class="text-4xl font-black text-main mb-1">6</span>
-                                <span class="text-xs font-bold uppercase tracking-widest">Volunteer
-                                    Points</span>
-                            </div>
-                            <div class="flex flex-col items-center">
-                                <span class="text-4xl font-black text-main mb-1">5</span>
-                                <span class="text-xs font-bold uppercase tracking-widest">Talk / Workshop
-                                    Points</span>
-                            </div>
+                        <div id="certificate-pillars-container" class="space-y-4">
+                            <!-- Progress bar built by alstar.js from siteContent.alstarPage.certificate -->
                         </div>
                     </div>
 
@@ -157,12 +140,8 @@
                         <h4 class="font-bold text-lg mb-6 text-center md:text-left text-main">Submit Your Proof</h4>
                         <div class="flex flex-col md:flex-row gap-4">
                             <a id="btn-submit-amendment" href="#" target="_blank" rel="noopener noreferrer"
-                                class="btn-outline ">
-                                <span>📝</span> Points Amendment
-                            </a>
-                            <a id="btn-submit-talk" href="#" target="_blank" rel="noopener noreferrer"
-                                class="btn-outline ">
-                                <span>🎤</span> Talk/Workshop
+                                class="btn-outline">
+                                <span>📝</span> Hours Submission
                             </a>
                         </div>
                     </div>
@@ -173,52 +152,59 @@
         <section id="tracker" class="py-12 lg:py-16 border-b-custom bg-white">
             <div class="section-container">
                 <div class="section-heading mb-10">
-                    <h2 class="font-black tracking-tight mb-8">ALSTAR Points Tracker</h2>
+                    <h2 class="font-black tracking-tight mb-8">ALSTAR Hours Tracker</h2>
 
                     <div class="flex flex-col sm:flex-row items-center gap-3 w-full max-w-lg">
                         <input id="studentIdInput" type="text" placeholder="Enter Your Student ID"
                             class="border-custom rounded-full px-6 py-3 w-full focus:outline-none focus:border-maroon transition-colors text-main">
                         <button id="lookupBtn" onclick="lookupStudent()" class="btn-maroon">
-                            View Points
+                            View Hours
                         </button>
                     </div>
                 </div>
 
-                <div id="resultContainer" class="border-custom rounded-[2.5rem] p-8 md:p-10">
-                    <div
-                        class="flex flex-col md:flex-row justify-between items-start md:items-end border-b-custom pb-6 mb-8 gap-4">
+                <!-- Card 1: Name + status badge + total hours + progress bar -->
+                <div id="resultContainer" class="border-custom rounded-[2rem] p-8 md:p-10 mb-6">
+
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-custom pb-6 mb-6 gap-4">
                         <div>
-                            <p id="resIdLabel" class="text-xs font-bold tracking-[0.2em] uppercase mb-1">
-                                Registered Name</p>
+                            <p class="text-xs font-bold tracking-[0.2em] uppercase text-gray-400 mb-1">Registered Name</p>
                             <p id="resName" class="font-black text-main text-2xl md:text-3xl">---</p>
                         </div>
-                        <div class="text-left md:text-right">
-                            <div id="resStatusBadge"
-                                class="px-5 py-2 rounded-full text-xs font-bold uppercase bg-maroon text-white">
-                                WAITING FOR ID
-                            </div>
+                        <div id="resStatusBadge"
+                            class="px-5 py-2 rounded-full text-xs font-bold uppercase bg-maroon text-white">
+                            WAITING FOR ID
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-                        <div class="flex flex-col items-center">
-                            <span class="text-4xl font-black text-main mb-1"><span
-                                    id="resParticipation">0</span>/5</span>
-                            <span class="text-xs font-bold uppercase tracking-widest">Participation
-                                Points</span>
-                        </div>
-                        <div
-                            class="flex flex-col items-center border-t-custom border-b-custom sm:border-t-0 sm:border-b-0 sm:border-x-custom py-6 sm:py-0">
-                            <span class="text-4xl font-black text-main mb-1"><span id="resVolunteer">0</span>/6</span>
-                            <span class="text-xs font-bold uppercase tracking-widest">Volunteer
-                                Points</span>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <span class="text-4xl font-black text-main mb-1"><span id="resTalk">0</span>/5</span>
-                            <span class="text-xs font-bold uppercase tracking-widest">Talk / Workshop
-                                Points</span>
-                        </div>
+                    <!-- Total hours -->
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 mb-6">
+                        <p class="text-sm font-black uppercase tracking-widest text-main">Total ALSTAR Hours:</p>
+                        <p class="text-4xl font-black text-main leading-none">
+                            <span id="resTotal">--</span>/50
+                        </p>
                     </div>
+
+                    <!-- Tier progress bar — built by alstar.js -->
+                    <div id="resTierBar"></div>
+
+                </div>
+
+                <!-- Card 2: Events joined table -->
+                <div id="eventsContainer" class="border-custom rounded-[2rem] p-8 md:p-10">
+
+                    <h3 class="font-black uppercase text-main mb-6">Events Joined:</h3>
+
+                    <div class="grid grid-cols-3 gap-4 border-b border-gray-100 pb-3 mb-3">
+                        <p class="text-xs font-bold uppercase tracking-widest text-gray-400">Event</p>
+                        <p class="text-xs font-bold uppercase tracking-widest text-gray-400">Date</p>
+                        <p class="text-xs font-bold uppercase tracking-widest text-gray-400">Hours Awarded</p>
+                    </div>
+
+                    <div id="eventsTableBody">
+                        <p class="text-sm text-gray-400 py-4">Enter your Student ID to see events.</p>
+                    </div>
+
                 </div>
             </div>
         </section>
