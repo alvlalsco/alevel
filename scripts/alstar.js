@@ -27,15 +27,35 @@ async function fetchHoursFromSheet(studentId) {
     const summaryUrl = cfg.hoursSummaryTabUrl;
     const eventsUrl  = cfg.hoursEventsTabUrl;
 
-    // Helper — fetch a CSV URL and split into rows of columns
+    // Helper — fetch a CSV URL and split into rows of columns.
+    // Handles quoted fields that contain commas (e.g. "Little Notes, Big Smiles").
     async function fetchCsv(url) {
         if (!url || url.startsWith('<')) return null;
         try {
             const res = await fetch(url);
             if (!res.ok) return null;
             const text = await res.text();
-            return text.trim().split('\n').slice(1) // skip header row
-                .map(row => row.split(',').map(c => c.trim().replace(/^"|"$/g, '')));
+
+            // Proper CSV row parser — respects double-quoted fields
+            function parseRow(row) {
+                const cols = [];
+                let cur = '', inQuotes = false;
+                for (let i = 0; i < row.length; i++) {
+                    const ch = row[i];
+                    if (ch === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (ch === ',' && !inQuotes) {
+                        cols.push(cur.trim());
+                        cur = '';
+                    } else {
+                        cur += ch;
+                    }
+                }
+                cols.push(cur.trim());
+                return cols;
+            }
+
+            return text.trim().split('\n').slice(1).map(parseRow); // skip header
         } catch { return null; }
     }
 
