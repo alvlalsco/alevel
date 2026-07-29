@@ -78,7 +78,7 @@ const siteContent = {
             link: "/html_pages/alstar.html",
             sections: [
                 { name: "About ALSTAR", id: "alstar-logo" },
-                { name: "Points Tracker", id: "tracker" },
+                { name: "Hours Tracker", id: "tracker" },
                 { name: "Calender", id: "alstar-calendar-section" }
             ]
         },
@@ -151,8 +151,8 @@ const siteContent = {
                 answer: "Definitely worth it. You’ll build real skills—communication, teamwork, leadership, and time management—while meeting new people and gaining meaningful experiences. As for time commitment, it’s flexible. You choose which events to join, so how involved you get is entirely up to you."
             },
             {
-                question: "Where can I find the ALSTAR points tracker?",
-                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+                question: "Where can I find the ALSTAR Hours tracker?",
+                answer: "You can check your hours on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
             },
             {
                 question: "Can I join other clubs while being an ALSTAR or ALSCO?",
@@ -172,7 +172,7 @@ const siteContent = {
             },
             {
                 question: "Will I receive certificates for participating?",
-                answer: "For ALSTAR, certificates aren’t given per event. Instead, you’ll need to collect points: 5 Participation Points, 6 Volunteer Points, and 5 Talk/Workshop Points. Once you meet these requirements, you’ll earn your ALSTAR certificate. For COMSERVE, certificates depend on the event or follow their Credit Hour System."
+                answer: "For ALSTAR, certificates aren’t given per event. Instead, you’ll need to collect hours. Once you meet these requirements, which are outlined on the ALSTAR page, you’ll earn your ALSTAR certificate."
             },
             {
                 question: "Are there any fees for COMSERVE activities?",
@@ -187,8 +187,8 @@ const siteContent = {
                 answer: "You can submit feedback through the “Get In Touch” form on the Contact page or drop a DM on Instagram. All feedback is reviewed regularly."
             },
             {
-                question: "Where can I check my ALSTAR points?",
-                answer: "You can track your points directly on the ALSTAR page by entering your Student ID to see your current progress."
+                question: "Where can I check my ALSTAR Hours?",
+                answer: "You can track your hours directly on the ALSTAR page by entering your Student ID to see your current progress."
             },
             // If want to include more FAQ, just copy and paste and change the text inside ""
         ],
