@@ -14,93 +14,170 @@
 
 // Points tracker: looks up a Student ID via the Apps Script endpoint and shows
 // their points + eligibility. Wired to the button via onclick="lookupStudent()".
-async function lookupStudent() {
-    const input = document.getElementById('studentIdInput');
-    const btn = document.getElementById('lookupBtn');
-    const idToFind = input.value.trim();
+// ============================================================================
+// HOURS SHEET — fetch from two published CSV tabs
+//
+// Tab 1 (summary):  StudentID[0] | Name[1] | Intake[2] | ALSTARHours[3] | Certificate[4]
+// Tab 2 (events):   StudentID[0] | Name[1] | Intake[2] | EventName[3] | EventDate[4] | ALSTARHours[5]
+// ============================================================================
+async function fetchHoursFromSheet(studentId) {
+    const cfg = siteContent?.alstarPage;
+    if (!cfg) return null;
 
-    // UI Elements
-    const resName = document.getElementById('resName');
-    const resStatusBadge = document.getElementById('resStatusBadge');
-    const resPart = document.getElementById('resParticipation');
-    const resVol = document.getElementById('resVolunteer');
-    const resTalk = document.getElementById('resTalk');
-    // ... (keep your other UI elements) ...
+    const summaryUrl = cfg.hoursSummaryTabUrl;
+    const eventsUrl  = cfg.hoursEventsTabUrl;
+
+    // Helper — fetch a CSV URL and split into rows of columns
+    async function fetchCsv(url) {
+        if (!url || url.startsWith('<')) return null;
+        try {
+            const res = await fetch(url);
+            if (!res.ok) return null;
+            const text = await res.text();
+            return text.trim().split('\n').slice(1) // skip header row
+                .map(row => row.split(',').map(c => c.trim().replace(/^"|"$/g, '')));
+        } catch { return null; }
+    }
+
+    // 1. Fetch summary tab — get name + total hours
+    const summaryRows = await fetchCsv(summaryUrl);
+    if (!summaryRows) return null;
+
+    const summaryRow = summaryRows.find(r => r[0] === studentId);
+    if (!summaryRow) return null;
+
+    const name        = summaryRow[1] || '---';
+    const total       = parseFloat(summaryRow[3]) || 0;
+    const certificate = summaryRow[4] || '';
+
+    // 2. Fetch events tab — get list of events for this student
+    const eventRows = await fetchCsv(eventsUrl);
+    const events    = (eventRows || [])
+        .filter(r => r[0] === studentId && r[3])  // match student ID, skip blank event names
+        .map(r => ({
+            name:  r[3],   // Event Name
+            date:  r[4],   // Event Date
+            hours: r[5],   // ALSTAR Hours
+        }));
+
+    return { name, total, certificate, events };
+}
+
+// Updates the roadmap progress bar in the Certificate Roadmap section
+function updateRoadmapBar(total) {
+    const bar = document.getElementById('roadmap-bar');
+    if (!bar || !siteContent?.alstarPage?.certificate) return;
+    const max = siteContent.alstarPage.certificate.at(-1).hours;
+    const pct = Math.min((parseFloat(total) / max) * 100, 100);
+    bar.style.width = `${pct}%`;
+}
+
+async function lookupStudent() {
+    const input           = document.getElementById('studentIdInput');
+    const btn             = document.getElementById('lookupBtn');
+    const idToFind        = input.value.trim();
+    const resName         = document.getElementById('resName');
+    const resStatusBadge  = document.getElementById('resStatusBadge');
+    const resTotal        = document.getElementById('resTotal');
+    const eventsTableBody = document.getElementById('eventsTableBody');
 
     if (!idToFind) return;
 
     btn.innerText = "Loading...";
-    btn.disabled = true;
+    btn.disabled  = true;
 
-    // ==========================================
-    // 🕵️ CLIENT ID GENERATOR
-    // ==========================================
-    // Check if the browser already remembers this user
-    let clientId = localStorage.getItem('alstar_client_id');
+    const tiers     = siteContent?.alstarPage?.certificate || [];
+    const baseBadge = "px-5 py-2 rounded-full text-xs font-bold uppercase text-white transition-colors duration-300";
 
-    // If not, create a random string and save it to their browser
-    if (!clientId) {
-        clientId = Math.random().toString(36).substring(2, 15);
-        localStorage.setItem('alstar_client_id', clientId);
+    // Sets the status badge to the highest tier the student has reached
+    function applyTierBadge(total) {
+        const reached = [...tiers].reverse().find(t => (total ?? 0) >= t.hours);
+        if (reached) {
+            resStatusBadge.innerText          = `${reached.label} Certificate`;
+            resStatusBadge.className          = baseBadge;
+            resStatusBadge.style.background   = reached.color;
+            resStatusBadge.style.color        = reached.label === 'Gold' ? '#000' : '#fff';
+        } else {
+            resStatusBadge.innerText          = "Not Yet Eligible";
+            resStatusBadge.className          = `${baseBadge} bg-maroon`;
+            resStatusBadge.style.background   = '';
+            resStatusBadge.style.color        = '';
+        }
+        updateRoadmapBar(total ?? 0);
     }
-    // ==========================================
 
-    const API_BASE_URL = 'https://script.google.com/macros/s/AKfycbwS3WsrRAeNuhz5bIe4-JQ0QAxPa9DLgFuZN_XJKMDuFV2G-j4IBGvT9A6ySzTkeygt8A/exec';
-
-    // Append BOTH the student ID and the Client ID to the URL
-    const fetchUrl = `${API_BASE_URL}?id=${encodeURIComponent(idToFind)}&clientId=${clientId}`;
-
-    const baseBadgeClasses = "px-5 py-2 rounded-full text-xs font-bold uppercase text-white transition-colors duration-300";
+    // Renders the events table
+    function renderEvents(events) {
+        if (!eventsTableBody) return;
+        if (events?.length > 0) {
+            eventsTableBody.innerHTML = events.map(evt => `
+                <div class="grid grid-cols-3 gap-4 py-3 border-b border-gray-50 last:border-0">
+                    <p class="text-sm font-bold text-main">${evt.name}</p>
+                    <p class="text-sm text-main">${evt.date}</p>
+                    <p class="text-sm text-main">${evt.hours}</p>
+                </div>
+            `).join('');
+        } else {
+            eventsTableBody.innerHTML = `<p class="text-sm text-gray-400 py-4">No events recorded yet.</p>`;
+        }
+    }
 
     try {
-        const response = await fetch(fetchUrl);
-        if (!response.ok) throw new Error("Network response was not ok");
+        // 1. Try live sheet CSV (primary source)
+        const sheetResult = await fetchHoursFromSheet(idToFind);
+
+        if (sheetResult) {
+            resName.innerText  = sheetResult.name;
+            resTotal.innerText = sheetResult.total;
+            applyTierBadge(sheetResult.total);
+            renderEvents(sheetResult.events || []);
+            return;
+        }
+
+        // 2. Fall back to Apps Script endpoint
+        let clientId = localStorage.getItem('alstar_client_id');
+        if (!clientId) {
+            clientId = Math.random().toString(36).substring(2, 15);
+            localStorage.setItem('alstar_client_id', clientId);
+        }
+
+        const API_BASE_URL = 'https://script.google.com/macros/s/AKfycbwS3WsrRAeNuhz5bIe4-JQ0QAxPa9DLgFuZN_XJKMDuFV2G-j4IBGvT9A6ySzTkeygt8A/exec';
+        const response     = await fetch(`${API_BASE_URL}?id=${encodeURIComponent(idToFind)}&clientId=${clientId}`);
+        if (!response.ok) throw new Error("Network error");
 
         const result = await response.json();
 
         if (result.success) {
-            n = result.data.name;
-            p = result.data.participation;
-            v = result.data.volunteer;
-            t = result.data.talk;
-            resName.innerText = n;
-            resPart.innerText = p;
-            resVol.innerText = v;
-            resTalk.innerText = t;
-
-            // 3. Status Logic (Criteria: 5, 6, 5)
-            if (p >= 5 && v >= 6 && t >= 5) {
-                resStatusBadge.innerText = "Eligible for Certificate";
-                resStatusBadge.className = `${baseBadgeClasses} bg-green-700`;
-            } else {
-                resStatusBadge.innerText = "Not Eligible for Certificate";
-                resStatusBadge.className = `${baseBadgeClasses} bg-maroon`;
-            }
-
+            const { name, total, events } = result.data;
+            resName.innerText  = name;
+            resTotal.innerText = total ?? '--';
+            applyTierBadge(total);
+            renderEvents(events);
         } else {
-            // Handle the Rate Limit Error OR "ID Not Found"
-            resName.innerText = "---";
+            resName.innerText  = "---";
+            resTotal.innerText = "--";
+            if (eventsTableBody) eventsTableBody.innerHTML = "";
+            resStatusBadge.style.background = '';
+            resStatusBadge.style.color      = '';
 
-            // If the error contains "Too many requests", show it in the badge
             if (result.error.includes("Too many requests")) {
                 resStatusBadge.innerText = "Rate Limited (Wait 1 Min)";
-                resStatusBadge.className = `${baseBadgeClasses} bg-orange-500`;
+                resStatusBadge.className = `${baseBadge} bg-orange-500`;
             } else {
-                resName.innerText = "---";
-                resPart.innerText = "0";
-                resVol.innerText = "0";
-                resTalk.innerText = "0";
-                resStatusBadge.innerText = result.error; // "ID Not Found"
-                resStatusBadge.className = `${baseBadgeClasses} bg-gray-800`;
+                resStatusBadge.innerText = result.error;
+                resStatusBadge.className = `${baseBadge} bg-gray-800`;
             }
         }
+
     } catch (err) {
         console.error("Fetch Error:", err);
-        resStatusBadge.innerText = "System Error";
-        resStatusBadge.className = `${baseBadgeClasses} bg-red-600`;
+        resStatusBadge.innerText        = "System Error";
+        resStatusBadge.className        = `${baseBadge} bg-red-600`;
+        resStatusBadge.style.background = '';
+        resStatusBadge.style.color      = '';
     } finally {
-        btn.innerText = "View Points";
-        btn.disabled = false;
+        btn.innerText = "View Hours";
+        btn.disabled  = false;
     }
 }
 
@@ -124,30 +201,51 @@ document.addEventListener("DOMContentLoaded", async () => {
         setText("alstar-description-text", siteContent.alstarPage.description);
         setText("alstar-difference-text", siteContent.alstarPage.difference);
 
-        // C. Generate Certificate Pillars Dynamically
+        // C. Certificate Roadmap — progress bar with Bronze / Silver / Gold tiers
         const pillarsContainer = document.getElementById("certificate-pillars-container");
         if (pillarsContainer && siteContent.alstarPage.certificate) {
-            pillarsContainer.innerHTML = ""; // Clear out any existing content
+            const tiers  = siteContent.alstarPage.certificate;
+            const maxHrs = tiers[tiers.length - 1].hours;
 
-            siteContent.alstarPage.certificate.forEach((pillar, index) => {
-                // Apply the specific border classes only to the middle item (index 1)
-                const borderClasses = index === 1
-                    ? "border-t-custom border-b-custom sm:border-t-0 sm:border-b-0 sm:border-x-custom py-6 sm:py-0"
-                    : "";
+            // Tier marker labels — absolutely positioned at their correct % along the bar
+            const markers = tiers.map(t => {
+                const pct = (t.hours / maxHrs) * 100;
+                // Last marker anchors right edge; others anchor center
+                const transform = pct >= 100 ? 'translateX(-100%)' : pct <= 0 ? 'translateX(0)' : 'translateX(-50%)';
+                return `
+                <div class="absolute flex flex-col items-center" style="left:${pct}%; transform:${transform};">
+                    <span class="text-xs font-bold uppercase" style="color:${t.color}">${t.label}</span>
+                    <span class="text-xs text-gray-400">${t.hours}h</span>
+                </div>`;
+            }).join('');
 
-                pillarsContainer.innerHTML += `
-                        <div class="flex flex-col items-center ${borderClasses}">
-                            <span class="text-4xl font-black text-main mb-1">${pillar.count}</span>
-                            <span class="text-xs font-bold uppercase tracking-widest primary-maroon">${pillar.label}</span>
-                            <span class="text-sm text-gray-500 mt-2">${pillar.desc}</span>
-                        </div>
-                    `;
-            });
+            // Tick marks at each tier position
+            const ticks = tiers.map(t => `
+                <div class="absolute top-0 h-full w-0.5 bg-white/60"
+                     style="left:${(t.hours / maxHrs) * 100}%"></div>
+            `).join('');
+
+            pillarsContainer.innerHTML = `
+                <!-- Marker labels row — needs relative + fixed height so absolute children show -->
+                <div class="relative h-8 mb-1">${markers}</div>
+
+                <div class="relative w-full h-4 bg-gray-100 rounded-full overflow-hidden">
+                    ${ticks}
+                    <div class="h-full rounded-full transition-all duration-700"
+                         id="roadmap-bar"
+                         style="width:0%; background: linear-gradient(to right, #cd7f32, #a8a9ad, #ffd700)">
+                    </div>
+                </div>
+
+                <div class="flex justify-between mt-2">
+                    <span class="text-xs text-gray-400">0h</span>
+                    <span class="text-xs text-gray-400"></span>
+                </div>
+            `;
         }
 
-        // C. Submission Forms
+        // C. Submission Form
         setLink("btn-submit-amendment", siteContent.alstarPage.forms.amendment);
-        setLink("btn-submit-talk", siteContent.alstarPage.forms.talk);
 
         // D. Google Calendar Embed
         const calFrame = document.getElementById("calendar-frame");
