@@ -85,11 +85,12 @@ async function fetchHoursFromSheet(studentId) {
 
 // Updates the roadmap progress bar in the Certificate Roadmap section
 function updateRoadmapBar(total) {
-    const bar = document.getElementById('roadmap-bar');
-    if (!bar || !siteContent?.alstarPage?.certificate) return;
-    const max = siteContent.alstarPage.certificate.at(-1).hours;
-    const pct = Math.min((parseFloat(total) / max) * 100, 100);
-    bar.style.width = `${pct}%`;
+    const mask = document.getElementById('roadmap-mask');
+    if (!mask || !siteContent?.alstarPage?.certificate) return;
+    const max  = siteContent.alstarPage.certificate.at(-1).hours;
+    const pct  = Math.min((parseFloat(total) / max) * 100, 100);
+    // Shrink the grey mask from the right — reveals the coloured track underneath
+    mask.style.width = `${100 - pct}%`;
 }
 
 async function lookupStudent() {
@@ -249,11 +250,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <!-- Marker labels row — needs relative + fixed height so absolute children show -->
                 <div class="relative h-8 mb-1">${markers}</div>
 
-                <div class="relative w-full h-4 bg-gray-100 rounded-full overflow-hidden">
+                <div class="relative w-full h-4 rounded-full overflow-hidden"
+                     style="background: linear-gradient(to right, #cd7f32 ${(tiers[0].hours/maxHrs)*100}%, #a8a9ad ${(tiers[0].hours/maxHrs)*100}%, #a8a9ad ${(tiers[1].hours/maxHrs)*100}%, #ffd700 ${(tiers[1].hours/maxHrs)*100}%, #ffd700 ${(tiers[2].hours/maxHrs)*100}%);">
                     ${ticks}
-                    <div class="h-full rounded-full transition-all duration-700"
-                         id="roadmap-bar"
-                         style="width:0%; background: linear-gradient(to right, #cd7f32, #a8a9ad, #ffd700)">
+                    <!-- Grey overlay slides in from the right to mask unearned progress -->
+                    <div class="absolute top-0 right-0 h-full bg-gray-100 transition-all duration-700"
+                         id="roadmap-mask"
+                         style="width:100%">
                     </div>
                 </div>
 
