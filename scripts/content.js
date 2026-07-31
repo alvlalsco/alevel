@@ -352,24 +352,6 @@ const siteContent = {
                 button_text: "Closed",
            },
            */
-           {
-                title: "Dear Stranger",
-                department: "Student Welfare",
-                date: "Tuesday, 28th July 2026",
-                image: "/images/events/upcoming/dearstranger.avif",
-                details_image: "/images/events/upcoming/dearstranger2.avif",
-                ig_link: "https://www.instagram.com/p/DbA5-D3E5oa/?img_index=1",
-                button_text: "Join Now",
-            },
-            {
-                title: "A-Level Spirit Week 2026",
-                department: "Public Relations and Student Welfare",
-                date: "Monday, 27th July 2026 to Friday, 31st July 2026",
-                image: "/images/events/upcoming/spirit.avif",
-                details_image: "/images/events/upcoming/spirit2.avif",
-                ig_link: "https://www.instagram.com/p/DbA5-D3E5oa/?img_index=1",
-                button_text: "Join Now",
-            },
             {
                 title: "A-Level Leadership Camp 2026",
                 department: "Leadership Development",
@@ -386,6 +368,24 @@ const siteContent = {
 
         // SECTION 2: PAST EVENTS
         past: [
+            {
+                title: "A-Level Spirit Week 2026",
+                department: "Public Relations and Student Welfare",
+                date: "Monday, 27th July 2026 to Friday, 31st July 2026",
+                image: "/images/events/upcoming/spirit.avif",
+                details_image: "/images/events/upcoming/spirit2.avif",
+                ig_link: "https://docs.google.com/forms/d/e/1FAIpQLSdz6Z1VzqfGL2a-e75rY_NpYf1mkOfea0H0viEii7TH-3JHiw/viewform?usp=header",
+                button_text: "Join Now",
+            },
+            {
+                title: "Dear Stranger",
+                department: "Student Welfare",
+                date: "Tuesday, 28th July 2026",
+                image: "/images/events/upcoming/dearstranger.avif",
+                details_image: "/images/events/upcoming/dearstranger2.avif",
+                ig_link: "https://www.instagram.com/p/DbA5-D3E5oa/?img_index=1",
+                button_text: "Join Now",
+            },
             {
                 title: "Trimonthly A-lympics: A-ROX",
                 department: "Leadership Development",
