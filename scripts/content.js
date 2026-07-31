@@ -78,7 +78,7 @@ const siteContent = {
             link: "/html_pages/alstar.html",
             sections: [
                 { name: "About ALSTAR", id: "alstar-logo" },
-                { name: "Points Tracker", id: "tracker" },
+                { name: "Hours Tracker", id: "tracker" },
                 { name: "Calender", id: "alstar-calendar-section" }
             ]
         },
@@ -151,8 +151,8 @@ const siteContent = {
                 answer: "Definitely worth it. You’ll build real skills—communication, teamwork, leadership, and time management—while meeting new people and gaining meaningful experiences. As for time commitment, it’s flexible. You choose which events to join, so how involved you get is entirely up to you."
             },
             {
-                question: "Where can I find the ALSTAR points tracker?",
-                answer: "You can check your points on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
+                question: "Where can I find the ALSTAR Hours tracker?",
+                answer: "You can check your hours on the ALSTAR page of this website. Just enter your Student ID to see your current participation status."
             },
             {
                 question: "Can I join other clubs while being an ALSTAR or ALSCO?",
@@ -172,7 +172,7 @@ const siteContent = {
             },
             {
                 question: "Will I receive certificates for participating?",
-                answer: "For ALSTAR, certificates aren’t given per event. Instead, you’ll need to collect points: 5 Participation Points, 6 Volunteer Points, and 5 Talk/Workshop Points. Once you meet these requirements, you’ll earn your ALSTAR certificate. For COMSERVE, certificates depend on the event or follow their Credit Hour System."
+                answer: "For ALSTAR, certificates aren’t given per event. Instead, you’ll need to collect hours. Once you meet these requirements, which are outlined on the ALSTAR page, you’ll earn your ALSTAR certificate."
             },
             {
                 question: "Are there any fees for COMSERVE activities?",
@@ -187,8 +187,8 @@ const siteContent = {
                 answer: "You can submit feedback through the “Get In Touch” form on the Contact page or drop a DM on Instagram. All feedback is reviewed regularly."
             },
             {
-                question: "Where can I check my ALSTAR points?",
-                answer: "You can track your points directly on the ALSTAR page by entering your Student ID to see your current progress."
+                question: "Where can I check my ALSTAR Hours?",
+                answer: "You can track your hours directly on the ALSTAR page by entering your Student ID to see your current progress."
             },
             // If want to include more FAQ, just copy and paste and change the text inside ""
         ],
@@ -352,24 +352,6 @@ const siteContent = {
                 button_text: "Closed",
            },
            */
-           {
-                title: "Dear Stranger",
-                department: "Student Welfare",
-                date: "Tuesday, 28th July 2026",
-                image: "/images/events/upcoming/dearstranger.avif",
-                details_image: "/images/events/upcoming/dearstranger2.avif",
-                ig_link: "https://www.instagram.com/p/DbA5-D3E5oa/?img_index=1",
-                button_text: "Join Now",
-            },
-            {
-                title: "A-Level Spirit Week 2026",
-                department: "Public Relations and Student Welfare",
-                date: "Monday, 27th July 2026 to Friday, 31st July 2026",
-                image: "/images/events/upcoming/spirit.avif",
-                details_image: "/images/events/upcoming/spirit2.avif",
-                ig_link: "https://www.instagram.com/p/DbA5-D3E5oa/?img_index=1",
-                button_text: "Join Now",
-            },
             {
                 title: "A-Level Leadership Camp 2026",
                 department: "Leadership Development",
@@ -386,6 +368,24 @@ const siteContent = {
 
         // SECTION 2: PAST EVENTS
         past: [
+            {
+                title: "A-Level Spirit Week 2026",
+                department: "Public Relations and Student Welfare",
+                date: "Monday, 27th July 2026 to Friday, 31st July 2026",
+                image: "/images/events/upcoming/spirit.avif",
+                details_image: "/images/events/upcoming/spirit2.avif",
+                ig_link: "https://docs.google.com/forms/d/e/1FAIpQLSdz6Z1VzqfGL2a-e75rY_NpYf1mkOfea0H0viEii7TH-3JHiw/viewform?usp=header",
+                button_text: "Join Now",
+            },
+            {
+                title: "Dear Stranger",
+                department: "Student Welfare",
+                date: "Tuesday, 28th July 2026",
+                image: "/images/events/upcoming/dearstranger.avif",
+                details_image: "/images/events/upcoming/dearstranger2.avif",
+                ig_link: "https://www.instagram.com/p/DbA5-D3E5oa/?img_index=1",
+                button_text: "Join Now",
+            },
             {
                 title: "Trimonthly A-lympics: A-ROX",
                 department: "Leadership Development",
@@ -701,17 +701,42 @@ const siteContent = {
 
         difference: "While ALSCO is the elected student committee responsible for governance and major events, ALSTARs are selected ambassadors who focus on volunteering, peer support, and representing the college at official functions. ALSCO members are automatically part of the ALSTAR community.",
 
+        // ====================================================================
+        // CERTIFICATE TIERS — Bronze / Silver / Gold
+        // EDIT: hours thresholds and labels freely.
+        // DO NOT rename: certificate / hours / label / color
+        // ====================================================================
         certificate: [
-            { count: 5, label: "Participation Points", desc: "Attend events" },
-            { count: 6, label: "Volunteer Points", desc: "Contribute time" },
-            { count: 5, label: "Talk / Workshop Points", desc: "Join Talks" }
+            { hours: 30, label: "Bronze", color: "#cd7f32" },  // EDIT: hours threshold
+            { hours: 40, label: "Silver", color: "#a8a9ad" },  // EDIT
+            { hours: 50, label: "Gold",   color: "#ffd700" },  // EDIT
         ],
 
         // update forms if got change
         forms: {
-            amendment: "https://docs.google.com/forms/d/e/1FAIpQLScyiFYlLV6sNb2XTmwI5h6GVEtDMprkCQjwePBqxFiZNB_z6w/viewform?usp=dialog",
-            talk: "https://docs.google.com/forms/d/e/1FAIpQLSdWPzzalwelN3CFRzxZpIqF4StYiGKwacgpTiZzaihuqo9QyA/viewform?usp=dialog"
+            amendment: "https://docs.google.com/forms/d/e/1FAIpQLSeKOe24rnBNuAHT_Rc0e4UG3WsWQp9Yl8bVZDSM7iyaiiLOwA/viewform?fbzx=738014352895659912",
         },
+
+        // ====================================================================
+        // HOURS SHEET — two tabs published separately as CSV
+        //
+        // HOW TO SET UP (do this for BOTH tabs):
+        //   1. Open the Google Sheet.
+        //   2. File → Share → Publish to web.
+        //   3. First dropdown: select the tab → Second dropdown: CSV → Publish.
+        //   4. Copy the URL and paste below.
+        //
+        // Tab 1 — Summary tab columns (in order):
+        //   Student ID | Name | Intake | ALSTAR Hours | Certificate
+        //
+        // Tab 2 — Events tab columns (in order):
+        //   Student ID | Name | Intake | Event Name | Event Date | ALSTAR Hours
+        //
+        // Leave as "<...>" to disable fetching from that tab.
+        // DO NOT rename: hoursSummaryTabUrl / hoursEventsTabUrl
+        // ====================================================================
+        hoursSummaryTabUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSud6wApWAAR9tcIS5DZGBRwxYhthDdBZxYUyKzNbpLiM7yFkPKbIP5MqbHi0Yk9q8XpMojGXesWeOj/pub?gid=0&single=true&output=csv",  // EDIT
+        hoursEventsTabUrl:  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSud6wApWAAR9tcIS5DZGBRwxYhthDdBZxYUyKzNbpLiM7yFkPKbIP5MqbHi0Yk9q8XpMojGXesWeOj/pub?gid=933625461&single=true&output=csv",   // EDIT
 
         // Links to ALSCO's Alstar calender and Malaysia's Holiday
         calendar: "https://calendar.google.com/calendar/embed?src=e3412a49be9e0175532071aac5b55a0c9e75c009c156104af759df5e184a3b40%40group.calendar.google.com&src=en.malaysia%23holiday%40group.v.calendar.google.com&ctz=Asia%2FKuala_Lumpur"
