@@ -353,77 +353,15 @@ const siteContent = {
            },
            */
            {
-                title: "From Idea to Impact",
-                department: "ALSTAR G10",
-                event_type: "Actual Event",
-                date: "Monday, 14th September 2026",
-                image: "/images/events/upcoming/g10ae.avif",
-                details_image: "/images/events/upcoming/g10details.avif",
-                ig_link: "https://www.instagram.com/p/DciQQaREcf9/?img_index=1",
-                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSe629hYrAKBVVRgtRf8esZTuZQ5-2ylanmfthiSknY1FkCYMQ/viewform",
-                trailer_link: "",
-                button_text: "Join now",
-           },
-           {
-                title: "Ecotopia",
-                department: "ALSTAR G4",
-                event_type: "Actual Event",
-                date: "Monday, 7th September 2026",
-                image: "/images/events/upcoming/g4ae.avif",
-                details_image: "/images/events/upcoming/g4details.avif",
-                ig_link: "https://www.instagram.com/p/DcfMksdkZl6/?img_index=1",
-                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSeyA9XqfZ7ZoPcHWWSYEpyYaC-XG2xrh-MPWHYCTVegmf5IRw/viewform",
-                trailer_link: "",
-                button_text: "Join now",
-           },
-           {
-                title: "ReFashion",
-                department: "ALSTAR G5",
-                event_type: "Actual Event",
-                date: "Thursday, 10th September 2026",
-                image: "/images/events/upcoming/g5ae.avif",
-                details_image: "/images/events/upcoming/g5details.avif",
-                ig_link: "https://www.instagram.com/p/DcivnqDEw-Y/?img_index=1",
-                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSfvrpueAQtyWgH9SnkNGQBb79dv5rs6LbCWl-0zSkI5nsMjmQ/viewform",
-                trailer_link: "https://www.instagram.com/p/Dcn401YxmSb/",
-                button_text: "Join now",
-           },
-           {
-                title: "Ball it Out",
-                department: "ALSTAR G2",
-                event_type: "Actual Event",
-                date: "Wednesday, 9th September 2026 to Friday, 11th September 2026",
-                image: "/images/events/upcoming/g2ae.avif",
-                details_image: "/images/events/upcoming/g2details.avif",
-                ig_link: "https://www.instagram.com/p/Dckc3BQEQTN/?img_index=1",
-                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSfPMliaDeKyh6qzhxhF0lB7PK8LjO4a0Y0I7oh9Oz3Qz23hgQ/viewform",
-                trailer_link: "https://www.instagram.com/p/DchvXI3z1v6/",
-                button_text: "Join now",
-           },
-            {
-                title: "Down the Rabbit Hole",
-                department: "ALSTAR G7",
-                event_type: "Actual Event",
-                date: "Friday, 11th September 2026 and Monday, 14th September 2026",
-                image: "/images/events/upcoming/g7ae.avif",
-                details_image: "/images/events/upcoming/g7details.avif",
-                ig_link: "https://www.instagram.com/p/DcnP0W4kdjd/?img_index=1",
-                registration_link: "https://forms.gle/UaGAkJCrMBehdf1v7",
-                trailer_link: "https://www.instagram.com/p/Dcko9nWRnz1/",
-                button_text: "Join now",
-           },
-           {
-                title: "404 Stress Not Found",
-                department: "ALSTAR G6",
-                event_type: "Actual Event",
-                date: "Tuesday, 15th September 2026",
-                image: "/images/events/upcoming/g6ae.avif",
-                details_image: "/images/events/upcoming/g6details.avif",
-                ig_link: "https://www.instagram.com/p/DcdNMMtEU8D/?img_index=1",
-                registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSenNz2L9z9kMxQNN5GEQzmmZzfpBE3d7pMCgPsqNNN-XgpRkw/viewform",
-                trailer_link: "",
-                button_text: "Join now",
-           },
+                title: "A-Level After Hours",
+                department: "Leadership Development",
+                date: "Saturday, 26th September 2026 to Sunday, 27th September 2026",
+                image: "/images/events/upcoming/afterhours.avif",
+                details_image: "/images/events/upcoming/afterhoursdetails.avif",
+                ig_link: "https://www.instagram.com/p/DdgUV2tk6Nd/?img_index=1",
+                registration_link: "https://forms.gle/HGYok6tE9MNYnzFY9",  // internal page — opens in same tab
+                button_text: "Register Now",
+            },
         ],
 
         // SECTION 2: PAST EVENTS
@@ -625,6 +563,15 @@ const siteContent = {
                 category: "newsletter",
                 department: "Public Relations",
                 pdf_link: "https://drive.google.com/file/d/1wL_zAtEiykwhzWxTYdR08xn-KqPnhQgS/view?usp=sharing",
+                button_text: "Read Now"
+            },
+            {
+                title: "September Bi-Monthly Post",
+                image: "/images/resources/post17.avif",
+                category: "post",
+                department: "Student Welfare",
+                pdf_link: "https://drive.google.com/file/d/1tT5SMpKMfBGwTvQz4d22vMlnNI2zXLv6/view?usp=sharing", // PDF download link
+                ig_link: "https://www.instagram.com/p/DdWBPYRE-Th/?img_index=1",
                 button_text: "Read Now"
             },
             {
@@ -1032,23 +979,23 @@ const siteContent = {
             {
                 // CHANGE the id whenever you publish a new announcement — that is
                 // what makes the modal re-appear for people who dismissed the old one.
-                id: "fiti",                 // unique string (no spaces) — used to track dismissals
+                id: "afterhours",                 // unique string (no spaces) — used to track dismissals
 
                 eyebrow: "New Event",                          // small maroon kicker (optional)
-                title: "From Idea to Impact",
+                title: "A-Level After Hours",
                 body: "Join us",
 
-                image: "/images/events/upcoming/g10ae.avif",   // optional — omit to hide
-                imageAlt: "g10",
+                image: "/images/events/upcoming/afterhours.avif",   // optional — omit to hide
+                imageAlt: "A-Level After Hours",
 
                 ctaText: "Register Now",
-                ctaLink: "https://docs.google.com/forms/d/e/1FAIpQLSe629hYrAKBVVRgtRf8esZTuZQ5-2ylanmfthiSknY1FkCYMQ/viewform",           // internal page, #hash, or full https:// URL
+                ctaLink: "https://forms.gle/HGYok6tE9MNYnzFY9",           // internal page, #hash, or full https:// URL
 
 
                 // Optional scheduling (ISO date strings). Omit either to leave that
                 // side open. The modal only auto-shows while today is inside the window.
-                showFrom: "2026-08-31",                       // don't show before this date
-                expires: "2026-09-14",                       // stop showing after this date
+                showFrom: "2026-09-20",                       // don't show before this date
+                expires: "2026-09-27",                       // stop showing after this date
             },
             // Queue the next announcement here (with its own future showFrom) — the
             // script always shows the first ACTIVE one in this list.
