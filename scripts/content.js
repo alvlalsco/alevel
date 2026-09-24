@@ -534,6 +534,14 @@ const siteContent = {
         // 2. PUBLICATION CARDS
         publications: [
             {
+                title: "Newsletter Issue 11",
+                image: "/images/resources/issue11.avif",
+                category: "newsletter",
+                department: "Public Relations",
+                pdf_link: "https://drive.google.com/file/d/1tZFNG8hSU18wGwHyi70sTfZUS4QNwLIX/view?usp=sharing",
+                button_text: "Read Now"
+            },
+            {
                 title: "Newsletter Issue 10",
                 image: "/images/resources/issue10.avif",
                 category: "newsletter",
@@ -563,6 +571,54 @@ const siteContent = {
                 category: "newsletter",
                 department: "Public Relations",
                 pdf_link: "https://drive.google.com/file/d/1wL_zAtEiykwhzWxTYdR08xn-KqPnhQgS/view?usp=sharing",
+                button_text: "Read Now"
+            },
+            {
+                title: "Newsletter Issue 6",
+                image: "/images/resources/issue6.avif",
+                category: "newsletter",
+                department: "Public Relations",
+                pdf_link: "https://drive.google.com/file/d/1VfKd_boY_JyOC-Ck7HHBAFlSINknUlcP/view?usp=sharing",
+                button_text: "Read Now"
+            },
+            {
+                title: "Newsletter Issue 5",
+                image: "/images/resources/issue5.avif",
+                category: "newsletter",
+                department: "Public Relations",
+                pdf_link: "https://drive.google.com/file/d/1YI1ZoyGU85kLI67rFtqNul0ZRazkbalc/view?usp=sharing",
+                button_text: "Read Now"
+            },
+            {
+                title: "Newsletter Issue 4",
+                image: "/images/resources/issue4.avif",
+                category: "newsletter",
+                department: "Public Relations",
+                pdf_link: "https://drive.google.com/file/d/1QpHrayUln2flB0x-eOrmqaIqnn8VfHAC/view?usp=sharing",
+                button_text: "Read Now"
+            },
+            {
+                title: "Newsletter Issue 3",
+                image: "/images/resources/issue3.avif",
+                category: "newsletter",
+                department: "Public Relations",
+                pdf_link: "https://drive.google.com/file/d/1KpBzVzbs7re7ZuNTJVokLzuZBcg7HrKb/view?usp=sharing",
+                button_text: "Read Now"
+            },
+            {
+                title: "Newsletter Issue 2",
+                image: "/images/resources/issue2.avif",
+                category: "newsletter",
+                department: "Public Relations",
+                pdf_link: "https://drive.google.com/file/d/1BIwKD9-NvML8ta4LARIapxEFYBDYUZF5/view?usp=sharing",
+                button_text: "Read Now"
+            },
+            {
+                title: "Newsletter Issue 1",
+                image: "/images/resources/issue1.avif",
+                category: "newsletter",
+                department: "Public Relations",
+                pdf_link: "https://drive.google.com/file/d/18o1toUK319b2Ph_MtJTWiHb5wILxeoDy/view?usp=sharing",
                 button_text: "Read Now"
             },
             {
@@ -981,6 +1037,28 @@ const siteContent = {
                 // what makes the modal re-appear for people who dismissed the old one.
                 id: "afterhours",                 // unique string (no spaces) — used to track dismissals
 
+                eyebrow: "Newsletter!",                          // small maroon kicker (optional)
+                title: "ALE-IANS Alert!",
+                body: "Read now!",
+
+                image: "/images/resources/issue11.avif",   // optional — omit to hide
+                imageAlt: "Issue 11",
+
+                ctaText: "Read Now!",
+                ctaLink: "https://drive.google.com/file/d/1tZFNG8hSU18wGwHyi70sTfZUS4QNwLIX/view?usp=sharing",           // internal page, #hash, or full https:// URL
+
+
+                // Optional scheduling (ISO date strings). Omit either to leave that
+                // side open. The modal only auto-shows while today is inside the window.
+                showFrom: "2026-09-24",                       // don't show before this date
+                expires: "2026-10-12",                       // stop showing after this date
+            },
+            // Queue the next announcement here (with its own future showFrom) — the
+            {
+                // CHANGE the id whenever you publish a new announcement — that is
+                // what makes the modal re-appear for people who dismissed the old one.
+                id: "afterhours",                 // unique string (no spaces) — used to track dismissals
+
                 eyebrow: "New Event",                          // small maroon kicker (optional)
                 title: "A-Level After Hours",
                 body: "Join us",
@@ -997,7 +1075,6 @@ const siteContent = {
                 showFrom: "2026-09-20",                       // don't show before this date
                 expires: "2026-09-27",                       // stop showing after this date
             },
-            // Queue the next announcement here (with its own future showFrom) — the
             // script always shows the first ACTIVE one in this list.
         ],
     },
