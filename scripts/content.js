@@ -352,7 +352,12 @@ const siteContent = {
                 button_text: "Closed",
            },
            */
-           {
+           
+        ],
+
+        // SECTION 2: PAST EVENTS
+        past: [
+            {
                 title: "A-Level After Hours",
                 department: "Leadership Development",
                 date: "Saturday, 26th September 2026 to Sunday, 27th September 2026",
@@ -362,10 +367,6 @@ const siteContent = {
                 registration_link: "https://forms.gle/HGYok6tE9MNYnzFY9",  // internal page — opens in same tab
                 button_text: "Register Now",
             },
-        ],
-
-        // SECTION 2: PAST EVENTS
-        past: [
               {
                 title: "Spoonfuls of Kindness",
                 department: "Community Service",
@@ -538,7 +539,7 @@ const siteContent = {
                 image: "/images/resources/issue11.avif",
                 category: "newsletter",
                 department: "Public Relations",
-                pdf_link: "https://drive.google.com/file/d/1tZFNG8hSU18wGwHyi70sTfZUS4QNwLIX/view?usp=sharing",
+                pdf_link: "https://drive.google.com/file/d/1xCYLcoUn1RosP8g5JtF6cuZIdbB5YPg_/view?usp=sharing",
                 button_text: "Read Now"
             },
             {
@@ -1051,30 +1052,10 @@ const siteContent = {
                 // Optional scheduling (ISO date strings). Omit either to leave that
                 // side open. The modal only auto-shows while today is inside the window.
                 showFrom: "2026-09-24",                       // don't show before this date
-                expires: "2026-10-12",                       // stop showing after this date
+                expires: "2026-12-12",                       // stop showing after this date
             },
             // Queue the next announcement here (with its own future showFrom) — the
-            {
-                // CHANGE the id whenever you publish a new announcement — that is
-                // what makes the modal re-appear for people who dismissed the old one.
-                id: "afterhours",                 // unique string (no spaces) — used to track dismissals
-
-                eyebrow: "New Event",                          // small maroon kicker (optional)
-                title: "A-Level After Hours",
-                body: "Join us",
-
-                image: "/images/events/upcoming/afterhours.avif",   // optional — omit to hide
-                imageAlt: "A-Level After Hours",
-
-                ctaText: "Register Now",
-                ctaLink: "https://forms.gle/HGYok6tE9MNYnzFY9",           // internal page, #hash, or full https:// URL
-
-
-                // Optional scheduling (ISO date strings). Omit either to leave that
-                // side open. The modal only auto-shows while today is inside the window.
-                showFrom: "2026-09-20",                       // don't show before this date
-                expires: "2026-09-27",                       // stop showing after this date
-            },
+            
             // script always shows the first ACTIVE one in this list.
         ],
     },
