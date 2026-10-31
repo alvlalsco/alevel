@@ -352,7 +352,15 @@ const siteContent = {
                 button_text: "Closed",
            },
            */
-           
+           {
+                title: "A-Level Spirit Week 2026",
+                department: "Public Relations and Student Welfare",
+                date: "Monday, 2nd November 2026 to Friday, 6th November 2026",
+                image: "/images/events/upcoming/spiritweek1.avif",
+                details_image: "/images/events/upcoming/spiritweek2.avif",
+                ig_link: "https://www.instagram.com/p/DfGkStqk7hm/?img_index=1",
+                button_text: "Join Now",
+            },
         ],
 
         // SECTION 2: PAST EVENTS
